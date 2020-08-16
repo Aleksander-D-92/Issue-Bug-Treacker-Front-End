@@ -47,6 +47,7 @@ function AccountSettings() {
         <React.Fragment>
             <Card title={user?.username} style={{width: 300}}>
                 <p>Id {user?.id}</p>
+                <p>Registration date {user?.registrationDate.toString().substring(0, 10)}</p>
                 <p>Authority {user?.authority.authority}</p>
                 <p>Authority level {user?.authority.authorityLevel}</p>
             </Card>

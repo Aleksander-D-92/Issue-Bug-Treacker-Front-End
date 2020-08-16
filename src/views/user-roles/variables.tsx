@@ -10,6 +10,7 @@ export interface Authority {
 export interface User {
     id: number,
     username: string
+    registrationDate: Date
     authority: Authority
 }
 

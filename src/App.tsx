@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Col, Layout, Menu, Row} from 'antd';
+import {TopSideNavigation} from "./views/navigation-bars/top/TopSideNavigation";
+import {LeftNavMenu} from "./views/navigation-bars/left/LeftNavMenu";
+import {
+    SlackSquareOutlined
+} from '@ant-design/icons';
+import {WebsiteRoutes} from "./configuration/react-router-dom/WebsiteRoutes";
+
+const {Header, Footer, Sider, Content} = Layout;
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <Layout>
+
+            <Sider theme={"dark"} width={300} collapsedWidth={100} breakpoint={'md'}
+                   className={'d-none d-sm-inline'}>
+                <LeftNavMenu/>
+            </Sider>
+
+            <Layout>
+
+                <Header>
+                    <TopSideNavigation/>
+                </Header>
+
+                <Content style={{minHeight: '800px'}}>
+                    <WebsiteRoutes/>
+                </Content>
+
+                <Footer style={{backgroundColor: '#001529', color: 'white'}}>
+                    <h1>dasasd</h1>
+                </Footer>
+
+            </Layout>
+        </Layout>
+    )
 }
 
-export default App;
+export {App}
+
+

@@ -27,6 +27,7 @@ function userDetails(state = {}, action: userDetailsActions) {
 }
 
 interface UserDetails {
+    id: number,
     username: string,
     authorities: string,
     exp: string

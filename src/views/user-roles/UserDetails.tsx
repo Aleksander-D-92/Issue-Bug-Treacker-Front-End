@@ -26,7 +26,7 @@ function UserDetails() {
         }).then((e) => {
             setUserAndRole(e.data)
         });
-        axios.get('/admins/get-all-authorities', {
+        axios.get('/admins/get-all-authorities/', {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }
@@ -36,7 +36,7 @@ function UserDetails() {
     }, [])
 
     function handleSubmit() {
-        axios.put(`/admins/update-users-authority-by-id/${userId}`, {authority: selectedAuthority}, {
+        axios.put('/admins/update-users-authority-by-id/', {authority: selectedAuthority, userId: userId}, {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }

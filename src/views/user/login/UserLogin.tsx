@@ -6,6 +6,7 @@ import {useHistory} from "react-router-dom";
 import axios from 'axios'
 import {Store} from "rc-field-form/lib/interface";
 import {useDispatch} from 'react-redux';
+import {deleteAllCookies} from "../logout/HandleLogout";
 
 function UserLogin() {
     let history = useHistory();
@@ -27,21 +28,12 @@ function UserLogin() {
     }
 
     function updateCookiesAndStore(token: string) {
-        //delete all cookies
-        let cookies = document.cookie.split(";");
-
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i];
-            let eqPos = cookie.indexOf("=");
-            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-        }
-        document.cookie = `jwt=${token}`;
-        //we take the JWT split it to take the payload then we turn it from base 64 to normal then to JSON
-        let jwtPayload = JSON.parse(atob(token.split('.')[1]));
-        // console.log(jwtPayload); //{sub: "pesho", authorities: "ROLE_USER", exp: 1597390109}
+        deleteAllCookies(); //delete all cookies
+        document.cookie = `jwt=${token}`; //make a new cookie form the the new token
+        let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object
         dispatch({
             type: 'userDetails', payload: {
+                id: jwtPayload.id,
                 username: jwtPayload.sub,
                 authorities: jwtPayload.authorities,
                 exp: jwtPayload.exp,

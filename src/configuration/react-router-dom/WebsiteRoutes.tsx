@@ -9,6 +9,7 @@ import {AdminPage} from "../../views/user-roles/AdminPage";
 import {UserDetails} from "../../views/user-roles/UserDetails";
 import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
+import {CheckIfLoggedIn} from "../../views/user/check-if-logged-in/CheckIfLoggedIn";
 
 function WebsiteRoutes() {
     return (
@@ -19,8 +20,6 @@ function WebsiteRoutes() {
             <Route exact path={'/users/account-settings/:username'}><AccountSettings/></Route>
             <Route exact path={'/admins/get-all-users'}><AdminPage/></Route>
             <Route exact path={'/admins/get-user-details-by-id/:userId'}><UserDetails/></Route>
-            {/* @Put   todo /admins/update-user-by-id/{userId}*/}
-            {/*/users/account-settings/${reduxState.userDetails.username}*/}
         </Switch>
     )
 }

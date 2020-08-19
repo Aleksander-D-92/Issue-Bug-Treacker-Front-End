@@ -30,6 +30,7 @@ function UserLogin() {
     function updateCookiesAndStore(token: string) {
         deleteAllCookies(); //delete all cookies
         document.cookie = `jwt=${token}`; //make a new cookie form the the new token
+        //
         let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object
         dispatch({
             type: 'userDetails', payload: {
@@ -42,7 +43,6 @@ function UserLogin() {
         })
 
     }
-
     return (
         <Row justify={'center'} className={'mt-5'}>
             <Col xs={24} md={12}>

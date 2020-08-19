@@ -6,6 +6,7 @@ import {
     SlackSquareOutlined
 } from '@ant-design/icons';
 import {WebsiteRoutes} from "./configuration/react-router-dom/WebsiteRoutes";
+import {CheckIfLoggedIn} from "./views/user/check-if-logged-in/CheckIfLoggedIn";
 
 const {Header, Footer, Sider, Content} = Layout;
 
@@ -14,7 +15,7 @@ function App() {
 
     return (
         <Layout>
-
+            <CheckIfLoggedIn/>
             <Sider theme={"dark"} width={300} collapsedWidth={100} breakpoint={'md'}
                    className={'d-none d-sm-inline'}>
                 <LeftNavMenu/>

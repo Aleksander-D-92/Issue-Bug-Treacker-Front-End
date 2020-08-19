@@ -37,7 +37,7 @@ function AccountSettings() {
     //@DeleteMapping("/users/delete")
     function handleDelete(e: any) {
         console.log(e);
-        axios.delete('/users/delete', {
+        axios.delete('/users/delete-account', {
             headers: {Authorization: reduxState.userDetails.authorizationHeader},
             data: {username: username, password: e.password}
         })

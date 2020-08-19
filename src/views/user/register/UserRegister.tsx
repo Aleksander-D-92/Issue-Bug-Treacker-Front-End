@@ -1,7 +1,9 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-import {Button, Checkbox, Col, Form, Input, Row} from "antd";
 import axios from 'axios';
+import {Button, Checkbox, Col, Form, Input, Row, Select} from "antd";
+
+const {Option} = Select;
 
 function UserRegister() {
     let history = useHistory();
@@ -10,7 +12,8 @@ function UserRegister() {
         const data = {
             username: e.username,
             password: e.password,
-            confirmPassword: e.confirmPassword
+            confirmPassword: e.confirmPassword,
+            authority: e.authority
         }
         console.log(data);
         axios.post('/users/register', data).then((e) => {
@@ -70,7 +73,17 @@ function UserRegister() {
                     >
                         <Input.Password/>
                     </Form.Item>
-
+                    <Form.Item name="authority" label="Your Role"
+                               rules={[{required: true, message: 'please select your role'}]}>
+                        <Select
+                            placeholder="Select a option and change input text above"
+                            allowClear
+                        >
+                            <Option value="ROLE_SUBMITTER">Submitter</Option>
+                            <Option value="ROLE_DEVELOPER">Developer</Option>
+                            <Option value="ROLE_PROJECT_MANAGER">Project Manager</Option>
+                        </Select>
+                    </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit" block>
                             Register

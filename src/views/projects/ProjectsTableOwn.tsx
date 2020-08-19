@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios'
 
-function MyProjectsTable() {
+function ProjectsTableOwn() {
     return (
-        <div>div</div>
+        <div>Own projects</div>
     )
 }
 
-export {MyProjectsTable}
+export {ProjectsTableOwn}

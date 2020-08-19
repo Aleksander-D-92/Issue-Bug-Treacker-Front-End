@@ -7,6 +7,8 @@ import {UserDetails} from "../../views/user-roles/UserDetails";
 import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
 import {ProjectsTable} from "../../views/projects/ProjectsTable";
+import {CreateProjectView} from "../../views/projects/CreateProject";
+import {ProjectsTableOwn} from "../../views/projects/ProjectsTableOwn";
 
 function WebsiteRoutes() {
     return (
@@ -18,6 +20,8 @@ function WebsiteRoutes() {
             <Route exact path={'/admins/get-all-users'}><AdminPage/></Route>
             <Route exact path={'/admins/get-user-details-by-id/:userId'}><UserDetails/></Route>
             <Route exact path={'/projects/get-all-projects'}><ProjectsTable/></Route>
+            <Route exact path={'/projects/get-own-projects'}><ProjectsTableOwn/></Route>
+            <Route exact path={'/projects/create-project'}><CreateProjectView/></Route>
         </Switch>
     )
 }

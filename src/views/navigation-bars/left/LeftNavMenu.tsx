@@ -18,13 +18,16 @@ function LeftNavMenu() {
                 <Menu.Item key="3" icon={<DesktopOutlined/>}>
                     <Link to={'/projects/get-all-projects'}>All projects</Link>
                 </Menu.Item>
-                <Menu.Item key="4" icon={<ContainerOutlined/>}>
+                <Menu.Item key="4" icon={<DesktopOutlined/>}>
                     <Link to={'/projects/get-own-projects'}>My projects</Link>
                 </Menu.Item>
                 <Menu.Item key="5" icon={<ContainerOutlined/>}>
-                    My Projects
+                    <Link to={'/projects/create-project'}>Create Project</Link>
                 </Menu.Item>
                 <Menu.Item key="6" icon={<ContainerOutlined/>}>
+                    My Projects
+                </Menu.Item>
+                <Menu.Item key="7" icon={<ContainerOutlined/>}>
                     My Tickets
                 </Menu.Item>
             </Menu>

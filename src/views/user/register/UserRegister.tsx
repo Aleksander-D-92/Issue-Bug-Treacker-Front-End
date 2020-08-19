@@ -8,20 +8,12 @@ const {Option} = Select;
 function UserRegister() {
     let history = useHistory();
 
-    function onFinish(e: any) {
-        const data = {
-            username: e.username,
-            password: e.password,
-            confirmPassword: e.confirmPassword,
-            authority: e.authority
-        }
-        console.log(data);
-        axios.post('/users/register', data).then((e) => {
+    function onFinish(registerForm: any) {
+        axios.post('/users/register', registerForm).then((e) => {
             history.push('/users/login')
         }).catch((e) => {
             console.log(e);
         })
-
     }
 
 

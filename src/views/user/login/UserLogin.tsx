@@ -11,13 +11,8 @@ function UserLogin() {
     let history = useHistory();
     const dispatch = useDispatch();
 
-    function onFinish(e: Store) {
-        const data = {
-            username: e.username,
-            password: e.password,
-            rememberMe: e.rememberMe,
-        }
-        axios.post('/users/authenticate', data).then((e) => {
+    function onFinish(loginForm: Store) {
+        axios.post('/users/authenticate', loginForm).then((e) => {
             dispatch({type: 'userLoggedIn'});
             updateCookiesAndStore(e.data.id_token)
             history.push('/')

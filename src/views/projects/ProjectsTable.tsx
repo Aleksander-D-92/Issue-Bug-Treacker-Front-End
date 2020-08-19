@@ -15,7 +15,6 @@ function ProjectsTable() {
                 Authorization: state.userDetails.authorizationHeader
             }
         }).then((e) => {
-            console.log(e.data);
             modifyTable(e.data);
         })
     }, [])

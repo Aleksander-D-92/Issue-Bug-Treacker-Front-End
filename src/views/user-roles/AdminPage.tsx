@@ -18,11 +18,10 @@ function AdminPage() {
             }
         }).then((e) => {
             let arr: Array<User> = [];
-            for (let i = 0; i < 20; i++) {
-                e.data.users.forEach((e: User) => {
-                    arr.push(e);
-                });
-            }
+            e.data.users.forEach((e: User) => {
+                arr.push(e);
+            });
+
             modifyTable(arr);
             setTotalPages(e.data.totalCount);
         }).catch((e) => {

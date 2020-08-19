@@ -79,7 +79,7 @@ function UserRegister() {
                             placeholder="Select a option and change input text above"
                             allowClear
                         >
-                            <Option value="ROLE_SUBMITTER">Submitter</Option>
+                            <Option value="ROLE_END_USER">End User</Option>
                             <Option value="ROLE_DEVELOPER">Developer</Option>
                             <Option value="ROLE_PROJECT_MANAGER">Project Manager</Option>
                         </Select>

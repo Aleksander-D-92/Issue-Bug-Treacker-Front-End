@@ -23,10 +23,10 @@ function LeftNavMenu() {
                     <Link to={'/admins/get-all-users'}>User roles</Link>
                 </Menu.Item>
                 <Menu.Item key="3" icon={<DesktopOutlined/>}>
-                    %%%%%%%%%
+                    <Link to={'/projects/get-all-projects'}>All projects</Link>
                 </Menu.Item>
                 <Menu.Item key="4" icon={<ContainerOutlined/>}>
-                    Manage Project Users
+                    <Link to={'/projects/get-own-projects'}>My projects</Link>
                 </Menu.Item>
                 <Menu.Item key="5" icon={<ContainerOutlined/>}>
                     My Projects

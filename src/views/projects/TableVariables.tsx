@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import React from "react";
 
+
 export interface Project {
     id: number,
     title: string,
@@ -9,7 +10,7 @@ export interface Project {
     creationDate: Date,
 }
 
-const projectTableColumns = [
+const projectsTableColumns = [
     {
         title: 'Project Name', // kak se kazva kolonata (table HEADER)
         dataIndex: 'title', // koi key ot jsno array da sloja tuka
@@ -41,13 +42,14 @@ const projectTableColumns = [
         title: 'Created on', // kak se kazva kolonata (table HEADER)
         dataIndex: 'creationDate', // koi key ot jsno array da sloja tuka
         key: 'id',
+        render: (creationDate: Date) => <span>{formatDate(creationDate.toString().substring(0, 10))}</span>,
         sorter: {
             compare: (a: Project, b: Project) => compareDates(a.creationDate, b.creationDate),
             multiple: 1
-        }
+        },
 
-    }
-    , {
+    },
+    {
         title: 'Details',
         dataIndex: 'id',
         key: 'id',
@@ -64,4 +66,14 @@ function compareDates(a: Date, b: Date): number {
     }
 }
 
-export {projectTableColumns}
+function formatDate(date: string | undefined): string {
+    if (date === undefined) {
+        return '';
+    }
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    let strings = date.split('-').reverse();
+    strings[1] = months[parseInt(strings[1]) - 1];
+    return strings.join(" ").toString();
+}
+
+export {projectsTableColumns, formatDate}

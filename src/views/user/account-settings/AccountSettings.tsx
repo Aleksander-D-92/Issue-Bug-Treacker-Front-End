@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {User} from "../../user-roles/variables";
 import {Button, Card, Col, Form, Input, Row} from "antd";
+import {formatDate} from "../../projects/TableVariables";
 
 function AccountSettings() {
     const {username} = useParams();
@@ -47,7 +48,7 @@ function AccountSettings() {
         <React.Fragment>
             <Card title={user?.username} style={{width: 300}}>
                 <p>Id {user?.id}</p>
-                <p>Registration date {user?.registrationDate.toString().substring(0, 10)}</p>
+                <p>Registration date {formatDate(user?.registrationDate.toString().substring(0, 10))}</p>
                 <p>Authority {user?.authority.authority}</p>
                 <p>Authority level {user?.authority.authorityLevel}</p>
             </Card>

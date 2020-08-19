@@ -6,6 +6,7 @@ import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Authority, User} from "./variables";
 import {Button, Card, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
+import {formatDate} from "../projects/TableVariables";
 
 
 const {Option} = Select;
@@ -18,7 +19,6 @@ function UserDetails() {
     const reduxState = useSelector((state: ReduxState) => state);
 
     useEffect(() => {
-
         axios.get(`/admins/get-user-details-by-id/${userId}`, {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
@@ -47,7 +47,7 @@ function UserDetails() {
         <React.Fragment>
             <Card title={user?.username} extra={<a href="#">More</a>} style={{width: 300}}>
                 <p>Id {user?.id}</p>
-                <p>Registration date {user?.registrationDate.toString().substring(0, 10)}   </p>
+                <p>Registration date {formatDate(user?.registrationDate.toString().substring(0, 10))}   </p>
                 <p>Authority {user?.authority.authority}</p>
                 <p>Authority level {user?.authority.authorityLevel}</p>
                 <p>Card content</p>

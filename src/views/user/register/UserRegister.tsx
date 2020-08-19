@@ -1,7 +1,7 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
 import axios from 'axios';
-import {Button, Checkbox, Col, Form, Input, Row, Select} from "antd";
+import {Button, Col, Form, Input, Row, Select} from "antd";
 
 const {Option} = Select;
 

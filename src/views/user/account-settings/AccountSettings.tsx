@@ -4,7 +4,7 @@ import axios from 'axios'
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {User} from "../../user-roles/variables";
-import {Button, Card, Checkbox, Col, Form, Input, Row, Select} from "antd";
+import {Button, Card, Col, Form, Input, Row} from "antd";
 
 function AccountSettings() {
     const {username} = useParams();

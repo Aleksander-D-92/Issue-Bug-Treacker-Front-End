@@ -1,13 +1,6 @@
 import React from "react";
-import {Menu, Button} from 'antd';
-import {
-    AppstoreOutlined,
-    PieChartOutlined,
-    DesktopOutlined,
-    ContainerOutlined,
-    MailOutlined,
-} from '@ant-design/icons';
-import SubMenu from "antd/es/menu/SubMenu";
+import {Menu} from 'antd';
+import {ContainerOutlined, DesktopOutlined, PieChartOutlined,} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 
 

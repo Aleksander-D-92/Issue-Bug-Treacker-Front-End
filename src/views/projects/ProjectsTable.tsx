@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Table} from "antd";
-import {Link} from "react-router-dom";
 import {Project, projectTableColumns} from "./TableVariables";
 
 

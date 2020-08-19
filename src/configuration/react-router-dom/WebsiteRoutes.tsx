@@ -1,15 +1,11 @@
 import React from "react";
-import {
-    Switch,
-    Route
-} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {UserLogin} from "../../views/user/login/UserLogin";
 import {UserRegister} from "../../views/user/register/UserRegister";
 import {AdminPage} from "../../views/user-roles/AdminPage";
 import {UserDetails} from "../../views/user-roles/UserDetails";
 import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
-import {CheckIfLoggedIn} from "../../views/user/check-if-logged-in/CheckIfLoggedIn";
 import {ProjectsTable} from "../../views/projects/ProjectsTable";
 
 function WebsiteRoutes() {

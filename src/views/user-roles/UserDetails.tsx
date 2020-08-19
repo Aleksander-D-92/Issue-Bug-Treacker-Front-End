@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Authority, User} from "./variables";
 import {Button, Card, Select} from "antd";
-import {PoweroffOutlined, DownloadOutlined} from '@ant-design/icons';
+import {DownloadOutlined} from '@ant-design/icons';
 
 
 const {Option} = Select;

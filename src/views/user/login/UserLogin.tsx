@@ -1,8 +1,7 @@
 import React from "react";
 import {Button, Checkbox, Col, Form, Input, Row} from "antd";
-import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import {Link} from "react-router-dom";
-import {useHistory} from "react-router-dom";
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'
 import {Store} from "rc-field-form/lib/interface";
 import {useDispatch} from 'react-redux';

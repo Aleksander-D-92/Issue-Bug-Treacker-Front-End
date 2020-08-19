@@ -1,4 +1,4 @@
-import {createStore, Action, combineReducers, applyMiddleware, compose} from 'redux';
+import {Action, combineReducers, createStore} from 'redux';
 
 function userLoggedIn(state = false, action: Action) {
     switch (action.type) {

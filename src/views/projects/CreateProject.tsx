@@ -12,7 +12,7 @@ function CreateProjectView() {
     function onFinish(projectForm: any) {
         const userId = state.userDetails.id;
         console.log(projectForm);
-        const data = {userId: userId, title: projectForm.title, description: projectForm.description}
+        const data = {ownerId: userId, title: projectForm.title, description: projectForm.description}
         axios.post('/projects/create-project', data, {
             headers: {
                 Authorization: state.userDetails.authorizationHeader
@@ -57,6 +57,7 @@ function CreateProjectView() {
                             </Button>
                         </Form.Item>
                     </Form>
+                    <h2>After your project is created you can assign developers to it</h2>
                 </Col>
             </Row>
         </React.Fragment>

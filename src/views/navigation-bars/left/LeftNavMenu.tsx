@@ -8,12 +8,15 @@ function LeftNavMenu() {
     return (
         <React.Fragment>
             <Menu className={''} defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="inline" theme="dark">
-                <Menu.Item key="1" icon={<PieChartOutlined style={{fontSize: '1.2rem'}}/>} className={'mb-5'}
+                <Menu.Item key="0" icon={<PieChartOutlined style={{fontSize: '1.2rem'}}/>} className={'mb-5'}
                            style={{fontSize: '1.2rem'}}>
                     <Link to={'./'}>Landing page</Link>
                 </Menu.Item>
+                <Menu.Item key="1" icon={<ContainerOutlined/>}>
+                    <Link to={'/dashboard'}>Dashboard</Link>
+                </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined/>}>
-                    <Link to={'/admins/get-all-users'}>User roles</Link>
+                    <Link to={'/admins/get-all-users'}>User roles-- to remove?</Link>
                 </Menu.Item>
                 <Menu.Item key="3" icon={<DesktopOutlined/>}>
                     <Link to={'/projects/get-all-projects'}>All projects</Link>
@@ -25,10 +28,16 @@ function LeftNavMenu() {
                     <Link to={'/projects/create-project'}>Create Project</Link>
                 </Menu.Item>
                 <Menu.Item key="6" icon={<ContainerOutlined/>}>
-                    My Projects
+                    My Comments
                 </Menu.Item>
                 <Menu.Item key="7" icon={<ContainerOutlined/>}>
                     My Tickets
+                </Menu.Item>
+                <Menu.Item key="8" icon={<ContainerOutlined/>}>
+                    All tickets
+                </Menu.Item>
+                <Menu.Item key="9" icon={<ContainerOutlined/>}>
+                    Submit a ticket
                 </Menu.Item>
             </Menu>
 

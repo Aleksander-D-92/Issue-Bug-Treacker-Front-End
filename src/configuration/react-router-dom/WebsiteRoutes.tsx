@@ -9,6 +9,7 @@ import {HandleLogout} from "../../views/user/logout/HandleLogout";
 import {ProjectsTable} from "../../views/projects/ProjectsTable";
 import {CreateProjectView} from "../../views/projects/CreateProject";
 import {ProjectsTableOwn} from "../../views/projects/ProjectsTableOwn";
+import {ProjectDetails} from "../../views/projects/ProectDetails/ProjectDetailsView";
 
 function WebsiteRoutes() {
     return (
@@ -22,6 +23,7 @@ function WebsiteRoutes() {
             <Route exact path={'/projects/get-all-projects'}><ProjectsTable/></Route>
             <Route exact path={'/projects/get-own-projects'}><ProjectsTableOwn/></Route>
             <Route exact path={'/projects/create-project'}><CreateProjectView/></Route>
+            <Route exact path={'/projects/project-details/:projectId'}><ProjectDetails/></Route>
         </Switch>
     )
 }

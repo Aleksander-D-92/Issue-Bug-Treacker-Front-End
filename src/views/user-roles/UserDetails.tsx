@@ -36,7 +36,7 @@ function UserDetails() {
     }, [])
 
     function handleSubmit() {
-        axios.put('/admins/update-users-authority-by-id/', {authority: selectedAuthority, userId: userId}, {
+        axios.put('/admins/update-users-authority-by-id/', {authority: selectedAuthority, ownerId: userId}, {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }

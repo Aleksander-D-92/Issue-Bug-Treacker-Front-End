@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Menu} from "antd";
 import {Link} from "react-router-dom";
-import {useSelector, useDispatch} from 'react-redux';
-import {PlusCircleOutlined, LoginOutlined} from '@ant-design/icons';
+import {useSelector} from 'react-redux';
+import {LoginOutlined, PlusCircleOutlined} from '@ant-design/icons';
 import './TopSideNavigation.css'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 
@@ -11,9 +11,6 @@ function TopSideNavigation() {
     const reduxState = useSelector((state: ReduxState) => state);
     const [menu, adjustMenu] = useState(<React.Fragment/>);
     const [username, setUsername] = useState('petar ');
-    const dispatch = useDispatch();
-
-
 
     useEffect(() => {
         setUsername(reduxState.userDetails.username)

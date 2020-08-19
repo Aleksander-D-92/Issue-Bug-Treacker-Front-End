@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Table} from "antd";
-import {Project, projectsTableColumns} from "./TableVariables";
+import {getProjectTableColumns, Project} from "./TableVariables";
 
 
 function ProjectsTable() {
@@ -20,7 +20,7 @@ function ProjectsTable() {
     }, [])
 
     return (
-        <Table dataSource={projects} columns={projectsTableColumns} bordered={true}/>
+        <Table dataSource={projects} columns={getProjectTableColumns('details')} bordered={true}/>
     )
 }
 

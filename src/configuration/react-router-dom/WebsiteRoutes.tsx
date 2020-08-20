@@ -6,10 +6,11 @@ import {AdminPage} from "../../views/user-roles/AdminPage";
 import {UserDetails} from "../../views/user-roles/UserDetails";
 import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
-import {ProjectsTable} from "../../views/projects/projectTables/ProjectsTable";
-import {CreateProjectView} from "../../views/projects/createPorject/CreateProject";
-import {ProjectsTableOwn} from "../../views/projects/projectTables/ProjectsTableOwn";
-import {ProjectDetails} from "../../views/projects/proectDetails/ProjectDetailsView";
+import {ProjectsTable} from "../../views/projects/project-tables/ProjectsTable";
+import {CreateProjectView} from "../../views/projects/create-porject/CreateProject";
+import {ProjectsTableOwn} from "../../views/projects/project-tables/ProjectsTableOwn";
+import {ProjectDetails} from "../../views/projects/proect-details/ProjectDetailsView";
+import {TicketSubmitForm} from "../../views/projects/submit-ticket/TicketSubmitForm";
 
 function WebsiteRoutes() {
     return (
@@ -24,6 +25,7 @@ function WebsiteRoutes() {
             <Route exact path={'/projects/get-own-projects'}><ProjectsTableOwn/></Route>
             <Route exact path={'/projects/create-project'}><CreateProjectView/></Route>
             <Route exact path={'/projects/project-details/:projectId'}><ProjectDetails/></Route>
+            <Route exact path={'/tickets/submit-ticket/:projectId'}><TicketSubmitForm/></Route>
         </Switch>
     )
 }

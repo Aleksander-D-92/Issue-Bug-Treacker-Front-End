@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Divider, Table} from "antd";
-import {compareDates, formatDate} from "../projectTables/TableVariables";
+import {compareDates, formatDate} from "../project-tables/TableVariables";
 
 interface TicketView {
     id: number,
@@ -77,7 +77,15 @@ function TicketsForProject() {
                 compare: (a: TicketView, b: TicketView) => compareDates(a.creationDate, b.creationDate),
                 multiple: 1
             },
+        },
+        {
+            title: 'Details',
+            dataIndex: 'id',
+            key: 'id',
+            render: (id: number) => <Link to={`/tickets/ticket-details/${id}`}>Details</Link>,
+
         }
+
     ];
     return (
         <React.Fragment>

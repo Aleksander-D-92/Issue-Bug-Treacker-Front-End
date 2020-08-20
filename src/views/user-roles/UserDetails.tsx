@@ -6,7 +6,7 @@ import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Authority, User} from "./variables";
 import {Button, Card, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
-import {formatDate} from "../projects/projectTables/TableVariables";
+import {formatDate} from "../projects/project-tables/TableVariables";
 
 
 const {Option} = Select;

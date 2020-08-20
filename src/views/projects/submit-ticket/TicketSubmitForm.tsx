@@ -7,7 +7,7 @@ import {Button, Form, Input, Select} from "antd";
 
 const {Option} = Select;
 
-function SubmitTicketForm() {
+function TicketSubmitForm() {
     const state = useSelector(((state: ReduxState) => state));
     const {projectId} = useParams();
     const userId = state.userDetails.id;
@@ -72,4 +72,4 @@ function SubmitTicketForm() {
         </React.Fragment>
     )
 }
-export {SubmitTicketForm};
+export {TicketSubmitForm};

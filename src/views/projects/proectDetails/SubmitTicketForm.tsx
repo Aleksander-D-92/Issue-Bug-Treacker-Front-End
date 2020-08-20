@@ -26,12 +26,14 @@ function SubmitTicketForm() {
         }
         axios.post('/tickets/submit-ticket', data, {
             headers: {Authorization: state.userDetails.authorizationHeader}
+        }).then((e) => {
+            console.log(e);
         })
-        console.log(data);
     }
 
     return (
         <React.Fragment>
+            <h1>TODO move to other location</h1>
             <h1>Submit a ticket</h1>
             <Form name="basic" initialValues={{remember: true}} layout={'vertical'} onFinish={onFinish}>
 

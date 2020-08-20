@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 import {UserOutlined} from '@ant-design/icons';
 import {useSelector} from 'react-redux';
-import {ReduxState} from "../../configuration/redux/reduxStrore";
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Col, Form, Input, Row} from "antd";
 
 

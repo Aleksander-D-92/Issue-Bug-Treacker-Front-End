@@ -7,9 +7,9 @@ import {UserDetails} from "../../views/user-roles/UserDetails";
 import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
 import {ProjectsTable} from "../../views/projects/ProjectsTable";
-import {CreateProjectView} from "../../views/projects/CreateProject";
+import {CreateProjectView} from "../../views/projects/createPorject/CreateProject";
 import {ProjectsTableOwn} from "../../views/projects/ProjectsTableOwn";
-import {ProjectDetails} from "../../views/projects/ProectDetails/ProjectDetailsView";
+import {ProjectDetails} from "../../views/projects/proectDetails/ProjectDetailsView";
 
 function WebsiteRoutes() {
     return (

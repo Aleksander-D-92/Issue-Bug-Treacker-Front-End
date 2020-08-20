@@ -20,7 +20,8 @@ function ProjectsTableOwn() {
         })
     }, [])
     return (
-        <Table dataSource={projects} columns={getProjectTableColumns('Edit')} bordered={true}/>
+        <Table dataSource={projects} columns={getProjectTableColumns('Edit')} bordered={true}
+               pagination={{total: projects?.length}}/>
 
     )
 }

@@ -12,11 +12,9 @@ function ProjectDetails() {
         <React.Fragment>
             <Row>
                 <Col>
-                    <h1>ProjectDescription</h1>
                     <ProjectDescription/>
                 </Col>
                 <Col>
-                    <h1>TicketsForProject</h1>
                     <TicketsForProject/>
                 </Col>
             </Row>

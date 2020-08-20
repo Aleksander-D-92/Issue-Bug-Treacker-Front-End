@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Card} from 'antd';
+import {Card, Divider} from 'antd';
 import {formatDate} from "../projectTables/TableVariables";
 
 interface ProjectDesc {
@@ -35,6 +35,7 @@ function ProjectDescription() {
 
     return (
         <React.Fragment>
+            <Divider orientation="left">Project description</Divider>
             <Card title={capitalize(projectDesc?.title)} extra={<a href="#">Edit</a>} style={{width: 300}}>
                 <h3>Description</h3>
                 {capitalize(projectDesc?.description)}

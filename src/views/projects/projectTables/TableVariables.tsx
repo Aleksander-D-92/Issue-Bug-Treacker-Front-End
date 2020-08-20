@@ -79,4 +79,4 @@ function formatDate(date: string | undefined): string {
     return strings.join(" ").toString();
 }
 
-export {formatDate, getProjectTableColumns}
+export {formatDate, getProjectTableColumns, compareDates}

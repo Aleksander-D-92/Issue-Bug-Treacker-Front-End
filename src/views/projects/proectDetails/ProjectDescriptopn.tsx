@@ -3,6 +3,8 @@ import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {Card} from 'antd';
+import {formatDate} from "../projectTables/TableVariables";
 
 interface ProjectDesc {
     id: number,
@@ -18,14 +20,30 @@ function ProjectDescription() {
     const [projectDesc, setProjectDesc] = useState<ProjectDesc>();
     const {projectId} = useParams();
     useEffect(() => {
-        //returns {id: 14, title: "strssing", description: "strsss2ing", creationDate: "2020-08-19T13:35:28.862+00:00", projectManagerId: 14, projectManagerName: "sasho5"}
         axios.get(`/projects/get-project-description/${projectId}`,
             {headers: {Authorization: state.userDetails.authorizationHeader}}).then((e) => {
             setProjectDesc(e.data);
         })
     }, [])
+
+    function capitalize(value: string | undefined): string {
+        if (value === undefined) {
+            return '';
+        }
+        return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+
     return (
-        <React.Fragment>div</React.Fragment>
+        <React.Fragment>
+            <Card title={capitalize(projectDesc?.title)} extra={<a href="#">Edit</a>} style={{width: 300}}>
+                <h3>Description</h3>
+                {capitalize(projectDesc?.description)}
+                <h3>Created on</h3>
+                {formatDate(projectDesc?.creationDate.toString().substring(0, 10))}
+                <h3>Owner</h3>
+                {capitalize(projectDesc?.projectManagerName)}
+            </Card>
+        </React.Fragment>
     )
 }
 

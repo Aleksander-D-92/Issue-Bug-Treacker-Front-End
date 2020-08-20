@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {User} from "../../user-roles/variables";
 import {Button, Card, Col, Form, Input, Row} from "antd";
-import {formatDate} from "../../projects/TableVariables";
+import {formatDate} from "../../projects/projectTables/TableVariables";
 
 function AccountSettings() {
     const {username} = useParams();

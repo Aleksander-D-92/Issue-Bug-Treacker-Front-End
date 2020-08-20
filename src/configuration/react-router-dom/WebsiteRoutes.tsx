@@ -6,9 +6,9 @@ import {AdminPage} from "../../views/user-roles/AdminPage";
 import {UserDetails} from "../../views/user-roles/UserDetails";
 import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
-import {ProjectsTable} from "../../views/projects/ProjectsTable";
+import {ProjectsTable} from "../../views/projects/projectTables/ProjectsTable";
 import {CreateProjectView} from "../../views/projects/createPorject/CreateProject";
-import {ProjectsTableOwn} from "../../views/projects/ProjectsTableOwn";
+import {ProjectsTableOwn} from "../../views/projects/projectTables/ProjectsTableOwn";
 import {ProjectDetails} from "../../views/projects/proectDetails/ProjectDetailsView";
 
 function WebsiteRoutes() {

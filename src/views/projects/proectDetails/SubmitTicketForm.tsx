@@ -1,19 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {useSelector, useDispatch} from 'react-redux';
-import {Link, useParams} from 'react-router-dom';
+import React from "react";
+import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Button, Checkbox, Col, Form, Input, Select} from "antd";
+import {Button, Form, Input, Select} from "antd";
 
 const {Option} = Select;
 
-//todo
 function SubmitTicketForm() {
     const state = useSelector(((state: ReduxState) => state));
     const {projectId} = useParams();
     const userId = state.userDetails.id;
-    useEffect(() => {
-    }, [])
+
 
     function onFinish(formData: any) {
         const data = {
@@ -29,11 +27,11 @@ function SubmitTicketForm() {
         }).then((e) => {
             console.log(e);
         })
+        console.log(data);
     }
 
     return (
         <React.Fragment>
-            <h1>TODO move to other location</h1>
             <h1>Submit a ticket</h1>
             <Form name="basic" initialValues={{remember: true}} layout={'vertical'} onFinish={onFinish}>
 
@@ -74,5 +72,4 @@ function SubmitTicketForm() {
         </React.Fragment>
     )
 }
-
-export {SubmitTicketForm}
+export {SubmitTicketForm};

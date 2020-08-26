@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {deleteAllCookies} from "../../shered/functions";
+import {deleteAllCookies} from "../../shared/functions";
 
 
 function HandleLogout() {

@@ -4,8 +4,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Card, Col, Form, Input, Row} from "antd";
-import {UserViewModel} from "../../shered/Interfaces";
-import {deleteAllCookies, formatDate} from "../../shered/functions";
+import {UserViewModel} from "../../shared/Interfaces";
+import {deleteAllCookies, formatDate} from "../../shared/functions";
 
 function AccountSettings() {
     const reduxState = useSelector((state: ReduxState) => state)

@@ -5,7 +5,7 @@ import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'
 import {Store} from "rc-field-form/lib/interface";
 import {useDispatch} from 'react-redux';
-import {deleteAllCookies} from "../../shered/functions";
+import {deleteAllCookies} from "../../shared/functions";
 
 function UserLogin() {
     let history = useHistory();

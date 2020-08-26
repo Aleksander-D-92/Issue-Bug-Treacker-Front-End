@@ -3,30 +3,30 @@ import axios from "axios";
 import {useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
-import {Authority, User} from "./variables";
 import {Button, Card, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
-import {formatDate} from "../projects/project-tables/TableVariables";
+import {formatDate} from "../shared/functions";
+import {Authority, UserViewModel} from "../shared/Interfaces";
 
 
 const {Option} = Select;
 
 function UserDetails() {
     const {userId} = useParams();
-    const [user, setUserAndRole] = useState<User>();
-    const [authorities, setAuthorities] = useState<Array<Authority>>();
-    const [selectedAuthority, setSelectedAuthority] = useState<string>();
+    const [user, setUser] = useState<UserViewModel>();
+    const [authorities, setAuthorities] = useState<Authority[]>();
+    const [selectedAuthorityId, setSelectedAuthorityId] = useState<number>();
     const reduxState = useSelector((state: ReduxState) => state);
 
     useEffect(() => {
-        axios.get(`/admins/get-user-details-by-id/${userId}`, {
+        axios.get(`/users?action=single&id=${userId}`, {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }
         }).then((e) => {
-            setUserAndRole(e.data)
+            setUser(e.data[0])
         });
-        axios.get('/admins/get-all-authorities/', {
+        axios.get('/authorities/all', {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }
@@ -35,11 +35,13 @@ function UserDetails() {
         })
     }, [])
 
-    function handleSubmit() {
-        axios.put('/admins/update-users-authority-by-id/', {authority: selectedAuthority, ownerId: userId}, {
+    function changeAuthority() {
+        axios.put(`/admins/authority/${userId}`, {authorityId: selectedAuthorityId}, {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }
+        }).then((e) => {
+            console.log(e);
         })
     }
 
@@ -47,18 +49,18 @@ function UserDetails() {
         <React.Fragment>
             <Card title={user?.username} extra={<a href="#">More</a>} style={{width: 300}}>
                 <p>Id {user?.id}</p>
-                <p>Registration date {formatDate(user?.registrationDate.toString().substring(0, 10))}   </p>
+                <p>Registration date {formatDate(user?.registrationDate)}</p>
                 <p>Authority {user?.authority.authority}</p>
                 <p>Authority level {user?.authority.authorityLevel}</p>
                 <p>Card content</p>
             </Card>
-            <Select defaultValue="ROLE_USER" style={{width: 200}} allowClear
-                    onChange={(value: string) => setSelectedAuthority(value)}>
-                {authorities?.map((e) => {
-                    return <Option key={e.id} value={e.authority}>{e.authority} = Level {e.authorityLevel}</Option>
+            <Select defaultValue={1} style={{width: 300}} allowClear
+                    onChange={(value: number) => setSelectedAuthorityId(value)}>
+                {authorities?.map((authority) => {
+                    return <Option key={authority.id} value={authority.id}>{authority.authority} = Level {authority.authorityLevel}</Option>
                 })}
             </Select>
-            <Button type="primary" icon={<DownloadOutlined/>} size={'large'} onClick={handleSubmit}>
+            <Button type="primary" icon={<DownloadOutlined/>} size={'large'} onClick={changeAuthority}>
                 Download
             </Button>
         </React.Fragment>

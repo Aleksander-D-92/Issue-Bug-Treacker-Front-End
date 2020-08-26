@@ -43,23 +43,5 @@ const rootReducer = combineReducers({userLoggedIn: userLoggedIn, userDetails: us
 // @ts-ignore
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 // @ts-ignore
-// export const store = compose(reduxDevTools)(createStore)(rootReducer, {});
 export const store = createStore(rootReducer, reduxDevTools);
-
-// store.dispatch({type: 'INCREMENT', payload: 12});
-// interface CustomAction {
-//     type: string,
-//     payload: number
-// }
-//
-// function increment(state = 0, action: CustomAction) {
-//     switch (action.type) {
-//         case 'INCREMENT':
-//             return state + action.payload;
-//         case 'DECREMENT':
-//             return state - 1;
-//         default:
-//             return state;
-//     }
-// }
 

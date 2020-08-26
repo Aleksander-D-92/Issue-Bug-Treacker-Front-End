@@ -3,27 +3,21 @@ import {useSelector} from 'react-redux';
 import axios from "axios";
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Table} from "antd";
-import {usersTableColumns, User} from "./variables";
+import {usersTableColumns} from "./variables";
+import {UserViewModel} from "../shared/Interfaces";
 
 
 function AdminPage() {
-    const [userTable, modifyTable] = useState<User[]>([]);
-    const [totalPages, setTotalPages] = useState(0);
-
+    const [allUsers, setAllUsers] = useState<UserViewModel[]>([]);
     let reduxState = useSelector((state: ReduxState) => state);
     useEffect(() => {
-        axios.get('/admins/get-all-users/-1', {
+        axios.get('/admins/all-users', {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }
         }).then((e) => {
-            let arr: Array<User> = [];
-            e.data.users.forEach((e: User) => {
-                arr.push(e);
-            });
-
-            modifyTable(arr);
-            setTotalPages(e.data.totalCount);
+            console.log(e.data);
+            setAllUsers(e.data);
         }).catch((e) => {
             console.log(e);
         })
@@ -32,7 +26,7 @@ function AdminPage() {
 
     return (
         <div>
-            <Table dataSource={userTable} columns={usersTableColumns} bordered={true}/>
+            <Table dataSource={allUsers} columns={usersTableColumns} bordered={true}/>
         </div>
     )
 }

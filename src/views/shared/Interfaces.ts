@@ -1,4 +1,4 @@
-interface Authority {
+export interface Authority {
     id: number,
     authorityLevel: number,
     authority: string

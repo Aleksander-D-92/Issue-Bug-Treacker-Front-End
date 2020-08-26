@@ -1,54 +1,57 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from 'react-router-dom'
 import axios from 'axios'
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {useHistory} from 'react-router-dom';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {User} from "../../user-roles/variables";
 import {Button, Card, Col, Form, Input, Row} from "antd";
-import {formatDate} from "../../projects/project-tables/TableVariables";
+import {UserViewModel} from "../../shered/Interfaces";
+import {deleteAllCookies, formatDate} from "../../shered/functions";
 
 function AccountSettings() {
-    const {username} = useParams();
     const reduxState = useSelector((state: ReduxState) => state)
-    const [user, setUserDetails] = useState<User>();
+    const [user, setUserDetails] = useState<UserViewModel>();
+    const dispatch = useDispatch();
+    let history = useHistory();
     useEffect(() => {
-        axios.get(`/users/get-user-details-by-username/${username}`, {
+        axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`, {
             headers: {
                 Authorization: reduxState.userDetails.authorizationHeader
             }
         }).then((e) => {
-            setUserDetails(e.data);
+            setUserDetails(e.data[0]);
             console.log(e);
         })
     }, [])
 
-    function onFinish(e: any) {
-        console.log(e);
-        axios.put('/users/change-password', {
-            username: username,
-            password: e.password,
+    function changePassword(e: any) {
+        axios.put(`/users/password/${reduxState.userDetails.id}`, {
+            oldPassword: e.password,
             newPassword: e.newPassword
-
         }, {
             headers: {Authorization: reduxState.userDetails.authorizationHeader}
+        }).then(e => {
+            console.log(e);
         })
-        console.log(e)
     }
 
-    //@DeleteMapping("/users/delete")
-    function handleDelete(e: any) {
+    function deleteAccount(e: any) {
         console.log(e);
-        axios.delete('/users/delete-account', {
+        axios.delete(`/users/account/${reduxState.userDetails.id}`, {
             headers: {Authorization: reduxState.userDetails.authorizationHeader},
-            data: {username: username, password: e.password}
-        })
+            data: {password: e.password}
+        }).then(e => {
+            console.log(e);
+            deleteAllCookies();
+            dispatch({type: 'userLoggedOut'});
+            history.push('/users/register');
+        });
     }
 
     return (
         <React.Fragment>
             <Card title={user?.username} style={{width: 300}}>
                 <p>Id {user?.id}</p>
-                <p>Registration date {formatDate(user?.registrationDate.toString().substring(0, 10))}</p>
+                <p>Registration date {formatDate(user?.registrationDate)}</p>
                 <p>Authority {user?.authority.authority}</p>
                 <p>Authority level {user?.authority.authorityLevel}</p>
             </Card>
@@ -60,7 +63,7 @@ function AccountSettings() {
                         name="normal_login"
                         className="login-form"
                         layout={'vertical'}
-                        onFinish={onFinish}
+                        onFinish={changePassword}
                     >
                         <Form.Item
                             label="Old password"
@@ -96,7 +99,7 @@ function AccountSettings() {
                         name="normal_login"
                         className="login-form"
                         layout={'vertical'}
-                        onFinish={handleDelete}
+                        onFinish={deleteAccount}
                     >
                         <Form.Item
                             label="Old password"

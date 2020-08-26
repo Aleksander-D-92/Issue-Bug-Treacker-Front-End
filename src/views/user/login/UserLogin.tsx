@@ -5,18 +5,19 @@ import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'
 import {Store} from "rc-field-form/lib/interface";
 import {useDispatch} from 'react-redux';
-import {deleteAllCookies} from "../logout/HandleLogout";
+import {deleteAllCookies} from "../../shered/functions";
 
 function UserLogin() {
     let history = useHistory();
     const dispatch = useDispatch();
 
     function onFinish(loginForm: Store) {
-        axios.post('/users/authenticate', loginForm).then((e) => {
-            dispatch({type: 'userLoggedIn'});
-            updateCookiesAndStore(e.data.id_token)
-            history.push('/')
-        }).catch((e) => {
+        axios.post('/users/authenticate', loginForm)
+            .then((e) => {
+                dispatch({type: 'userLoggedIn'});
+                updateCookiesAndStore(e.data.id_token)
+                history.push('/')
+            }).catch((e) => {
             console.log(e);
         })
     }
@@ -37,6 +38,7 @@ function UserLogin() {
         })
 
     }
+
     return (
         <Row justify={'center'} className={'mt-5'}>
             <Col xs={24} md={12}>

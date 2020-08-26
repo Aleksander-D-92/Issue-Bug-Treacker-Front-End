@@ -8,6 +8,14 @@ function formatDate(date: Date | undefined): string {
     return strings.join(" ").toString();
 }
 
+function compareDates(a: Date, b: Date): number {
+    if (a > b) {
+        return 1;
+    } else {
+        return -1;
+    }
+}
+
 function deleteAllCookies() {
     let cookies = document.cookie.split("; ");
     for (let c = 0; c < cookies.length; c++) {
@@ -25,4 +33,4 @@ function deleteAllCookies() {
     }
 }
 
-export {formatDate, deleteAllCookies}
+export {formatDate, compareDates, deleteAllCookies}

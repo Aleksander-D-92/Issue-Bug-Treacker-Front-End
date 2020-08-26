@@ -1,18 +1,8 @@
 import {Link} from "react-router-dom";
 import React from "react";
+import {UserViewModel} from "../shared/Interfaces";
+import {compareDates, formatDate} from "../shared/functions";
 
-export interface Authority {
-    id: number,
-    authority: string,
-    authorityLevel: number
-}
-
-export interface User {
-    id: number,
-    username: string
-    registrationDate: Date
-    authority: Authority
-}
 
 const usersTableColumns = [
     {
@@ -20,7 +10,7 @@ const usersTableColumns = [
         dataIndex: 'id', // koi key ot jsno array da sloja tuka
         key: 'id',
         sorter: {
-            compare: (a: User, b: User) => a.id - b.id,
+            compare: (a: UserViewModel, b: UserViewModel) => a.id - b.id,
             multiple: 1
         }
     },
@@ -29,7 +19,17 @@ const usersTableColumns = [
         dataIndex: 'username',
         key: 'id',
         sorter: {
-            compare: (a: User, b: User) => a.username.localeCompare(b.username),
+            compare: (a: UserViewModel, b: UserViewModel) => a.username.localeCompare(b.username),
+            multiple: 1
+        }
+    },
+    {
+        title: 'Registration Date',
+        dataIndex: 'registrationDate',
+        key: 'id',
+        render: (text: Date) => formatDate(text),
+        sorter: {
+            compare: (a: UserViewModel, b: UserViewModel) => compareDates(a.registrationDate, b.registrationDate),
             multiple: 1
         }
     },
@@ -38,7 +38,7 @@ const usersTableColumns = [
         dataIndex: ['authority', 'authority'],
         key: 'id',
         sorter: {
-            compare: (a: User, b: User) => a.authority.authority.localeCompare(b.authority.authority),
+            compare: (a: UserViewModel, b: UserViewModel) => a.authority.authority.localeCompare(b.authority.authority),
             multiple: 1
         }
     },
@@ -47,7 +47,7 @@ const usersTableColumns = [
         dataIndex: ['authority', 'authorityLevel'],
         key: 'id',
         sorter: {
-            compare: (a: User, b: User) => a.authority.authorityLevel - b.authority.authorityLevel,
+            compare: (a: UserViewModel, b: UserViewModel) => a.authority.authorityLevel - b.authority.authorityLevel,
             multiple: 1
         }
     },
@@ -55,8 +55,7 @@ const usersTableColumns = [
         title: 'Edit User',
         dataIndex: 'id',
         key: 'id',
-        // @ts-ignore
-        render: text => <Link to={`/admins/get-user-details-by-id/${text}`}>Edit this user</Link>,
+        render: (text: number) => <Link to={`/admins/get-user-details-by-id/${text}`}>Edit this user</Link>,
     }
 ];
 

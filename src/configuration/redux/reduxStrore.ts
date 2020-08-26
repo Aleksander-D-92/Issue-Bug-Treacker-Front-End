@@ -42,6 +42,5 @@ export interface ReduxState {
 const rootReducer = combineReducers({userLoggedIn: userLoggedIn, userDetails: userDetails});
 // @ts-ignore
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-// @ts-ignore
 export const store = createStore(rootReducer, reduxDevTools);
 

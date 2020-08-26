@@ -18,8 +18,6 @@ function AdminPage() {
         }).then((e) => {
             console.log(e.data);
             setAllUsers(e.data);
-        }).catch((e) => {
-            console.log(e);
         })
     }, [])
 

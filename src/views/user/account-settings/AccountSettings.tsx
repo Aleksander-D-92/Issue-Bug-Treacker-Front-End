@@ -43,6 +43,7 @@ function AccountSettings() {
             console.log(e);
             deleteAllCookies();
             dispatch({type: 'userLoggedOut'});
+            dispatch({type: 'userDetails', payload: {}})
             history.push('/users/register');
         });
     }

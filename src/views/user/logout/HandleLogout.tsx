@@ -10,6 +10,7 @@ function HandleLogout() {
 
     useEffect(() => {
         dispatch({type: 'userLoggedOut'});
+        dispatch({type: 'userDetails', payload: {}})
         deleteAllCookies();
         history.push("/");
     })

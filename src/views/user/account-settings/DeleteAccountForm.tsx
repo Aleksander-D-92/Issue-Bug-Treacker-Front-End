@@ -33,7 +33,7 @@ function DeleteAccountForm() {
             onFinish={deleteAccount}
         >
             <Form.Item
-                label="Old password"
+                label="Password"
                 name="password"
                 validateTrigger={false}
                 rules={[{required: true, min: 4, max: 12, message: 'required: true, min: 4, max: 8'}]}
@@ -41,8 +41,8 @@ function DeleteAccountForm() {
                 <Input.Password/>
             </Form.Item>
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
-                    Change password
+                <Button type="primary" htmlType="submit" className="login-form-button" block={true} danger={true} >
+                    Delete Account
                 </Button>
             </Form.Item>
         </Form></React.Fragment>

@@ -6,6 +6,7 @@ import {ReduxState} from "../../../configuration/redux/reduxStrore";
 
 function ChangePasswordForm() {
     const reduxState = useSelector((state: ReduxState) => state)
+
     function changePassword(e: any) {
         axios.put(`/users/password/${reduxState.userDetails.id}`, {
             oldPassword: e.password,
@@ -41,7 +42,7 @@ function ChangePasswordForm() {
                 <Input.Password/>
             </Form.Item>
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
+                <Button htmlType="submit" className="login-form-button" block={true} danger={true}>
                     Change password
                 </Button>
             </Form.Item>

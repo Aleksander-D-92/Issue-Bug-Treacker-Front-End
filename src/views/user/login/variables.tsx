@@ -55,9 +55,11 @@ const adminDescription = (
     <div>
         <p>This will log you in with an Admin account <br/> You will be able to do the fallowing things</p>
         <ul>
-            <li>Changes user role, for an example:
-                <br/>-promote developers to project managers
-                <br/>-demote developers to submitters
+            <li>Can Change users roles, for an example:
+                <ul>
+                    <li>Can promote developers to project managers</li>
+                    <li>Can demote developers to submitters</li>
+                </ul>
             </li>
             <li>Can view all registered users in the system</li>
         </ul>

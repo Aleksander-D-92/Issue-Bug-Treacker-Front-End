@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, Tooltip, Popover} from "antd";
+import {Button, Card, Popover} from "antd";
 import axios from 'axios'
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -9,8 +9,10 @@ import {
     demoAdminCredentials,
     demoDevCredentials,
     demoManagerCredentials,
-    demoQaCredentials, devDescription,
-    genericDescription, managerDescription,
+    demoQaCredentials,
+    devDescription,
+    genericDescription,
+    managerDescription,
     qaDescription
 } from "./variables";
 

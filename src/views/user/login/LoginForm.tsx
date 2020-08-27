@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, Checkbox, Col, Form, Input, Row} from "antd";
+import {Button, Card, Checkbox, Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'

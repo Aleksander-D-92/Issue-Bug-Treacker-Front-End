@@ -1,10 +1,10 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
-import {UserLogin} from "../../views/user/login/UserLogin";
+import {LoginView} from "../../views/user/login/LoginView";
 import {UserRegister} from "../../views/user/register/UserRegister";
 import {AdminPage} from "../../views/user-roles/AdminPage";
 import {UserDetails} from "../../views/user-roles/UserDetails";
-import {AccountSettings} from "../../views/user/account-settings/AccountSettings";
+import {AccountSettingsView} from "../../views/user/account-settings/AccountSettingsView";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
 import {ProjectsTable} from "../../views/projects/project-tables/ProjectsTable";
 import {CreateProjectView} from "../../views/projects/create-porject/CreateProject";
@@ -15,10 +15,10 @@ import {TicketSubmitForm} from "../../views/projects/submit-ticket/TicketSubmitF
 function WebsiteRoutes() {
     return (
         <Switch>
-            <Route exact path={'/users/login'}><UserLogin/></Route>
+            <Route exact path={'/users/login'}><LoginView/></Route>
             <Route exact path={'/users/register'}><UserRegister/></Route>
             <Route exact path={'/users/logout'}><HandleLogout/></Route>
-            <Route exact path={'/users/account-settings/:username'}><AccountSettings/></Route>
+            <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
             <Route exact path={'/admins/get-all-users'}><AdminPage/></Route>
             <Route exact path={'/admins/get-user-details-by-id/:userId'}><UserDetails/></Route>
             <Route exact path={'/projects/get-all-projects'}><ProjectsTable/></Route>

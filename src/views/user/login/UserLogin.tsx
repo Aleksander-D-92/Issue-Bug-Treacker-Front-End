@@ -1,11 +1,12 @@
-import React from "react";
-import {Button, Checkbox, Col, Form, Input, Row} from "antd";
+import React, {CSSProperties} from "react";
+import {Button, Card, Checkbox, Col, Divider, Form, Input, Row, Popover} from "antd";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'
 import {Store} from "rc-field-form/lib/interface";
 import {useDispatch} from 'react-redux';
 import {deleteAllCookies} from "../../shared/functions";
+import {UserDemoLogin} from "./UserDemoLogin";
 
 function UserLogin() {
     let history = useHistory();
@@ -40,8 +41,9 @@ function UserLogin() {
     }
 
     return (
-        <Row justify={'center'} className={'mt-5'}>
-            <Col xs={24} md={12}>
+        <Row justify={'center'} gutter={24} className='mt-5'>
+            <Col xs={20} md={10}>
+                <Divider orientation="center">Login</Divider>
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -73,12 +75,15 @@ function UserLogin() {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
+                        <Button type="primary" htmlType="submit" className="login-form-button" block={true}>
                             Log in
                         </Button>
                         Or <Link to={'/users/register'}>register now!</Link>
                     </Form.Item>
                 </Form>
+            </Col>
+            <Col xs={20} md={10}>
+                <UserDemoLogin/>
             </Col>
         </Row>
     )

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, Divider, Popover} from "antd";
+import {Button, Card, Tooltip, Popover} from "antd";
 import axios from 'axios'
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -57,32 +57,31 @@ function UserDemoLogin() {
     }
 
     return <React.Fragment>
-        <Divider orientation="center"><h2>Demo login</h2></Divider>
         <Card title={<h2>Demo Login</h2>} extra={
-            <Popover content={genericDescription} title="Explanation">
+            <Popover placement="left" title={genericDescription}>
                 <h2 style={{color: "#1890ff", cursor: 'pointer'}}>What is this ?</h2>
             </Popover>
         }>
-            <Popover content={qaDescription} title="QA Engineer">
+            <Popover placement="left" title={qaDescription}>
                 <Button type="primary" htmlType="submit" className="login-form-button" block={true} name='qa'
                         onClick={handleDemoLogin}>
                     Demo QA Engineer
                 </Button>
             </Popover>
-            <Popover content={devDescription} title="Developer">
+            <Popover placement="left" title={devDescription}>
                 <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
                         name='developer'
                         onClick={handleDemoLogin}>
                     Demo Developer
                 </Button>
             </Popover>
-            <Popover content={managerDescription} title="Project Manager">
+            <Popover placement="left" title={managerDescription}>
                 <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
                         name='projectManager' onClick={handleDemoLogin}>
                     Demo Project Manager
                 </Button>
             </Popover>
-            <Popover content={adminDescription} title="Admin">
+            <Popover placement="left" title={adminDescription}>
                 <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='admin'
                         onClick={handleDemoLogin}>
                     Demo admin

@@ -1,5 +1,5 @@
-import React, {CSSProperties} from "react";
-import {Button, Card, Checkbox, Col, Divider, Form, Input, Row, Popover} from "antd";
+import React from "react";
+import {Button, Card, Checkbox, Col, Form, Input, Row} from "antd";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Link, useHistory} from "react-router-dom";
 import axios from 'axios'
@@ -41,48 +41,49 @@ function UserLogin() {
     }
 
     return (
-        <Row justify={'center'} gutter={24} className='mt-5'>
-            <Col xs={20} md={10}>
-                <Divider orientation="center">Login</Divider>
-                <Form
-                    name="normal_login"
-                    className="login-form"
-                    layout={'vertical'}
-                    onFinish={onFinish}
-                >
-                    <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[{required: true, message: 'Please input your Username!'}]}
+        <Row justify={'center'} gutter={[24, 24]} className='mt-3'>
+            <Col xs={24} sm={20} md={11}>
+                <Card title={<h2>Login</h2>}>
+                    <Form
+                        name="normal_login"
+                        className="login-form"
+                        layout={'vertical'}
+                        onFinish={onFinish}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
-                    </Form.Item>
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[{required: true, message: 'Please input your Password!'}]}
-                    >
-                        <Input
-                            prefix={<LockOutlined className="site-form-item-icon"/>}
-                            type="password"
-                            placeholder="Password"
-                        />
-                    </Form.Item>
-                    <Form.Item>
-                        <Form.Item name="rememberMe" valuePropName="checked" noStyle>
-                            <Checkbox>Remember me</Checkbox>
+                        <Form.Item
+                            label="Username"
+                            name="username"
+                            rules={[{required: true, message: 'Please input your Username!'}]}
+                        >
+                            <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
                         </Form.Item>
-                    </Form.Item>
+                        <Form.Item
+                            label="Password"
+                            name="password"
+                            rules={[{required: true, message: 'Please input your Password!'}]}
+                        >
+                            <Input
+                                prefix={<LockOutlined className="site-form-item-icon"/>}
+                                type="password"
+                                placeholder="Password"
+                            />
+                        </Form.Item>
+                        <Form.Item>
+                            <Form.Item name="rememberMe" valuePropName="checked" noStyle>
+                                <Checkbox>Remember me</Checkbox>
+                            </Form.Item>
+                        </Form.Item>
 
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button" block={true}>
-                            Log in
-                        </Button>
-                        Or <Link to={'/users/register'}>register now!</Link>
-                    </Form.Item>
-                </Form>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className="login-form-button" block={true}>
+                                Log in
+                            </Button>
+                            Or <Link to={'/users/register'}>register now!</Link>
+                        </Form.Item>
+                    </Form>
+                </Card>
             </Col>
-            <Col xs={20} md={10}>
+            <Col xs={24} sm={20} md={11}>
                 <UserDemoLogin/>
             </Col>
         </Row>

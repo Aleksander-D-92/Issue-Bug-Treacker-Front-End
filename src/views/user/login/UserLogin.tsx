@@ -15,7 +15,6 @@ function UserLogin() {
     function onFinish(loginForm: Store) {
         axios.post('/users/authenticate', loginForm)
             .then((e) => {
-                dispatch({type: 'userLoggedIn'});
                 updateCookiesAndStore(e.data.id_token)
                 history.push('/')
             }).catch((e) => {
@@ -28,6 +27,7 @@ function UserLogin() {
         document.cookie = `jwt=${token}`; //make a new cookie form the the new token
         //
         let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object
+        dispatch({type: 'userLoggedIn'});
         dispatch({
             type: 'userDetails', payload: {
                 id: jwtPayload.id,

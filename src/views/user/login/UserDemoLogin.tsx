@@ -3,6 +3,7 @@ import {Button, Card, Divider, Popover} from "antd";
 import axios from 'axios'
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
+import {deleteAllCookies} from "../../shared/functions";
 
 
 const content = (
@@ -45,6 +46,23 @@ function UserDemoLogin() {
                 credentials = demoAdminCredentials;
                 break;
         }
+        axios.post('/users/authenticate/', credentials).then((e) => {
+            deleteAllCookies();
+            const token = e.data.id_token;
+            document.cookie = `jwt=${token}`;
+            let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object
+            dispatch({type: 'userLoggedIn'});
+            dispatch({
+                type: 'userDetails', payload: {
+                    id: jwtPayload.id,
+                    username: jwtPayload.sub,
+                    authorities: jwtPayload.authorities,
+                    exp: jwtPayload.exp,
+                    authorizationHeader: `Bearer ${token}`
+                }
+            });
+            history.push('/')
+        })
     }
 
     return <React.Fragment>
@@ -58,14 +76,16 @@ function UserDemoLogin() {
                     onClick={handleDemoLogin}>
                 Demo QA Engineer
             </Button>
-            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='developer'>
+            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='developer'
+                    onClick={handleDemoLogin}>
                 Demo Developer
             </Button>
             <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
-                    name='projectManager'>
+                    name='projectManager' onClick={handleDemoLogin}>
                 Demo Project Manager
             </Button>
-            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='admin'>
+            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='admin'
+                    onClick={handleDemoLogin}>
                 Demo admin
             </Button>
         </Card>

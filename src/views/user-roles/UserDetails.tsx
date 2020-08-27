@@ -6,7 +6,7 @@ import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {Button, Card, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
 import {formatDate} from "../shared/functions";
-import {Authority, UserViewModel} from "../shared/Interfaces";
+import {AuthorityViewModel, UserViewModel} from "../shared/Interfaces";
 
 
 const {Option} = Select;
@@ -14,7 +14,7 @@ const {Option} = Select;
 function UserDetails() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserViewModel>();
-    const [authorities, setAuthorities] = useState<Authority[]>();
+    const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
     const [selectedAuthorityId, setSelectedAuthorityId] = useState<number>();
     const reduxState = useSelector((state: ReduxState) => state);
 

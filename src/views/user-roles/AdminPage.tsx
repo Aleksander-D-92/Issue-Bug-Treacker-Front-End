@@ -24,7 +24,10 @@ function AdminPage() {
 
     return (
         <div>
-            <Table dataSource={allUsers} columns={usersTableColumns} bordered={true}/>
+            <Table dataSource={allUsers}
+                   columns={usersTableColumns}
+                   pagination={{total: allUsers.length}}
+                   bordered={true}/>
         </div>
     )
 }

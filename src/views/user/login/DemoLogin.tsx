@@ -54,7 +54,7 @@ function DemoLogin() {
                     authorizationHeader: `Bearer ${token}`
                 }
             });
-            history.push('/')
+            history.push('/dashboard')
         })
     }
 

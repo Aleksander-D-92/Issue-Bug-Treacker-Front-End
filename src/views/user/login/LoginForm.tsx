@@ -15,7 +15,7 @@ function LoginForm() {
         axios.post('/users/authenticate', loginForm)
             .then((e) => {
                 updateCookiesAndStore(e.data.id_token)
-                history.push('/')
+                history.push('/dashboard');
             }).catch((e) => {
             console.log(e);
         })

@@ -26,26 +26,28 @@ function DeleteAccountForm() {
     }
 
     return (
-        <React.Fragment> <Form
-            name="normal_login"
-            className="login-form"
-            layout={'vertical'}
-            onFinish={deleteAccount}
-        >
-            <Form.Item
-                label="Password"
-                name="password"
-                validateTrigger={false}
-                rules={[{required: true, min: 4, max: 12, message: 'required: true, min: 4, max: 8'}]}
+        <React.Fragment>
+            <Form
+                name="normal_login"
+                className="login-form"
+                layout={'vertical'}
+                onFinish={deleteAccount}
             >
-                <Input.Password/>
-            </Form.Item>
-            <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button" block={true} danger={true} >
-                    Delete Account
-                </Button>
-            </Form.Item>
-        </Form></React.Fragment>
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    validateTrigger={false}
+                    rules={[{required: true, min: 4, max: 12, message: 'required: true, min: 4, max: 8'}]}
+                >
+                    <Input.Password/>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="login-form-button" block={true} danger={true}>
+                        Delete Account
+                    </Button>
+                </Form.Item>
+            </Form>
+        </React.Fragment>
     )
 }
 

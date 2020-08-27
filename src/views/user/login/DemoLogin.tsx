@@ -15,7 +15,7 @@ import {
 } from "./variables";
 
 
-function UserDemoLogin() {
+function DemoLogin() {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -91,4 +91,4 @@ function UserDemoLogin() {
     </React.Fragment>;
 }
 
-export {UserDemoLogin}
+export {DemoLogin}

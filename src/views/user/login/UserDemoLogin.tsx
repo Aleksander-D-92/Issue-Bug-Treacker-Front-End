@@ -4,25 +4,16 @@ import axios from 'axios'
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {deleteAllCookies} from "../../shared/functions";
+import {
+    adminDescription,
+    demoAdminCredentials,
+    demoDevCredentials,
+    demoManagerCredentials,
+    demoQaCredentials, devDescription,
+    genericDescription, managerDescription,
+    qaDescription
+} from "./variables";
 
-
-const content = (
-    <div>
-        <p>Allows you to login with an already existing account <br/> <b>with a lot of test data added to
-            it</b>. <br/> You can pick an account with one of the
-            fallowing authorities</p>
-        <ul>
-            <li>QA</li>
-            <li>Developer</li>
-            <li>Project Manager</li>
-            <li>Admin</li>
-        </ul>
-    </div>
-);
-const demoQaCredentials = {username: "submitter1", password: '1234'};
-const demoDevCredentials = {username: "developer1", password: '1234'};
-const demoManagerCredentials = {username: "manager1", password: '1234'};
-const demoAdminCredentials = {username: "admin1", password: '1234'};
 
 function UserDemoLogin() {
     const history = useHistory();
@@ -68,26 +59,35 @@ function UserDemoLogin() {
     return <React.Fragment>
         <Divider orientation="center"><h2>Demo login</h2></Divider>
         <Card title={<h2>Demo Login</h2>} extra={
-            <Popover content={content} title="Explanation">
-                <h2 style={{color: "blue"}}>What is this ?</h2>
+            <Popover content={genericDescription} title="Explanation">
+                <h2 style={{color: "#1890ff", cursor: 'pointer'}}>What is this ?</h2>
             </Popover>
         }>
-            <Button type="primary" htmlType="submit" className="login-form-button" block={true} name='qa'
-                    onClick={handleDemoLogin}>
-                Demo QA Engineer
-            </Button>
-            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='developer'
-                    onClick={handleDemoLogin}>
-                Demo Developer
-            </Button>
-            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
-                    name='projectManager' onClick={handleDemoLogin}>
-                Demo Project Manager
-            </Button>
-            <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='admin'
-                    onClick={handleDemoLogin}>
-                Demo admin
-            </Button>
+            <Popover content={qaDescription} title="QA Engineer">
+                <Button type="primary" htmlType="submit" className="login-form-button" block={true} name='qa'
+                        onClick={handleDemoLogin}>
+                    Demo QA Engineer
+                </Button>
+            </Popover>
+            <Popover content={devDescription} title="Developer">
+                <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
+                        name='developer'
+                        onClick={handleDemoLogin}>
+                    Demo Developer
+                </Button>
+            </Popover>
+            <Popover content={managerDescription} title="Project Manager">
+                <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
+                        name='projectManager' onClick={handleDemoLogin}>
+                    Demo Project Manager
+                </Button>
+            </Popover>
+            <Popover content={adminDescription} title="Admin">
+                <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='admin'
+                        onClick={handleDemoLogin}>
+                    Demo admin
+                </Button>
+            </Popover>
         </Card>
     </React.Fragment>;
 }

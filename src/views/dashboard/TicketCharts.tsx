@@ -3,7 +3,10 @@ import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {TicketViewModel} from "../shared/Interfaces";
-import {Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, Tooltip, XAxis, YAxis} from 'recharts';
+import {Bar, BarChart, Cell, Legend, Pie, PieChart, Tooltip, XAxis, YAxis} from 'recharts';
+import {Col, Collapse, Row} from "antd";
+
+const {Panel} = Collapse;
 
 
 function TicketCharts() {
@@ -113,29 +116,51 @@ function TicketCharts() {
 
     return (
         <React.Fragment>
-            <BarChart width={450} height={300} data={priorityStatistics.slice()}>
-                <XAxis dataKey="type"/>
-                <YAxis dataKey={'value'}/>
-                <Tooltip/>
-                <Bar dataKey="value" fill="#8884d8">
-                    {priorityStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
-                </Bar>
-            </BarChart>
-            <PieChart width={450} height={400}>
-                <Pie data={statusStatistics.slice()} innerRadius={115} outerRadius={135} paddingAngle={5}
-                     dataKey="value" nameKey="type" label>
-                    {statusStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
-                </Pie>
-                <Tooltip/>
-                <Legend/>
-            </PieChart>
-            <PieChart width={450} height={400}>
-                <Pie data={categoryStatistics.slice()} dataKey="value" nameKey="type" fill='#8884d8' label>}
-                    {categoryStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
-                </Pie>
-                <Tooltip/>
-                <Legend/>
-            </PieChart>
+            <Row gutter={[18, 18]} justify={'center'} className={'mt-3'}>
+                <Col xs={24} sm={22} md={22} lg={8}>
+                    <Collapse defaultActiveKey={['1']}>
+                        <Panel header="Tickets by priority" key="1">
+                            <BarChart width={400} height={400} data={priorityStatistics.slice()}>
+                                <XAxis dataKey="type"/>
+                                <YAxis dataKey={'value'}/>
+                                <Tooltip/>
+                                <Bar dataKey="value" fill="#8884d8">
+                                    {priorityStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
+                                </Bar>
+                            </BarChart>
+                        </Panel>
+                    </Collapse>
+                </Col>
+                <Col xs={24} sm={22} md={22} lg={8}>
+                    <Collapse defaultActiveKey={['1']}>
+                        <Panel header="Tickets by type" key="1">
+                            <PieChart width={450} height={400}>
+                                <Pie data={statusStatistics.slice()} innerRadius={115} outerRadius={135}
+                                     paddingAngle={5}
+                                     dataKey="value" nameKey="type" label>
+                                    {statusStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
+                                </Pie>
+                                <Tooltip/>
+                                <Legend/>
+                            </PieChart>
+                        </Panel>
+                    </Collapse>
+                </Col>
+                <Col xs={24} sm={22} md={22} lg={8}>
+                    <Collapse defaultActiveKey={['1']}>
+                        <Panel header="Tickets by status" key="1">
+                            <PieChart width={450} height={400}>
+                                <Pie data={categoryStatistics.slice()} dataKey="value" nameKey="type" fill='#8884d8'
+                                     label>}
+                                    {categoryStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
+                                </Pie>
+                                <Tooltip/>
+                                <Legend/>
+                            </PieChart>
+                        </Panel>
+                    </Collapse>
+                </Col>
+            </Row>
         </React.Fragment>
     )
 }

@@ -88,6 +88,18 @@ function TicketCharts() {
                     setTickets(e.data);
                 });
                 break;
+            case 'ROLE_DEVELOPER':
+                axios.get(`/tickets/?action=by-assigned-developer&id=${id}`).then((e) => {
+                    doStatistics(e.data);
+                    setTickets(e.data);
+                });
+                break
+            case 'ROLE_QA_ENGINEER':
+                axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
+                    doStatistics(e.data);
+                    setTickets(e.data);
+                });
+                break;
         }
 
     }, []);
@@ -123,10 +135,10 @@ function TicketCharts() {
                             <BarChart width={400} height={400} data={priorityStatistics.slice()}>
                                 <XAxis dataKey="type"/>
                                 <YAxis dataKey={'value'}/>
-                                <Tooltip/>
                                 <Bar dataKey="value" fill="#8884d8">
                                     {priorityStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
                                 </Bar>
+                                <Tooltip/>
                             </BarChart>
                         </Panel>
                     </Collapse>

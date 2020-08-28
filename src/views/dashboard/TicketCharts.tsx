@@ -3,21 +3,8 @@ import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {TicketViewModel} from "../shared/Interfaces";
-import {Bar, BarChart, CartesianGrid, Cell, Line, LineChart, Pie, PieChart, Tooltip, XAxis, YAxis} from 'recharts';
+import {Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, Tooltip, XAxis, YAxis} from 'recharts';
 
-const data = [
-    {name: 'Page A', uv: 400, pv: 2400, amt: 2400},
-    {name: 'Page B', uv: 500, pv: 2000, amt: 2400},
-    {name: 'Page C', uv: 800, pv: 1600, amt: 2400},
-    {name: 'Page D', uv: 100, pv: 1600, amt: 2400},
-    {name: 'Page F', uv: 1200, pv: 1600, amt: 2400},
-];
-const pesho = [
-    {type: 'Low', value: 1},
-    {type: 'Medium', value: 2},
-    {type: 'High', value: 3},
-    {type: 'Urgent', value: 4},
-]
 
 function TicketCharts() {
     const reduxState = useSelector((state: ReduxState) => state);
@@ -96,7 +83,7 @@ function TicketCharts() {
                 axios.get(`/tickets/?action=by-project-manager&id=${id}`).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
-                })
+                });
                 break;
         }
 
@@ -105,53 +92,49 @@ function TicketCharts() {
 
     function decideFill(name: string): string {
         switch (name) {
-            case 'Page A':
-                return 'blue'
-            case 'Page B':
-                return 'orange'
-            case 'Page C':
-                return 'brown'
-            case 'Page D':
-                return 'yellow'
+            case 'Low':
+            case 'Feature Request':
+            case 'Resolved':
+                return '#00C49F'
+            case 'Medium':
+            case 'Other':
+            case 'In progress':
+                return '#FFBB28'
+            case 'High':
+                return '#FF8042'
+            case 'Unassigned':
+            case 'Urgent':
+            case 'Bugs and Errors':
+                return '#ff4242'
             default:
                 return '#8884d8'
         }
-
     }
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     return (
         <React.Fragment>
-            <h1>charts</h1>
-            <LineChart width={1000} height={400} data={data}>
-                <Line type="monotone" dataKey="uv" stroke="#8884d8"/>
-                <CartesianGrid stroke="#ccc"/>
-                <XAxis dataKey="name"/>
-                <YAxis dataKey={'uv'}/>
+            <BarChart width={450} height={300} data={priorityStatistics.slice()}>
+                <XAxis dataKey="type"/>
+                <YAxis dataKey={'value'}/>
                 <Tooltip/>
-            </LineChart>
-
-            <BarChart width={1000} height={400} data={data}>
-                <Bar dataKey="uv" barSize={100} fill="#8884d8"
-                     label={true}/>
-                <CartesianGrid stroke="#ccc"/>
-                <XAxis dataKey="name"/>
-                <YAxis dataKey={'uv'}/>
-                <Tooltip/>
+                <Bar dataKey="value" fill="#8884d8">
+                    {priorityStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
+                </Bar>
             </BarChart>
-
-            <PieChart width={730} height={250}>
-                <Pie data={data} dataKey="uv" nameKey="name" fill='#8884d8' label>
-                    {data.map((entry) => <Cell fill={decideFill(entry.name)}/>)}</Pie>
+            <PieChart width={450} height={400}>
+                <Pie data={statusStatistics.slice()} innerRadius={115} outerRadius={135} paddingAngle={5}
+                     dataKey="value" nameKey="type" label>
+                    {statusStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
+                </Pie>
                 <Tooltip/>
+                <Legend/>
             </PieChart>
-            {/*<PieChart width={730} height={250}>*/}
-            {/*    <Pie data={tickets} dataKey="id" nameKey="id" fill='#8884d8' label/>*/}
-            {/*    <Tooltip/>*/}
-            {/*</PieChart>*/}
-            <PieChart width={730} height={250}>
-                <Pie data={priorityStatistics.slice()} dataKey="value" nameKey="type" fill='#8884d8' label>}</Pie>
+            <PieChart width={450} height={400}>
+                <Pie data={categoryStatistics.slice()} dataKey="value" nameKey="type" fill='#8884d8' label>}
+                    {categoryStatistics.map((entry) => <Cell fill={decideFill(entry.type)}/>)}
+                </Pie>
                 <Tooltip/>
+                <Legend/>
             </PieChart>
         </React.Fragment>
     )

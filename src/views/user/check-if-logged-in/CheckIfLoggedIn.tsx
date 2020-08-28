@@ -11,7 +11,7 @@ function CheckIfLoggedIn() {
                 type: 'userDetails', payload: {
                     id: jwtPayload.id,
                     username: jwtPayload.sub,
-                    authorities: jwtPayload.authorities,
+                    authority: jwtPayload.authorities,
                     exp: jwtPayload.exp,
                     authorizationHeader: `Bearer ${token}`
                 }

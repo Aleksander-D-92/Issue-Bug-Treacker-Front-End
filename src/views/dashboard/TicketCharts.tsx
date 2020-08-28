@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {TicketViewModel} from "../shared/Interfaces";
@@ -10,7 +10,6 @@ function TicketCharts() {
     const [tickets, setTickets] = useState<TicketViewModel[]>();
     useEffect(() => {
         const userRole = reduxState.userDetails.authority;
-        console.log('dsaadsas');
         console.log(reduxState);
         console.log(userRole);
         switch (userRole) {

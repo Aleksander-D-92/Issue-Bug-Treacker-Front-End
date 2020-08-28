@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from 'react-redux';
 import axios from "axios";
-import {ReduxState} from "../../configuration/redux/reduxStrore";
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Table} from "antd";
 import {usersTableColumns} from "./variables";
-import {UserViewModel} from "../shared/Interfaces";
+import {UserViewModel} from "../../shared/Interfaces";
 
 
 function AdminPage() {

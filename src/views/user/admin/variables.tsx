@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import React from "react";
-import {UserViewModel} from "../shared/Interfaces";
-import {compareDates, formatDate} from "../shared/functions";
+import {UserViewModel} from "../../shared/Interfaces";
+import {compareDates, formatDate} from "../../shared/functions";
 
 
 const usersTableColumns = [

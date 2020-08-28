@@ -29,7 +29,7 @@ function userDetails(state = {}, action: userDetailsActions) {
 interface UserDetails {
     id: number,
     username: string,
-    authorities: string,
+    authority: string,
     exp: string
     authorizationHeader: string
 }

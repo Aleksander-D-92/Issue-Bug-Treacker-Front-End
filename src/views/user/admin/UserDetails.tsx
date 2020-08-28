@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
-import {ReduxState} from "../../configuration/redux/reduxStrore";
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Card, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
-import {formatDate} from "../shared/functions";
-import {AuthorityViewModel, UserViewModel} from "../shared/Interfaces";
+import {formatDate} from "../../shared/functions";
+import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
 
 
 const {Option} = Select;

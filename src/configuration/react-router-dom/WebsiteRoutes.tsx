@@ -3,7 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import {LoginView} from "../../views/user/login/LoginView";
 import {UserRegister} from "../../views/user/register/UserRegister";
 import {AdminPage} from "../../views/user/admin/AdminPage";
-import {UserDetails} from "../../views/user/admin/UserDetails";
+import {EditUserVIew} from "../../views/user/admin/EditUserVIew";
 import {AccountSettingsView} from "../../views/user/account-settings/AccountSettingsView";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
 import {ProjectsTable} from "../../views/projects/project-tables/ProjectsTable";
@@ -21,7 +21,7 @@ function WebsiteRoutes() {
             <Route exact path={'/users/logout'}><HandleLogout/></Route>
             <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
             <Route exact path={'/admins/get-all-users'}><AdminPage/></Route>
-            <Route exact path={'/admins/get-user-details-by-id/:userId'}><UserDetails/></Route>
+            <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
             <Route exact path={'/dashboard'}><DashBoardView/></Route>
             {/*todo below routes not finished*/}
             <Route exact path={'/projects/get-all-projects'}><ProjectsTable/></Route>

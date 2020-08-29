@@ -66,7 +66,7 @@ const usersTableColumns = [
         title: 'Edit User',
         dataIndex: 'id',
         key: 'id',
-        render: (text: number) => <Link to={`/admins/get-user-details-by-id/${text}`}>Edit this user</Link>,
+        render: (text: number) => <Link to={`/admins/edit-user/${text}`}>Edit this user</Link>,
     }
 ];
 

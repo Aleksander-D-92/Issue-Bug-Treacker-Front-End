@@ -11,7 +11,7 @@ import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
 
 const {Option} = Select;
 
-function UserDetails() {
+function EditUserVIew() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserViewModel>();
     const [accountNonLocked, setAccountNonLocked] = useState<boolean>()
@@ -121,4 +121,4 @@ function UserDetails() {
     )
 }
 
-export {UserDetails}
+export {EditUserVIew}

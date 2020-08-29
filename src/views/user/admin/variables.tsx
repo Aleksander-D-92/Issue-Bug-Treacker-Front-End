@@ -52,6 +52,17 @@ const usersTableColumns = [
         }
     },
     {
+        title: 'Is account lock',
+        dataIndex: 'accountNonLocked',
+        key: 'id',
+        render: (text: boolean) => {
+            if (text) {
+                return 'not locked'
+            }
+            return 'locked'
+        }
+    },
+    {
         title: 'Edit User',
         dataIndex: 'id',
         key: 'id',

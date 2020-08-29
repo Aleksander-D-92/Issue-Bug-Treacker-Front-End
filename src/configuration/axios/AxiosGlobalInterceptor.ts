@@ -22,13 +22,13 @@ function initGlobalHttpInterceptors() {
         toast.success('response interceptor success', {position: toast.POSITION.BOTTOM_RIGHT})
         return response;
     }, function (error) {
-        // let errorDescription = '';
-        // if (error.response.data.message === undefined) {
-        //     errorDescription = error.response.data;
-        // } else {
-        //     errorDescription = error.response.data.message;
-        // }
-        // toast.error(`Response ERROR status : ${error.response.status}  Description : ${errorDescription}`, {position: toast.POSITION.BOTTOM_RIGHT})
+        let errorDescription = '';
+        if (error.response.data.message === undefined) {
+            errorDescription = error.response.data;
+        } else {
+            errorDescription = error.response.data.message;
+        }
+        toast.error(`Response ERROR status : ${error.response.status}  Description : ${errorDescription}`, {position: toast.POSITION.BOTTOM_RIGHT})
         return Promise.reject(error);
     });
 }

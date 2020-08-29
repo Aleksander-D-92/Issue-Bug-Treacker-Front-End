@@ -6,7 +6,8 @@ export interface AuthorityViewModel {
 
 export interface UserViewModel {
     id: number,
-    username: string
+    username: string,
+    accountNonLocked: boolean,
     registrationDate: Date,
     authority: AuthorityViewModel
 }

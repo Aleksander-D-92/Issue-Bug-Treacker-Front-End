@@ -3,7 +3,7 @@ import axios from "axios";
 import {useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Button, Card, Select} from "antd";
+import {Button, Card, Descriptions, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
 import {formatDate} from "../../shared/functions";
 import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
@@ -42,27 +42,42 @@ function UserDetails() {
             }
         }).then((e) => {
             console.log(e);
-        })
+        });
+    }
+
+    function lockAccount() {
+        axios.put(`/admins/lock-account/${userId}`).then((e) => {
+            console.log(e);
+        });
     }
 
     return (
         <React.Fragment>
-            <Card title={user?.username} extra={<a href="#">More</a>} style={{width: 300}}>
-                <p>Id {user?.id}</p>
-                <p>Registration date {formatDate(user?.registrationDate)}</p>
-                <p>Authority {user?.authority.authority}</p>
-                <p>Authority level {user?.authority.authorityLevel}</p>
-                <p>Card content</p>
+            <Card title="User details" style={{width: 600}}>
+                <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
+                    <Descriptions.Item label="Id" span={2}>{user?.id}</Descriptions.Item>
+                    <Descriptions.Item label="Registration date"
+                                       span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
+                    <Descriptions.Item label="Authority"
+                                       span={2}>{user?.authority.authority}</Descriptions.Item>
+                    <Descriptions.Item label="Authority level"
+                                       span={2}>{user?.authority.authorityLevel}</Descriptions.Item>
+                </Descriptions>
+                <Select defaultValue={1} style={{width: 300}} allowClear
+                        onChange={(value: number) => setSelectedAuthorityId(value)}>
+                    {authorities?.map((authority) => {
+                        return <Option key={authority.id} value={authority.id}>{authority.authority} =
+                            Level {authority.authorityLevel}</Option>
+                    })}
+                </Select>
+                <Button type="primary" icon={<DownloadOutlined/>} size={'large'} onClick={changeAuthority} block={true}>
+                    Change authority
+                </Button>
+                <Button type={'primary'} danger={true} icon={<DownloadOutlined/>} size={'large'} onClick={lockAccount}
+                        block={true}>
+                    Lock/ban account
+                </Button>
             </Card>
-            <Select defaultValue={1} style={{width: 300}} allowClear
-                    onChange={(value: number) => setSelectedAuthorityId(value)}>
-                {authorities?.map((authority) => {
-                    return <Option key={authority.id} value={authority.id}>{authority.authority} = Level {authority.authorityLevel}</Option>
-                })}
-            </Select>
-            <Button type="primary" icon={<DownloadOutlined/>} size={'large'} onClick={changeAuthority}>
-                Download
-            </Button>
         </React.Fragment>
     )
 }

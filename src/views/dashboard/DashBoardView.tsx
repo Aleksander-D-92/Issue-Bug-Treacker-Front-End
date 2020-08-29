@@ -81,22 +81,44 @@ function DashBoardView() {
     useEffect(() => {
         switch (userRole) {
             case 'ROLE_PROJECT_MANAGER':
-                axios.get(`/tickets/?action=by-project-manager&id=${id}`).then((e) => {
+                axios.get(`/tickets/?action=by-project-manager&id=${id}`, {
+                    headers: {
+                        Authorization: reduxState.userDetails.authorizationHeader
+                    }
+                }).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
                 break;
             case 'ROLE_DEVELOPER':
-                axios.get(`/tickets/?action=by-assigned-developer&id=${id}`).then((e) => {
+                axios.get(`/tickets/?action=by-assigned-developer&id=${id}`, {
+                    headers: {
+                        Authorization: reduxState.userDetails.authorizationHeader
+                    }
+                }).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
                 break
             case 'ROLE_QA_ENGINEER':
-                axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
+                axios.get(`/tickets/?action=by-submitter&id=${id}`, {
+                    headers: {
+                        Authorization: reduxState.userDetails.authorizationHeader
+                    }
+                }).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
+                break;
+            case 'ROLE_ADMIN':
+                axios.get('/tickets?action=all', {
+                    headers: {
+                        Authorization: reduxState.userDetails.authorizationHeader
+                    }
+                }).then((e) => {
+                    doStatistics(e.data);
+                    setTickets(e.data);
+                })
                 break;
         }
 

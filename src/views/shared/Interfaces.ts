@@ -26,3 +26,12 @@ export interface TicketViewModel {
     category: string,
     creationDate: Date
 }
+
+export interface ProjectViewModel {
+    id: number,
+    projectManagerId: number,
+    title: string,
+    description: string,
+    creationDate: Date,
+    projectManagerName: number
+}

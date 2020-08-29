@@ -7,7 +7,7 @@ import {usersTableColumns} from "./variables";
 import {UserViewModel} from "../../shared/Interfaces";
 
 
-function AdminPage() {
+function AdminUsersTable() {
     const [allUsers, setAllUsers] = useState<UserViewModel[]>([]);
     let reduxState = useSelector((state: ReduxState) => state);
     useEffect(() => {
@@ -32,4 +32,4 @@ function AdminPage() {
     )
 }
 
-export {AdminPage}
+export {AdminUsersTable}

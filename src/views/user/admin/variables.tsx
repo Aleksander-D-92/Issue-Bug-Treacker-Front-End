@@ -60,6 +60,10 @@ const usersTableColumns = [
                 return 'not locked'
             }
             return 'locked'
+        },
+        sorter: {
+            compare: (a: UserViewModel, b: UserViewModel) => booleanCompare(a.accountNonLocked, b.accountNonLocked),
+            multiple: 1
         }
     },
     {
@@ -69,5 +73,14 @@ const usersTableColumns = [
         render: (text: number) => <Link to={`/admins/edit-user/${text}`}>Edit this user</Link>,
     }
 ];
+
+function booleanCompare(a: boolean, b: boolean): number {
+    if (a && !b) {
+        return 1
+    } else if (!a && b) {
+        return -1
+    }
+    return 0
+}
 
 export {usersTableColumns};

@@ -12,7 +12,8 @@ function DashBoardView() {
     const userRole = reduxState.userDetails.authority;
     const id = reduxState.userDetails.id;
 
-    const [tickets, setTickets] = useState();
+    const [tickets, setTickets] = useState<TicketViewModel[]>();
+    const [projects, setProjects] = useState<TicketViewModel[]>();
 
     const [priorityStatistics, setPriorityStatistics] = useState([
         {type: 'Low', value: 0},
@@ -89,6 +90,14 @@ function DashBoardView() {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
+
+                axios.get(`/projects?action=own&id=${id}`, {
+                    headers: {
+                        Authorization: reduxState.userDetails.authorizationHeader
+                    }
+                }).then((e) => {
+                    console.log(e.data);
+                })
                 break;
             case 'ROLE_DEVELOPER':
                 axios.get(`/tickets/?action=by-assigned-developer&id=${id}`, {
@@ -100,7 +109,7 @@ function DashBoardView() {
                     setTickets(e.data);
                 });
                 break
-            case 'ROLE_QA_ENGINEER':
+            case 'ROLE_QA':
                 axios.get(`/tickets/?action=by-submitter&id=${id}`, {
                     headers: {
                         Authorization: reduxState.userDetails.authorizationHeader

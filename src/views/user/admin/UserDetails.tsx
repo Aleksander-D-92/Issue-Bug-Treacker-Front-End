@@ -3,7 +3,7 @@ import axios from "axios";
 import {useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Button, Card, Descriptions, Select} from "antd";
+import {Button, Card, Col, Descriptions, Divider, Row, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
 import {formatDate} from "../../shared/functions";
 import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
@@ -52,33 +52,42 @@ function UserDetails() {
     }
 
     return (
-        <React.Fragment>
-            <Card title="User details" style={{width: 600}}>
-                <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
-                    <Descriptions.Item label="Id" span={2}>{user?.id}</Descriptions.Item>
-                    <Descriptions.Item label="Registration date"
-                                       span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
-                    <Descriptions.Item label="Authority"
-                                       span={2}>{user?.authority.authority}</Descriptions.Item>
-                    <Descriptions.Item label="Authority level"
-                                       span={2}>{user?.authority.authorityLevel}</Descriptions.Item>
-                </Descriptions>
-                <Select defaultValue={1} style={{width: 300}} allowClear
-                        onChange={(value: number) => setSelectedAuthorityId(value)}>
-                    {authorities?.map((authority) => {
-                        return <Option key={authority.id} value={authority.id}>{authority.authority} =
-                            Level {authority.authorityLevel}</Option>
-                    })}
-                </Select>
-                <Button type="primary" icon={<DownloadOutlined/>} size={'large'} onClick={changeAuthority} block={true}>
-                    Change authority
-                </Button>
-                <Button type={'primary'} danger={true} icon={<DownloadOutlined/>} size={'large'} onClick={lockAccount}
-                        block={true}>
-                    Lock/ban account
-                </Button>
-            </Card>
-        </React.Fragment>
+        <Row justify={'center'} className={'mt-3'}>
+            <Col xs={24} sm={22} md={22} lg={14}>
+                <Card title="You can ban/lock account or change their authority">
+                    <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
+                        <Descriptions.Item label="Id" span={2}>{user?.id}</Descriptions.Item>
+                        <Descriptions.Item label="Registration date"
+                                           span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
+                        <Descriptions.Item label="Authority"
+                                           span={2}>{user?.authority.authority}</Descriptions.Item>
+                        <Descriptions.Item label="Authority level"
+                                           span={2}>{user?.authority.authorityLevel}</Descriptions.Item>
+                        <Descriptions.Item label="Is account Locked"
+                                           span={3}>{user?.accountNonLocked ? 'Not locked' : 'Locked'}</Descriptions.Item>
+                    </Descriptions>
+                    <Divider>Change authority</Divider>
+                    <Select defaultValue={1} allowClear
+                            onChange={(value: number) => setSelectedAuthorityId(value)} style={{width: 400}}>
+                        {authorities?.map((authority) => {
+                            return <Option key={authority.id} value={authority.id}>{authority.authority} =
+                                Level {authority.authorityLevel}</Option>
+                        })}
+                    </Select>
+                    <Button type="primary" icon={<DownloadOutlined/>} size={'large'} onClick={changeAuthority}
+                            block={true}
+                            className={'mt-2'}>
+                        Change authority
+                    </Button>
+                    <Divider>Lock account</Divider>
+                    <Button type={'primary'} danger={true} icon={<DownloadOutlined/>} size={'large'}
+                            onClick={lockAccount}
+                            block={true} className={'mt-2'}>
+                        Lock/Ban account
+                    </Button>
+                </Card>
+            </Col>
+        </Row>
     )
 }
 

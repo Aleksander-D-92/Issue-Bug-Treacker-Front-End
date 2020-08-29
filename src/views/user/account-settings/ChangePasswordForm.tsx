@@ -1,4 +1,5 @@
 import React from "react";
+import {useParams, useHistory} from 'react-router-dom';
 import {Button, Form, Input} from "antd";
 import axios from "axios";
 import {useSelector} from "react-redux";
@@ -6,6 +7,7 @@ import {ReduxState} from "../../../configuration/redux/reduxStrore";
 
 function ChangePasswordForm() {
     const reduxState = useSelector((state: ReduxState) => state)
+    const history = useHistory();
 
     function changePassword(e: any) {
         axios.put(`/users/password/${reduxState.userDetails.id}`, {
@@ -14,6 +16,9 @@ function ChangePasswordForm() {
         }, {
             headers: {Authorization: reduxState.userDetails.authorizationHeader}
         }).then(e => {
+            console.log(e);
+            history.push("/users/logout")
+        }).catch((e) => {
             console.log(e);
         })
     }

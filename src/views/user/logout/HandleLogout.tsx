@@ -12,7 +12,7 @@ function HandleLogout() {
         dispatch({type: 'userLoggedOut'});
         dispatch({type: 'userDetails', payload: {}})
         deleteAllCookies();
-        history.push("/");
+        history.push("/users/login");
     })
     return (
         <div>HandleLogout</div>

@@ -17,11 +17,8 @@ function DeleteAccountForm() {
             headers: {Authorization: reduxState.userDetails.authorizationHeader},
             data: {password: e.password}
         }).then(e => {
+            history.push("/users/logout");
             console.log(e);
-            deleteAllCookies();
-            dispatch({type: 'userLoggedOut'});
-            dispatch({type: 'userDetails', payload: {}})
-            history.push('/users/register');
         });
     }
 

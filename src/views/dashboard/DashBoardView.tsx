@@ -82,49 +82,28 @@ function DashBoardView() {
     useEffect(() => {
         switch (userRole) {
             case 'ROLE_PROJECT_MANAGER':
-                axios.get(`/tickets/?action=by-project-manager&id=${id}`, {
-                    headers: {
-                        Authorization: reduxState.userDetails.authorizationHeader
-                    }
-                }).then((e) => {
+                axios.get(`/tickets/?action=by-project-manager&id=${id}`).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
 
-                axios.get(`/projects?action=own&id=${id}`, {
-                    headers: {
-                        Authorization: reduxState.userDetails.authorizationHeader
-                    }
-                }).then((e) => {
-                    console.log(e.data);
+                axios.get(`/projects?action=own&id=${id}` ).then((e) => {
                 })
                 break;
             case 'ROLE_DEVELOPER':
-                axios.get(`/tickets/?action=by-assigned-developer&id=${id}`, {
-                    headers: {
-                        Authorization: reduxState.userDetails.authorizationHeader
-                    }
-                }).then((e) => {
+                axios.get(`/tickets/?action=by-assigned-developer&id=${id}`).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
                 break
             case 'ROLE_QA':
-                axios.get(`/tickets/?action=by-submitter&id=${id}`, {
-                    headers: {
-                        Authorization: reduxState.userDetails.authorizationHeader
-                    }
-                }).then((e) => {
+                axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
                 break;
             case 'ROLE_ADMIN':
-                axios.get('/tickets?action=all', {
-                    headers: {
-                        Authorization: reduxState.userDetails.authorizationHeader
-                    }
-                }).then((e) => {
+                axios.get('/tickets?action=all').then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 })

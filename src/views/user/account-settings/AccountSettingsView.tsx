@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Card, Col, Collapse, Descriptions, Row} from "antd";
+import {Col, Collapse, Descriptions, Row} from "antd";
 import {UserViewModel} from "../../shared/Interfaces";
 import {formatDate} from "../../shared/functions";
 import {ChangePasswordForm} from "./ChangePasswordForm";
@@ -14,13 +14,8 @@ function AccountSettingsView() {
     const reduxState = useSelector((state: ReduxState) => state)
     const [user, setUserDetails] = useState<UserViewModel>();
     useEffect(() => {
-        axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`, {
-            headers: {
-                Authorization: reduxState.userDetails.authorizationHeader
-            }
-        }).then((e) => {
+        axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`).then((e) => {
             setUserDetails(e.data[0]);
-            console.log(e);
         })
     }, [])
 
@@ -41,10 +36,10 @@ function AccountSettingsView() {
                             </Descriptions>
                         </Panel>
                         <Panel header={<h2>Change Password</h2>} key="2">
-                            <ChangePasswordForm/>
+                            <ChangePasswordForm userId={reduxState.userDetails.id}/>
                         </Panel>
                         <Panel header={<h2>Delete Account</h2>} key="3">
-                            <DeleteAccountForm/>
+                            <DeleteAccountForm userId={reduxState.userDetails.id}/>
                         </Panel>
                     </Collapse>
                 </Col>

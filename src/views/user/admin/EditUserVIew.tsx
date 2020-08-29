@@ -1,9 +1,9 @@
-import React, {useEffect, useState, MouseEvent} from "react";
+import React, {MouseEvent, useEffect, useState} from "react";
 import axios from "axios";
 import {useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Button, Card, Col, Descriptions, Divider, Form, Input, Row, Select} from "antd";
+import {Button, Card, Col, Descriptions, Divider, Form, Row, Select} from "antd";
 import {DownloadOutlined} from '@ant-design/icons';
 import {formatDate} from "../../shared/functions";
 import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
@@ -16,32 +16,19 @@ function EditUserVIew() {
     const [user, setUser] = useState<UserViewModel>();
     const [accountNonLocked, setAccountNonLocked] = useState<boolean>()
     const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
-    const reduxState = useSelector((state: ReduxState) => state);
 
     useEffect(() => {
-        axios.get(`/users?action=single&id=${userId}`, {
-            headers: {
-                Authorization: reduxState.userDetails.authorizationHeader
-            }
-        }).then((e) => {
+        axios.get(`/users?action=single&id=${userId}`).then((e) => {
             setUser(e.data[0])
             setAccountNonLocked(e.data[0].accountNonLocked)
         });
-        axios.get('/authorities/all', {
-            headers: {
-                Authorization: reduxState.userDetails.authorizationHeader
-            }
-        }).then((e) => {
+        axios.get('/authorities/all').then((e) => {
             setAuthorities(e.data);
         })
     }, [])
 
     function changeAuthority(form: any) {
-        axios.put(`/admins/user-authority?userId=${userId}&authorityId=${form.authority}`, {}, {
-            headers: {
-                Authorization: reduxState.userDetails.authorizationHeader
-            }
-        }).then((e) => {
+        axios.put(`/admins/user-authority?userId=${userId}&authorityId=${form.authority}`).then((e) => {
             console.log(e);
         });
     }
@@ -53,13 +40,10 @@ function EditUserVIew() {
         } else {
             setAccountNonLocked(true)
         }
-        axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`, {}, {
-            headers: {
-                Authorization: reduxState.userDetails.authorizationHeader
-            }
-        }).then((e) => {
-            console.log(e);
-        });
+        axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`)
+            .then((e) => {
+                console.log(e);
+            });
     }
 
     return (

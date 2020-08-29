@@ -1,25 +1,23 @@
 import React from "react";
 import {Button, Form, Input} from "antd";
 import axios from "axios";
-import {deleteAllCookies} from "../../shared/functions";
-import {useDispatch, useSelector} from "react-redux";
-import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {useHistory} from "react-router-dom";
 
-function DeleteAccountForm() {
-    const reduxState = useSelector((state: ReduxState) => state)
-    const dispatch = useDispatch();
+interface Props {
+    userId: number
+}
+
+function DeleteAccountForm(props: Props) {
     let history = useHistory();
 
-    function deleteAccount(e: any) {
-        console.log(e);
-        axios.delete(`/users/account/${reduxState.userDetails.id}`, {
-            headers: {Authorization: reduxState.userDetails.authorizationHeader},
-            data: {password: e.password}
+    function deleteAccount(form: any) {
+        console.log(form);
+        axios.put(`/users/account-lock/${props.userId}`, {
+            password: form.password
         }).then(e => {
-            history.push("/users/logout");
             console.log(e);
-        });
+            history.push("/users/logout");
+        })
     }
 
     return (

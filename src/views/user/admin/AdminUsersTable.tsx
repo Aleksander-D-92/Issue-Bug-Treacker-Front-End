@@ -11,12 +11,7 @@ function AdminUsersTable() {
     const [allUsers, setAllUsers] = useState<UserViewModel[]>([]);
     let reduxState = useSelector((state: ReduxState) => state);
     useEffect(() => {
-        axios.get('/admins/all-users', {
-            headers: {
-                Authorization: reduxState.userDetails.authorizationHeader
-            }
-        }).then((e) => {
-            console.log(e.data);
+        axios.get('/admins/all-users').then((e) => {
             setAllUsers(e.data);
         })
     }, [])

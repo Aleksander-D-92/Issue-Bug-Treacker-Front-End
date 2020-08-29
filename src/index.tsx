@@ -5,10 +5,7 @@ import {App} from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from 'react-redux'
-import {initGlobalHttpInterceptors} from "./configuration/axios/AxiosGlobalInterceptor";
 import {store} from "./configuration/redux/reduxStrore";
-
-initGlobalHttpInterceptors();
 
 
 ReactDOM.render(

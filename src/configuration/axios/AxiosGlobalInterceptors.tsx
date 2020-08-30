@@ -10,15 +10,32 @@ toast.configure();
 function AxiosGlobalInterceptors() {
     useEffect(() => {
         axios.interceptors.request.use((config) => {
-            // console.log(`request`);
-            // console.log(config);
+            console.log(`request`);
+            console.log(config);
+            const method = config.method;
+
             const baseUrl = 'http://localhost:8080';
             config.url = baseUrl + config.url;
+
             const jwt = readCookieByKeyName('jwt');
             if (jwt !== undefined && jwt !== null) {
                 config.headers.Authorization = `Bearer ${jwt}`;
             }
-            toast.success(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            switch (method) {
+                case "get":
+                    toast.info(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    break;
+                case "post":
+                    toast.success(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    break;
+                case "put":
+                    toast.warning(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    break;
+                case "delete":
+                    toast.error(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    break;
+            }
+            // toast.success(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
             return config;
         }, function (error) {
             toast.error('request interceptor error', {position: toast.POSITION.BOTTOM_RIGHT})

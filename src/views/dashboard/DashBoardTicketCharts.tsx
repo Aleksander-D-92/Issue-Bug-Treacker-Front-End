@@ -15,7 +15,7 @@ interface Props {
     statusStatistics: Statistics[]
 }
 
-function TicketCharts(props: Props) {
+function DashBoardTicketCharts(props: Props) {
     let priorityStatistics = props.priorityStatistics;
     let categoryStatistics = props.categoryStatistics;
     let statusStatistics = props.statusStatistics;
@@ -95,4 +95,4 @@ function TicketCharts(props: Props) {
     )
 }
 
-export {TicketCharts}
+export {DashBoardTicketCharts}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {TicketCharts} from "./TicketCharts";
+import {DashBoardTicketCharts} from "./DashBoardTicketCharts";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {ProjectViewModel, TicketViewModel} from "../shared/Interfaces";
@@ -125,8 +125,8 @@ function DashBoardView() {
     return (
         <React.Fragment>
             <DashBoardGreeting authority={reduxState.userDetails.authority} username={reduxState.userDetails.username}/>
-            <TicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
-                          statusStatistics={statusStatistics}/>
+            <DashBoardTicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
+                                   statusStatistics={statusStatistics}/>
             <DashBoardProjects projects={projects}/>
         </React.Fragment>
     )

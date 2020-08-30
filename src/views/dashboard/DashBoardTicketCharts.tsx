@@ -48,7 +48,7 @@ function DashBoardTicketCharts(props: Props) {
     return (
         <React.Fragment>
             <Row gutter={[18, 18]} justify={'center'} className={'mt-3'}>
-                <Col xs={24} sm={22} md={22} lg={8}>
+                <Col xs={24} sm={22} md={22} lg={7}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header="Tickets by priority" key="1">
                             <BarChart width={400} height={400} data={priorityStatistics?.slice()}>
@@ -76,7 +76,7 @@ function DashBoardTicketCharts(props: Props) {
                         </Panel>
                     </Collapse>
                 </Col>
-                <Col xs={24} sm={22} md={22} lg={8}>
+                <Col xs={24} sm={22} md={22} lg={7}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header="Tickets by status" key="1">
                             <PieChart width={450} height={400}>

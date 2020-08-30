@@ -18,7 +18,7 @@ function DashBoardProjects(props: Props) {
                             header={<h2>Your projects</h2>}
                             dataSource={props.projects}
                             pagination={{
-                                pageSize: 10, total: props.projects?.length, position: 'bottom'
+                                pageSize: 5, total: props.projects?.length, position: 'bottom'
                             }}
                             renderItem={project => (
                                 <List.Item actions={[<span>Details</span>, <span>Edit</span>]}>

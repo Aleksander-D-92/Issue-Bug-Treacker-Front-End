@@ -22,8 +22,8 @@ export interface TicketViewModel {
     submitterName: string,
     assignedDeveloperName: string,
     priority: string,
-    status: string,
     category: string,
+    status: string,
     creationDate: Date
 }
 

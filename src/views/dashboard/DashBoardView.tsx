@@ -6,6 +6,7 @@ import {ProjectViewModel, TicketViewModel} from "../shared/Interfaces";
 import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
 import {DashBoardProjects} from "./DashBoardProjects";
+import {DashBoardTicketTable} from "./DashBoardTicketTable";
 
 
 function DashBoardView() {
@@ -128,6 +129,7 @@ function DashBoardView() {
             <DashBoardTicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
                                    statusStatistics={statusStatistics}/>
             <DashBoardProjects projects={projects}/>
+            <DashBoardTicketTable tickets={tickets}/>
         </React.Fragment>
     )
 }

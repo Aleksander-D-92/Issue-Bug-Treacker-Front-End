@@ -10,10 +10,7 @@ toast.configure();
 function AxiosGlobalInterceptors() {
     useEffect(() => {
         axios.interceptors.request.use((config) => {
-            console.log(`request`);
-            console.log(config);
             const method = config.method;
-
             const baseUrl = 'http://localhost:8080';
             config.url = baseUrl + config.url;
 
@@ -35,14 +32,13 @@ function AxiosGlobalInterceptors() {
                     toast.error(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
             }
-            // toast.success(`${config.method?.toUpperCase()} to ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
             return config;
         }, function (error) {
             toast.error('request interceptor error', {position: toast.POSITION.BOTTOM_RIGHT})
             return Promise.reject(error);
         });
 
-// Add a response interceptor
+        //Response interceptor
         axios.interceptors.response.use(function (response) {
             console.log(`response`);
             console.log(response);

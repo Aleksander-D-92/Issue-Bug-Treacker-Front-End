@@ -2,13 +2,14 @@ import React from "react";
 import {TicketViewModel} from "../shared/Interfaces";
 import {Col, Row, Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
+import {Link} from "react-router-dom";
 
 interface Props {
     tickets?: TicketViewModel[]
 }
 
 function DashBoardTicketTable(props: Props) {
-    function getTagColor(val: string) {
+    function ticketTagColor(val: string): string {
         switch (val) {
             case 'LOW':
             case 'FEATURE_REQUEST':
@@ -43,7 +44,7 @@ function DashBoardTicketTable(props: Props) {
             key: 'id',
             title: 'Priority',
             dataIndex: 'priority',
-            render: (priority: string) => <Tag color={getTagColor(priority)}>{priority}</Tag>,
+            render: (priority: string) => <Tag color={ticketTagColor(priority)}>{priority}</Tag>,
             sorter: {
                 compare: (a: TicketViewModel, b: TicketViewModel) => a.priority.localeCompare(b.priority),
                 multiple: 1
@@ -53,7 +54,7 @@ function DashBoardTicketTable(props: Props) {
             key: 'id',
             title: 'Category',
             dataIndex: 'category',
-            render: (category: string) => <Tag color={getTagColor(category)}>{category}</Tag>,
+            render: (category: string) => <Tag color={ticketTagColor(category)}>{category}</Tag>,
             sorter: {
                 compare: (a: TicketViewModel, b: TicketViewModel) => a.category.localeCompare(b.category),
                 multiple: 1
@@ -63,7 +64,7 @@ function DashBoardTicketTable(props: Props) {
             key: 'id',
             title: 'Status',
             dataIndex: 'status',
-            render: (status: string) => <Tag color={getTagColor(status)}>{status}</Tag>,
+            render: (status: string) => <Tag color={ticketTagColor(status)}>{status}</Tag>,
             sorter: {
                 compare: (a: TicketViewModel, b: TicketViewModel) => a.status.localeCompare(b.status),
                 multiple: 1
@@ -107,6 +108,12 @@ function DashBoardTicketTable(props: Props) {
                 },
                 multiple: 1
             }
+        },
+        {
+            key: 'id',
+            title: 'Details',
+            dataIndex: 'id',
+            render: (id: number) => <Link to={`/tickets/details/${id}`}>Details</Link>,
         }
 
     ]

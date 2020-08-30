@@ -1,10 +1,8 @@
 import React, {MouseEvent, useEffect, useState} from "react";
 import axios from "axios";
-import {useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
-import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Card, Col, Descriptions, Divider, Form, Row, Select} from "antd";
-import {DownloadOutlined} from '@ant-design/icons';
+import {LockOutlined, UnlockOutlined, UserSwitchOutlined} from '@ant-design/icons';
 import {formatDate} from "../../shared/functions";
 import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
 
@@ -14,7 +12,8 @@ const {Option} = Select;
 function EditUserVIew() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserViewModel>();
-    const [accountNonLocked, setAccountNonLocked] = useState<boolean>()
+    const [accountNonLocked, setAccountNonLocked] = useState<boolean>();
+    const [currentAuthority, setCurrentAuthority] = useState<string>();
     const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
 
     useEffect(() => {
@@ -78,21 +77,22 @@ function EditUserVIew() {
                                 })}
                             </Select>
                         </Form.Item>
-                        <Button type="primary" icon={<DownloadOutlined/>} size={'large'}
+                        <Button type="primary" icon={<UserSwitchOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
                                 block={true} htmlType={'submit'}
                                 className="login-form-button">
                             Change authority
                         </Button>
                     </Form>
                     <Divider>Set account lock</Divider>
-                    <Button type={'primary'} danger={true} icon={<DownloadOutlined/>} size={'large'}
+                    <Button type={'primary'} danger={true} icon={<LockOutlined style={{fontSize: '1.1rem'}}/>}
+                            size={'large'}
                             onClick={lockAccount}
                             block={true} className={'mt-2'}
                             name={'lock'}
                             disabled={!accountNonLocked}>
                         Lock account
                     </Button>
-                    <Button type={'primary'} icon={<DownloadOutlined/>} size={'large'}
+                    <Button type={'primary'} icon={<UnlockOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
                             onClick={lockAccount}
                             block={true} className={'mt-2'}
                             name={'unlock'}

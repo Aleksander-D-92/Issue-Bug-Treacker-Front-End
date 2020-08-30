@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import axios from 'axios';
 import {Button, Card, Col, Form, Input, Row, Select} from "antd";
+import {AuthorityViewModel} from "../../shared/Interfaces";
+import {UserOutlined, LockOutlined} from '@ant-design/icons';
+
 
 const {Option} = Select;
 
 function UserRegister() {
     let history = useHistory();
+    const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
+    useEffect(() => {
+        axios.get(`/authorities/all`).then((e) => {
+            setAuthorities(e.data);
+        })
+    }, [])
 
     function onFinish(registerForm: any) {
         axios.post('/users/register', registerForm).then((e) => {
@@ -19,7 +28,7 @@ function UserRegister() {
 
     return (
         <Row justify={'center'} className={'mt-3'}>
-            <Col xs={24} sm={22} md={18}>
+            <Col xs={24} sm={22} md={14}>
                 <Card title="User registration form" extra={'Thank you for taking the time to register'}>
                     <Form
                         name="basic"
@@ -31,18 +40,27 @@ function UserRegister() {
                             label="Username"
                             name="username"
                             validateTrigger={false}
-                            rules={[{required: true, min: 5, max: 12, message: 'required: true, min: 5, max: 12'}]}
-                        >
-                            <Input placeholder={'enter username'}/>
+                            rules={[{
+                                required: true,
+                                pattern: new RegExp('^[a-zA-Z0-9]{5,20}$'),
+                                message: 'Must be between 5 and 20 chars, can only include numbers and chars'
+                            }]}>
+                            <Input placeholder={'enter username'} allowClear={true} type={'text'}
+                                   prefix={<UserOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
 
                         <Form.Item
                             label="Password"
                             name="password"
                             validateTrigger={false}
-                            rules={[{required: true, min: 4, max: 12, message: 'required: true, min: 4, max: 8'}]}
+                            rules={[{
+                                required: true,
+                                pattern: new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$'),
+                                message: 'Minimum six characters, at least one letter and one number'
+                            }]}
                         >
-                            <Input.Password/>
+                            <Input type={'password'} placeholder={'enter your password'} allowClear={true}
+                                   prefix={<LockOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
 
                         <Form.Item
@@ -64,16 +82,14 @@ function UserRegister() {
                                 }),
                             ]}
                         >
-                            <Input.Password/>
+                            <Input type={'password'} placeholder={'confirm your password'} allowClear={true}
+                                   prefix={<LockOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
                         <Form.Item name="authority" label="Your Role"
                                    rules={[{required: true, message: 'please select your role'}]}>
-                            <Select
-                                placeholder="Select a option and change input text above" allowClear
-                                defaultValue={'ROLE_PROJECT_MANAGER'}>
-                                <Option value="ROLE_QA_ENGINEER" disabled={true}>End User</Option>
-                                <Option value="ROLE_DEVELOPER" disabled={true}>Developer</Option>
-                                <Option value="ROLE_PROJECT_MANAGER">Project Manager</Option>
+                            <Select allowClear={true}>
+                                {authorities?.map(e => <Option disabled={e.id !== 3}
+                                                               value={e.id}>{e.authority}</Option>)}
                             </Select>
                         </Form.Item>
                         <Form.Item>

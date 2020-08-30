@@ -7,7 +7,8 @@ import {Link} from "react-router-dom";
 function LeftNavMenu() {
     return (
         <React.Fragment>
-            <Menu className={''} defaultSelectedKeys={['0']} defaultOpenKeys={['sub1']} mode="inline" theme="dark">
+            <Menu className={''} defaultSelectedKeys={['0']} defaultOpenKeys={['sub1']} mode="inline" theme="dark"
+                  style={{fontSize: '1.1rem'}}>
                 <Menu.Item key="0" icon={<PieChartOutlined style={{fontSize: '1.2rem'}}/>} className={'mb-5'}
                            style={{fontSize: '1.2rem'}}>
                     <Link to={'./'}>Landing page</Link>

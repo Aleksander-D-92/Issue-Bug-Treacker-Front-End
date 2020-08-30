@@ -51,18 +51,29 @@ function LoginForm() {
                     <Form.Item
                         label="Username"
                         name="username"
-                        rules={[{required: true, message: 'Please input your Username!'}]}
-                    >
-                        <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
+                        validateTrigger={false}
+                        rules={[{
+                            required: true,
+                            pattern: new RegExp('^[a-zA-Z0-9]{5,20}$'),
+                            message: 'Must be between 5 and 20 chars, can only include numbers and chars'
+                        }]}>
+                        <Input allowClear={true} prefix={<UserOutlined className="site-form-item-icon"/>}
+                               placeholder="Username"/>
                     </Form.Item>
                     <Form.Item
                         label="Password"
                         name="password"
-                        rules={[{required: true, message: 'Please input your Password!'}]}
+                        validateTrigger={false}
+                        rules={[{
+                            required: true,
+                            pattern: new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$'),
+                            message: 'Minimum six characters, at least one letter and one number'
+                        }]}
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon"/>}
                             type="password"
+                            allowClear={true}
                             placeholder="Password"
                         />
                     </Form.Item>

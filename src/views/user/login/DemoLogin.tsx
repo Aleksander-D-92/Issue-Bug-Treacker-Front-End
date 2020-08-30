@@ -22,7 +22,6 @@ function DemoLogin() {
     const dispatch = useDispatch();
 
     function handleDemoLogin(e: React.MouseEvent<HTMLButtonElement>) {
-        dispatch({type: 'userLoggedIn'});
         let name = e.currentTarget.name;
         let credentials = {};
         switch (name) {
@@ -55,6 +54,8 @@ function DemoLogin() {
                 }
             });
             history.push('/dashboard')
+        }).catch((e) => {
+            console.log(e);
         })
     }
 

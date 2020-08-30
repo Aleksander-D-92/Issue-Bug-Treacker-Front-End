@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import {TicketCharts} from "./TicketCharts";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../configuration/redux/reduxStrore";
-import {TicketViewModel} from "../shared/Interfaces";
+import {ProjectViewModel, TicketViewModel} from "../shared/Interfaces";
 import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
+import {DashBoardProjects} from "./DashBoardProjects";
 
 
 function DashBoardView() {
@@ -13,7 +14,7 @@ function DashBoardView() {
     const id = reduxState.userDetails.id;
 
     const [tickets, setTickets] = useState<TicketViewModel[]>();
-    const [projects, setProjects] = useState<TicketViewModel[]>();
+    const [projects, setProjects] = useState<ProjectViewModel[]>();
 
     const [priorityStatistics, setPriorityStatistics] = useState([
         {type: 'Low', value: 0},
@@ -87,7 +88,8 @@ function DashBoardView() {
                     setTickets(e.data);
                 });
 
-                axios.get(`/projects?action=own&id=${id}` ).then((e) => {
+                axios.get(`/projects?action=own&id=${id}`).then((e) => {
+                    setProjects(e.data);
                 })
                 break;
             case 'ROLE_DEVELOPER':
@@ -95,18 +97,27 @@ function DashBoardView() {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
+                axios.get(`/projects?action=include-developer&id=${id}`).then((e) => {
+                    setProjects(e.data);
+                });
                 break
             case 'ROLE_QA':
                 axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
                 });
+                axios.get(`/projects?action=include-qa&id=${id}`).then((e) => {
+                    setProjects(e.data);
+                });
                 break;
             case 'ROLE_ADMIN':
                 axios.get('/tickets?action=all').then((e) => {
                     doStatistics(e.data);
                     setTickets(e.data);
-                })
+                });
+                axios.get(`/projects?action=all`).then((e) => {
+                    setProjects(e.data);
+                });
                 break;
         }
 
@@ -116,6 +127,7 @@ function DashBoardView() {
             <DashBoardGreeting authority={reduxState.userDetails.authority} username={reduxState.userDetails.username}/>
             <TicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
                           statusStatistics={statusStatistics}/>
+            <DashBoardProjects projects={projects}/>
         </React.Fragment>
     )
 }

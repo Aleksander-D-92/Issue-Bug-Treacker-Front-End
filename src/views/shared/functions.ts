@@ -8,6 +8,10 @@ function formatDate(date: Date | undefined): string {
     return strings.join(" ").toString();
 }
 
+function capitalizeString(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 function compareDates(a: Date, b: Date): number {
     if (a > b) {
         return 1;
@@ -44,4 +48,4 @@ function readCookieByKeyName(name: string) {
     return null;
 }
 
-export {formatDate, compareDates, deleteAllCookies, readCookieByKeyName}
+export {formatDate, compareDates, deleteAllCookies, readCookieByKeyName, capitalizeString}

@@ -33,5 +33,5 @@ export interface ProjectViewModel {
     title: string,
     description: string,
     creationDate: Date,
-    projectManagerName: number
+    projectManagerName: string
 }

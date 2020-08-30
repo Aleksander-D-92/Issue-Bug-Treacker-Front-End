@@ -10,12 +10,11 @@ toast.configure();
 function AxiosGlobalInterceptors() {
     useEffect(() => {
         axios.interceptors.request.use((config) => {
-            console.log(`request`);
-            console.log(config);
-
+            // console.log(`request`);
+            // console.log(config);
             const baseUrl = 'http://localhost:8080';
             config.url = baseUrl + config.url;
-            let jwt = readCookieByKeyName('jwt');
+            const jwt = readCookieByKeyName('jwt');
             if (jwt !== undefined && jwt !== null) {
                 config.headers.Authorization = `Bearer ${jwt}`;
             }

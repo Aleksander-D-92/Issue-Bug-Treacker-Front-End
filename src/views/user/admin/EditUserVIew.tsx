@@ -12,21 +12,33 @@ const {Option} = Select;
 function EditUserVIew() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserViewModel>();
+    const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
     const [accountNonLocked, setAccountNonLocked] = useState<boolean>();
     const [currentAuthority, setCurrentAuthority] = useState<string>();
-    const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
 
     useEffect(() => {
         axios.get(`/users?action=single&id=${userId}`).then((e) => {
             setUser(e.data[0])
             setAccountNonLocked(e.data[0].accountNonLocked)
+            setCurrentAuthority(e.data[0].authority.authority)
         });
         axios.get('/authorities/all').then((e) => {
-            setAuthorities(e.data);
+            setAuthorities(e.data.filter((a: AuthorityViewModel) => a.authorityLevel !== 4));
         })
     }, [])
 
     function changeAuthority(form: any) {
+        switch (form.authority) {
+            case 1:
+                setCurrentAuthority('ROLE_QA')
+                break;
+            case 2:
+                setCurrentAuthority('ROLE_DEVELOPER')
+                break;
+            case 3:
+                setCurrentAuthority('ROLE_PROJECT_MANAGER')
+                break;
+        }
         axios.put(`/admins/user-authority?userId=${userId}&authorityId=${form.authority}`).then((e) => {
             console.log(e);
         });
@@ -54,7 +66,7 @@ function EditUserVIew() {
                         <Descriptions.Item label="Registration date"
                                            span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
                         <Descriptions.Item label="Authority"
-                                           span={2}>{user?.authority.authority}</Descriptions.Item>
+                                           span={2}>{currentAuthority}</Descriptions.Item>
                         <Descriptions.Item label="Authority level"
                                            span={2}>{user?.authority.authorityLevel}</Descriptions.Item>
                         <Descriptions.Item label="Is account Locked"
@@ -77,14 +89,14 @@ function EditUserVIew() {
                                 })}
                             </Select>
                         </Form.Item>
-                        <Button type="primary" icon={<UserSwitchOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
+                        <Button type="primary" icon={<UserSwitchOutlined style={{fontSize: '1.2rem'}}/>} size={'large'}
                                 block={true} htmlType={'submit'}
                                 className="login-form-button">
                             Change authority
                         </Button>
                     </Form>
                     <Divider>Set account lock</Divider>
-                    <Button type={'primary'} danger={true} icon={<LockOutlined style={{fontSize: '1.1rem'}}/>}
+                    <Button type={'primary'} danger={true} icon={<LockOutlined style={{fontSize: '1.2rem'}}/>}
                             size={'large'}
                             onClick={lockAccount}
                             block={true} className={'mt-2'}

@@ -16,8 +16,8 @@ function LeftNavMenu() {
                 <Menu.Item key="1" icon={<ContainerOutlined/>}>
                     <Link to={'/dashboard'}>Dashboard</Link>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<DesktopOutlined/>}>
-                    <Link to={'/admins/get-all-users'}>User roles-- to remove?</Link>
+                <Menu.Item key="2" icon={<DesktopOutlined style={{fontSize: '1.2rem'}}/>}>
+                    <Link to={'/admins/get-all-users'}>Mange Users</Link>
                 </Menu.Item>
                 <Menu.Item key="3" icon={<DesktopOutlined/>}>
                     <Link to={'/projects/get-all-projects'}>All projects</Link>

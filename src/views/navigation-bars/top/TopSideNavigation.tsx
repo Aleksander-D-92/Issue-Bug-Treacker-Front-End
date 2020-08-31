@@ -18,10 +18,10 @@ function TopSideNavigation() {
             adjustMenu(
                 <Menu theme="dark" mode="horizontal" className={'TopSideNavigation'} selectedKeys={[]}
                       style={{fontSize: '1.1rem'}}>
-                    <Menu.Item icon={<UserOutlined style={{fontSize: '1.1rem'}}/>} key="3"><Link
+                    <Menu.Item icon={<UserOutlined style={{fontSize: '1.2rem'}}/>} key="3"><Link
                         to={`/users/account-settings/${reduxState.userDetails.username}`}>Account
                         Settings</Link></Menu.Item>
-                    <Menu.Item icon={<LogoutOutlined style={{fontSize: '1.1rem'}}/>} key="4"><Link
+                    <Menu.Item icon={<LogoutOutlined style={{fontSize: '1.2rem'}}/>} key="4"><Link
                         to={'/users/logout'}>Logout {username}</Link></Menu.Item>
                 </Menu>
             )
@@ -30,9 +30,9 @@ function TopSideNavigation() {
                 <Menu theme="dark" mode="horizontal" className={'TopSideNavigation'} selectedKeys={[]}
                       style={{fontSize: '1.1rem'}}>
                     <Menu.Item
-                        icon={<LoginOutlined style={{fontSize: '1.1rem'}}/>} key="1"><Link
+                        icon={<LoginOutlined style={{fontSize: '1.2rem'}}/>} key="1"><Link
                         to={'/users/login'}>Login</Link></Menu.Item>
-                    <Menu.Item icon={<UserAddOutlined style={{fontSize: '1.1rem'}}/>} key="2"><Link
+                    <Menu.Item icon={<UserAddOutlined style={{fontSize: '1.2rem'}}/>} key="2"><Link
                         to={'/users/register'}>Register</Link></Menu.Item>
                 </Menu>
             )

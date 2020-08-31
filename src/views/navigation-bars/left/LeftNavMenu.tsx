@@ -1,17 +1,23 @@
 import React from "react";
 import {Menu} from 'antd';
-import {ContainerOutlined, DesktopOutlined, PieChartOutlined,} from '@ant-design/icons';
+import {BugOutlined, ContainerOutlined, DesktopOutlined, FileTextOutlined, PieChartOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
+import {useSelector} from 'react-redux';
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
+
+const {SubMenu} = Menu;
 
 
 function LeftNavMenu() {
+    const state = useSelector((state: ReduxState) => state);
+    let authority = state.userDetails.authority;
     return (
         <React.Fragment>
-            <Menu className={''} defaultSelectedKeys={['0']} defaultOpenKeys={['sub1']} mode="inline" theme="dark"
+            <Menu className={''} defaultSelectedKeys={['0']} defaultOpenKeys={['projects', 'tickets']} mode="inline"
+                  theme="dark"
                   style={{fontSize: '1.1rem'}}>
-                <Menu.Item key="0" icon={<PieChartOutlined style={{fontSize: '1.2rem'}}/>} className={'mb-5'}
-                           style={{fontSize: '1.2rem'}}>
-                    <Link to={'./'}>Landing page</Link>
+                <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
+                    <Link to={'./'} style={{fontSize: '1.4rem'}}>Issue Tracker</Link>
                 </Menu.Item>
                 <Menu.Item key="1" icon={<ContainerOutlined/>}>
                     <Link to={'/dashboard'}>Dashboard</Link>
@@ -19,27 +25,21 @@ function LeftNavMenu() {
                 <Menu.Item key="2" icon={<DesktopOutlined style={{fontSize: '1.2rem'}}/>}>
                     <Link to={'/admins/get-all-users'}>Mange Users</Link>
                 </Menu.Item>
-                <Menu.Item key="3" icon={<DesktopOutlined/>}>
-                    <Link to={'/projects/get-all-projects'}>All projects</Link>
-                </Menu.Item>
-                <Menu.Item key="4" icon={<DesktopOutlined/>}>
-                    <Link to={'/projects/get-own-projects'}>My projects</Link>
-                </Menu.Item>
-                <Menu.Item key="5" icon={<ContainerOutlined/>}>
-                    <Link to={'/projects/create-project'}>Create Project</Link>
-                </Menu.Item>
-                <Menu.Item key="6" icon={<ContainerOutlined/>}>
-                    My Comments
-                </Menu.Item>
-                <Menu.Item key="7" icon={<ContainerOutlined/>}>
-                    My Tickets
-                </Menu.Item>
-                <Menu.Item key="8" icon={<ContainerOutlined/>}>
-                    All tickets
-                </Menu.Item>
-                <Menu.Item key="9" icon={<ContainerOutlined/>}>
-                    Submit a ticket
-                </Menu.Item>
+                <SubMenu
+                    key="projects"
+                    title={<span><PieChartOutlined style={{fontSize: '1.2rem'}}/><span>Projects</span></span>}>
+                    <Menu.Item key="9">New Project</Menu.Item>
+                    <Menu.Item key="10">My projects</Menu.Item>
+                    <Menu.Item key="11">Assign Staff</Menu.Item>
+                    <Menu.Item key="12">Remove Staff</Menu.Item>
+                </SubMenu>
+                <SubMenu
+                    key="tickets"
+                    title={<span><FileTextOutlined style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
+                    <Menu.Item key="13">All Tickets</Menu.Item>
+                    <Menu.Item key="14">My Tickets</Menu.Item>
+                    <Menu.Item key="15">Submit Ticket</Menu.Item>
+                </SubMenu>
             </Menu>
 
         </React.Fragment>

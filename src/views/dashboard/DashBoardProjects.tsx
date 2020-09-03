@@ -10,8 +10,6 @@ interface Props {
 function DashBoardProjects(props: Props) {
     return (
         <React.Fragment>
-            <Row justify={'center'}>
-                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Card>
                         <List
                             itemLayout="vertical"
@@ -33,8 +31,6 @@ function DashBoardProjects(props: Props) {
                             )}
                         />
                     </Card>
-                </Col>
-            </Row>
         </React.Fragment>
     )
 }

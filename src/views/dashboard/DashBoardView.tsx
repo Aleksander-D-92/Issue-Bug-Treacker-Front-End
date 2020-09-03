@@ -7,6 +7,7 @@ import {DashBoardGreeting} from "./DashBoardGreeting";
 import {DashBoardProjects} from "./DashBoardProjects";
 import {DashBoardTicketTable} from "./DashBoardTicketTable";
 import {TicketCharts} from "./TicketCharts";
+import {Col, Row} from "antd";
 
 
 function DashBoardView() {
@@ -129,8 +130,16 @@ function DashBoardView() {
             <DashBoardGreeting authority={reduxState.userDetails.authority} username={reduxState.userDetails.username}/>
             <TicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
                           statusStatistics={statusStatistics}/>
-            <DashBoardProjects projects={projects}/>
-            <DashBoardTicketTable tickets={tickets}/>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <DashBoardProjects projects={projects}/>
+                </Col>
+            </Row>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22}>
+                    <DashBoardTicketTable tickets={tickets}/>
+                </Col>
+            </Row>
         </React.Fragment>
     )
 }

@@ -121,12 +121,8 @@ function DashBoardTicketTable(props: Props) {
 
     return (
         <React.Fragment>
-            <Row justify={'center'}>
-                <Col xs={24} sm={22}>
                     <Table columns={columns} dataSource={props.tickets} bordered
                            pagination={{total: props.tickets?.length}} className={'mt-3'} scroll={{x: 1000}}/>
-                </Col>
-            </Row>
         </React.Fragment>
     )
 }

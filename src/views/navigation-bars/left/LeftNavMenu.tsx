@@ -53,8 +53,8 @@ function LeftNavMenu() {
                 <SubMenu
                     key="tickets"
                     title={<span><FileTextOutlined style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
-                    <Menu.Item key="13"><Link to={'/tickets/all-tickets'}>All Tickets</Link></Menu.Item>
-                    <Menu.Item key="14"><Link to={'/tickets/my-tickets'}>My Tickets</Link></Menu.Item>
+                    <Menu.Item key="13"><Link to={'/tickets/all'}>All Tickets</Link></Menu.Item>
+                    <Menu.Item key="14"><Link to={'/tickets/my'}>My Tickets</Link></Menu.Item>
                     <Menu.Item key="15"><Link to={'/tickets/submit'}>Submit Ticket</Link></Menu.Item>
                 </SubMenu>
             </Menu>

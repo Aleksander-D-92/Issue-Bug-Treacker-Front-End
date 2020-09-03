@@ -4,15 +4,15 @@ import {useParams} from 'react-router-dom'
 import {Button, Card, Col, Descriptions, Divider, Form, Row, Select} from "antd";
 import {LockOutlined, UnlockOutlined, UserSwitchOutlined} from '@ant-design/icons';
 import {formatDate} from "../../shared/functions";
-import {AuthorityViewModel, UserViewModel} from "../../shared/Interfaces";
+import {Authority, UserDetails} from "../../shared/Interfaces";
 
 
 const {Option} = Select;
 
 function EditUserVIew() {
     const {userId} = useParams();
-    const [user, setUser] = useState<UserViewModel>();
-    const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
+    const [user, setUser] = useState<UserDetails>();
+    const [authorities, setAuthorities] = useState<Authority[]>();
     const [accountNonLocked, setAccountNonLocked] = useState<boolean>();
     const [currentAuthority, setCurrentAuthority] = useState<string>();
 
@@ -23,7 +23,7 @@ function EditUserVIew() {
             setCurrentAuthority(e.data[0].authority.authority)
         });
         axios.get('/authorities/all').then((e) => {
-            setAuthorities(e.data.filter((a: AuthorityViewModel) => a.authorityLevel !== 4));
+            setAuthorities(e.data.filter((a: Authority) => a.authorityLevel !== 4));
         })
     }, [])
 
@@ -62,7 +62,7 @@ function EditUserVIew() {
             <Col xs={24} sm={22} md={22} lg={14}>
                 <Card title="You can ban/lock account or change their authority">
                     <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
-                        <Descriptions.Item label="Id" span={2}>{user?.id}</Descriptions.Item>
+                        <Descriptions.Item label="Id" span={2}>{user?.userId}</Descriptions.Item>
                         <Descriptions.Item label="Registration date"
                                            span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
                         <Descriptions.Item label="Authority"
@@ -84,7 +84,7 @@ function EditUserVIew() {
                             rules={[{required: true, message: 'Must select at least one'}]}>
                             <Select defaultValue={1} allowClear style={{width: 400}}>
                                 {authorities?.map((authority) => {
-                                    return <Option key={authority.id} value={authority.id}>{authority.authority} =
+                                    return <Option key={authority.authorityId} value={authority.authorityId}>{authority.authority} =
                                         Level {authority.authorityLevel}</Option>
                                 })}
                             </Select>

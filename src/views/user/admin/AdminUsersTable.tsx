@@ -4,14 +4,14 @@ import axios from "axios";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Table} from "antd";
 import {usersTableColumns} from "./variables";
-import {UserViewModel} from "../../shared/Interfaces";
+import {UserDetails} from "../../shared/Interfaces";
 
 
 function AdminUsersTable() {
-    const [allUsers, setAllUsers] = useState<UserViewModel[]>([]);
+    const [allUsers, setAllUsers] = useState<UserDetails[]>([]);
     let reduxState = useSelector((state: ReduxState) => state);
     useEffect(() => {
-        axios.get('/admins/all-users').then((e) => {
+        axios.get('/users?action=all').then((e) => {
             setAllUsers(e.data);
         })
     }, [])

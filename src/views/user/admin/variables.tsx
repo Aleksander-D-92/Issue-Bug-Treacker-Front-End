@@ -1,60 +1,60 @@
 import {Link} from "react-router-dom";
 import React from "react";
-import {UserViewModel} from "../../shared/Interfaces";
+import {UserDetails} from "../../shared/Interfaces";
 import {compareDates, formatDate} from "../../shared/functions";
 
 
 const usersTableColumns = [
     {
         title: 'User ID', // kak se kazva kolonata (table HEADER)
-        dataIndex: 'id', // koi key ot jsno array da sloja tuka
-        key: 'id',
+        dataIndex: 'userId', // koi key ot jsno array da sloja tuka
+        key: 'userId',
         sorter: {
-            compare: (a: UserViewModel, b: UserViewModel) => a.id - b.id,
+            compare: (a: UserDetails, b: UserDetails) => a.userId - b.userId,
             multiple: 1
         }
     },
     {
         title: 'Username',
         dataIndex: 'username',
-        key: 'id',
+        key: 'userId',
         sorter: {
-            compare: (a: UserViewModel, b: UserViewModel) => a.username.localeCompare(b.username),
+            compare: (a: UserDetails, b: UserDetails) => a.username.localeCompare(b.username),
             multiple: 1
         }
     },
     {
         title: 'Registration Date',
         dataIndex: 'registrationDate',
-        key: 'id',
+        key: 'userId',
         render: (text: Date) => formatDate(text),
         sorter: {
-            compare: (a: UserViewModel, b: UserViewModel) => compareDates(a.registrationDate, b.registrationDate),
+            compare: (a: UserDetails, b: UserDetails) => compareDates(a.registrationDate, b.registrationDate),
             multiple: 1
         }
     },
     {
         title: 'Authority',
         dataIndex: ['authority', 'authority'],
-        key: 'id',
+        key: 'userId',
         sorter: {
-            compare: (a: UserViewModel, b: UserViewModel) => a.authority.authority.localeCompare(b.authority.authority),
+            compare: (a: UserDetails, b: UserDetails) => a.authority.authority.localeCompare(b.authority.authority),
             multiple: 1
         }
     },
     {
         title: 'Authority Level',
         dataIndex: ['authority', 'authorityLevel'],
-        key: 'id',
+        key: 'userId',
         sorter: {
-            compare: (a: UserViewModel, b: UserViewModel) => a.authority.authorityLevel - b.authority.authorityLevel,
+            compare: (a: UserDetails, b: UserDetails) => a.authority.authorityLevel - b.authority.authorityLevel,
             multiple: 1
         }
     },
     {
         title: 'Is account lock',
         dataIndex: 'accountNonLocked',
-        key: 'id',
+        key: 'userId',
         render: (text: boolean) => {
             if (text) {
                 return 'not locked'
@@ -62,14 +62,14 @@ const usersTableColumns = [
             return 'locked'
         },
         sorter: {
-            compare: (a: UserViewModel, b: UserViewModel) => booleanCompare(a.accountNonLocked, b.accountNonLocked),
+            compare: (a: UserDetails, b: UserDetails) => booleanCompare(a.accountNonLocked, b.accountNonLocked),
             multiple: 1
         }
     },
     {
         title: 'Edit User',
-        dataIndex: 'id',
-        key: 'id',
+        dataIndex: 'userId',
+        key: 'userId',
         render: (text: number) => <Link to={`/admins/edit-user/${text}`}>Edit this user</Link>,
     }
 ];

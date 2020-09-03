@@ -1,10 +1,10 @@
 import React from "react";
 import {Avatar, Card, Col, List, Row} from 'antd';
-import {ProjectViewModel} from "../shared/Interfaces";
+import {ProjectDetails} from "../shared/Interfaces";
 import {capitalizeString, formatDate} from "../shared/functions";
 
 interface Props {
-    projects?: ProjectViewModel[]
+    projects?: ProjectDetails[]
 }
 
 function DashBoardProjects(props: Props) {
@@ -27,7 +27,7 @@ function DashBoardProjects(props: Props) {
                                         title={project.title}
                                         description={project.description}
                                     />
-                                    <div>Created by : {capitalizeString(project.projectManagerName)}</div>
+                                    <div>Created by : {capitalizeString(project.projectManager.username)}</div>
                                     <div>Created on : {formatDate(project.creationDate)}</div>
                                 </List.Item>
                             )}

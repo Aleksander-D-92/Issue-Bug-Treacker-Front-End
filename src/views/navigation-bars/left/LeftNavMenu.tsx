@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Menu} from 'antd';
 import {BugOutlined, ContainerOutlined, DesktopOutlined, FileTextOutlined, PieChartOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
@@ -10,7 +10,24 @@ const {SubMenu} = Menu;
 
 function LeftNavMenu() {
     const state = useSelector((state: ReduxState) => state);
-    let authority = state.userDetails.authority;
+    const [authority, setAuthority] = useState<string | undefined>(state.userDetails.authority)
+
+    useEffect(() => {
+        setAuthority(state.userDetails.authority);
+        switch (authority) {
+            case 'ROLE_QA':
+                break;
+            case 'ROLE_DEVELOPER':
+                break;
+            case 'ROLE_PROJECT_MANAGER':
+                break;
+            case 'ROLE_ADMIN':
+                break;
+            default:
+                break;
+        }
+    }, [state])
+
     return (
         <React.Fragment>
             <Menu className={''} defaultSelectedKeys={['0']} defaultOpenKeys={['projects', 'tickets']} mode="inline"
@@ -23,7 +40,7 @@ function LeftNavMenu() {
                     <Link to={'/dashboard'}>Dashboard</Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined style={{fontSize: '1.2rem'}}/>}>
-                    <Link to={'/admins/get-all-users'}>Mange Users</Link>
+                    <Link to={'/admins/all-users'}>Mange Users</Link>
                 </Menu.Item>
                 <SubMenu
                     key="projects"
@@ -36,9 +53,9 @@ function LeftNavMenu() {
                 <SubMenu
                     key="tickets"
                     title={<span><FileTextOutlined style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
-                    <Menu.Item key="13">All Tickets</Menu.Item>
-                    <Menu.Item key="14">My Tickets</Menu.Item>
-                    <Menu.Item key="15">Submit Ticket</Menu.Item>
+                    <Menu.Item key="13"><Link to={'/tickets/all-tickets'}>All Tickets</Link></Menu.Item>
+                    <Menu.Item key="14"><Link to={'/tickets/my-tickets'}>My Tickets</Link></Menu.Item>
+                    <Menu.Item key="15"><Link to={'/tickets/submit'}>Submit Ticket</Link></Menu.Item>
                 </SubMenu>
             </Menu>
 

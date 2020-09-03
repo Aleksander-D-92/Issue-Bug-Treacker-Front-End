@@ -20,7 +20,7 @@ function WebsiteRoutes() {
             <Route exact path={'/users/register'}><UserRegister/></Route>
             <Route exact path={'/users/logout'}><HandleLogout/></Route>
             <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
-            <Route exact path={'/admins/get-all-users'}><AdminUsersTable/></Route>
+            <Route exact path={'/admins/all-users'}><AdminUsersTable/></Route>
             <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
             <Route exact path={'/dashboard'}><DashBoardView/></Route>
             {/*todo below routes not finished*/}

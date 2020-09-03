@@ -1,37 +1,65 @@
-export interface AuthorityViewModel {
-    id: number,
+export interface Authority {
+    authorityId: number,
     authorityLevel: number,
     authority: string
 }
 
-export interface UserViewModel {
-    id: number,
+export interface UserDetails {
+    userId: number,
     username: string,
     accountNonLocked: boolean,
     registrationDate: Date,
-    authority: AuthorityViewModel
+    authority: Authority
 }
 
-export interface TicketViewModel {
-    id: number,
+interface User {
+    userId: number,
+    username: string,
+    accountNonLocked: boolean,
+    registrationDate: Date
+}
+
+export interface ProjectDetails {
     projectId: number,
-    submitterId: number,
-    assignedDeveloperId: number,
-    title: string,
-    projectTitle: string,
-    submitterName: string,
-    assignedDeveloperName: string,
-    priority: string,
-    category: string,
-    status: string,
-    creationDate: Date
-}
-
-export interface ProjectViewModel {
-    id: number,
-    projectManagerId: number,
     title: string,
     description: string,
     creationDate: Date,
-    projectManagerName: string
+    projectManager: User
 }
+
+interface Project {
+    projectId: number,
+    title: string,
+    description: string,
+    creationDate: Date,
+}
+
+export interface TicketDetails {
+    ticketId: number,
+    title: string,
+    priority: string,
+    category: string,
+    status: string,
+    creationDate: Date,
+    submitter: User,
+    assignedDeveloper: User
+    project: Project,
+}
+
+interface Ticket {
+    ticketId: number,
+    title: string,
+    priority: string,
+    category: string,
+    status: string,
+    creationDate: Date,
+}
+
+export interface Comment {
+    commentId: number,
+    description: string,
+    creationDate: Date,
+    submitter: User,
+    ticket: Ticket
+}
+

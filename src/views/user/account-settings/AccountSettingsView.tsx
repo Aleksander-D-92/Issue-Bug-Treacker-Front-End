@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Col, Collapse, Descriptions, Row} from "antd";
-import {UserViewModel} from "../../shared/Interfaces";
+import {UserDetails} from "../../shared/Interfaces";
 import {formatDate} from "../../shared/functions";
 import {ChangePasswordForm} from "./ChangePasswordForm";
 import {DeleteAccountForm} from "./DeleteAccountForm";
@@ -12,7 +12,7 @@ const {Panel} = Collapse;
 
 function AccountSettingsView() {
     const reduxState = useSelector((state: ReduxState) => state)
-    const [user, setUserDetails] = useState<UserViewModel>();
+    const [user, setUserDetails] = useState<UserDetails>();
     useEffect(() => {
         axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`).then((e) => {
             setUserDetails(e.data[0]);
@@ -26,7 +26,7 @@ function AccountSettingsView() {
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header={<h2>Account Details</h2>} key="1">
                             <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
-                                <Descriptions.Item label="Id" span={2}>{user?.id}</Descriptions.Item>
+                                <Descriptions.Item label="Id" span={2}>{user?.userId}</Descriptions.Item>
                                 <Descriptions.Item label="Registration date"
                                                    span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
                                 <Descriptions.Item label="Authority"

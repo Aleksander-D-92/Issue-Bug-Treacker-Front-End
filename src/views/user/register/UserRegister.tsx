@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import axios from 'axios';
 import {Button, Card, Col, Form, Input, Row, Select} from "antd";
-import {AuthorityViewModel} from "../../shared/Interfaces";
+import {Authority} from "../../shared/Interfaces";
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 
 
@@ -10,7 +10,7 @@ const {Option} = Select;
 
 function UserRegister() {
     let history = useHistory();
-    const [authorities, setAuthorities] = useState<AuthorityViewModel[]>();
+    const [authorities, setAuthorities] = useState<Authority[]>();
     useEffect(() => {
         axios.get(`/authorities/all`).then((e) => {
             setAuthorities(e.data);
@@ -88,8 +88,8 @@ function UserRegister() {
                         <Form.Item name="authority" label="Your Role"
                                    rules={[{required: true, message: 'please select your role'}]}>
                             <Select allowClear={true}>
-                                {authorities?.map(e => <Option disabled={e.id !== 3}
-                                                               value={e.id}>{e.authority}</Option>)}
+                                {authorities?.map(e => <Option disabled={e.authorityId !== 3}
+                                                               value={e.authorityId}>{e.authority}</Option>)}
                             </Select>
                         </Form.Item>
                         <Form.Item>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {DashBoardTicketCharts} from "./DashBoardTicketCharts";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../configuration/redux/reduxStrore";
-import {ProjectViewModel, TicketViewModel} from "../shared/Interfaces";
+import {ProjectDetails, TicketDetails} from "../shared/Interfaces";
 import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
 import {DashBoardProjects} from "./DashBoardProjects";
@@ -14,8 +14,8 @@ function DashBoardView() {
     const userRole = reduxState.userDetails.authority;
     const id = reduxState.userDetails.id;
 
-    const [tickets, setTickets] = useState<TicketViewModel[]>();
-    const [projects, setProjects] = useState<ProjectViewModel[]>();
+    const [tickets, setTickets] = useState<TicketDetails[]>();
+    const [projects, setProjects] = useState<ProjectDetails[]>();
 
     const [priorityStatistics, setPriorityStatistics] = useState([
         {type: 'Low', value: 0},
@@ -34,7 +34,7 @@ function DashBoardView() {
         {type: 'Resolved', value: 0},
     ])
 
-    function doStatistics(data: TicketViewModel[]) {
+    function doStatistics(data: TicketDetails[]) {
         let newPriorityStatistics = priorityStatistics;
         let newCategoryStatistics = categoryStatistics;
         let newStatusStatistics = statusStatistics;

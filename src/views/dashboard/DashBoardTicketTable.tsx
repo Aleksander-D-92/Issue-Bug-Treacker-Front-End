@@ -1,11 +1,11 @@
 import React from "react";
-import {TicketViewModel} from "../shared/Interfaces";
+import {TicketDetails} from "../shared/Interfaces";
 import {Col, Row, Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
 
 interface Props {
-    tickets?: TicketViewModel[]
+    tickets?: TicketDetails[]
 }
 
 function DashBoardTicketTable(props: Props) {
@@ -32,88 +32,88 @@ function DashBoardTicketTable(props: Props) {
 
     const columns = [
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Title',
             dataIndex: 'title',
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => a.title.localeCompare(b.title),
+                compare: (a: TicketDetails, b: TicketDetails) => a.title.localeCompare(b.title),
                 multiple: 1
             }
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Priority',
             dataIndex: 'priority',
             render: (priority: string) => <Tag color={ticketTagColor(priority)}>{priority}</Tag>,
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => a.priority.localeCompare(b.priority),
+                compare: (a: TicketDetails, b: TicketDetails) => a.priority.localeCompare(b.priority),
                 multiple: 1
             }
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Category',
             dataIndex: 'category',
             render: (category: string) => <Tag color={ticketTagColor(category)}>{category}</Tag>,
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => a.category.localeCompare(b.category),
+                compare: (a: TicketDetails, b: TicketDetails) => a.category.localeCompare(b.category),
                 multiple: 1
             }
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Status',
             dataIndex: 'status',
             render: (status: string) => <Tag color={ticketTagColor(status)}>{status}</Tag>,
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => a.status.localeCompare(b.status),
+                compare: (a: TicketDetails, b: TicketDetails) => a.status.localeCompare(b.status),
                 multiple: 1
             }
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Project Title',
-            dataIndex: 'projectTitle',
+            dataIndex: ['project', 'title'],
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => a.projectTitle.localeCompare(b.projectTitle),
+                compare: (a: TicketDetails, b: TicketDetails) => a.project.title.localeCompare(b.project.title),
                 multiple: 1
             }
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Created nn',
             dataIndex: 'creationDate',
             render: (date: Date) => formatDate(date),
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => compareDates(a.creationDate, b.creationDate),
+                compare: (a: TicketDetails, b: TicketDetails) => compareDates(a.creationDate, b.creationDate),
                 multiple: 1
             },
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Assigned Developer',
-            dataIndex: 'assignedDeveloperName',
+            dataIndex: ['assignedDeveloper', 'username'],
             sorter: {
-                compare: (a: TicketViewModel, b: TicketViewModel) => {
-                    if (a.assignedDeveloperName === null && b.assignedDeveloperName === null) {
+                compare: (a: TicketDetails, b: TicketDetails) => {
+                    if (a.assignedDeveloper === null && b.assignedDeveloper === null) {
                         return 0;
                     }
-                    if (a.assignedDeveloperName === null) {
+                    if (a.assignedDeveloper?.username === null) {
                         return -1;
                     }
-                    if (b.assignedDeveloperName === null) {
+                    if (b.assignedDeveloper?.username === null) {
                         return 1;
                     }
-                    return a.assignedDeveloperName.localeCompare(b.assignedDeveloperName);
+                    return a.assignedDeveloper?.username.localeCompare(b.assignedDeveloper?.username);
                 },
                 multiple: 1
             }
         },
         {
-            key: 'id',
+            key: 'ticketId',
             title: 'Details',
-            dataIndex: 'id',
-            render: (id: number) => <Link to={`/tickets/details/${id}`}>Details</Link>,
+            dataIndex: 'ticketId',
+            render: (ticketId: number) => <Link to={`/tickets/details/${ticketId}`}>Details</Link>,
         }
 
     ]

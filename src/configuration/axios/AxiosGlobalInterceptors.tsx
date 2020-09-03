@@ -40,9 +40,7 @@ function AxiosGlobalInterceptors() {
 
         //Response interceptor
         axios.interceptors.response.use(function (response) {
-            console.log(`response`);
-            console.log(response);
-            toast.success('response interceptor success', {position: toast.POSITION.BOTTOM_RIGHT})
+            toast.success(`${response.status} ${response.statusText}`, {position: toast.POSITION.BOTTOM_RIGHT})
             return response;
         }, function (error) {
             // let errorDescription = '';

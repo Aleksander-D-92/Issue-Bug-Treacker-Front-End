@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {DashBoardTicketCharts} from "./DashBoardTicketCharts";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails} from "../shared/Interfaces";
@@ -7,6 +6,7 @@ import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
 import {DashBoardProjects} from "./DashBoardProjects";
 import {DashBoardTicketTable} from "./DashBoardTicketTable";
+import {TicketCharts} from "./TicketCharts";
 
 
 function DashBoardView() {
@@ -17,6 +17,7 @@ function DashBoardView() {
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [projects, setProjects] = useState<ProjectDetails[]>();
 
+    //statistics variables
     const [priorityStatistics, setPriorityStatistics] = useState([
         {type: 'Low', value: 0},
         {type: 'Medium', value: 0},
@@ -126,8 +127,8 @@ function DashBoardView() {
     return (
         <React.Fragment>
             <DashBoardGreeting authority={reduxState.userDetails.authority} username={reduxState.userDetails.username}/>
-            <DashBoardTicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
-                                   statusStatistics={statusStatistics}/>
+            <TicketCharts priorityStatistics={priorityStatistics} categoryStatistics={categoryStatistics}
+                          statusStatistics={statusStatistics}/>
             <DashBoardProjects projects={projects}/>
             <DashBoardTicketTable tickets={tickets}/>
         </React.Fragment>

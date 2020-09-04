@@ -6,7 +6,7 @@ import {AdminUsersTable} from "../../views/user/admin/AdminUsersTable";
 import {EditUserVIew} from "../../views/user/admin/EditUserVIew";
 import {AccountSettingsView} from "../../views/user/account-settings/AccountSettingsView";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
-import {ProjectDetails} from "../../views/projects/proect_details/ProjectDetailsView";
+import {ProjectDetailsView} from "../../views/projects/proect_details/ProjectDetailsView";
 import {DashBoardView} from "../../views/dashboard/DashBoardView";
 import {MyTicketsView} from "../../views/tickets/MyTicketsView";
 import {SubmitTicketVIew} from "../../views/tickets/SubmitTicketVIew";
@@ -25,8 +25,7 @@ function WebsiteRoutes() {
             <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
             <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>
             <Route exact path={'/tickets/all'}><AllTicketsView/></Route>
-            <Route exact path={'/projects/details/:projectId'}><ProjectDetails/></Route>
-            {/*todo below routes not finished*/}
+            <Route exact path={'/projects/details/:projectId'}><ProjectDetailsView/></Route>
         </Switch>
     )
 }

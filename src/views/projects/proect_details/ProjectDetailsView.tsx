@@ -1,21 +1,43 @@
-import React from "react";
-import {TicketsForProject} from "./TicketsForProject";
+import React, {useEffect, useState} from "react";
 import {Col, Row} from "antd";
-import {ProjectDescription} from "./ProjectDescriptopn";
+import {useParams} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import axios from 'axios'
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {ProjectDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
+import {DisplayDetails} from "./DisplayDetails";
 
-function ProjectDetails() {
+
+function ProjectDetailsView() {
+    const state = useSelector((state: ReduxState) => state);
+    const [project, setProject] = useState<ProjectDetails[]>();
+    const [tickets, setTickets] = useState<TicketDetails[]>();
+    const [qa, setQa] = useState<UserDetails[]>();
+    const {projectId} = useParams();
+    useEffect(() => {
+        axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
+            setProject(e.data);
+        });
+        axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
+            setQa(e.data);
+        });
+        axios.get(`/tickets?action=by-project&id=${projectId}`).then((e) => {
+            setTickets(e.data);
+        });
+    }, [])
     return (
         <React.Fragment>
-            <Row>
-                <Col>
-                    <ProjectDescription/>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <DisplayDetails projects={project}/>
                 </Col>
-                <Col>
-                    <TicketsForProject/>
+            </Row>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                 </Col>
             </Row>
         </React.Fragment>
     )
 }
 
-export {ProjectDetails}
+export {ProjectDetailsView}

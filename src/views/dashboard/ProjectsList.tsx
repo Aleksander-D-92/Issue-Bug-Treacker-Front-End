@@ -74,15 +74,15 @@ function ListAction(props: ActionProps) {
             setActions(
                 <React.Fragment>
                     <FileAddOutlined style={{fontSize: '1.1rem'}}/>
-                    <Link to={`projects/submit-ticket/${props.projectId}`}
+                    <Link to={`/projects/submit-ticket/${props.projectId}`}
                           style={{fontSize: '1.1rem'}} className={'mr-2'}>Submit Ticket</Link>
 
                     <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
-                    <Link to={`projects/details/${props.projectId}`}
+                    <Link to={`/projects/details/${props.projectId}`}
                           style={{fontSize: '1.1rem'}}>Details</Link>
 
                     <EditOutlined style={{fontSize: '1.1rem'}} className={'ml-3 mr-1'}/>
-                    <Link to={`projects/edit/${props.projectId}`}
+                    <Link to={`/projects/edit/${props.projectId}`}
                           style={{fontSize: '1.1rem'}}>Edit</Link>
                 </React.Fragment>
             )
@@ -90,11 +90,11 @@ function ListAction(props: ActionProps) {
             setActions(
                 <React.Fragment>
                     <FileAddOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
-                    <Link to={`projects/submit-ticket/${props.projectId}`}
+                    <Link to={`/projects/submit-ticket/${props.projectId}`}
                           style={{fontSize: '1.1rem'}} className={'mr-2'}>Submit Ticket</Link>
 
                     <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
-                    <Link to={`projects/details/${props.projectId}`}
+                    <Link to={`/projects/details/${props.projectId}`}
                           style={{fontSize: '1.1rem'}}>Details</Link>
                 </React.Fragment>
             )

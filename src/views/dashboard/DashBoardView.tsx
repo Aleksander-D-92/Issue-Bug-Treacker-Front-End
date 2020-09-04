@@ -24,17 +24,17 @@ function DashBoardView() {
         {type: 'Medium', value: 0},
         {type: 'High', value: 0},
         {type: 'Urgent', value: 0},
-    ])
+    ]);
     const [categoryStatistics, setCategoryStatistics] = useState([
         {type: 'Bugs and Errors', value: 0},
         {type: 'Feature Request', value: 0},
         {type: 'Other', value: 0},
-    ])
+    ]);
     const [statusStatistics, setStatusStatistics] = useState([
         {type: 'Unassigned', value: 0},
         {type: 'In progress', value: 0},
         {type: 'Resolved', value: 0},
-    ])
+    ]);
 
     function doStatistics(data: TicketDetails[]) {
         let newPriorityStatistics = priorityStatistics;

@@ -6,6 +6,7 @@ import axios from 'axios'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {DisplayDetails} from "./DisplayDetails";
+import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 
 
 function ProjectDetailsView() {
@@ -29,11 +30,12 @@ function ProjectDetailsView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <DisplayDetails projects={project}/>
+                    <DisplayDetails projects={project} />
                 </Col>
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <DashBoardTicketTable tickets={tickets}/>
                 </Col>
             </Row>
         </React.Fragment>

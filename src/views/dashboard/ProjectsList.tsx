@@ -3,6 +3,7 @@ import {Avatar, Card, List} from 'antd';
 import {ProjectDetails} from "../shared/Interfaces";
 import {capitalizeString, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
+import {EditOutlined, EyeOutlined} from '@ant-design/icons';
 
 interface Props {
     projects?: ProjectDetails[],
@@ -72,15 +73,22 @@ function ListAction(props: ActionProps) {
         if (props.canEdit) {
             setActions(
                 <React.Fragment>
+                    <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
                     <Link to={`projects/details/${props.projectId}`}
-                          style={{fontSize: '1.2rem'}}>Details</Link>,
+                          style={{fontSize: '1.1rem'}}>Details</Link>
+                    <EditOutlined style={{fontSize: '1.1rem'}} className={'ml-3 mr-1'}/>
                     <Link to={`projects/edit/${props.projectId}`}
-                          style={{fontSize: '1.2rem'}}>Edit</Link>
+                          style={{fontSize: '1.1rem'}}>Edit</Link>
                 </React.Fragment>
             )
         } else {
-            setActions(<Link to={`projects/details/${props.projectId}`}
-                             style={{fontSize: '1.2rem'}}>Details</Link>)
+            setActions(
+                <React.Fragment>
+                    <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
+                    <Link to={`projects/details/${props.projectId}`}
+                          style={{fontSize: '1.1rem'}}>Details</Link>
+                </React.Fragment>
+            )
         }
     }, [])
     return (

@@ -1,6 +1,6 @@
 import React from "react";
 import {TicketDetails} from "../shared/Interfaces";
-import {Col, Row, Table, Tag} from "antd";
+import {Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
 import {globalColors} from "../shared/gobalVariables";

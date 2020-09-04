@@ -1,5 +1,5 @@
 import React from "react";
-import {Avatar, Card, Col, List, Row} from 'antd';
+import {Avatar, Card, List} from 'antd';
 import {ProjectDetails} from "../shared/Interfaces";
 import {capitalizeString, formatDate} from "../shared/functions";
 

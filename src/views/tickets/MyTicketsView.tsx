@@ -5,6 +5,8 @@ import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {TicketDetails} from "../shared/Interfaces";
 import {DashBoardTicketTable} from "../dashboard/DashBoardTicketTable";
 import {Col, Row} from "antd";
+import {TicketsGreeting} from "./MyTicketsHeader";
+
 
 function MyTicketsView() {
     const state = useSelector((state: ReduxState) => state);
@@ -38,6 +40,12 @@ function MyTicketsView() {
     }, [])
     return (
         <React.Fragment>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22}>
+                    <TicketsGreeting username={state.userDetails.username}
+                                     authority={state.userDetails.authority}/>
+                </Col>
+            </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
                     <DashBoardTicketTable tickets={tickets}/>

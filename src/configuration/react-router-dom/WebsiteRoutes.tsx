@@ -13,6 +13,7 @@ import {ProjectDetails} from "../../views/projects/proect-details/ProjectDetails
 import {TicketSubmitForm} from "../../views/projects/submit-ticket/TicketSubmitForm";
 import {DashBoardView} from "../../views/dashboard/DashBoardView";
 import {MyTicketsView} from "../../views/tickets/MyTicketsView";
+import {SubmitTicketVIew} from "../../views/tickets/SubmitTicketVIew";
 
 function WebsiteRoutes() {
     return (
@@ -25,6 +26,7 @@ function WebsiteRoutes() {
             <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
             <Route exact path={'/dashboard'}><DashBoardView/></Route>
             <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
+            <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>
             {/*todo below routes not finished*/}
             <Route exact path={'/projects/get-all-projects'}><ProjectsTable/></Route>
             <Route exact path={'/projects/get-own-projects'}><ProjectsTableOwn/></Route>

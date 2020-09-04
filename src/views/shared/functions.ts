@@ -16,7 +16,10 @@ function compareDates(a: Date, b: Date): number {
     }
 }
 
-function capitalizeString(str: string): string {
+function capitalizeString(str: string | undefined): string {
+    if(str === undefined){
+        return ''
+    }
     return str.charAt(0).toUpperCase() + str.slice(1)
 }
 

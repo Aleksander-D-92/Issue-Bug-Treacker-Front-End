@@ -4,7 +4,7 @@ import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails} from "../shared/Interfaces";
 import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
-import {DashBoardProjects} from "./DashBoardProjects";
+import {ProjectsList} from "./ProjectsList";
 import {DashBoardTicketTable} from "./DashBoardTicketTable";
 import {TicketCharts} from "./TicketCharts";
 import {Col, Row} from "antd";
@@ -132,7 +132,7 @@ function DashBoardView() {
                           statusStatistics={statusStatistics}/>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <DashBoardProjects projects={projects}/>
+                    <ProjectsList projects={projects} authority={reduxState.userDetails.authority}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

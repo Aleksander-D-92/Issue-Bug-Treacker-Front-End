@@ -14,6 +14,7 @@ import {TicketSubmitForm} from "../../views/projects/submit-ticket/TicketSubmitF
 import {DashBoardView} from "../../views/dashboard/DashBoardView";
 import {MyTicketsView} from "../../views/tickets/MyTicketsView";
 import {SubmitTicketVIew} from "../../views/tickets/SubmitTicketVIew";
+import {AllTicketsView} from "../../views/tickets/AllTicketsView";
 
 function WebsiteRoutes() {
     return (
@@ -27,6 +28,7 @@ function WebsiteRoutes() {
             <Route exact path={'/dashboard'}><DashBoardView/></Route>
             <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
             <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>
+            <Route exact path={'/tickets/all'}><AllTicketsView/></Route>
             {/*todo below routes not finished*/}
             <Route exact path={'/projects/get-all-projects'}><ProjectsTable/></Route>
             <Route exact path={'/projects/get-own-projects'}><ProjectsTableOwn/></Route>

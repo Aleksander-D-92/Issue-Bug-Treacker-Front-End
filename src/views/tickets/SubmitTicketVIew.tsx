@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {ProjectDetails} from "../shared/Interfaces";
 import {Col, Row} from "antd";
-import {DashBoardProjects} from "../dashboard/DashBoardProjects";
+import {ProjectsList} from "../dashboard/ProjectsList";
 
 function SubmitTicketVIew() {
     const state = useSelector((state: ReduxState) => state);
@@ -38,12 +38,12 @@ function SubmitTicketVIew() {
         <React.Fragment>
             <Row>
                 <Col>
-                    <DashBoardProjects projects={projects}/>
+
                 </Col>
             </Row>
-            <Row>
-                <Col>
-
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <ProjectsList projects={projects} authority={state.userDetails.authority}/>
                 </Col>
             </Row>
         </React.Fragment>

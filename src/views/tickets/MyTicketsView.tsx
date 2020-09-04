@@ -37,7 +37,7 @@ function MyTicketsView() {
                 });
                 break;
         }
-    }, [])
+    }, [authority, id])
     return (
         <React.Fragment>
             <Row justify={'center'}>

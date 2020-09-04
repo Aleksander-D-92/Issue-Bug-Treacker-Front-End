@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {ProjectDetails} from "../shared/Interfaces";
-import {Col, Row} from "antd";
+import {Col, Row, Typography} from "antd";
 import {ProjectsList} from "../dashboard/ProjectsList";
 
 function SubmitTicketVIew() {
@@ -36,9 +36,11 @@ function SubmitTicketVIew() {
     }, [])
     return (
         <React.Fragment>
-            <Row>
-                <Col>
-
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <Typography.Title level={2}>
+                        Click on the Submit button for any of the projects to submit a ticket
+                    </Typography.Title>
                 </Col>
             </Row>
             <Row justify={'center'}>

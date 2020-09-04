@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {TicketDetails} from "../shared/Interfaces";
 import {Col, Row} from "antd";

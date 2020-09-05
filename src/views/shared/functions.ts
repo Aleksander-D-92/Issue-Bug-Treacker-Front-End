@@ -17,10 +17,10 @@ function compareDates(a: Date, b: Date): number {
 }
 
 function capitalizeString(str: string | undefined): string {
-    if(str === undefined){
+    if (str === undefined) {
         return ''
     }
-    return str.charAt(0).toUpperCase() + str.slice(1)
+    return str.charAt(0).toUpperCase() + str.slice(1).toLocaleLowerCase()
 }
 
 function deleteAllCookies() {

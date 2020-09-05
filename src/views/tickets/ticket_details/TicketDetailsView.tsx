@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
-import {Card, Col, Descriptions, Row} from "antd";
+import {Card, Col, Row, Tabs} from "antd";
 import {CommentDetails, TicketDetails} from "../../shared/Interfaces";
-import {formatDate} from "../../shared/functions";
+import {TicketDescription} from "./TicketDescription";
+import {TicketComments} from "./TicketComments";
+
+const {TabPane} = Tabs;
 
 function TicketDetailsView() {
     const [ticketDetails, setTicketDetails] = useState<TicketDetails>();
@@ -25,21 +28,21 @@ function TicketDetailsView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <Card title="Ticket Details" className={'mt-3'}>
-                        <Descriptions bordered>
-                            <Descriptions.Item label="Title" span={2}>{ticketDetails?.title}</Descriptions.Item>
-                            <Descriptions.Item label="Description"
-                                               span={2}>{ticketDetails?.description}</Descriptions.Item>
-                            <Descriptions.Item label="Priority" span={2}>{ticketDetails?.priority}</Descriptions.Item>
-                            <Descriptions.Item label="Category" span={2}>{ticketDetails?.category}</Descriptions.Item>
-                            <Descriptions.Item label="Status" span={2}>{ticketDetails?.status}</Descriptions.Item>
-                            <Descriptions.Item label="Creating Date"
-                                               span={2}>{formatDate(ticketDetails?.creationDate)}</Descriptions.Item>
-                            <Descriptions.Item label="Submitter"
-                                               span={2}>{ticketDetails?.submitter.username}</Descriptions.Item>
-                            <Descriptions.Item label="Assigned Developer"
-                                               span={2}>{ticketDetails?.assignedDeveloper.username}</Descriptions.Item>
-                        </Descriptions>
+                    <TicketDescription ticket={ticketDetails}/>
+                </Col>
+            </Row>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <Card title="Comments and history" className={'mt-3'}>
+                        <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
+                            <TabPane tab="Comments" key="1">
+                                <TicketComments comments={comments}/>
+                            </TabPane>
+                            <TabPane tab="Ticket History" key="2">
+                                Content of card tab 2
+                                {/*todo add history*/}
+                            </TabPane>
+                        </Tabs>
                     </Card>
                 </Col>
             </Row>

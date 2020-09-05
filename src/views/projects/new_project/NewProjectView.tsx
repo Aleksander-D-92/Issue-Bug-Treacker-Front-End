@@ -1,17 +1,22 @@
-import React, {useEffect, useState} from "react";
-import {useSelector, useDispatch} from 'react-redux';
+import React from "react";
+import {useSelector} from 'react-redux';
 import axios from 'axios'
-import {Button, Card, Col, Form, Input, Row, Typography} from "antd";
+import {Button, Card, Col, Form, Input, Row} from "antd";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {useHistory} from 'react-router-dom';
 
-const {Title} = Typography;
 
 function NewProjectView() {
     const state = useSelector((state: ReduxState) => state);
+    const history = useHistory();
 
-    function submitProject() {
-        axios.post(``).then((e) => {
-
+    function submitProject(e: any) {
+        const data = {
+            title: e.title,
+            description: e.description
+        }
+        axios.post(`/projects/${state.userDetails.id}`, data).then((e) => {
+            history.push(`/projects/my`);
         })
     }
 
@@ -19,7 +24,7 @@ function NewProjectView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <Card>
+                    <Card title={'Submit a new project'} className={'mt-3'}>
                         <Form layout={'vertical'}
                               name={'projectEditForm'}
                               initialValues={{}}
@@ -53,12 +58,11 @@ function NewProjectView() {
                                 <Input type={'text'} allowClear={true}/>
                             </Form.Item>
                             <Form.Item>
-                                <Button type="primary" danger={true} htmlType="submit" block>
-                                    Edit project
+                                <Button type="primary" htmlType="submit" block>
+                                    Create new project
                                 </Button>
                             </Form.Item>
                         </Form>
-                        )
                     </Card>
                 </Col>
             </Row>

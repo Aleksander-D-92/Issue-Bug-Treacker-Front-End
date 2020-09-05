@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {TicketDetails} from "../../shared/Interfaces";
-import {Card, Col, Descriptions} from "antd";
+import {Card, Descriptions} from "antd";
 import {formatDate} from "../../shared/functions";
 
 interface Props {

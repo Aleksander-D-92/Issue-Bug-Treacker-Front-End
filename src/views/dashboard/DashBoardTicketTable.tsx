@@ -48,7 +48,7 @@ function DashBoardTicketTable(props: Props) {
             render: (priority: string) => <Tag color={ticketTagColor(priority)}>{priority}</Tag>,
             sorter: {
                 compare: (a: TicketDetails, b: TicketDetails) => a.priority.localeCompare(b.priority),
-                multiple: 1
+                multiple: 2
             }
         },
         {
@@ -58,7 +58,7 @@ function DashBoardTicketTable(props: Props) {
             render: (category: string) => <Tag color={ticketTagColor(category)}>{category}</Tag>,
             sorter: {
                 compare: (a: TicketDetails, b: TicketDetails) => a.category.localeCompare(b.category),
-                multiple: 1
+                multiple: 3
             }
         },
         {
@@ -68,7 +68,7 @@ function DashBoardTicketTable(props: Props) {
             render: (status: string) => <Tag color={ticketTagColor(status)}>{status}</Tag>,
             sorter: {
                 compare: (a: TicketDetails, b: TicketDetails) => a.status.localeCompare(b.status),
-                multiple: 1
+                multiple: 4
             }
         },
         {
@@ -77,7 +77,7 @@ function DashBoardTicketTable(props: Props) {
             dataIndex: ['project', 'title'],
             sorter: {
                 compare: (a: TicketDetails, b: TicketDetails) => a.project.title.localeCompare(b.project.title),
-                multiple: 1
+                multiple: 5
             }
         },
         {
@@ -87,7 +87,7 @@ function DashBoardTicketTable(props: Props) {
             render: (date: Date) => formatDate(date),
             sorter: {
                 compare: (a: TicketDetails, b: TicketDetails) => compareDates(a.creationDate, b.creationDate),
-                multiple: 1
+                multiple: 6
             },
         },
         {
@@ -107,7 +107,7 @@ function DashBoardTicketTable(props: Props) {
                     }
                     return a.assignedDeveloper?.username.localeCompare(b.assignedDeveloper?.username);
                 },
-                multiple: 1
+                multiple: 7
             }
         },
         {

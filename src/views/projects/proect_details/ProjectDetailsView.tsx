@@ -7,12 +7,15 @@ import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {DisplayDetails} from "./DisplayDetails";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
+import {doTicketStatistics, TicketStatistics} from "../../shared/TicketStatistics";
+import {TicketsBarChart} from "./TicketsBarChart";
 
 
 function ProjectDetailsView() {
     const state = useSelector((state: ReduxState) => state);
     const [project, setProject] = useState<ProjectDetails[]>();
     const [tickets, setTickets] = useState<TicketDetails[]>();
+    const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
     const [qa, setQa] = useState<UserDetails[]>();
     const {projectId} = useParams();
 
@@ -25,13 +28,19 @@ function ProjectDetailsView() {
         });
         axios.get(`/tickets?action=by-project&id=${projectId}`).then((e) => {
             setTickets(e.data);
+            setTicketStatistics(doTicketStatistics(e.data));
         });
     }, [])
     return (
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <DisplayDetails projects={project} />
+                    <DisplayDetails projects={project}/>
+                </Col>
+            </Row>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <TicketsBarChart statistics={ticketStatistics}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

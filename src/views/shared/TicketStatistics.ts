@@ -1,6 +1,6 @@
 import {TicketDetails} from "./Interfaces";
 
-interface TicketStatistics {
+export interface TicketStatistics {
     low: number,
     medium: number,
     high: number,

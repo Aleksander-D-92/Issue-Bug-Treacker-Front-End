@@ -2,18 +2,13 @@ import React from "react";
 import {Doughnut, Pie, Polar} from "react-chartjs-2";
 import {Col, Collapse, Row} from "antd";
 import {globalColors} from "../shared/gobalVariables";
+import {TicketStatistics} from "../shared/TicketStatistics";
 
 const {Panel} = Collapse;
 
-interface Statistics {
-    type: string;
-    value: number;
-}
 
 interface Props {
-    priorityStatistics: Statistics[],
-    categoryStatistics: Statistics[],
-    statusStatistics: Statistics[]
+    ticketStatistics?: TicketStatistics,
 }
 
 function TicketCharts(props: Props) {
@@ -27,11 +22,11 @@ function TicketCharts(props: Props) {
                                 labels: ['Low', 'Medium', 'High', 'Urgent'],
                                 datasets: [{
                                     data: [
-                                        props.priorityStatistics[0].value,
-                                        props.priorityStatistics[1].value,
-                                        props.priorityStatistics[2].value,
-                                        props.priorityStatistics[3].value],
-                                    label: 'Population',
+                                        props.ticketStatistics?.low,
+                                        props.ticketStatistics?.medium,
+                                        props.ticketStatistics?.high,
+                                        props.ticketStatistics?.urgent,
+                                    ],
                                     backgroundColor: [globalColors.green, globalColors.yellow, globalColors.orange, globalColors.red],
                                     borderWidth: 2,
                                     borderColor: globalColors.purple,
@@ -58,9 +53,10 @@ function TicketCharts(props: Props) {
                                 labels: ['Other', 'Feature Request', 'Bugs and Errors'],
                                 datasets: [{
                                     data: [
-                                        props.categoryStatistics[2].value,
-                                        props.categoryStatistics[1].value,
-                                        props.categoryStatistics[0].value],
+                                        props.ticketStatistics?.other,
+                                        props.ticketStatistics?.featureRequest,
+                                        props.ticketStatistics?.bugsAndErrors,
+                                    ],
                                     backgroundColor: [globalColors.yellow, globalColors.green, globalColors.red],
                                     borderWidth: 2,
                                     borderColor: globalColors.purple,
@@ -88,9 +84,10 @@ function TicketCharts(props: Props) {
                                 labels: ['Unassigned', 'In progress', 'Resolved'],
                                 datasets: [{
                                     data: [
-                                        props.statusStatistics[0].value,
-                                        props.statusStatistics[1].value,
-                                        props.statusStatistics[2].value],
+                                        props.ticketStatistics?.unassigned,
+                                        props.ticketStatistics?.inProgress,
+                                        props.ticketStatistics?.resolved,
+                                    ],
                                     backgroundColor: [globalColors.red, globalColors.yellow, globalColors.green],
                                     borderWidth: 2,
                                     borderColor: globalColors.purple,

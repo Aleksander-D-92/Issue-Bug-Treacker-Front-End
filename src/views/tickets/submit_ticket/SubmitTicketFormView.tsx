@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {useParams, useHistory} from 'react-router-dom';
+import React from "react";
+import {useHistory, useParams} from 'react-router-dom';
 import axios from 'axios'
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Card, Col, Form, Input, Row, Select} from "antd";
 

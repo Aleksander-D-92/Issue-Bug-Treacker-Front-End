@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Card, Descriptions} from "antd";
 import {capitalizeString, formatDate} from "../../shared/functions";
 
 interface Props {
-    projects?: ProjectDetails[]
+    projects?: ProjectDetails[],
+    totalTickets?: number,
+    totalQa?: number
 }
 
-function DisplayDetails(props: Props) {
+function ProjectInfo(props: Props) {
     return (
         <React.Fragment>
             <Card className={'mt-3'}>
@@ -24,10 +26,16 @@ function DisplayDetails(props: Props) {
                     <Descriptions.Item label="Project Manager Rgistration Date" span={2}>
                         Registration Date : {formatDate(props.projects?.[0].projectManager.registrationDate)}
                     </Descriptions.Item>
+                    <Descriptions.Item label="Total tickets" span={2}>
+                        {props.totalQa}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Total assigned QA" span={2}>
+                        {props.totalTickets}
+                    </Descriptions.Item>
                 </Descriptions>
             </Card>
         </React.Fragment>
     )
 }
 
-export {DisplayDetails}
+export {ProjectInfo}

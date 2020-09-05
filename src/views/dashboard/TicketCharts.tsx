@@ -1,7 +1,7 @@
 import React from "react";
 import {Doughnut, Pie, Polar} from "react-chartjs-2";
 import {Col, Collapse, Row} from "antd";
-import {globalColors} from "../shared/gobalVariables";
+import {transparentColors} from "../shared/gobalVariables";
 import {TicketStatistics} from "../shared/TicketStatistics";
 
 const {Panel} = Collapse;
@@ -27,9 +27,9 @@ function TicketCharts(props: Props) {
                                         props.ticketStatistics?.high,
                                         props.ticketStatistics?.urgent,
                                     ],
-                                    backgroundColor: [globalColors.green, globalColors.yellow, globalColors.orange, globalColors.red],
+                                    backgroundColor: [transparentColors.green, transparentColors.yellow, transparentColors.orange, transparentColors.red],
                                     borderWidth: 2,
-                                    borderColor: globalColors.purple,
+                                    borderColor: transparentColors.purple,
                                     hoverBorderWidth: 5,
                                 }]
                             }} options={{
@@ -57,9 +57,9 @@ function TicketCharts(props: Props) {
                                         props.ticketStatistics?.featureRequest,
                                         props.ticketStatistics?.bugsAndErrors,
                                     ],
-                                    backgroundColor: [globalColors.yellow, globalColors.green, globalColors.red],
+                                    backgroundColor: [transparentColors.yellow, transparentColors.green, transparentColors.red],
                                     borderWidth: 2,
-                                    borderColor: globalColors.purple,
+                                    borderColor: transparentColors.purple,
                                     hoverBorderWidth: 5,
                                 }]
                             }} options={{
@@ -88,9 +88,9 @@ function TicketCharts(props: Props) {
                                         props.ticketStatistics?.inProgress,
                                         props.ticketStatistics?.resolved,
                                     ],
-                                    backgroundColor: [globalColors.red, globalColors.yellow, globalColors.green],
+                                    backgroundColor: [transparentColors.red, transparentColors.yellow, transparentColors.green],
                                     borderWidth: 2,
-                                    borderColor: globalColors.purple,
+                                    borderColor: transparentColors.purple,
                                     hoverBorderWidth: 5,
                                 }]
                             }} options={{

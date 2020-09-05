@@ -3,7 +3,7 @@ import {TicketDetails} from "../shared/Interfaces";
 import {Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
-import {globalColors} from "../shared/gobalVariables";
+import {solidColors} from "../shared/gobalVariables";
 
 interface Props {
     tickets?: TicketDetails[]
@@ -15,17 +15,17 @@ function DashBoardTicketTable(props: Props) {
             case 'LOW':
             case 'FEATURE_REQUEST':
             case 'RESOLVED':
-                return globalColors.green
+                return solidColors.green
             case 'MEDIUM':
             case 'OTHER':
             case 'IN_PROGRESS':
-                return globalColors.yellow
+                return solidColors.yellow
             case 'HIGH':
-                return globalColors.orange
+                return solidColors.orange
             case 'URGENT':
             case 'BUGS_AND_ERRORS':
             case 'UNASSIGNED':
-                return globalColors.red
+                return solidColors.red
             default:
                 return '#8884d8'
         }

@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {TicketStatistics} from "../../shared/TicketStatistics";
 import {Bar} from "react-chartjs-2";
+import {transparentColors} from "../../shared/gobalVariables";
 
 interface Props {
     statistics?: TicketStatistics
 }
 
-function TicketsBarChart(props: Props) {
+function ProjectTicketsChart(props: Props) {
     return (
         <React.Fragment>
             <Bar data={{
@@ -23,13 +24,21 @@ function TicketsBarChart(props: Props) {
                         props.statistics?.unassigned,
                         props.statistics?.inProgress,
                         props.statistics?.resolved,
-                    ]
+                    ],
+                    backgroundColor: [
+                        transparentColors.green, transparentColors.yellow, transparentColors.orange, transparentColors.red,
+                        transparentColors.yellow, transparentColors.green, transparentColors.red,
+                        transparentColors.red, transparentColors.yellow, transparentColors.green
+                    ],
+                    borderWidth: 2,
+                    hoverBorderWidth: 5,
+                    borderColor: [transparentColors.purple],
+                    label: 'Tickets by all types'
                 }]
             }}>
-
             </Bar>
         </React.Fragment>
     )
 }
 
-export {TicketsBarChart}
+export {ProjectTicketsChart}

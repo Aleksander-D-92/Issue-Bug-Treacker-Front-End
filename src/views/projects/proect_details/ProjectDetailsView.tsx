@@ -5,10 +5,10 @@ import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
-import {DisplayDetails} from "./DisplayDetails";
+import {ProjectInfo} from "./ProjectInfo";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 import {doTicketStatistics, TicketStatistics} from "../../shared/TicketStatistics";
-import {TicketsBarChart} from "./TicketsBarChart";
+import {ProjectTicketsChart} from "./ProjectTicketsChart";
 
 
 function ProjectDetailsView() {
@@ -35,12 +35,12 @@ function ProjectDetailsView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <DisplayDetails projects={project}/>
+                    <ProjectInfo projects={project} totalQa={qa?.length} totalTickets={tickets?.length}/>
                 </Col>
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <TicketsBarChart statistics={ticketStatistics}/>
+                    <ProjectTicketsChart statistics={ticketStatistics}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

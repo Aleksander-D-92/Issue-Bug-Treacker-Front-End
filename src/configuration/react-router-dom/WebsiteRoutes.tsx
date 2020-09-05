@@ -11,6 +11,8 @@ import {DashBoardView} from "../../views/dashboard/DashBoardView";
 import {MyTicketsView} from "../../views/tickets/my_tickets/MyTicketsView";
 import {SubmitTicketVIew} from "../../views/tickets/submit_ticket/SubmitTicketVIew";
 import {AllTicketsView} from "../../views/tickets/all_tickets_admin/AllTicketsView";
+import {SubmitTicketFormView} from "../../views/tickets/submit_ticket/SubmitTicketFormView";
+import {ProjectEditView} from "../../views/projects/project_edit/ProjectEditView";
 
 function WebsiteRoutes() {
     return (
@@ -23,9 +25,11 @@ function WebsiteRoutes() {
             <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
             <Route exact path={'/dashboard'}><DashBoardView/></Route>
             <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
-            <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>
             <Route exact path={'/tickets/all'}><AllTicketsView/></Route>
+            <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>   {/*brings the all projects so you can click submit ticket*/}
             <Route exact path={'/projects/details/:projectId'}><ProjectDetailsView/></Route>
+            <Route exact path={'/projects/edit/:projectId'}><ProjectEditView/></Route>
+            <Route exact path={'/projects/submit-ticket/:projectId'}><SubmitTicketFormView/></Route>
         </Switch>
     )
 }

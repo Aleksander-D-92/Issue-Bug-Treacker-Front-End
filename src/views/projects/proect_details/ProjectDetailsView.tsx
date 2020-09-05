@@ -15,6 +15,7 @@ function ProjectDetailsView() {
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [qa, setQa] = useState<UserDetails[]>();
     const {projectId} = useParams();
+
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             setProject(e.data);

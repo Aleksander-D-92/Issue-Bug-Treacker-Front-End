@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Avatar, Card, List} from 'antd';
-import {ProjectDetails} from "../shared/Interfaces";
-import {capitalizeString, formatDate} from "../shared/functions";
+import {ProjectDetails} from "../../shared/Interfaces";
+import {capitalizeString, formatDate} from "../../shared/functions";
 import {Link} from "react-router-dom";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';
 
@@ -67,6 +67,7 @@ interface ActionProps {
 
 }
 
+//use this to filter the "Edit" option
 function ListAction(props: ActionProps) {
     const [actions, setActions] = useState<React.ReactNode>()
     useEffect(() => {

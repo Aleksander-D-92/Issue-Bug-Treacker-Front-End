@@ -4,7 +4,7 @@ import {ReduxState} from "../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails} from "../shared/Interfaces";
 import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
-import {ProjectsList} from "./ProjectsList";
+import {ProjectsList} from "../projects/projects_list/ProjectsList";
 import {DashBoardTicketTable} from "./DashBoardTicketTable";
 import {TicketCharts} from "./TicketCharts";
 import {Col, Row} from "antd";

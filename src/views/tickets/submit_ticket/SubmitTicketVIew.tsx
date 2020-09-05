@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Col, Row, Typography} from "antd";
-import {ProjectsList} from "../../dashboard/ProjectsList";
+import {ProjectsList} from "../../projects/projects_list/ProjectsList";
 
 function SubmitTicketVIew() {
     const state = useSelector((state: ReduxState) => state);

@@ -47,8 +47,8 @@ function LeftNavMenu() {
                     title={<span><PieChartOutlined style={{fontSize: '1.2rem'}}/><span>Projects</span></span>}>
                     <Menu.Item key="9"><Link to={'/projects/my'}>My Projects</Link></Menu.Item>
                     <Menu.Item key="10"><Link to={'/projects/new'}>New Project</Link></Menu.Item>
-                    <Menu.Item key="11">Assign Staff</Menu.Item>
-                    <Menu.Item key="12">Remove Staff</Menu.Item>
+                    <Menu.Item key="11">Assign QA</Menu.Item>
+                    <Menu.Item key="12">Remove QA</Menu.Item>
                 </SubMenu>
                 <SubMenu
                     key="tickets"

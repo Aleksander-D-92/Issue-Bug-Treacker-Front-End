@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Col, Row} from "antd";
 import {useParams} from 'react-router-dom';
-import {useSelector} from 'react-redux';
 import axios from 'axios'
-import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {ProjectInfo} from "./ProjectInfo";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
@@ -12,7 +10,6 @@ import {ProjectTicketsChart} from "./ProjectTicketsChart";
 
 
 function ProjectDetailsView() {
-    const state = useSelector((state: ReduxState) => state);
     const [project, setProject] = useState<ProjectDetails[]>();
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();

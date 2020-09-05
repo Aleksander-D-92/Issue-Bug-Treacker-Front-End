@@ -2,18 +2,15 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {useHistory, useParams} from 'react-router-dom';
 import {Button, Card, Col, Form, Input, Row} from "antd";
-import {ProjectDetails} from "../../shared/Interfaces";
 
 
 function ProjectEditView() {
     const {projectId} = useParams();
-    const [projectDetails, setProjectDetails] = useState<ProjectDetails>();
     const history = useHistory();
     const [updateProjectForm, setUpdateProjectForm] = useState<React.ReactNode>();
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             const project = e.data[0];
-            setProjectDetails(e.data[0]);
             setUpdateProjectForm(
                 <Form layout={'vertical'}
                       name={'projectEditForm'}

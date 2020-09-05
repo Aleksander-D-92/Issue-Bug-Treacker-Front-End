@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import {Avatar, Card, List} from 'antd';
 import {ProjectDetails} from "../../shared/Interfaces";
 import {capitalizeString, formatDate} from "../../shared/functions";
-import {Link} from "react-router-dom";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';
+import {Link} from "react-router-dom";
 
 interface Props {
     projects?: ProjectDetails[],
@@ -43,7 +43,18 @@ function ProjectsList(props: Props) {
                     }}
                     renderItem={project => (
                         <List.Item
-                            actions={[<ListAction canEdit={canEdit} projectId={project.projectId}/>]}>
+                            actions={[
+                                <Link to={`/projects/submit-ticket/${project.projectId}`}
+                                      style={{fontSize: '1.1rem'}} className={'mr-2'}>
+                                    <FileAddOutlined style={{fontSize: '1.1rem'}}/>Submit Ticket</Link>,
+                                <Link to={`/projects/details/${project.projectId}`}
+                                      style={{fontSize: '1.1rem'}}>
+                                    <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>Details</Link>,
+                                canEdit ? <Link to={`/projects/edit/${project.projectId}`}
+                                                style={{fontSize: '1.1rem'}}>
+                                    <EditOutlined style={{fontSize: '1.1rem'}}
+                                                  className={'ml-3 mr-1'}/>Edit</Link> : '',
+                            ]}>
                             <List.Item.Meta
                                 avatar={<Avatar style={{backgroundColor: '#87d068'}}>P</Avatar>}
                                 title={project.title}
@@ -60,50 +71,3 @@ function ProjectsList(props: Props) {
 }
 
 export {ProjectsList}
-
-interface ActionProps {
-    canEdit: boolean,
-    projectId: number
-
-}
-
-//use this to filter the "Edit" option
-function ListAction(props: ActionProps) {
-    const [actions, setActions] = useState<React.ReactNode>()
-    useEffect(() => {
-        if (props.canEdit) {
-            setActions(
-                <React.Fragment>
-                    <FileAddOutlined style={{fontSize: '1.1rem'}}/>
-                    <Link to={`/projects/submit-ticket/${props.projectId}`}
-                          style={{fontSize: '1.1rem'}} className={'mr-2'}>Submit Ticket</Link>
-
-                    <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
-                    <Link to={`/projects/details/${props.projectId}`}
-                          style={{fontSize: '1.1rem'}}>Details</Link>
-
-                    <EditOutlined style={{fontSize: '1.1rem'}} className={'ml-3 mr-1'}/>
-                    <Link to={`/projects/edit/${props.projectId}`}
-                          style={{fontSize: '1.1rem'}}>Edit</Link>
-                </React.Fragment>
-            )
-        } else {
-            setActions(
-                <React.Fragment>
-                    <FileAddOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
-                    <Link to={`/projects/submit-ticket/${props.projectId}`}
-                          style={{fontSize: '1.1rem'}} className={'mr-2'}>Submit Ticket</Link>
-
-                    <EyeOutlined style={{fontSize: '1.1rem'}} className={'mr-1'}/>
-                    <Link to={`/projects/details/${props.projectId}`}
-                          style={{fontSize: '1.1rem'}}>Details</Link>
-                </React.Fragment>
-            )
-        }
-    }, [])
-    return (
-        <React.Fragment>
-            {actions}
-        </React.Fragment>
-    )
-}

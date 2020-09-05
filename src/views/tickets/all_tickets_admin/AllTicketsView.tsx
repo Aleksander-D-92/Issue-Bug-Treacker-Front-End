@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {useSelector} from 'react-redux';
-import {ReduxState} from "../../configuration/redux/reduxStrore";
-import {TicketDetails} from "../shared/Interfaces";
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {TicketDetails} from "../../shared/Interfaces";
 import {Col, Row} from "antd";
-import {TicketsGreeting} from "./MyTicketsHeader";
-import {DashBoardTicketTable} from "../dashboard/DashBoardTicketTable";
+import {TicketsGreeting} from "../my_tickets/MyTicketsHeader";
+import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 
 function AllTicketsView() {
     const state = useSelector((state: ReduxState) => state);

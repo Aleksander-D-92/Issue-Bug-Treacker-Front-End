@@ -8,9 +8,9 @@ import {AccountSettingsView} from "../../views/user/account-settings/AccountSett
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
 import {ProjectDetailsView} from "../../views/projects/proect_details/ProjectDetailsView";
 import {DashBoardView} from "../../views/dashboard/DashBoardView";
-import {MyTicketsView} from "../../views/tickets/MyTicketsView";
-import {SubmitTicketVIew} from "../../views/tickets/SubmitTicketVIew";
-import {AllTicketsView} from "../../views/tickets/AllTicketsView";
+import {MyTicketsView} from "../../views/tickets/my_tickets/MyTicketsView";
+import {SubmitTicketVIew} from "../../views/tickets/submit_ticket/SubmitTicketVIew";
+import {AllTicketsView} from "../../views/tickets/all_tickets_admin/AllTicketsView";
 
 function WebsiteRoutes() {
     return (

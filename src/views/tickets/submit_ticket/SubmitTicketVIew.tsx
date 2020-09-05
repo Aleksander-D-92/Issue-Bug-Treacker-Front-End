@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {useSelector} from 'react-redux';
-import {ReduxState} from "../../configuration/redux/reduxStrore";
-import {ProjectDetails} from "../shared/Interfaces";
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {ProjectDetails} from "../../shared/Interfaces";
 import {Col, Row, Typography} from "antd";
-import {ProjectsList} from "../dashboard/ProjectsList";
+import {ProjectsList} from "../../dashboard/ProjectsList";
 
 function SubmitTicketVIew() {
     const state = useSelector((state: ReduxState) => state);

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {useSelector} from 'react-redux';
-import {ReduxState} from "../../configuration/redux/reduxStrore";
-import {TicketDetails} from "../shared/Interfaces";
-import {DashBoardTicketTable} from "../dashboard/DashBoardTicketTable";
+import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {TicketDetails} from "../../shared/Interfaces";
+import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 import {Col, Row} from "antd";
 import {TicketsGreeting} from "./MyTicketsHeader";
 

@@ -37,6 +37,7 @@ interface Project {
 export interface TicketDetails {
     ticketId: number,
     title: string,
+    description: string,
     priority: string,
     category: string,
     status: string,
@@ -49,13 +50,14 @@ export interface TicketDetails {
 interface Ticket {
     ticketId: number,
     title: string,
+    description: string,
     priority: string,
     category: string,
     status: string,
     creationDate: Date,
 }
 
-export interface Comment {
+export interface CommentDetails {
     commentId: number,
     description: string,
     creationDate: Date,

@@ -15,6 +15,12 @@ interface Props {
 
 function TicketEditModal(props: Props) {
     const [visible, setVisible] = useState(false);
+    const [devName, setDevName] = useState<string>('');
+
+    function handleChange(e: any) {
+        console.log(e);
+        setDevName('');
+    }
 
     function showModal() {
         setVisible(true);
@@ -46,10 +52,10 @@ function TicketEditModal(props: Props) {
                           'priority': props.ticket?.priority,
                           'category': props.ticket?.category,
                           'status': props.ticket?.status,
-                          'assignedDeveloperId': props.ticket?.assignedDeveloper.userId
+                          'assignedDeveloperId': (props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.userId : null
                       }}
                       onFinish={(e: any) => props.onFinish(e)}>
-                    {/*dummy item*/}
+                    {/*dummy item for ticket id*/}
                     <Form.Item name="ticketId">
                         <Input style={{display: 'none'}}/>
                     </Form.Item>
@@ -121,6 +127,7 @@ function TicketEditModal(props: Props) {
                         <Select
                             placeholder="Assign a developer"
                             allowClear
+                            onChange={handleChange}
                         >
                             {props.developers?.map(d => <Option
                                 value={d.userId}>{capitalizeString(d.username)}</Option>)}

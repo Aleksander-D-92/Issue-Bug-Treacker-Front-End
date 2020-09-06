@@ -100,12 +100,14 @@ function DashBoardTicketTable(props: Props) {
                         return 0;
                     }
                     if (a.assignedDeveloper?.username === null) {
-                        return -1;
-                    }
-                    if (b.assignedDeveloper?.username === null) {
                         return 1;
                     }
-                    return a.assignedDeveloper?.username.localeCompare(b.assignedDeveloper?.username);
+                    if (b.assignedDeveloper?.username === null) {
+                        return -1;
+                    }
+                    if (a.assignedDeveloper !== null && b.assignedDeveloper !== null) {
+                        return a.assignedDeveloper?.username.localeCompare(b.assignedDeveloper?.username);
+                    }
                 },
                 multiple: 7
             }
@@ -121,8 +123,11 @@ function DashBoardTicketTable(props: Props) {
 
     return (
         <React.Fragment>
-                    <Table columns={columns} dataSource={props.tickets} bordered
-                           pagination={{total: props.tickets?.length}} className={'mt-3'} scroll={{x: 1000}}/>
+            // @ts-ignore
+            <Table columns={columns}
+                   dataSource={props.tickets}
+                   bordered
+                   pagination={{total: props.tickets?.length}} className={'mt-3'} scroll={{x: 1000}}/>
         </React.Fragment>
     )
 }

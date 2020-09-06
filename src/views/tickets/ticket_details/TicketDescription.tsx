@@ -22,7 +22,7 @@ function TicketDescription(props: Props) {
                 <Descriptions.Item label="Submitter"
                                    span={2}>{props.ticket?.submitter.username}</Descriptions.Item>
                 <Descriptions.Item label="Assigned Developer"
-                                   span={2}>{props.ticket?.assignedDeveloper.username}</Descriptions.Item>
+                                   span={2}>{(props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.username : ''}</Descriptions.Item>
             </Descriptions>
         </Card>
     )

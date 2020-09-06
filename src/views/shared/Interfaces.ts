@@ -43,7 +43,7 @@ export interface TicketDetails {
     status: string,
     creationDate: Date,
     submitter: User,
-    assignedDeveloper: User
+    assignedDeveloper: User | null
     project: Project,
 }
 

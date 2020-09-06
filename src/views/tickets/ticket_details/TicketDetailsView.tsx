@@ -22,6 +22,7 @@ function TicketDetailsView() {
     const {ticketId} = useParams();
     useEffect(() => {
         axios.get(`/tickets?action=single&id=${ticketId}`).then((e) => {
+            console.log(e.data[0]);
             setTicketDetails(e.data[0]);
         });
         axios.get(`/comments?action=by-ticket&id=${ticketId}`).then((e) => {
@@ -33,7 +34,6 @@ function TicketDetailsView() {
         if (state.userDetails.authority === 'ROLE_PROJECT_MANAGER') {
             axios.get(`/projects/devs/${state.userDetails.id}`).then((e) => {
                 setDevelopers(e.data);
-                console.log(e.data);
             });
         }
     }, [])
@@ -58,7 +58,6 @@ function TicketDetailsView() {
             status: e.status,
             assignedDeveloperId: e.assignedDeveloperId
         }
-        console.log(data);
         axios.put(`/tickets/${currentTicketId}/manager`, data).then((e) => {
             let {...updatedTicket} = ticket;
             updatedTicket.title = data.title;
@@ -66,7 +65,13 @@ function TicketDetailsView() {
             updatedTicket.priority = data.priority;
             updatedTicket.category = data.category;
             updatedTicket.status = data.status;
-            updatedTicket.assignedDeveloper.userId = data.assignedDeveloperId;
+            if (updatedTicket.assignedDeveloper !== null) {
+                updatedTicket.assignedDeveloper.userId = data.assignedDeveloperId;
+            }
+            const username = developers?.find(dev => dev.userId === data.assignedDeveloperId)?.username;
+            if (updatedTicket.assignedDeveloper !== null) {
+                updatedTicket.assignedDeveloper.username = username || '';
+            }
             setTicketDetails(updatedTicket);
         })
     }

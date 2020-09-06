@@ -4,6 +4,7 @@ import {Avatar, Button, List} from "antd";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {solidColors} from "../../shared/gobalVariables";
 import axios from 'axios'
+import {CommentEdit} from "./CommentEdit";
 
 
 interface Props {
@@ -33,9 +34,7 @@ function TicketComments(props: Props) {
                                     type="primary"
                                     danger={true}>Delete comment</Button> : '',
                         (comment.submitter.userId === props.loggedUserId) ?
-                            <Button onClick={(e) => props.editComment(e)}
-                                    id={comment.commentId.toString()}
-                                    type="primary">Edit comment</Button> : ''
+                            <CommentEdit commentValue={comment.description}/> : ''
                     ]}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}

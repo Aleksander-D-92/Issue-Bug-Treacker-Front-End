@@ -61,7 +61,6 @@ function TicketDetailsView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <CommentEdit/>
                     <TicketDescription ticket={ticketDetails}/>
                 </Col>
             </Row>

@@ -49,8 +49,26 @@ function TicketDetailsView() {
     }
 
     function editTicket(e: any) {
-
-        console.log(e);
+        const currentTicketId = e.ticketId;
+        const data = {
+            title: e.title,
+            description: e.description,
+            priority: e.priority,
+            category: e.category,
+            status: e.status,
+            assignedDeveloperId: e.assignedDeveloperId
+        }
+        console.log(data);
+        axios.put(`/tickets/${currentTicketId}/manager`, data).then((e) => {
+            let {...updatedTicket} = ticket;
+            updatedTicket.title = data.title;
+            updatedTicket.description = data.description;
+            updatedTicket.priority = data.priority;
+            updatedTicket.category = data.category;
+            updatedTicket.status = data.status;
+            updatedTicket.assignedDeveloper.userId = data.assignedDeveloperId;
+            setTicketDetails(updatedTicket);
+        })
     }
 
     function deleteComment(e: MouseEvent<HTMLButtonElement>) {

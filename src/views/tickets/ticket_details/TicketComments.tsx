@@ -1,6 +1,6 @@
 import React from "react";
 import {CommentDetails} from "../../shared/Interfaces";
-import {Avatar, List} from "antd";
+import {Avatar, Button, List} from "antd";
 import {Link} from "react-router-dom";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {FileAddOutlined} from '@ant-design/icons';
@@ -8,7 +8,8 @@ import {solidColors} from "../../shared/gobalVariables";
 
 
 interface Props {
-    comments?: CommentDetails[]
+    comments?: CommentDetails[],
+    loggedUserId: number
 }
 
 function TicketComments(props: Props) {
@@ -24,7 +25,8 @@ function TicketComments(props: Props) {
             }}
             renderItem={comment => (
                 <List.Item
-                    actions={[]}>
+                    actions={[(comment.submitter.userId === props.loggedUserId) ?
+                        <Button type="primary" danger={true}>Delete comment</Button> : '']}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}
                         title={comment.description}

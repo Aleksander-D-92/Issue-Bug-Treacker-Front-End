@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
-import {Link, useParams} from 'react-router-dom';
-import {Button, Card, Col, Form, Input, Row, Tabs} from "antd";
+import {useParams} from 'react-router-dom';
+import {Button, Card, Col, Form, Row, Tabs} from "antd";
 import {CommentDetails, TicketDetails} from "../../shared/Interfaces";
 import {TicketDescription} from "./TicketDescription";
 import {TicketComments} from "./TicketComments";
@@ -15,8 +15,8 @@ function TicketDetailsView() {
     const state = useSelector((state: ReduxState) => state);
     const userId = state.userDetails.id;
     const [ticketDetails, setTicketDetails] = useState<TicketDetails>();
-    const [history, setHistory] = useState<TicketDetails[]>();
-    const [comments, setComments] = useState<CommentDetails[]>();
+    const [history, setHistory] = useState<TicketDetails[]>([]);
+    const [comments, setComments] = useState<CommentDetails[]>([]);
     const {ticketId} = useParams();
     useEffect(() => {
         axios.get(`/tickets?action=single&id=${ticketId}`).then((e) => {
@@ -36,16 +36,16 @@ function TicketDetailsView() {
             description: e.description
         }
         axios.post(`/comments/${ticketId}`, data).then((e) => {
-            let arr = comments;
             let newComment = {
-                userId: data.userId,
                 description: data.description,
                 creationDate: Date.now(),
-                submitter: {username: state.userDetails.username}
+                submitter: {
+                    userId: state.userDetails.id,
+                    username: state.userDetails.username
+                }
             }
             // @ts-ignore
-            arr?.unshift(newComment);
-            setComments(arr);
+            setComments(arr => [newComment, ...arr]);
         });
     }
 
@@ -58,8 +58,7 @@ function TicketDetailsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <Card title="Comments and history" className={'mt-3'}>
-
+                    <Card title="Submit a new comment" className={'mt-3'}>
                         <Form layout={'vertical'}
                               name={'commentSubmit'}
                               onFinish={submitComment}>
@@ -80,10 +79,15 @@ function TicketDetailsView() {
                                 Submit new comment
                             </Button>
                         </Form>
-
+                    </Card>
+                </Col>
+            </Row>
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <Card title="Comments and history" className={'mt-3'}>
                         <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
                             <TabPane tab="Comments" key="1">
-                                <TicketComments comments={comments}/>
+                                <TicketComments comments={comments} loggedUserId={userId}/>
                             </TabPane>
                             <TabPane tab="Ticket History" key="2">
                                 Content of card tab 2
@@ -93,6 +97,7 @@ function TicketDetailsView() {
                     </Card>
                 </Col>
             </Row>
+
         </React.Fragment>
     )
 }

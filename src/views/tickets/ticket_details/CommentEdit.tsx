@@ -18,7 +18,6 @@ function CommentEdit(props: Props) {
     }
 
     function handleCancel() {
-        console.log('handleCancel()')
         setVisible(false);
     }
 

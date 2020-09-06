@@ -1,15 +1,15 @@
-import React from "react";
+import React, {MouseEvent} from "react";
 import {CommentDetails} from "../../shared/Interfaces";
 import {Avatar, Button, List} from "antd";
-import {Link} from "react-router-dom";
 import {capitalizeString, formatDate} from "../../shared/functions";
-import {FileAddOutlined} from '@ant-design/icons';
 import {solidColors} from "../../shared/gobalVariables";
+import axios from 'axios'
 
 
 interface Props {
     comments?: CommentDetails[],
-    loggedUserId: number
+    loggedUserId: number,
+    deleteComment: Function
 }
 
 function TicketComments(props: Props) {
@@ -25,8 +25,13 @@ function TicketComments(props: Props) {
             }}
             renderItem={comment => (
                 <List.Item
-                    actions={[(comment.submitter.userId === props.loggedUserId) ?
-                        <Button type="primary" danger={true}>Delete comment</Button> : '']}>
+                    actions={[
+                        (comment.submitter.userId === props.loggedUserId) ?
+                            <Button onClick={(e) => props.deleteComment(e)}
+                                    id={comment.commentId.toString()}
+                                    type="primary"
+                                    danger={true}>Delete comment</Button> : ''
+                    ]}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}
                         title={comment.description}

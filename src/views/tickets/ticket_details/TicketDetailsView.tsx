@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, MouseEvent} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
 import {Button, Card, Col, Form, Row, Tabs} from "antd";
@@ -36,17 +36,16 @@ function TicketDetailsView() {
             description: e.description
         }
         axios.post(`/comments/${ticketId}`, data).then((e) => {
-            let newComment = {
-                description: data.description,
-                creationDate: Date.now(),
-                submitter: {
-                    userId: state.userDetails.id,
-                    username: state.userDetails.username
-                }
-            }
-            // @ts-ignore
-            setComments(arr => [newComment, ...arr]);
+            setComments(arr => [e.data[0], ...arr]);
         });
+    }
+
+    function deleteComment(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        let id = e.currentTarget.id;
+        axios.delete(`/comments/${id}`).then((e) => {
+            setComments(arr => arr.filter(e => e.commentId !== parseInt(id)));
+        })
     }
 
     return (
@@ -87,7 +86,8 @@ function TicketDetailsView() {
                     <Card title="Comments and history" className={'mt-3'}>
                         <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
                             <TabPane tab="Comments" key="1">
-                                <TicketComments comments={comments} loggedUserId={userId}/>
+                                <TicketComments comments={comments} loggedUserId={userId}
+                                                deleteComment={deleteComment}/>
                             </TabPane>
                             <TabPane tab="Ticket History" key="2">
                                 Content of card tab 2

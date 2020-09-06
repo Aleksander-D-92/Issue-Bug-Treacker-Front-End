@@ -2,13 +2,14 @@ import React, {MouseEvent, useEffect, useState} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
 import {Card, Col, Row, Tabs} from "antd";
-import {CommentDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
+import {CommentDetails, HistoryDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {TicketDescription} from "./TicketDescription";
 import {TicketComments} from "./TicketComments";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {CommentSubmit} from "./CommentSubmit";
 import {TicketEditModal} from "../ticket_edit/TicketEditModal";
+import {TicketHistoryTable} from "./TicketHistoryTable";
 
 const {TabPane} = Tabs;
 
@@ -16,13 +17,12 @@ function TicketDetailsView() {
     const state = useSelector((state: ReduxState) => state);
     const userId = state.userDetails.id;
     const [ticket, setTicketDetails] = useState<TicketDetails>();
-    const [history, setHistory] = useState<TicketDetails[]>([]);
+    const [history, setHistory] = useState<HistoryDetails[]>([]);
     const [comments, setComments] = useState<CommentDetails[]>([]);
     const [developers, setDevelopers] = useState<UserDetails[]>();
     const {ticketId} = useParams();
     useEffect(() => {
         axios.get(`/tickets?action=single&id=${ticketId}`).then((e) => {
-            console.log(e.data[0]);
             setTicketDetails(e.data[0]);
         });
         axios.get(`/comments?action=by-ticket&id=${ticketId}`).then((e) => {
@@ -124,7 +124,7 @@ function TicketDetailsView() {
                             </TabPane>
                             <TabPane tab="Ticket History" key="2">
                                 Content of card tab 2
-                                {/*todo add history*/}
+                                <TicketHistoryTable history={history}/>
                             </TabPane>
                         </Tabs>
                     </Card>

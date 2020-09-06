@@ -65,3 +65,15 @@ export interface CommentDetails {
     ticket: Ticket
 }
 
+export interface HistoryDetails {
+    historyId: number,
+    title: string,
+    description: string,
+    category: string,
+    priority: string,
+    status: string,
+    dateOfChange: Date,
+    assignedDeveloper: User | null,
+    ticket: Ticket
+}
+

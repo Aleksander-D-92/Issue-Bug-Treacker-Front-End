@@ -9,7 +9,8 @@ import axios from 'axios'
 interface Props {
     comments?: CommentDetails[],
     loggedUserId: number,
-    deleteComment: Function
+    deleteComment: Function,
+    editComment: Function
 }
 
 function TicketComments(props: Props) {
@@ -30,7 +31,11 @@ function TicketComments(props: Props) {
                             <Button onClick={(e) => props.deleteComment(e)}
                                     id={comment.commentId.toString()}
                                     type="primary"
-                                    danger={true}>Delete comment</Button> : ''
+                                    danger={true}>Delete comment</Button> : '',
+                        (comment.submitter.userId === props.loggedUserId) ?
+                            <Button onClick={(e) => props.editComment(e)}
+                                    id={comment.commentId.toString()}
+                                    type="primary">Edit comment</Button> : ''
                     ]}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}

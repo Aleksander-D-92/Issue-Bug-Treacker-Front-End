@@ -8,6 +8,7 @@ import {TicketComments} from "./TicketComments";
 import TextArea from "antd/es/input/TextArea";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {CommentEdit} from "./CommentEdit";
 
 const {TabPane} = Tabs;
 
@@ -48,10 +49,19 @@ function TicketDetailsView() {
         })
     }
 
+    function editComment(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        let id = e.currentTarget.id;
+        axios.put(`/comments/${id}`, {}).then((e) => {
+
+        });
+    }
+
     return (
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <CommentEdit/>
                     <TicketDescription ticket={ticketDetails}/>
                 </Col>
             </Row>
@@ -87,7 +97,7 @@ function TicketDetailsView() {
                         <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
                             <TabPane tab="Comments" key="1">
                                 <TicketComments comments={comments} loggedUserId={userId}
-                                                deleteComment={deleteComment}/>
+                                                deleteComment={deleteComment} editComment={editComment}/>
                             </TabPane>
                             <TabPane tab="Ticket History" key="2">
                                 Content of card tab 2

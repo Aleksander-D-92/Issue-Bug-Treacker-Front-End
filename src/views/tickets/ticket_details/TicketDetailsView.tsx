@@ -2,21 +2,23 @@ import React, {MouseEvent, useEffect, useState} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
 import {Card, Col, Row, Tabs} from "antd";
-import {CommentDetails, TicketDetails} from "../../shared/Interfaces";
+import {CommentDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {TicketDescription} from "./TicketDescription";
 import {TicketComments} from "./TicketComments";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {CommentSubmit} from "./CommentSubmit";
+import {TicketEditModal} from "../ticket_edit/TicketEditModal";
 
 const {TabPane} = Tabs;
 
 function TicketDetailsView() {
     const state = useSelector((state: ReduxState) => state);
     const userId = state.userDetails.id;
-    const [ticketDetails, setTicketDetails] = useState<TicketDetails>();
+    const [ticket, setTicketDetails] = useState<TicketDetails>();
     const [history, setHistory] = useState<TicketDetails[]>([]);
     const [comments, setComments] = useState<CommentDetails[]>([]);
+    const [developers, setDevelopers] = useState<UserDetails[]>();
     const {ticketId} = useParams();
     useEffect(() => {
         axios.get(`/tickets?action=single&id=${ticketId}`).then((e) => {
@@ -28,6 +30,12 @@ function TicketDetailsView() {
         axios.get(`/tickets/history/${ticketId}`).then((e) => {
             setHistory(e.data);
         });
+        if (state.userDetails.authority === 'ROLE_PROJECT_MANAGER') {
+            axios.get(`/projects/devs/${state.userDetails.id}`).then((e) => {
+                setDevelopers(e.data);
+                console.log(e.data);
+            });
+        }
     }, [])
 
     function submitComment(e: any) {
@@ -38,6 +46,11 @@ function TicketDetailsView() {
         axios.post(`/comments/${ticketId}`, data).then((e) => {
             setComments(arr => [e.data[0], ...arr]);
         });
+    }
+
+    function editTicket(e: any) {
+
+        console.log(e);
     }
 
     function deleteComment(e: MouseEvent<HTMLButtonElement>) {
@@ -67,7 +80,10 @@ function TicketDetailsView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <TicketDescription ticket={ticketDetails}/>
+                    <TicketDescription ticket={ticket}/>
+                    <TicketEditModal onFinish={editTicket}
+                                     ticket={ticket}
+                                     developers={developers}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

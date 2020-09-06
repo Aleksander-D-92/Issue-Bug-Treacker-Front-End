@@ -4,6 +4,7 @@ import axios from 'axios'
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Card, Col, Form, Input, Row, Select} from "antd";
+import TextArea from "antd/es/input/TextArea";
 
 const {Option} = Select;
 
@@ -59,7 +60,7 @@ function SubmitTicketFormView() {
                                     message: 'Description must be between 10 and 255 symbols'
                                 }]}
                             >
-                                <Input type={'text'} placeholder={'must be between 10 and 255 symbols'}/>
+                                <TextArea rows={4} placeholder={'must be between 10 and 255 symbols'}/>
                             </Form.Item>
 
                             <Form.Item name="priority" label="Priority"

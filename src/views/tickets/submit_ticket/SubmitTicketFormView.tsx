@@ -60,13 +60,13 @@ function SubmitTicketFormView() {
                                     message: 'Description must be between 10 and 255 symbols'
                                 }]}
                             >
-                                <TextArea rows={4} placeholder={'must be between 10 and 255 symbols'}/>
+                                <TextArea rows={4} placeholder={'Description must be between 10 and 255 symbols'}/>
                             </Form.Item>
 
                             <Form.Item name="priority" label="Priority"
                                        rules={[{required: true, message: 'You must select a Priority'}]}>
                                 <Select
-                                    placeholder="Select a option and change input text above"
+                                    placeholder="Select a Priority"
                                     allowClear
                                 >
                                     <Option value="LOW">Low</Option>
@@ -79,7 +79,7 @@ function SubmitTicketFormView() {
                             <Form.Item name="category" label="Category"
                                        rules={[{required: true, message: 'You must select a Category'}]}>
                                 <Select
-                                    placeholder="Select a option and change input text above"
+                                    placeholder="Select a Category"
                                     allowClear
                                 >
                                     <Option value="BUGS_AND_ERRORS">Bugs and Errors</Option>

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Button, Form, Input, Modal, Select} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {TicketDetails, UserDetails} from "../../shared/Interfaces";
+import {capitalizeString} from "../../shared/functions";
 
 
 const {Option} = Select;
@@ -36,16 +37,22 @@ function TicketEditModal(props: Props) {
                 onCancel={handleCancel}
                 footer={[]}
             >
-                {/*todo add logic*/}
                 <Form layout={'vertical'}
                       name={'ticketSubmit'}
                       initialValues={{
+                          'ticketId': props.ticket?.ticketId,
                           'title': props.ticket?.title,
                           'description': props.ticket?.description,
                           'priority': props.ticket?.priority,
-                          'category': props.ticket?.category
+                          'category': props.ticket?.category,
+                          'status': props.ticket?.status,
+                          'assignedDeveloperId': props.ticket?.assignedDeveloper.userId
                       }}
                       onFinish={(e: any) => props.onFinish(e)}>
+                    {/*dummy item*/}
+                    <Form.Item name="ticketId">
+                        <Input style={{display: 'none'}}/>
+                    </Form.Item>
                     <Form.Item
                         label="Title"
                         name="title"
@@ -54,7 +61,7 @@ function TicketEditModal(props: Props) {
                             required: true,
                             min: 5,
                             max: 30,
-                            message: 'Must be between 5 and 30 symbols'
+                            message: 'Title must be between 5 and 30 symbols'
                         }]}
                     >
                         <Input type={'text'} placeholder={'Title must be between 5 and 30 symbols'}/>
@@ -76,7 +83,7 @@ function TicketEditModal(props: Props) {
                     <Form.Item name="priority" label="Priority"
                                rules={[{required: true, message: 'You must select a Priority'}]}>
                         <Select
-                            placeholder="Select a option and change input text above"
+                            placeholder="Chose a priority"
                             allowClear
                         >
                             <Option value="LOW">Low</Option>
@@ -89,12 +96,34 @@ function TicketEditModal(props: Props) {
                     <Form.Item name="category" label="Category"
                                rules={[{required: true, message: 'You must select a Category'}]}>
                         <Select
-                            placeholder="Select a option and change input text above"
+                            placeholder="Chose a category"
                             allowClear
                         >
                             <Option value="BUGS_AND_ERRORS">Bugs and Errors</Option>
                             <Option value="FEATURE_REQUEST">Feature Request</Option>
                             <Option value="OTHER">Other</Option>
+                        </Select>
+                    </Form.Item>
+
+                    <Form.Item name="status" label="Status"
+                               rules={[{required: false, message: 'You must select a Status'}]}>
+                        <Select
+                            placeholder="Change the status"
+                            allowClear
+                        >
+                            <Option value="UNASSIGNED">Unassigned</Option>
+                            <Option value="RESOLVED">Resolved</Option>
+                        </Select>
+                    </Form.Item>
+
+                    <Form.Item name="assignedDeveloperId" label="Chose a developer to assign to the ticket"
+                               rules={[{required: false, message: ''}]}>
+                        <Select
+                            placeholder="Assign a developer"
+                            allowClear
+                        >
+                            {props.developers?.map(d => <Option
+                                value={d.userId}>{capitalizeString(d.username)}</Option>)}
                         </Select>
                     </Form.Item>
 

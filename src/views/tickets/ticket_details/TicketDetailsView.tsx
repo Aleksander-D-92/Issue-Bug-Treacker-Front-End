@@ -1,4 +1,4 @@
-import React, {useEffect, useState, MouseEvent} from "react";
+import React, {MouseEvent, useEffect, useState} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
 import {Button, Card, Col, Form, Row, Tabs} from "antd";
@@ -8,7 +8,6 @@ import {TicketComments} from "./TicketComments";
 import TextArea from "antd/es/input/TextArea";
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {CommentEdit} from "./CommentEdit";
 
 const {TabPane} = Tabs;
 
@@ -49,11 +48,18 @@ function TicketDetailsView() {
         })
     }
 
-    function editComment(e: MouseEvent<HTMLButtonElement>) {
-        e.preventDefault();
-        let id = e.currentTarget.id;
-        axios.put(`/comments/${id}`, {}).then((e) => {
-
+    function editComment(e: any) {
+        const commentId = e.commentId;
+        const description = e.comment;
+        axios.put(`/comments/${commentId}`, {description: description}).then((e) => {
+            setComments((comments) => {
+                return comments.map(comment => {
+                    if (comment.commentId === commentId) {
+                        comment.description = description
+                    }
+                    return comment;
+                });
+            })
         });
     }
 

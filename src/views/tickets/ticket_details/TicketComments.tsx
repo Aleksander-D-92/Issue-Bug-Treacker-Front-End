@@ -3,7 +3,6 @@ import {CommentDetails} from "../../shared/Interfaces";
 import {Avatar, Button, List} from "antd";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {solidColors} from "../../shared/gobalVariables";
-import axios from 'axios'
 import {CommentEdit} from "./CommentEdit";
 
 
@@ -29,12 +28,13 @@ function TicketComments(props: Props) {
                 <List.Item
                     actions={[
                         (comment.submitter.userId === props.loggedUserId) ?
-                            <Button onClick={(e) => props.deleteComment(e)}
+                            <Button onClick={(e: MouseEvent<HTMLButtonElement>) => props.deleteComment(e)}
                                     id={comment.commentId.toString()}
                                     type="primary"
                                     danger={true}>Delete comment</Button> : '',
                         (comment.submitter.userId === props.loggedUserId) ?
-                            <CommentEdit commentValue={comment.description}/> : ''
+                            <CommentEdit commentValue={comment.description} commentId={comment.commentId}
+                                         editComment={props.editComment}/> : ''
                     ]}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}

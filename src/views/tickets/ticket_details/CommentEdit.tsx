@@ -4,21 +4,21 @@ import {Button, Form, Input, Modal} from "antd";
 const {TextArea} = Input;
 
 interface Props {
-    commentValue: string
+    commentValue: string,
+    editComment: Function,
+    commentId: number
+
 }
 
 function CommentEdit(props: Props) {
     const [visible, setVisible] = useState(false)
 
-    function handleCancel() {
-        setVisible(false);
-    }
-
     function showModal() {
         setVisible(true);
     }
 
-    function onFinish() {
+    function handleCancel() {
+        console.log('handleCancel()')
         setVisible(false);
     }
 
@@ -30,14 +30,15 @@ function CommentEdit(props: Props) {
             <Modal
                 title="Edit comment"
                 visible={visible}
+                onOk={handleCancel}
                 onCancel={handleCancel}
                 footer={[]}
             >
                 {/*todo add logic*/}
                 <Form
                     name="editComment"
-                    initialValues={{'comment': props.commentValue}}
-                    onFinish={onFinish}
+                    initialValues={{'comment': props.commentValue, 'commentId': props.commentId}}
+                    onFinish={(e: any) => props.editComment(e)}
                     layout={'vertical'}
                 >
                     <Form.Item
@@ -52,8 +53,13 @@ function CommentEdit(props: Props) {
                         <TextArea placeholder={'Enter new comment value'} allowClear={true} rows={5}/>
                     </Form.Item>
 
+                    <Form.Item
+                        name="commentId">
+                        <Input placeholder={'Enter new comment value'} allowClear={true} style={{display: 'none'}}/>
+                    </Form.Item>
+
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" block={true}>
+                        <Button type="primary" htmlType="submit" block={true} onClick={handleCancel}>
                             Submit
                         </Button>
                     </Form.Item>

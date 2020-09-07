@@ -21,8 +21,8 @@ function AccountSettingsView() {
 
     return (
         <React.Fragment>
-            <Row justify={'center'} className={'mt-5'}>
-                <Col xs={24} md={16}>
+            <Row justify={'center'} className={'mt-3'}>
+                <Col xs={24} sm={23} md={23} lg={14}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header={<h2>Account Details</h2>} key="1">
                             <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>

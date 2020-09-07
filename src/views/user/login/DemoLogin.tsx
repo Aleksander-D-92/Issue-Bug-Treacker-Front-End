@@ -62,7 +62,7 @@ function DemoLogin() {
     return <React.Fragment>
         <Card title={<h2>Demo Login</h2>} extra={
             <Popover placement="left" title={genericDescription}>
-                <h2 style={{color: "#1890ff", cursor: 'pointer'}}>What is this ?</h2>
+                <h2 style={{color: "#659edd", cursor: 'pointer'}}>What is this ?</h2>
             </Popover>
         }>
             <Popover placement="left" title={managerDescription}>

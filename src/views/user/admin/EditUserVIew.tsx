@@ -59,7 +59,7 @@ function EditUserVIew() {
 
     return (
         <Row justify={'center'} className={'mt-3'}>
-            <Col xs={24} sm={22} md={22} lg={14}>
+            <Col xs={24} sm={23} md={23} lg={14}>
                 <Card title="You can ban/lock account or change their authority">
                     <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
                         <Descriptions.Item label="Id" span={2}>{user?.userId}</Descriptions.Item>

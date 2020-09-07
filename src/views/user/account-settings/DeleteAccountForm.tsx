@@ -2,6 +2,8 @@ import React from "react";
 import {Button, Form, Input} from "antd";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {LockOutlined} from '@ant-design/icons';
+
 
 interface Props {
     userId: number
@@ -23,7 +25,7 @@ function DeleteAccountForm(props: Props) {
     return (
         <React.Fragment>
             <Form
-                name="normal_login"
+                name="deleteAccount"
                 className="login-form"
                 layout={'vertical'}
                 onFinish={deleteAccount}
@@ -32,9 +34,14 @@ function DeleteAccountForm(props: Props) {
                     label="Password"
                     name="password"
                     validateTrigger={false}
-                    rules={[{required: true, min: 4, max: 12, message: 'required: true, min: 4, max: 8'}]}
-                >
-                    <Input.Password/>
+                    rules={[{
+                        required: true,
+                        pattern: new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$'),
+                        message: 'Minimum six characters, at least one letter and one number'
+                    }]}>
+                    <Input.Password allowClear={true}
+                                    placeholder={'Enter your  password'}
+                                    prefix={<LockOutlined className="site-form-item-icon"/>}/>
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button" block={true} danger={true}>

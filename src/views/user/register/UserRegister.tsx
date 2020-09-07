@@ -28,7 +28,7 @@ function UserRegister() {
 
     return (
         <Row justify={'center'} className={'mt-3'}>
-            <Col xs={22} sm={22} md={22} lg={11}>
+            <Col xs={24} sm={23} md={23} lg={14}>
                 <Card title="User registration form" extra={'Thank you for taking the time to register'}>
                     <Form
                         name="basic"

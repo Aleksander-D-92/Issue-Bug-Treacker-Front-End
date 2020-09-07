@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Menu} from 'antd';
-import {BugOutlined, ContainerOutlined, DesktopOutlined, FileTextOutlined, PieChartOutlined} from '@ant-design/icons';
+import {BugOutlined, FileTextOutlined, IdcardOutlined, PieChartOutlined, UsergroupAddOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
@@ -34,12 +34,12 @@ function LeftNavMenu() {
                   theme="dark"
                   style={{fontSize: '1.1rem'}}>
                 <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
-                    <Link to={'./'} style={{fontSize: '1.4rem'}}>Issue Tracker</Link>
+                    <Link to={'./'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
                 </Menu.Item>
-                <Menu.Item key="1" icon={<ContainerOutlined/>}>
+                <Menu.Item key="1" icon={<IdcardOutlined style={{fontSize: '1.2rem'}}/>}>
                     <Link to={'/dashboard'}>Dashboard</Link>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<DesktopOutlined style={{fontSize: '1.2rem'}}/>}>
+                <Menu.Item key="2" icon={<UsergroupAddOutlined style={{fontSize: '1.2rem'}}/>}>
                     <Link to={'/admins/all-users'}>Mange Users</Link>
                 </Menu.Item>
                 <SubMenu

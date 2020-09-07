@@ -70,12 +70,9 @@ function LoginForm() {
                             message: 'Minimum six characters, at least one letter and one number'
                         }]}
                     >
-                        <Input
-                            prefix={<LockOutlined className="site-form-item-icon"/>}
-                            type="password"
-                            allowClear={true}
-                            placeholder="Password"
-                        />
+                        <Input.Password allowClear={true}
+                                        placeholder={'Enter your new password'}
+                                        prefix={<LockOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
                     <Form.Item>
                         <Form.Item name="rememberMe" valuePropName="checked" noStyle>

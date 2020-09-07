@@ -127,7 +127,8 @@ function DashBoardTicketTable(props: Props) {
             <Table columns={columns}
                    dataSource={props.tickets}
                    bordered
-                   pagination={{total: props.tickets?.length}} className={'mt-3'} scroll={{x: 1000}}/>
+                   pagination={{total: props.tickets?.length}} className={'mt-3'}
+                   scroll={{x: 1000}}/>
         </React.Fragment>
     )
 }

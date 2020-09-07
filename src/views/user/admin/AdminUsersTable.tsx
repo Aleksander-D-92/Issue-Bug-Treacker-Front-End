@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Table} from "antd";
+import {Col, Row, Table} from "antd";
 import {usersTableColumns} from "./variables";
 import {UserDetails} from "../../shared/Interfaces";
 
@@ -15,12 +15,15 @@ function AdminUsersTable() {
 
 
     return (
-        <div>
-            <Table dataSource={allUsers}
-                   columns={usersTableColumns}
-                   pagination={{total: allUsers.length}}
-                   bordered={true}/>
-        </div>
+        <Row justify={'center'} className={'mt-3'}>
+            <Col xs={24} sm={23} md={23} lg={23}>
+                <Table dataSource={allUsers}
+                       columns={usersTableColumns}
+                       pagination={{total: allUsers.length}}
+                       scroll={{x: 1000}}
+                       bordered={true}/>
+            </Col>
+        </Row>
     )
 }
 

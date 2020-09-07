@@ -63,7 +63,7 @@ function TicketHistoryTable(props: Props) {
             key: 'historyId',
             title: 'Date of change',
             dataIndex: 'dateOfChange',
-            render: (date: Date) => formatDate(date)
+            render: (date: Date) => (date === null || date === undefined) ? formatDate(new Date()) : formatDate(date)
         },
         {
             key: 'historyId',

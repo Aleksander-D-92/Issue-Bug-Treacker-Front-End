@@ -15,11 +15,20 @@ interface Props {
 
 function TicketEditModal(props: Props) {
     const [visible, setVisible] = useState(false);
-    const [devName, setDevName] = useState<string>('');
+    const [form] = Form.useForm();
 
-    function handleChange(e: any) {
-        console.log(e);
-        setDevName('');
+    function onStatusChange(e: any) {
+        if (e === 'UNASSIGNED') {
+            form.setFieldsValue({'assignedDeveloperId': -1})
+        }
+    }
+
+    function onDevChange(e: any) {
+        if (e === -1) {
+            form.setFieldsValue({'status': 'UNASSIGNED'})
+        } else {
+            form.setFieldsValue({'status': 'IN_PROGRESS'})
+        }
     }
 
     function showModal() {
@@ -43,18 +52,20 @@ function TicketEditModal(props: Props) {
                 onCancel={handleCancel}
                 footer={[]}
             >
-                <Form layout={'vertical'}
-                      name={'ticketSubmit'}
-                      initialValues={{
-                          'ticketId': props.ticket?.ticketId,
-                          'title': props.ticket?.title,
-                          'description': props.ticket?.description,
-                          'priority': props.ticket?.priority,
-                          'category': props.ticket?.category,
-                          'status': props.ticket?.status,
-                          'assignedDeveloperId': (props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.userId : null
-                      }}
-                      onFinish={(e: any) => props.onFinish(e)}>
+                <Form
+                    form={form}
+                    layout={'vertical'}
+                    name={'ticketSubmit'}
+                    initialValues={{
+                        'ticketId': props.ticket?.ticketId,
+                        'title': props.ticket?.title,
+                        'description': props.ticket?.description,
+                        'priority': props.ticket?.priority,
+                        'category': props.ticket?.category,
+                        'status': props.ticket?.status,
+                        'assignedDeveloperId': (props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.userId : null
+                    }}
+                    onFinish={(e: any) => props.onFinish(e)}>
                     {/*dummy item for ticket id*/}
                     <Form.Item name="ticketId">
                         <Input style={{display: 'none'}}/>
@@ -116,8 +127,10 @@ function TicketEditModal(props: Props) {
                         <Select
                             placeholder="Change the status"
                             allowClear
+                            onChange={onStatusChange}
                         >
                             <Option value="UNASSIGNED">Unassigned</Option>
+                            <Option value="IN_PROGRESS">In progress</Option>
                             <Option value="RESOLVED">Resolved</Option>
                         </Select>
                     </Form.Item>
@@ -127,8 +140,9 @@ function TicketEditModal(props: Props) {
                         <Select
                             placeholder="Assign a developer"
                             allowClear
-                            onChange={handleChange}
+                            onChange={onDevChange}
                         >
+                            <Option value={-1}>{null}</Option>
                             {props.developers?.map(d => <Option
                                 value={d.userId}>{capitalizeString(d.username)}</Option>)}
                         </Select>

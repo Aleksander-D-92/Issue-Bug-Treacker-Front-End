@@ -58,6 +58,9 @@ function TicketDetailsView() {
             status: e.status,
             assignedDeveloperId: e.assignedDeveloperId
         }
+        if (e.assignedDeveloperId === -1) {
+            data.assignedDeveloperId = null
+        }
         axios.put(`/tickets/${currentTicketId}/manager`, data).then((e) => {
             let {...updatedTicket} = ticket;
             updatedTicket.title = data.title;
@@ -73,6 +76,8 @@ function TicketDetailsView() {
                 updatedTicket.assignedDeveloper.username = username || '';
             }
             setTicketDetails(updatedTicket);
+            // @ts-ignore
+            setHistory((history) => [updatedTicket, ...history])
         })
     }
 

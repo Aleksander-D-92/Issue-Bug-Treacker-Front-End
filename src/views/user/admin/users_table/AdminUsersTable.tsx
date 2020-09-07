@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Col, Row, Table} from "antd";
 import {usersTableColumns} from "./variables";
-import {UserDetails} from "../../shared/Interfaces";
+import {UserDetails} from "../../../shared/Interfaces";
 
 
 function AdminUsersTable() {

@@ -10,7 +10,7 @@ const {SubMenu} = Menu;
 
 function LeftNavMenu() {
     const state = useSelector((state: ReduxState) => state);
-    const [authority, setAuthority] = useState<string | undefined>(state.userDetails.authority)
+    const [authority, setAuthority] = useState<string | undefined>(state.userDetails.authority);
 
     useEffect(() => {
         setAuthority(state.userDetails.authority);
@@ -47,8 +47,8 @@ function LeftNavMenu() {
                     title={<span><PieChartOutlined style={{fontSize: '1.2rem'}}/><span>Projects</span></span>}>
                     <Menu.Item key="9"><Link to={'/projects/my'}>My Projects</Link></Menu.Item>
                     <Menu.Item key="10"><Link to={'/projects/new'}>New Project</Link></Menu.Item>
-                    <Menu.Item key="11">Assign QA</Menu.Item>
-                    <Menu.Item key="12">Remove QA</Menu.Item>
+                    <Menu.Item key="11"><Link to={'/projects/qa/assign'}>Assign Qa</Link></Menu.Item>
+                    <Menu.Item key="12"><Link to={'/projects/qa/remove'}>Remove Qa</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu
                     key="tickets"

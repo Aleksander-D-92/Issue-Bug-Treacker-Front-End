@@ -16,6 +16,7 @@ import {ProjectEditView} from "../../views/projects/project_edit/ProjectEditView
 import {MyProjectsView} from "../../views/projects/my_projects/MyProjectsView";
 import {NewProjectView} from "../../views/projects/new_project/NewProjectView";
 import {TicketDetailsView} from "../../views/tickets/ticket_details/TicketDetailsView";
+import {ProjectsAssignQaView} from "../../views/projects/project_assign_remove_qa/ProjectsAssignQaView";
 
 function WebsiteRoutes() {
     return (
@@ -36,6 +37,7 @@ function WebsiteRoutes() {
             <Route exact path={'/projects/details/:projectId'}><ProjectDetailsView/></Route>
             <Route exact path={'/projects/edit/:projectId'}><ProjectEditView/></Route>
             <Route exact path={'/projects/submit-ticket/:projectId'}><SubmitTicketFormView/></Route>
+            <Route exact path={'/projects/qa/:action'}><ProjectsAssignQaView/></Route>
         </Switch>
     )
 }

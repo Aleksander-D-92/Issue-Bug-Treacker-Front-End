@@ -12,7 +12,7 @@ const {Title} = Typography;
 const cardGridStyle = {width: '50%', textAlign: 'center'} as React.CSSProperties
 const linkStyle = {fontSize: '1.1rem'} as React.CSSProperties
 
-function ProjectsAssignQaView() {
+function ProjectsQaActionView() {
     const state = useSelector((state: ReduxState) => state);
     const managerId = state.userDetails.id;
     const {action} = useParams();
@@ -28,13 +28,13 @@ function ProjectsAssignQaView() {
                 <Card
                     title={
                         <Title
-                            level={2}>{`${capitalizeString(action)} QA ${(action === 'assign') ? 'to' : 'from'} project`}
+                            level={2}>{`${capitalizeString(action)} QA ${(action === 'assign') ? 'to' : 'from'} any project`}
                         </Title>
                     }
                     className={'mt-3'}>
                     {projects?.map((p) => {
                         return (
-                            <Link to={`/project/qa/${action}/${p.projectId}`} style={linkStyle}>
+                            <Link to={`/projects/qa/${action}/${p.projectId}`} style={linkStyle}>
                                 <Card.Grid style={cardGridStyle}>{p.title}</Card.Grid>
                             </Link>
                         )
@@ -46,4 +46,4 @@ function ProjectsAssignQaView() {
 }
 
 
-export {ProjectsAssignQaView}
+export {ProjectsQaActionView}

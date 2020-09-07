@@ -28,11 +28,11 @@ function UserRegister() {
 
     return (
         <Row justify={'center'} className={'mt-3'}>
-            <Col xs={24} sm={22} md={14}>
+            <Col xs={22} sm={22} md={22} lg={11}>
                 <Card title="User registration form" extra={'Thank you for taking the time to register'}>
                     <Form
                         name="basic"
-                        initialValues={{remember: true}}
+                        initialValues={{'authorityId': 3}}
                         onFinish={onFinish}
                         layout={'vertical'}
                     >
@@ -85,7 +85,8 @@ function UserRegister() {
                             <Input type={'password'} placeholder={'confirm your password'} allowClear={true}
                                    prefix={<LockOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
-                        <Form.Item name="authority" label="Your Role"
+                        <Form.Item name="authorityId"
+                                   label="This will be your authority"
                                    rules={[{required: true, message: 'please select your role'}]}>
                             <Select allowClear={true}>
                                 {authorities?.map(e => <Option disabled={e.authorityId !== 3}

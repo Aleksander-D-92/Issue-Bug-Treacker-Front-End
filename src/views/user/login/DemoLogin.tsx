@@ -65,6 +65,12 @@ function DemoLogin() {
                 <h2 style={{color: "#1890ff", cursor: 'pointer'}}>What is this ?</h2>
             </Popover>
         }>
+            <Popover placement="left" title={managerDescription}>
+                <Button type="primary" htmlType="submit" className="login-form-button mb-2" block={true}
+                        name='projectManager' onClick={handleDemoLogin}>
+                    Demo Project Manager
+                </Button>
+            </Popover>
             <Popover placement="left" title={qaDescription}>
                 <Button type="primary" htmlType="submit" className="login-form-button" block={true} name='qa'
                         onClick={handleDemoLogin}>
@@ -76,12 +82,6 @@ function DemoLogin() {
                         name='developer'
                         onClick={handleDemoLogin}>
                     Demo Developer
-                </Button>
-            </Popover>
-            <Popover placement="left" title={managerDescription}>
-                <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
-                        name='projectManager' onClick={handleDemoLogin}>
-                    Demo Project Manager
                 </Button>
             </Popover>
             <Popover placement="left" title={adminDescription}>

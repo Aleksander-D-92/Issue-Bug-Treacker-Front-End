@@ -1,8 +1,14 @@
 import React from "react";
 
+const footer = <p>The website functionality changes depending on what role you pick</p>
+
+function getHeader(val: string) {
+    return <p>This will log you in with a {val} account <br/> You will be able to do the fallowing things</p>
+}
+
 const genericDescription = (
     <div>
-        <p>Allows you to login with an already existing account <br/> <b>with a lot of test data added to
+        <p>Allows you to login with an already existing account, <br/> <b>with a lot of test data added to
             it</b>. <br/> You can pick an account with one of the
             fallowing authorities</p>
         <ul>
@@ -11,49 +17,51 @@ const genericDescription = (
             <li>Project Manager</li>
             <li>Admin</li>
         </ul>
-        <p>The website changes depending on what role you pick</p>
+        {footer}
     </div>
 );
 const qaDescription = (
     <div>
-        <p>This will log you in with a QA account <br/> You will be able to do the fallowing things</p>
+        {getHeader('QA')}
         <ul>
-            <li>Can Submit tickets for projects you are assigned on</li>
-            <li>Can edit tickets submitted by him</li>
+            <li>You can submit tickets for projects, that you are assigned on</li>
+            <li>You can edit the tickets, submitted by your self</li>
             <li>View all projects you are assigned on</li>
+            <li>Submit comments for tickets</li>
         </ul>
-        <p>The website changes depending on what role you pick</p>
+        {footer}
     </div>
 );
 
 const devDescription = (
     <div>
-        <p>This will log you in with a Developer account <br/> You will be able to do the fallowing things</p>
+        {getHeader('Developer')}
         <ul>
-            <li>Has tickets assigned to him</li>
-            <li>Can edit tickets assigned to him</li>
-            <li>Can set tickets to RESOLVED, QAs can not do that</li>
-            <li>View all projects you are assigned on</li>
+            <li>You have tickets assigned to you</li>
+            <li>You can edit the tickets assigned to you</li>
+            <li>You set tickets to RESOLVED, QAs can not do that</li>
+            <li>Submit comments for tickets</li>
         </ul>
-        <p>The website changes depending on what role you pick</p>
+        {footer}
     </div>
 );
 const managerDescription = (
     <div>
-        <p>This will log you in with a Developer account <br/> You will be able to do the fallowing things</p>
+        <b>Recommended way to demo login, it provides the most functionality</b>
+        {getHeader('Project Manager')}
         <ul>
             <li>Can create new/edit new projects</li>
-            <li>Can create Developer accounts to assign to his projects</li>
-            <li>Can create Submitter accounts to assign to his projects</li>
-            <li>Can everything that the other QA Engineer and Developer can do</li>
+            <li>You can assign QA to projects</li>
+            <li>You can assign developers to tickets</li>
+            <li>You can do everything that the other QA and Developer can do</li>
         </ul>
-        <p>The website changes depending on what role you pick</p>
+        {footer}
     </div>
 );
 
 const adminDescription = (
     <div>
-        <p>This will log you in with an Admin account <br/> You will be able to do the fallowing things</p>
+        {getHeader('Admin')}
         <ul>
             <li>Can Change users roles, for an example:
                 <ul>
@@ -63,7 +71,7 @@ const adminDescription = (
             </li>
             <li>Can view all registered users in the system</li>
         </ul>
-        <p>The website changes depending on what role you pick</p>
+        {footer}
     </div>
 );
 

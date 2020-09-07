@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Col, Row} from "antd";
+import {Card, Col, Row} from "antd";
 import {useParams} from 'react-router-dom';
 import axios from 'axios'
 import {ProjectDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
@@ -10,7 +10,7 @@ import {ProjectTicketsChart} from "./ProjectTicketsChart";
 
 
 function ProjectDetailsView() {
-    const [project, setProject] = useState<ProjectDetails[]>();
+    const [project, setProject] = useState<ProjectDetails>();
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
     const [qa, setQa] = useState<UserDetails[]>();
@@ -18,7 +18,7 @@ function ProjectDetailsView() {
 
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
-            setProject(e.data);
+            setProject(e.data[0]);
         });
         axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
             setQa(e.data);
@@ -32,7 +32,9 @@ function ProjectDetailsView() {
         <React.Fragment>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <ProjectInfo projects={project} totalQa={qa?.length} totalTickets={tickets?.length}/>
+                    <Card className={'mt-3'}>
+                        <ProjectInfo project={project} totalQa={qa?.length} totalTickets={tickets?.length}/>
+                    </Card>
                 </Col>
             </Row>
             <Row justify={'center'}>

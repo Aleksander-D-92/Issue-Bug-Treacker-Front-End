@@ -74,6 +74,8 @@ function ProjectsQaEditView() {
                             </Title>
                         }
                         className={'mt-3'}>
+                        <ProjectInfo project={project} totalQa={qa?.length} totalTickets={0}/>
+
                         <Form
                             name="basic"
                             onFinish={onFinish}

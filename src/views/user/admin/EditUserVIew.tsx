@@ -6,21 +6,17 @@ import {LockOutlined, UnlockOutlined, UserSwitchOutlined} from '@ant-design/icon
 import {formatDate} from "../../shared/functions";
 import {Authority, UserDetails} from "../../shared/Interfaces";
 
-
 const {Option} = Select;
 
 function EditUserVIew() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserDetails>();
     const [authorities, setAuthorities] = useState<Authority[]>();
-    const [accountNonLocked, setAccountNonLocked] = useState<boolean>();
-    const [currentAuthority, setCurrentAuthority] = useState<string>();
+    const [formState] = Form.useForm();
 
     useEffect(() => {
         axios.get(`/users?action=single&id=${userId}`).then((e) => {
             setUser(e.data[0])
-            setAccountNonLocked(e.data[0].accountNonLocked)
-            setCurrentAuthority(e.data[0].authority.authority)
         });
         axios.get('/authorities/all').then((e) => {
             setAuthorities(e.data.filter((a: Authority) => a.authorityLevel !== 4));
@@ -28,33 +24,38 @@ function EditUserVIew() {
     }, [])
 
     function changeAuthority(form: any) {
-        switch (form.authority) {
+        console.log(form);
+        const {...updatedUser} = user;
+        switch (form.authorityId) {
             case 1:
-                setCurrentAuthority('ROLE_QA')
+                updatedUser.authority.authorityId = 1;
+                updatedUser.authority.authorityLevel = 1;
+                updatedUser.authority.authority = 'ROLE_QA';
                 break;
             case 2:
-                setCurrentAuthority('ROLE_DEVELOPER')
+                updatedUser.authority.authorityId = 2;
+                updatedUser.authority.authorityLevel = 2;
+                updatedUser.authority.authority = 'ROLE_DEVELOPER';
                 break;
             case 3:
-                setCurrentAuthority('ROLE_PROJECT_MANAGER')
+                updatedUser.authority.authorityId = 3;
+                updatedUser.authority.authorityLevel = 3;
+                updatedUser.authority.authority = 'ROLE_PROJECT_MANAGER';
                 break;
         }
-        axios.put(`/admins/user-authority?userId=${userId}&authorityId=${form.authority}`).then((e) => {
-            console.log(e);
+        axios.put(`/admins/user-authority?authorityId=${form.authorityId}&userId=${userId}`).then((e) => {
+            setUser(updatedUser);
+            formState.setFieldsValue({'authorityId': ''})
         });
     }
 
     function lockAccount(e: MouseEvent<HTMLButtonElement>) {
         let name = e.currentTarget.name;
-        if (name === 'lock') {
-            setAccountNonLocked(false);
-        } else {
-            setAccountNonLocked(true)
-        }
-        axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`)
-            .then((e) => {
-                console.log(e);
-            });
+        const {...updatedUser} = user;
+        updatedUser.accountNonLocked = name !== 'lock';
+        axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`).then((e) => {
+            setUser(updatedUser);
+        });
     }
 
     return (
@@ -66,27 +67,30 @@ function EditUserVIew() {
                         <Descriptions.Item label="Registration date"
                                            span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
                         <Descriptions.Item label="Authority"
-                                           span={2}>{currentAuthority}</Descriptions.Item>
+                                           span={2}>{user?.authority.authority}</Descriptions.Item>
                         <Descriptions.Item label="Authority level"
                                            span={2}>{user?.authority.authorityLevel}</Descriptions.Item>
                         <Descriptions.Item label="Is account Locked"
-                                           span={3}>{accountNonLocked ? 'Non locked' : 'Locked'}</Descriptions.Item>
+                                           span={3}>{user?.accountNonLocked ? 'Non locked' : 'Locked'}</Descriptions.Item>
                     </Descriptions>
+
                     <Divider>Change authority</Divider>
                     <Form
-                        name="normal_login"
-                        className="login-form"
+                        form={formState}
+                        name="editAuthority"
                         layout={'vertical'}
+                        initialValues={{}}
                         onFinish={changeAuthority}>
                         <Form.Item
-                            label="Authority"
-                            name="authority"
+                            label="Authorities"
+                            name="authorityId"
                             rules={[{required: true, message: 'Must select at least one'}]}>
-                            <Select defaultValue={1} allowClear style={{width: 400}}>
-                                {authorities?.map((authority) => {
-                                    return <Option key={authority.authorityId} value={authority.authorityId}>{authority.authority} =
-                                        Level {authority.authorityLevel}</Option>
-                                })}
+                            <Select allowClear style={{width: 400}}>
+                                {authorities?.map((authority) =>
+                                    (authority.authorityId !== user?.authority.authorityId) ?
+                                        <Option value={authority.authorityId}>{authority.authority} =
+                                            Level {authority.authorityLevel}</Option> : ''
+                                )}
                             </Select>
                         </Form.Item>
                         <Button type="primary" icon={<UserSwitchOutlined style={{fontSize: '1.2rem'}}/>} size={'large'}
@@ -95,20 +99,21 @@ function EditUserVIew() {
                             Change authority
                         </Button>
                     </Form>
+
                     <Divider>Set account lock</Divider>
                     <Button type={'primary'} danger={true} icon={<LockOutlined style={{fontSize: '1.2rem'}}/>}
                             size={'large'}
                             onClick={lockAccount}
                             block={true} className={'mt-2'}
                             name={'lock'}
-                            disabled={!accountNonLocked}>
+                            disabled={!user?.accountNonLocked}>
                         Lock account
                     </Button>
                     <Button type={'primary'} icon={<UnlockOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
                             onClick={lockAccount}
                             block={true} className={'mt-2'}
                             name={'unlock'}
-                            disabled={!!accountNonLocked}>
+                            disabled={!!user?.accountNonLocked}>
                         Unlock account
                     </Button>
                 </Card>

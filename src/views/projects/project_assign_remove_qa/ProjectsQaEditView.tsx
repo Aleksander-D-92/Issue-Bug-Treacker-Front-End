@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {useParams, useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import axios from 'axios';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails, UserDetails} from "../../shared/Interfaces";
 import {capitalizeString} from "../../shared/functions";
-import {Card, Col, Row, Typography} from "antd";
+import {Button, Card, Col, Form, Row, Select, Typography} from "antd";
+import {ProjectInfo} from "../proect_details/ProjectInfo";
+
+const {Option} = Select;
+
 
 const {Title} = Typography;
 
@@ -13,10 +17,12 @@ const {Title} = Typography;
 function ProjectsQaEditView() {
     const {action} = useParams();
     const {projectId} = useParams();
+    const history = useHistory();
     const state = useSelector((state: ReduxState) => state);
     const managerId = state.userDetails.id;
     const [qa, setQa] = useState<UserDetails[]>();
     const [project, setProject] = useState<ProjectDetails>();
+
     useEffect(() => {
         switch (action) {
             case 'assign':
@@ -34,6 +40,29 @@ function ProjectsQaEditView() {
             setProject(e.data[0]);
         })
     }, [])
+
+    function onFinish(e: any) {
+        const data = {
+            qaIds: e.selectedUsers
+        }
+        switch (action) {
+            case 'assign':
+                axios.put(`/projects/qa?action=add&projectId=${projectId}`, data).then(() => {
+                    history.goBack();
+                })
+                break;
+            case 'remove':
+                axios.put(`/projects/qa?action=remove&projectId=${projectId}`, data).then(() => {
+                    history.goBack();
+                })
+                break;
+        }
+    }
+
+    function goBack() {
+        history.goBack();
+    }
+
     return (
         <React.Fragment>
             <Row justify={'center'}>
@@ -45,7 +74,31 @@ function ProjectsQaEditView() {
                             </Title>
                         }
                         className={'mt-3'}>
-
+                        <Form
+                            name="basic"
+                            onFinish={onFinish}
+                            layout={'vertical'}>
+                            <Form.Item
+                                label="Select users"
+                                name="selectedUsers"
+                                validateTrigger={false}
+                                rules={[{
+                                    required: true,
+                                    message: 'Must pick at least one if you want to submit, else just click Go Back'
+                                }]}>
+                                <Select allowClear={true} mode="tags" tokenSeparators={[',']}>
+                                    {qa?.map(qa => <Option value={qa.userId}>{qa.username}</Option>)}
+                                </Select>
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit" block>
+                                    Edit
+                                </Button>
+                            </Form.Item>
+                            <Button block onClick={goBack}>
+                                Go Back
+                            </Button>
+                        </Form>
 
                     </Card>
                 </Col>

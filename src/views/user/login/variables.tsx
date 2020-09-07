@@ -75,10 +75,10 @@ const adminDescription = (
     </div>
 );
 
-const demoManagerCredentials = {username: "demo-manager", password: '123056'};
-const demoDevCredentials = {username: "demo-developer", password: '123056'};
-const demoQaCredentials = {username: "demo-qa", password: '123056'};
-const demoAdminCredentials = {username: "admin", password: '123056'};
+const demoManagerCredentials = {username: "demo_manager", password: '123056a'};
+const demoDevCredentials = {username: "demo_developer", password: '123056a'};
+const demoQaCredentials = {username: "demo_qa", password: '123056a'};
+const demoAdminCredentials = {username: "admin", password: '123056a'};
 
 export {
     genericDescription,

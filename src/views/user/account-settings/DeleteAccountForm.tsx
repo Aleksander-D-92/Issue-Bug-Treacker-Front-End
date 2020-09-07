@@ -37,7 +37,7 @@ function DeleteAccountForm(props: Props) {
                     rules={[{
                         required: true,
                         pattern: new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$'),
-                        message: 'Minimum six characters, at least one letter and one number'
+                        message: 'Password must be at least six characters, include at least one letter and at least one number'
                     }]}>
                     <Input.Password allowClear={true}
                                     placeholder={'Enter your  password'}

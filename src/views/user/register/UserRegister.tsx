@@ -42,8 +42,8 @@ function UserRegister() {
                             validateTrigger={false}
                             rules={[{
                                 required: true,
-                                pattern: new RegExp('^[a-zA-Z0-9]{5,20}$'),
-                                message: 'Must be between 5 and 20 chars, can only include numbers and chars'
+                                pattern: new RegExp('^[a-zA-Z0-9_]{5,20}$'),
+                                message: 'Username must be between 5 and 20 chars, can only include letters, numbers and "_"'
                             }]}>
                             <Input placeholder={'enter username'} allowClear={true} type={'text'}
                                    prefix={<UserOutlined className="site-form-item-icon"/>}/>
@@ -56,7 +56,7 @@ function UserRegister() {
                             rules={[{
                                 required: true,
                                 pattern: new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$'),
-                                message: 'Minimum six characters, at least one letter and one number'
+                                message: 'Password must be at least six characters, include at least one letter and at least one number'
                             }]}
                         >
                             <Input type={'password'} placeholder={'enter your password'} allowClear={true}
@@ -70,7 +70,7 @@ function UserRegister() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please confirm your password!',
+                                    message: 'The two passwords do not match',
                                 },
                                 ({getFieldValue}) => ({
                                     validator(rule, value) {

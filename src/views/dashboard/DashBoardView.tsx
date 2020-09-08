@@ -19,9 +19,7 @@ function DashBoardView() {
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [projects, setProjects] = useState<ProjectDetails[]>();
     const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
-
-    //statistics variables
-
+    const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         switch (userRole) {
@@ -29,6 +27,7 @@ function DashBoardView() {
                 axios.get(`/tickets/?action=by-project-manager&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
+                    setTicketsLoading(false);
                 });
 
                 axios.get(`/projects?action=own&id=${id}`).then((e) => {
@@ -39,15 +38,18 @@ function DashBoardView() {
                 axios.get(`/tickets/?action=by-assigned-developer&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
+                    setTicketsLoading(false);
                 });
                 axios.get(`/projects?action=include-developer&id=${id}`).then((e) => {
                     setProjects(e.data);
+
                 });
                 break
             case 'ROLE_QA':
                 axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
+                    setTicketsLoading(false);
                 });
                 axios.get(`/projects?action=include-qa&id=${id}`).then((e) => {
                     setProjects(e.data);
@@ -57,6 +59,7 @@ function DashBoardView() {
                 axios.get('/tickets?action=all').then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
+                    setTicketsLoading(false);
                 });
                 axios.get(`/projects?action=all`).then((e) => {
                     setProjects(e.data);
@@ -67,16 +70,20 @@ function DashBoardView() {
     }, []);
     return (
         <React.Fragment>
-            <DashBoardGreeting authority={reduxState.userDetails.authority} username={reduxState.userDetails.username}/>
-            <TicketCharts ticketStatistics={ticketStatistics}/>
+            <DashBoardGreeting authority={reduxState.userDetails.authority}
+                               username={reduxState.userDetails.username}/>
+            <TicketCharts ticketStatistics={ticketStatistics}
+                          ticketsLoading={ticketsLoading}/>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <ProjectsList projects={projects} authority={reduxState.userDetails.authority}/>
+                    <ProjectsList projects={projects}
+                                  authority={reduxState.userDetails.authority}/>
                 </Col>
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
-                    <DashBoardTicketTable tickets={tickets}/>
+                    <DashBoardTicketTable tickets={tickets}
+                                          ticketsLoading={ticketsLoading}/>
                 </Col>
             </Row>
         </React.Fragment>

@@ -44,7 +44,7 @@ function ProjectDetailsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <DashBoardTicketTable tickets={tickets}/>
+                    <DashBoardTicketTable tickets={tickets} ticketsLoading={false}/>
                 </Col>
             </Row>
         </React.Fragment>

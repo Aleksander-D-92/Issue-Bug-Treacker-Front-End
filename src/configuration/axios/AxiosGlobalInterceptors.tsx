@@ -43,6 +43,9 @@ function AxiosGlobalInterceptors() {
             toast.success(`${response.status}`, {position: toast.POSITION.BOTTOM_RIGHT})
             return response;
         }, function (error) {
+            if (error.response === undefined) {
+                return Promise.reject(error);
+            }
             if (error.response.data !== null) {
                 toast.error(`${error.response.status} ${error.response.data.message}`, {position: toast.POSITION.BOTTOM_RIGHT})
             } else {

@@ -1,12 +1,13 @@
 import React from "react";
 import {TicketDetails} from "../shared/Interfaces";
-import {Table, Tag} from "antd";
+import {Row, Skeleton, Spin, Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
 import {solidColors} from "../shared/gobalVariables";
 
 interface Props {
-    tickets?: TicketDetails[]
+    tickets?: TicketDetails[],
+    ticketsLoading: boolean
 }
 
 function DashBoardTicketTable(props: Props) {
@@ -123,12 +124,20 @@ function DashBoardTicketTable(props: Props) {
 
     return (
         <React.Fragment>
-            // @ts-ignore
-            <Table columns={columns}
-                   dataSource={props.tickets}
-                   bordered
-                   pagination={{total: props.tickets?.length}} className={'mt-3'}
-                   scroll={{x: 1000}}/>
+            {props.ticketsLoading ?
+                <Row justify={'center'} className={'mt-3'}>
+                    <Spin size="large"
+                          tip={'Please wait, while we fetch the data...'}
+                        // style={{display: props.chartsLoading ? '' : 'none'}}
+                    />
+                    <Skeleton loading={true} active={true} paragraph={{rows: 10}}/>
+                </Row> :
+                // @ts-ignore
+                <Table columns={columns}
+                       dataSource={props.tickets}
+                       bordered
+                       pagination={{total: props.tickets?.length}} className={'mt-3'}
+                       scroll={{x: 1000}}/>}
         </React.Fragment>
     )
 }

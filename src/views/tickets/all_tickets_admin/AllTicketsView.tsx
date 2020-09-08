@@ -26,7 +26,7 @@ function AllTicketsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
-                    <DashBoardTicketTable tickets={tickets}/>
+                    <DashBoardTicketTable tickets={tickets} ticketsLoading={false}/>
                 </Col>
             </Row>
         </React.Fragment>

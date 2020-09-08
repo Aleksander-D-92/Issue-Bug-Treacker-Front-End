@@ -1,6 +1,6 @@
 import React from "react";
 import {Doughnut, Pie, Polar} from "react-chartjs-2";
-import {Col, Collapse, Row} from "antd";
+import {Col, Collapse, Row, Skeleton, Spin} from "antd";
 import {transparentColors} from "../shared/gobalVariables";
 import {TicketStatistics} from "../shared/TicketStatistics";
 
@@ -9,6 +9,7 @@ const {Panel} = Collapse;
 
 interface Props {
     ticketStatistics?: TicketStatistics,
+    ticketsLoading: boolean
 }
 
 function TicketCharts(props: Props) {
@@ -18,6 +19,11 @@ function TicketCharts(props: Props) {
                 <Col xs={24} sm={22} md={22} lg={7}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header="Tickets by Priority" key="1">
+                            <Row justify={'center'}>
+                                <Spin size="large"
+                                      tip={'Please wait, while we fetch the data...'}
+                                      style={{display: props.ticketsLoading ? '' : 'none'}}/>
+                            </Row>
                             <Pie data={{
                                 labels: ['Low', 'Medium', 'High', 'Urgent'],
                                 datasets: [{
@@ -40,15 +46,21 @@ function TicketCharts(props: Props) {
                                 }, legend: {
                                     display: true,
                                     position: "bottom",
-                                }
+                                },
                             }}
-                                 height={400}/>
+                                 height={400}
+                            />
                         </Panel>
                     </Collapse>
                 </Col>
                 <Col xs={24} sm={22} md={22} lg={8}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header="Tickets by Category" key="1">
+                            <Row justify={'center'}>
+                                <Spin size="large"
+                                      tip={'Please wait, while we fetch the data...'}
+                                      style={{display: props.ticketsLoading ? '' : 'none'}}/>
+                            </Row>
                             <Doughnut data={{
                                 labels: ['Other', 'Feature Request', 'Bugs and Errors'],
                                 datasets: [{
@@ -80,6 +92,11 @@ function TicketCharts(props: Props) {
                 <Col xs={24} sm={22} md={22} lg={7}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header="Tickets by Status" key="1">
+                            <Row justify={'center'}>
+                                <Spin size="large"
+                                      tip={'Please wait, while we fetch the data...'}
+                                      style={{display: props.ticketsLoading ? '' : 'none'}}/>
+                            </Row>
                             <Polar data={{
                                 labels: ['Unassigned', 'In progress', 'Resolved'],
                                 datasets: [{

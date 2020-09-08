@@ -4,9 +4,9 @@ import {Button, Form, Input, Modal} from "antd";
 const {TextArea} = Input;
 
 interface Props {
+    commentId: number
     commentValue: string,
     editComment: Function,
-    commentId: number
 
 }
 
@@ -33,7 +33,6 @@ function CommentEdit(props: Props) {
                 onCancel={handleCancel}
                 footer={[]}
             >
-                {/*todo add logic*/}
                 <Form
                     name="editComment"
                     initialValues={{'comment': props.commentValue, 'commentId': props.commentId}}
@@ -49,12 +48,11 @@ function CommentEdit(props: Props) {
                             min: 10, max: 255,
                             message: 'Must be between 10 and 255 chars'
                         }]}>
-                        <TextArea placeholder={'Enter new comment value'} allowClear={true} rows={5}/>
+                        <TextArea placeholder={'Must be between 10 and 255 chars long'} allowClear={true} rows={5}/>
                     </Form.Item>
 
-                    <Form.Item
-                        name="commentId">
-                        <Input placeholder={'Enter new comment value'} allowClear={true} style={{display: 'none'}}/>
+                    <Form.Item name="commentId">
+                        <Input style={{display: 'none'}}/>
                     </Form.Item>
 
                     <Form.Item>

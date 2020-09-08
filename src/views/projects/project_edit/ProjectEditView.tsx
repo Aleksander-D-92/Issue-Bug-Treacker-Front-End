@@ -23,8 +23,8 @@ function ProjectEditView() {
                         rules={[{
                             required: true,
                             min: 5,
-                            max: 30,
-                            message: 'Must be between 5 and 30 symbols',
+                            max: 50,
+                            message: 'Title must be between 10 and 50 symbols long',
 
                         }]}
                     >
@@ -38,7 +38,7 @@ function ProjectEditView() {
                             required: true,
                             min: 10,
                             max: 225,
-                            message: 'Description be between 10 and 225 symbols',
+                            message: 'Description must be between 10 and 255 symbols long',
 
                         }]}
                     >

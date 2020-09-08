@@ -77,11 +77,11 @@ function TicketEditModal(props: Props) {
                         rules={[{
                             required: true,
                             min: 5,
-                            max: 40,
-                            message: 'Title must be between 5 and 40 symbols'
+                            max: 50,
+                            message: 'Title must be between 5 and 50 symbols long'
                         }]}
                     >
-                        <Input type={'text'} placeholder={'Title must be between 5 and 40 symbols'}/>
+                        <Input type={'text'} placeholder={'Title must be between 5 and 50 symbols long'}/>
                     </Form.Item>
                     <Form.Item
                         label="Description"

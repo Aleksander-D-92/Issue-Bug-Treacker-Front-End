@@ -75,6 +75,17 @@ const adminDescription = (
     </div>
 );
 
+const registerExplained = (
+    <div>
+        <h2>In short:</h2>
+        <ul>
+            <li>The way this website works, you have to register as a Project Manager.</li>
+            <li>Project managers can create QA and Developer accounts to "work" for them.</li>
+            <li>If you want to experience the QA and Developer accounts, please use the demo login</li>
+        </ul>
+    </div>
+)
+
 const demoManagerCredentials = {username: "demo_manager", password: '123056a'};
 const demoDevCredentials = {username: "demo_developer", password: '123056a'};
 const demoQaCredentials = {username: "demo_qa", password: '123056a'};
@@ -89,5 +100,6 @@ export {
     demoManagerCredentials,
     demoQaCredentials,
     managerDescription,
-    adminDescription
+    adminDescription,
+    registerExplained
 }

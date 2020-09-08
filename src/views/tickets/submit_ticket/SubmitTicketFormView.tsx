@@ -43,11 +43,11 @@ function SubmitTicketFormView() {
                                 rules={[{
                                     required: true,
                                     min: 5,
-                                    max: 40,
-                                    message: 'Must be between 5 and 40 symbols'
+                                    max: 50,
+                                    message: 'Title must be between 5 and 50 symbols long'
                                 }]}
                             >
-                                <Input type={'text'} placeholder={'Title must be between 5 and 40 symbols'}/>
+                                <Input type={'text'} placeholder={'Title must be between 5 and 50 symbols long'}/>
                             </Form.Item>
                             <Form.Item
                                 label="Description"
@@ -57,10 +57,10 @@ function SubmitTicketFormView() {
                                     required: true,
                                     min: 10,
                                     max: 255,
-                                    message: 'Description must be between 10 and 255 symbols'
+                                    message: 'Description must be between 10 and 255 symbols long'
                                 }]}
                             >
-                                <TextArea rows={4} placeholder={'Description must be between 10 and 255 symbols'}/>
+                                <TextArea rows={4} placeholder={'Description must be between 10 and 255 symbols long'}/>
                             </Form.Item>
 
                             <Form.Item name="priority" label="Priority"

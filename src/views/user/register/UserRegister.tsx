@@ -1,19 +1,22 @@
 import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import axios from 'axios';
-import {Button, Card, Col, Form, Input, Row, Select} from "antd";
+import {Button, Card, Col, Form, Input, Popover, Row, Select} from "antd";
 import {Authority} from "../../shared/Interfaces";
-import {UserOutlined, LockOutlined} from '@ant-design/icons';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {registerExplained} from "../login/variables";
 
 
 const {Option} = Select;
 
 function UserRegister() {
-    let history = useHistory();
+    const history = useHistory();
+    const [form] = Form.useForm();
     const [authorities, setAuthorities] = useState<Authority[]>();
     useEffect(() => {
         axios.get(`/authorities/all`).then((e) => {
             setAuthorities(e.data);
+            form.setFieldsValue({'authorityId': 3})
         })
     }, [])
 
@@ -32,7 +35,7 @@ function UserRegister() {
                 <Card title="User registration form" extra={'Thank you for taking the time to register'}>
                     <Form
                         name="basic"
-                        initialValues={{'authorityId': 3}}
+                        form={form}
                         onFinish={onFinish}
                         layout={'vertical'}
                     >
@@ -45,7 +48,9 @@ function UserRegister() {
                                 pattern: new RegExp('^[a-zA-Z0-9_]{5,20}$'),
                                 message: 'Username must be between 5 and 20 chars, can only include letters, numbers and "_"'
                             }]}>
-                            <Input placeholder={'enter username'} allowClear={true} type={'text'}
+                            <Input placeholder={'Enter your username'}
+                                   allowClear={true}
+                                   type={'text'}
                                    prefix={<UserOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
 
@@ -59,8 +64,9 @@ function UserRegister() {
                                 message: 'Password must be at least six characters, include at least one letter and at least one number'
                             }]}
                         >
-                            <Input type={'password'} placeholder={'enter your password'} allowClear={true}
-                                   prefix={<LockOutlined className="site-form-item-icon"/>}/>
+                            <Input.Password allowClear={true}
+                                            placeholder={'Enter your password'}
+                                            prefix={<LockOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
 
                         <Form.Item
@@ -82,17 +88,21 @@ function UserRegister() {
                                 }),
                             ]}
                         >
-                            <Input type={'password'} placeholder={'confirm your password'} allowClear={true}
-                                   prefix={<LockOutlined className="site-form-item-icon"/>}/>
+                            <Input.Password allowClear={true}
+                                            placeholder={'Confirm your password'}
+                                            prefix={<LockOutlined className="site-form-item-icon"/>}/>
                         </Form.Item>
-                        <Form.Item name="authorityId"
-                                   label="This will be your authority"
-                                   rules={[{required: true, message: 'please select your role'}]}>
-                            <Select allowClear={true}>
-                                {authorities?.map(e => <Option disabled={e.authorityId !== 3}
-                                                               value={e.authorityId}>{e.authority}</Option>)}
-                            </Select>
-                        </Form.Item>
+                        <Popover placement="left" title={registerExplained}>
+                            <Form.Item name="authorityId"
+                                       label="This will be your authority"
+                                       rules={[{required: true, message: 'please select your role'}]}>
+
+                                <Select allowClear={true}>
+                                    {authorities?.map(e => <Option disabled={e.authorityId !== 3}
+                                                                   value={e.authorityId}>{e.authority}</Option>)}
+                                </Select>
+                            </Form.Item>
+                        </Popover>
                         <Form.Item>
                             <Button type="primary" htmlType="submit" block>
                                 Register

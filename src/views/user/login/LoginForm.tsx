@@ -58,7 +58,7 @@ function LoginForm() {
                             message: 'Username must be between 5 and 20 chars, can only include letters, numbers and "_"'
                         }]}>
                         <Input allowClear={true} prefix={<UserOutlined className="site-form-item-icon"/>}
-                               placeholder="Username"/>
+                               placeholder="Enter your username"/>
                     </Form.Item>
                     <Form.Item
                         label="Password"
@@ -71,7 +71,7 @@ function LoginForm() {
                         }]}
                     >
                         <Input.Password allowClear={true}
-                                        placeholder={'Enter your new password'}
+                                        placeholder={'Enter your password'}
                                         prefix={<LockOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
                     <Form.Item>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Avatar, Card, List, Row, Skeleton, Spin} from 'antd';
+import {Avatar, Card, List} from 'antd';
 import {ProjectDetails} from "../../shared/Interfaces";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';

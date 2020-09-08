@@ -7,7 +7,7 @@ function getLocale(message: string) {
         emptyText:
             <Row justify={'center'} className={'mt-3'}>
                 <Spin size="large"
-                      tip={`Please wait, while we fetch ${message} the data...`}
+                      tip={`Please wait, until we fetch the ${message} data...`}
                       style={{fontSize: '1.1rem'}}
                 />
                 <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>

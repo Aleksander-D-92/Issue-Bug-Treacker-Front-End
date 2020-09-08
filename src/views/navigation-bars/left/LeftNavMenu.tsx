@@ -5,8 +5,8 @@ import {
     FileTextOutlined,
     IdcardOutlined,
     PieChartOutlined,
-    UsergroupAddOutlined,
-    UserAddOutlined
+    UserAddOutlined,
+    UsergroupAddOutlined
 } from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';

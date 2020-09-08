@@ -8,12 +8,14 @@ import {ManagerCreateAcc} from "./ManagetCreateAcc";
 
 function ManagerCreateAccView() {
     const state = useSelector((state: ReduxState) => state);
-    const [authorities, setAuthorities] = useState<Authority[]>()
+    const [authorities, setAuthorities] = useState<Authority[]>();
+    const [loading, setLoading] = useState<boolean>(true)
     const [form] = Form.useForm();
     const managerId = state.userDetails.id;
     useEffect(() => {
         axios.get(`/authorities/all`).then((e) => {
             setAuthorities(e.data);
+            setLoading(false)
         });
     }, [])
 
@@ -41,7 +43,8 @@ function ManagerCreateAccView() {
             <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                 <ManagerCreateAcc authorities={authorities}
                                   onFinish={onFinish}
-                                  form={form}/>
+                                  form={form}
+                                  loading={loading}/>
             </Col>
         </Row>
     )

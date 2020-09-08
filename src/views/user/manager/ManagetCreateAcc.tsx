@@ -4,12 +4,14 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Button, Card, Form, Input, Select} from "antd";
 import {FormInstance} from "antd/es/form";
 import {ManagerCardHeader} from "./ManagerCardHeader";
+
 const {Option} = Select;
 
 interface Props {
     authorities?: Authority[]
     onFinish: Function,
-    form: FormInstance
+    form: FormInstance,
+    loading: boolean
 }
 
 function ManagerCreateAcc(props: Props) {
@@ -79,7 +81,8 @@ function ManagerCreateAcc(props: Props) {
                                label="Chose if you want to create a QA account or a Developer account"
                                rules={[{required: true, message: 'Please select the accounts authority'}]}>
 
-                        <Select allowClear={true}>
+                        <Select allowClear={true}
+                                loading={props.loading}>
                             {props.authorities?.map(e =>
                                 (e.authorityId === 1 || e.authorityId === 2) ?
                                     <Option value={e.authorityId}>{e.authority}</Option> : ''

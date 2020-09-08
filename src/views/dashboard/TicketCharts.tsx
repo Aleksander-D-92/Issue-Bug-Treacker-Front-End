@@ -1,6 +1,6 @@
 import React from "react";
 import {Doughnut, Pie, Polar} from "react-chartjs-2";
-import {Col, Collapse, Row, Skeleton, Spin} from "antd";
+import {Col, Collapse, Row, Spin} from "antd";
 import {transparentColors} from "../shared/gobalVariables";
 import {TicketStatistics} from "../shared/TicketStatistics";
 

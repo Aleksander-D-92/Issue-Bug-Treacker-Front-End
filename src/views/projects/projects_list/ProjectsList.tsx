@@ -4,6 +4,7 @@ import {ProjectDetails} from "../../shared/Interfaces";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
+import {getLocale} from "../../shared/GetLocale";
 
 interface Props {
     projects?: ProjectDetails[],
@@ -14,16 +15,6 @@ interface Props {
 function ProjectsList(props: Props) {
     const [header, setHeader] = useState<string>()
     const [canEdit, setCanEdit] = useState<boolean>(false);
-    let locale = {
-        emptyText:
-            <Row justify={'center'} className={'mt-3'}>
-                <Spin size="large"
-                      tip={'Please wait, while we fetch projects the data...'}
-                      style={{fontSize: '1.1rem'}}
-                />
-                <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>
-            </Row>
-    };
 
     useEffect(() => {
         switch (props.authority) {
@@ -50,7 +41,7 @@ function ProjectsList(props: Props) {
                     itemLayout="vertical"
                     header={<h2>{header}</h2>}
                     dataSource={props.projects}
-                    locale={locale}
+                    locale={getLocale('projects')}
                     pagination={{
                         pageSize: 4, total: props.projects?.length, position: 'bottom'
                     }}

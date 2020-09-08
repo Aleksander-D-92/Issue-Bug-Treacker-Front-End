@@ -4,6 +4,7 @@ import {Row, Skeleton, Spin, Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
 import {solidColors} from "../shared/gobalVariables";
+import {getLocale} from "../shared/GetLocale";
 
 interface Props {
     tickets?: TicketDetails[],
@@ -31,7 +32,16 @@ function DashBoardTicketTable(props: Props) {
                 return '#8884d8'
         }
     }
-
+    let locale = {
+        emptyText:
+            <Row justify={'center'} className={'mt-3'}>
+                <Spin size="large"
+                      tip={'Please wait, while we fetch tickets the data...'}
+                      style={{fontSize: '1.1rem'}}
+                />
+                <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>
+            </Row>
+    };
     const columns = [
         {
             key: 'ticketId',
@@ -124,16 +134,9 @@ function DashBoardTicketTable(props: Props) {
 
     return (
         <React.Fragment>
-            {props.ticketsLoading ?
-                <Row justify={'center'} className={'mt-3'}>
-                    <Spin size="large"
-                          tip={'Please wait, while we fetch tickets the data...'}
-                          style={{fontSize: '1.1rem'}}
-                    />
-                    <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>
-                </Row> :
                 // @ts-ignore
                 <Table columns={columns}
+                       locale={getLocale('tickets')}
                        dataSource={props.tickets}
                        bordered
                        pagination={{total: props.tickets?.length}} className={'mt-3'}

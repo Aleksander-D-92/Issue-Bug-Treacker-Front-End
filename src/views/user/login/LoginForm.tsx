@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Card, Checkbox, Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {Link, useHistory} from "react-router-dom";
@@ -10,14 +10,17 @@ import {deleteAllCookies} from "../../shared/functions";
 function LoginForm() {
     let history = useHistory();
     const dispatch = useDispatch();
+    const [isLoading, setLoading] = useState<boolean>(false);
 
     function onFinish(loginForm: Store) {
+        setLoading(true)
         axios.post('/users/authenticate', loginForm)
             .then((e) => {
                 updateCookiesAndStore(e.data.id_token)
                 history.push('/dashboard');
-            }).catch((e) => {
-            console.log(e);
+                setLoading(false);
+            }).catch(() => {
+            setLoading(false);
         })
     }
 
@@ -81,7 +84,8 @@ function LoginForm() {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button" block={true}>
+                        <Button type="primary" htmlType="submit" className="login-form-button" loading={isLoading}
+                                block={true}>
                             Log in
                         </Button>
                         Or <Link to={'/users/register'}>register now!</Link>

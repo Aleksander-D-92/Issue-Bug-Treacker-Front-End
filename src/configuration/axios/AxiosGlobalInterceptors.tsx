@@ -40,17 +40,14 @@ function AxiosGlobalInterceptors() {
 
         //Response interceptor
         axios.interceptors.response.use(function (response) {
-            toast.success(`${response.status} ${response.statusText}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            toast.success(`${response.status}`, {position: toast.POSITION.BOTTOM_RIGHT})
             return response;
         }, function (error) {
-            console.log(error);
-            // let errorDescription = '';
-            // if (error.response.data.message === undefined) {
-            //     errorDescription = error.response.data;
-            // } else {
-            //     errorDescription = error.response.data.message;
-            // }
-            // toast.error(`Response ERROR status : ${error.response.status}  Description : ${errorDescription}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            if (error.response.data !== null) {
+                toast.error(`${error.response.status} ${error.response.data.message}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            } else {
+                toast.error(`${error.response.status}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            }
             return Promise.reject(error);
         });
     }, [])

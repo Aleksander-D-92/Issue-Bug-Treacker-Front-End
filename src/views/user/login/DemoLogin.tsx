@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, MouseEvent} from "react";
 import {Button, Card, Popover} from "antd";
 import axios from 'axios'
 import {useHistory} from 'react-router-dom';
@@ -20,8 +20,10 @@ import {
 function DemoLogin() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const [isLoading, setLoading] = useState<boolean>(false);
 
-    function handleDemoLogin(e: React.MouseEvent<HTMLButtonElement>) {
+    function handleDemoLogin(e: MouseEvent<HTMLButtonElement>) {
+        setLoading(true)
         let name = e.currentTarget.name;
         let credentials = {};
         switch (name) {
@@ -54,8 +56,8 @@ function DemoLogin() {
                 }
             });
             history.push('/dashboard')
-        }).catch((e) => {
-            console.log(e);
+        }).catch(() => {
+            setLoading(false)
         })
     }
 
@@ -66,26 +68,45 @@ function DemoLogin() {
             </Popover>
         }>
             <Popover placement="left" title={managerDescription}>
-                <Button type="primary" htmlType="submit" className="login-form-button mb-2" block={true}
-                        name='projectManager' onClick={handleDemoLogin}>
+                <Button type="primary"
+                        htmlType="submit"
+                        className="login-form-button mb-2"
+                        block={true}
+                        name='projectManager'
+                        loading={isLoading}
+                        onClick={handleDemoLogin}>
                     Demo Project Manager
                 </Button>
             </Popover>
             <Popover placement="left" title={qaDescription}>
-                <Button type="primary" htmlType="submit" className="login-form-button" block={true} name='qa'
+                <Button type="primary"
+                        htmlType="submit"
+                        className="login-form-button"
+                        block={true}
+                        name='qa'
+                        loading={isLoading}
                         onClick={handleDemoLogin}>
                     Demo QA Engineer
                 </Button>
             </Popover>
             <Popover placement="left" title={devDescription}>
-                <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true}
+                <Button type="primary"
+                        htmlType="submit"
+                        className="login-form-button mt-2"
+                        block={true}
                         name='developer'
+                        loading={isLoading}
                         onClick={handleDemoLogin}>
                     Demo Developer
                 </Button>
             </Popover>
             <Popover placement="left" title={adminDescription}>
-                <Button type="primary" htmlType="submit" className="login-form-button mt-2" block={true} name='admin'
+                <Button type="primary"
+                        htmlType="submit"
+                        className="login-form-button mt-2"
+                        block={true}
+                        name='admin'
+                        loading={isLoading}
                         onClick={handleDemoLogin}>
                     Demo admin
                 </Button>

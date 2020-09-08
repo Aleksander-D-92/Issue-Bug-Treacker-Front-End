@@ -1,47 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button, Card, Checkbox, Form, Input} from "antd";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Link, useHistory} from "react-router-dom";
-import axios from 'axios'
-import {Store} from "rc-field-form/lib/interface";
-import {useDispatch} from 'react-redux';
-import {deleteAllCookies} from "../../shared/functions";
+import {Link} from "react-router-dom";
 
-function LoginForm() {
-    let history = useHistory();
-    const dispatch = useDispatch();
-    const [isLoading, setLoading] = useState<boolean>(false);
+interface Props {
+    onFinish: Function,
+    isLoading: boolean
+}
 
-    function onFinish(loginForm: Store) {
-        setLoading(true)
-        axios.post('/users/authenticate', loginForm)
-            .then((e) => {
-                updateCookiesAndStore(e.data.id_token)
-                history.push('/dashboard');
-                setLoading(false);
-            }).catch(() => {
-            setLoading(false);
-        })
-    }
-
-    function updateCookiesAndStore(token: string) {
-        deleteAllCookies(); //delete all cookies
-        document.cookie = `jwt=${token}`; //make a new cookie form the the new token
-        //
-        let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object
-        dispatch({type: 'userLoggedIn'});
-        dispatch({
-            type: 'userDetails', payload: {
-                id: jwtPayload.id,
-                username: jwtPayload.sub,
-                authority: jwtPayload.authorities,
-                exp: jwtPayload.exp,
-                authorizationHeader: `Bearer ${token}`
-            }
-        })
-
-    }
-
+function LoginForm(props: Props) {
     return (
         <React.Fragment>
             <Card title={<h2>Login</h2>}>
@@ -49,7 +16,7 @@ function LoginForm() {
                     name="normal_login"
                     className="login-form"
                     layout={'vertical'}
-                    onFinish={onFinish}
+                    onFinish={(e) => props.onFinish(e)}
                 >
                     <Form.Item
                         label="Username"
@@ -84,7 +51,7 @@ function LoginForm() {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button" loading={isLoading}
+                        <Button type="primary" htmlType="submit" className="login-form-button" loading={props.isLoading}
                                 block={true}>
                             Log in
                         </Button>

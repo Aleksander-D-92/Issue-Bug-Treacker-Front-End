@@ -22,7 +22,7 @@ function MyProjectsView() {
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Title level={2} className={'mt-2'}>You can edit them, submit
                         tickets for any projects or view their details</Title>
-                    <ProjectsList authority={state.userDetails.authority} projects={projects}/>
+                    <ProjectsList authority={state.userDetails.authority} projects={projects} projectsLoading={true}/>
                 </Col>
             </Row>
         </React.Fragment>

@@ -21,8 +21,8 @@ function TicketCharts(props: Props) {
                         <Panel header="Tickets by Priority" key="1">
                             <Row justify={'center'}>
                                 <Spin size="large"
-                                      tip={'Please wait, while we fetch the data...'}
-                                      style={{display: props.ticketsLoading ? '' : 'none'}}/>
+                                      tip={'Please wait, while we fetch the tickets data...'}
+                                      style={{display: props.ticketsLoading ? '' : 'none', fontSize: '1.1rem'}}/>
                             </Row>
                             <Pie data={{
                                 labels: ['Low', 'Medium', 'High', 'Urgent'],
@@ -58,8 +58,8 @@ function TicketCharts(props: Props) {
                         <Panel header="Tickets by Category" key="1">
                             <Row justify={'center'}>
                                 <Spin size="large"
-                                      tip={'Please wait, while we fetch the data...'}
-                                      style={{display: props.ticketsLoading ? '' : 'none'}}/>
+                                      tip={'Please wait, while we fetch the tickets data...'}
+                                      style={{display: props.ticketsLoading ? '' : 'none', fontSize: '1.1rem'}}/>
                             </Row>
                             <Doughnut data={{
                                 labels: ['Other', 'Feature Request', 'Bugs and Errors'],
@@ -94,8 +94,8 @@ function TicketCharts(props: Props) {
                         <Panel header="Tickets by Status" key="1">
                             <Row justify={'center'}>
                                 <Spin size="large"
-                                      tip={'Please wait, while we fetch the data...'}
-                                      style={{display: props.ticketsLoading ? '' : 'none'}}/>
+                                      tip={'Please wait, while we fetch the tickets data...'}
+                                      style={{display: props.ticketsLoading ? '' : 'none', fontSize: '1.1rem'}}/>
                             </Row>
                             <Polar data={{
                                 labels: ['Unassigned', 'In progress', 'Resolved'],

@@ -127,10 +127,10 @@ function DashBoardTicketTable(props: Props) {
             {props.ticketsLoading ?
                 <Row justify={'center'} className={'mt-3'}>
                     <Spin size="large"
-                          tip={'Please wait, while we fetch the data...'}
-                        // style={{display: props.chartsLoading ? '' : 'none'}}
+                          tip={'Please wait, while we fetch tickets the data...'}
+                          style={{fontSize: '1.1rem'}}
                     />
-                    <Skeleton loading={true} active={true} paragraph={{rows: 10}}/>
+                    <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>
                 </Row> :
                 // @ts-ignore
                 <Table columns={columns}

@@ -20,6 +20,7 @@ function DashBoardView() {
     const [projects, setProjects] = useState<ProjectDetails[]>();
     const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
     const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
+    const [projectsLoading, setProjectsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         switch (userRole) {
@@ -32,6 +33,7 @@ function DashBoardView() {
 
                 axios.get(`/projects?action=own&id=${id}`).then((e) => {
                     setProjects(e.data);
+                    setProjectsLoading(false);
                 })
                 break;
             case 'ROLE_DEVELOPER':
@@ -42,6 +44,7 @@ function DashBoardView() {
                 });
                 axios.get(`/projects?action=include-developer&id=${id}`).then((e) => {
                     setProjects(e.data);
+                    setProjectsLoading(false);
 
                 });
                 break
@@ -53,6 +56,7 @@ function DashBoardView() {
                 });
                 axios.get(`/projects?action=include-qa&id=${id}`).then((e) => {
                     setProjects(e.data);
+                    setProjectsLoading(false);
                 });
                 break;
             case 'ROLE_ADMIN':
@@ -63,6 +67,7 @@ function DashBoardView() {
                 });
                 axios.get(`/projects?action=all`).then((e) => {
                     setProjects(e.data);
+                    setProjectsLoading(false);
                 });
                 break;
         }
@@ -77,7 +82,8 @@ function DashBoardView() {
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <ProjectsList projects={projects}
-                                  authority={reduxState.userDetails.authority}/>
+                                  authority={reduxState.userDetails.authority}
+                                  projectsLoading={projectsLoading}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

@@ -13,18 +13,23 @@ function UserRegister() {
     const history = useHistory();
     const [form] = Form.useForm();
     const [authorities, setAuthorities] = useState<Authority[]>();
+    const [isLoadingAuth, setLoadingAuth] = useState(true);
+    const [isLoadingButton, setLoadingButton] = useState(false);
+
     useEffect(() => {
         axios.get(`/authorities/all`).then((e) => {
             setAuthorities(e.data);
             form.setFieldsValue({'authorityId': 3})
+            setLoadingAuth(false)
         })
     }, [])
 
     function onFinish(registerForm: any) {
+        setLoadingButton(true);
         axios.post('/users/register', registerForm).then((e) => {
             history.push('/users/login')
         }).catch((e) => {
-            console.log(e);
+            setLoadingButton(false)
         })
     }
 
@@ -97,14 +102,17 @@ function UserRegister() {
                                        label="This will be your authority"
                                        rules={[{required: true, message: 'please select your role'}]}>
 
-                                <Select allowClear={true}>
+                                <Select allowClear={true} loading={isLoadingAuth}>
                                     {authorities?.map(e => <Option disabled={e.authorityId !== 3}
                                                                    value={e.authorityId}>{e.authority}</Option>)}
                                 </Select>
                             </Form.Item>
                         </Popover>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" block>
+                            <Button type="primary"
+                                    block={true}
+                                    htmlType="submit"
+                                    loading={isLoadingButton}>
                                 Register
                             </Button>
                         </Form.Item>

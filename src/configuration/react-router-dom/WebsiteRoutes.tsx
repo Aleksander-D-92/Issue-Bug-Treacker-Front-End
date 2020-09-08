@@ -18,6 +18,7 @@ import {NewProjectView} from "../../views/projects/new_project/NewProjectView";
 import {TicketDetailsView} from "../../views/tickets/ticket_details/TicketDetailsView";
 import {ProjectsQaActionView} from "../../views/projects/project_assign_remove_qa/ProjectsQaActionView";
 import {ProjectsQaEditView} from "../../views/projects/project_assign_remove_qa/ProjectsQaEditView";
+import {ManagerCreateAccView} from "../../views/user/manager/ManagerCreateAccView";
 
 function WebsiteRoutes() {
     return (
@@ -26,6 +27,7 @@ function WebsiteRoutes() {
             <Route exact path={'/users/register'}><UserRegister/></Route>
             <Route exact path={'/users/logout'}><HandleLogout/></Route>
             <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
+            <Route exact path={'/managers/create-accounts'}><ManagerCreateAccView/></Route>
             <Route exact path={'/admins/all-users'}><AdminUsersTable/></Route>
             <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
             <Route exact path={'/dashboard'}><DashBoardView/></Route>

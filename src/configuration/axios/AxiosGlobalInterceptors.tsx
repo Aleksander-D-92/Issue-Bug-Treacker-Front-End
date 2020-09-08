@@ -43,6 +43,7 @@ function AxiosGlobalInterceptors() {
             toast.success(`${response.status} ${response.statusText}`, {position: toast.POSITION.BOTTOM_RIGHT})
             return response;
         }, function (error) {
+            console.log(error);
             // let errorDescription = '';
             // if (error.response.data.message === undefined) {
             //     errorDescription = error.response.data;

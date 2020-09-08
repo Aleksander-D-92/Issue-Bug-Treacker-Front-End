@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Menu} from 'antd';
-import {BugOutlined, FileTextOutlined, IdcardOutlined, PieChartOutlined, UsergroupAddOutlined} from '@ant-design/icons';
+import {
+    BugOutlined,
+    FileTextOutlined,
+    IdcardOutlined,
+    PieChartOutlined,
+    UsergroupAddOutlined,
+    UserAddOutlined
+} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
@@ -30,7 +37,10 @@ function LeftNavMenu() {
 
     return (
         <React.Fragment>
-            <Menu className={''} defaultSelectedKeys={['0']} defaultOpenKeys={['projects', 'tickets']} mode="inline"
+            <Menu className={''}
+                  defaultSelectedKeys={['0']}
+                  defaultOpenKeys={['projects', 'tickets']}
+                  mode="inline"
                   theme="dark"
                   style={{fontSize: '1.1rem'}}>
                 <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
@@ -41,6 +51,9 @@ function LeftNavMenu() {
                 </Menu.Item>
                 <Menu.Item key="2" icon={<UsergroupAddOutlined style={{fontSize: '1.2rem'}}/>}>
                     <Link to={'/admins/all-users'}>Mange Users</Link>
+                </Menu.Item>
+                <Menu.Item key="3" icon={<UserAddOutlined style={{fontSize: '1.2rem'}}/>}>
+                    <Link to={'/managers/create-accounts'}>Create accounts</Link>
                 </Menu.Item>
                 <SubMenu
                     key="projects"

@@ -1,6 +1,6 @@
 import React from "react";
 import {ProjectDetails} from "../../shared/Interfaces";
-import {Card, Descriptions} from "antd";
+import {Descriptions} from "antd";
 import {capitalizeString, formatDate} from "../../shared/functions";
 
 interface Props {

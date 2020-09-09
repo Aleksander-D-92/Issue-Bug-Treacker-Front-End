@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Card, Col, Row, Typography} from "antd";
+import {Card, Col, Row, Skeleton, Spin, Typography} from "antd";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Link, useParams} from "react-router-dom";
 import {capitalizeString} from "../../shared/functions";
@@ -17,9 +17,11 @@ function ProjectsQaActionView() {
     const managerId = state.userDetails.id;
     const {action} = useParams();
     const [projects, setProjects] = useState<ProjectDetails[]>();
+    const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
         axios.get(`/projects?action=own&id=${managerId}`).then((e) => {
             setProjects(e.data);
+            setLoading(false);
         });
     }, [])
     return (
@@ -39,6 +41,13 @@ function ProjectsQaActionView() {
                             </Link>
                         )
                     })};
+                    <Row justify={'center'} className={'mt-3'} style={{display: (loading) ? '' : 'none'}}>
+                        <Spin size="large"
+                              tip={`Please wait, until we fetch your projects...`}
+                              style={{fontSize: '1.1rem'}}
+                        />
+                        <Skeleton loading={true} active={true} paragraph={{rows: 10}}/>
+                    </Row>
                 </Card>
             </Col>
         </Row>

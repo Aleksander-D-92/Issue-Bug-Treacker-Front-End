@@ -21,23 +21,28 @@ function ProjectsQaEditView() {
     const state = useSelector((state: ReduxState) => state);
     const managerId = state.userDetails.id;
     const [qa, setQa] = useState<UserDetails[]>();
+    const [qaLoading, setQaLoading] = useState<boolean>(true);
     const [project, setProject] = useState<ProjectDetails>();
+    const [projectLoading, setProjectLoading] = useState<boolean>(true);
 
     useEffect(() => {
         switch (action) {
             case 'assign':
                 axios.get(`/projects/qa?action=available&managerId=${managerId}&projectId=${projectId}`).then((e) => {
                     setQa(e.data);
+                    setQaLoading(false);
                 });
                 break;
             case 'remove':
                 axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
                     setQa(e.data);
+                    setQaLoading(false);
                 })
                 break;
         }
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             setProject(e.data[0]);
+            setProjectLoading(false);
         })
     }, [])
 

@@ -26,10 +26,10 @@ function ProjectInfo(props: Props) {
                         Registration Date : {formatDate(props.project?.projectManager.registrationDate)}
                     </Descriptions.Item>
                     <Descriptions.Item label="Total tickets" span={2}>
-                        {props.totalQa}
+                        {props.totalTickets}
                     </Descriptions.Item>
                     <Descriptions.Item label="Total assigned QA" span={2}>
-                        {props.totalTickets}
+                        {props.totalQa}
                     </Descriptions.Item>
                 </Descriptions>
         </React.Fragment>

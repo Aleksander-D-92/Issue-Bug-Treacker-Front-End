@@ -33,7 +33,9 @@ function ProjectDetailsView() {
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Card className={'mt-3'}>
-                        <ProjectInfo project={project} totalQa={qa?.length} totalTickets={tickets?.length}/>
+                        <ProjectInfo project={project}
+                                     totalQa={qa?.length}
+                                     totalTickets={tickets?.length}/>
                     </Card>
                 </Col>
             </Row>
@@ -44,7 +46,8 @@ function ProjectDetailsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <DashBoardTicketTable tickets={tickets} ticketsLoading={false}/>
+                    <DashBoardTicketTable tickets={tickets}
+                                          ticketsLoading={false}/>
                 </Col>
             </Row>
         </React.Fragment>

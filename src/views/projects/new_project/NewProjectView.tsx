@@ -1,22 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import {useSelector} from 'react-redux';
 import axios from 'axios'
 import {Button, Card, Col, Form, Input, Row} from "antd";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {useHistory} from 'react-router-dom';
 
+const {TextArea} = Input;
+
 
 function NewProjectView() {
     const state = useSelector((state: ReduxState) => state);
     const history = useHistory();
+    const [loading, setLoading] = useState<boolean>(false);
 
     function submitProject(e: any) {
+        setLoading(true);
         const data = {
             title: e.title,
             description: e.description
         }
         axios.post(`/projects/${state.userDetails.id}`, data).then((e) => {
             history.push(`/projects/my`);
+        }).catch(() => {
+            setLoading(false);
         })
     }
 
@@ -41,7 +47,9 @@ function NewProjectView() {
 
                                 }]}
                             >
-                                <Input type={'text'} allowClear={true}/>
+                                <Input type={'text'}
+                                       allowClear={true}
+                                       placeholder={'Title must be between 10 and 50 symbols long'}/>
                             </Form.Item>
                             <Form.Item
                                 label="Description"
@@ -55,10 +63,15 @@ function NewProjectView() {
 
                                 }]}
                             >
-                                <Input type={'text'} allowClear={true}/>
+                                <TextArea rows={4}
+                                          allowClear={true}
+                                          placeholder={'Description must be between 10 and 255 symbols long'}/>
                             </Form.Item>
                             <Form.Item>
-                                <Button type="primary" htmlType="submit" block>
+                                <Button type="primary"
+                                        htmlType="submit"
+                                        block
+                                        loading={loading}>
                                     Create new project
                                 </Button>
                             </Form.Item>

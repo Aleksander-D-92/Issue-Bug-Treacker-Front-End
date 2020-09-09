@@ -2,55 +2,20 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {useHistory, useParams} from 'react-router-dom';
 import {Button, Card, Col, Form, Input, Row} from "antd";
+import {ProjectDetails} from "../../shared/Interfaces";
+
+const {TextArea} = Input;
 
 
 function ProjectEditView() {
     const {projectId} = useParams();
     const history = useHistory();
-    const [updateProjectForm, setUpdateProjectForm] = useState<React.ReactNode>();
+    const [project, setProject] = useState<ProjectDetails>();
+    const [form] = Form.useForm();
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
-            const project = e.data[0];
-            setUpdateProjectForm(
-                <Form layout={'vertical'}
-                      name={'projectEditForm'}
-                      initialValues={{title: project.title, description: project.description}}
-                      onFinish={editProject}>
-                    <Form.Item
-                        label="Title"
-                        name="title"
-                        validateTrigger={false}
-                        rules={[{
-                            required: true,
-                            min: 5,
-                            max: 50,
-                            message: 'Title must be between 10 and 50 symbols long',
-
-                        }]}
-                    >
-                        <Input type={'text'} allowClear={true}/>
-                    </Form.Item>
-                    <Form.Item
-                        label="Description"
-                        name="description"
-                        validateTrigger={false}
-                        rules={[{
-                            required: true,
-                            min: 10,
-                            max: 225,
-                            message: 'Description must be between 10 and 255 symbols long',
-
-                        }]}
-                    >
-                        <Input type={'text'} allowClear={true}/>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" danger={true} htmlType="submit" block>
-                            Edit project
-                        </Button>
-                    </Form.Item>
-                </Form>
-            )
+            setProject(e.data[0]);
+            form.setFieldsValue({'title': e.data[0].title, 'description': e.data[0].description})
 
         })
     }, [])
@@ -67,7 +32,48 @@ function ProjectEditView() {
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Card title="Edit your project" className={'mt-3'}>
-                        {updateProjectForm}
+                        <Form layout={'vertical'}
+                              name={'projectEditForm'}
+                              form={form}
+                              onFinish={editProject}>
+                            <Form.Item
+                                label="Title"
+                                name="title"
+                                validateTrigger={false}
+                                rules={[{
+                                    required: true,
+                                    min: 5,
+                                    max: 50,
+                                    message: 'Title must be between 10 and 50 symbols long',
+
+                                }]}
+                            >
+                                <Input type={'text'}
+                                       allowClear={true}
+                                       placeholder={'Title must be between 10 and 50 symbols long'}/>
+                            </Form.Item>
+                            <Form.Item
+                                label="Description"
+                                name="description"
+                                validateTrigger={false}
+                                rules={[{
+                                    required: true,
+                                    min: 10,
+                                    max: 225,
+                                    message: 'Description must be between 10 and 255 symbols long',
+
+                                }]}
+                            >
+                                <TextArea rows={4}
+                                          allowClear={true}
+                                          placeholder={'Description must be between 10 and 255 symbols long'}/>
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" danger={true} htmlType="submit" block>
+                                    Edit project
+                                </Button>
+                            </Form.Item>
+                        </Form>
                     </Card>
                 </Col>
             </Row>

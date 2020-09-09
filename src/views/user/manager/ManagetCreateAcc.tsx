@@ -11,7 +11,8 @@ interface Props {
     authorities?: Authority[]
     onFinish: Function,
     form: FormInstance,
-    loading: boolean
+    loadingAuthorities: boolean,
+    buttonLoading: boolean
 }
 
 function ManagerCreateAcc(props: Props) {
@@ -82,7 +83,7 @@ function ManagerCreateAcc(props: Props) {
                                rules={[{required: true, message: 'Please select the accounts authority'}]}>
 
                         <Select allowClear={true}
-                                loading={props.loading}>
+                                loading={props.loadingAuthorities}>
                             {props.authorities?.map(e =>
                                 (e.authorityId === 1 || e.authorityId === 2) ?
                                     <Option value={e.authorityId}>{e.authority}</Option> : ''
@@ -90,7 +91,7 @@ function ManagerCreateAcc(props: Props) {
                         </Select>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" block>
+                        <Button type="primary" htmlType="submit" block loading={props.buttonLoading}>
                             Register new employee
                         </Button>
                     </Form.Item>

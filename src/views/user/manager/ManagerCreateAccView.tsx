@@ -9,25 +9,25 @@ import {ManagerCreateAcc} from "./ManagetCreateAcc";
 function ManagerCreateAccView() {
     const state = useSelector((state: ReduxState) => state);
     const [authorities, setAuthorities] = useState<Authority[]>();
-    const [loading, setLoading] = useState<boolean>(true)
+    const [loadingAuthorities, setLoadingAuthorities] = useState<boolean>(true);
+    const [buttonLoading, setButtonLoading] = useState<boolean>(false);
     const [form] = Form.useForm();
     const managerId = state.userDetails.id;
     useEffect(() => {
         axios.get(`/authorities/all`).then((e) => {
             setAuthorities(e.data);
-            setLoading(false)
+            setLoadingAuthorities(false)
         });
     }, [])
 
     function onFinish(e: any) {
+        setButtonLoading(true)
         const data = {
             username: e.username,
             password: e.password,
             confirmPassword: e.confirmPassword,
             authorityId: e.authorityId
         };
-        console.log(data);
-        console.log(managerId);
         axios.post(`/users/register?managerId=${managerId}`, data).then((e) => {
             form.setFieldsValue({
                 'username': '',
@@ -35,6 +35,9 @@ function ManagerCreateAccView() {
                 'confirmPassword': '',
                 'authorityId': '',
             })
+            setButtonLoading(false)
+        }).catch(() => {
+            setButtonLoading(false)
         })
     }
 
@@ -44,7 +47,8 @@ function ManagerCreateAccView() {
                 <ManagerCreateAcc authorities={authorities}
                                   onFinish={onFinish}
                                   form={form}
-                                  loading={loading}/>
+                                  buttonLoading={buttonLoading}
+                                  loadingAuthorities={loadingAuthorities}/>
             </Col>
         </Row>
     )

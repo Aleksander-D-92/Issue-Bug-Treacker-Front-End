@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, useLocation} from "react-router-dom";
 import {LoginView} from "../../views/user/login/LoginView";
 import {UserRegister} from "../../views/user/register/UserRegister";
 import {AdminUsersTable} from "../../views/user/admin/users_table/AdminUsersTable";
@@ -19,30 +19,35 @@ import {TicketDetailsView} from "../../views/tickets/ticket_details/TicketDetail
 import {ProjectsQaActionView} from "../../views/projects/project_assign_remove_qa/ProjectsQaActionView";
 import {ProjectsQaEditView} from "../../views/projects/project_assign_remove_qa/ProjectsQaEditView";
 import {ManagerCreateAccView} from "../../views/user/manager/ManagerCreateAccView";
+import {AnimatePresence} from 'framer-motion'
 
 function WebsiteRoutes() {
+    const location = useLocation();
     return (
-        <Switch>
-            <Route exact path={'/users/login'}><LoginView/></Route>
-            <Route exact path={'/users/register'}><UserRegister/></Route>
-            <Route exact path={'/users/logout'}><HandleLogout/></Route>
-            <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
-            <Route exact path={'/managers/create-accounts'}><ManagerCreateAccView/></Route>
-            <Route exact path={'/admins/all-users'}><AdminUsersTable/></Route>
-            <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
-            <Route exact path={'/dashboard'}><DashBoardView/></Route>
-            <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
-            <Route exact path={'/tickets/all'}><AllTicketsView/></Route>
-            <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>   {/*brings the all projects so you can click submit ticket*/}
-            <Route exact path={'/tickets/details/:ticketId'}><TicketDetailsView/></Route>
-            <Route exact path={'/projects/my'}><MyProjectsView/></Route>
-            <Route exact path={'/projects/new'}><NewProjectView/></Route>
-            <Route exact path={'/projects/details/:projectId'}><ProjectDetailsView/></Route>
-            <Route exact path={'/projects/edit/:projectId'}><ProjectEditView/></Route>
-            <Route exact path={'/projects/submit-ticket/:projectId'}><SubmitTicketFormView/></Route>
-            <Route exact path={'/projects/qa/:action'}><ProjectsQaActionView/></Route>
-            <Route exact path={'/projects/qa/:action/:projectId'}><ProjectsQaEditView/></Route>
-        </Switch>
+        <AnimatePresence exitBeforeEnter={true}>
+            <Switch location={location} key={location.key}>
+                <Route exact path={'/users/login'}><LoginView/></Route>
+                <Route exact path={'/users/register'}><UserRegister/></Route>
+                <Route exact path={'/users/logout'}><HandleLogout/></Route>
+                <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
+                <Route exact path={'/managers/create-accounts'}><ManagerCreateAccView/></Route>
+                <Route exact path={'/admins/all-users'}><AdminUsersTable/></Route>
+                <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
+                <Route exact path={'/dashboard'}><DashBoardView/></Route>
+                <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
+                <Route exact path={'/tickets/all'} ><AllTicketsView/></Route>
+                <Route exact
+                       path={'/tickets/submit'}><SubmitTicketVIew/></Route> {/*brings the all projects so you can click submit ticket*/}
+                <Route exact path={'/tickets/details/:ticketId'}><TicketDetailsView/></Route>
+                <Route exact path={'/projects/my'}><MyProjectsView/></Route>
+                <Route exact path={'/projects/new'}><NewProjectView/></Route>
+                <Route exact path={'/projects/details/:projectId'}><ProjectDetailsView/></Route>
+                <Route exact path={'/projects/edit/:projectId'}><ProjectEditView/></Route>
+                <Route exact path={'/projects/submit-ticket/:projectId'}><SubmitTicketFormView/></Route>
+                <Route exact path={'/projects/qa/:action'}><ProjectsQaActionView/></Route>
+                <Route exact path={'/projects/qa/:action/:projectId'}><ProjectsQaEditView/></Route>
+            </Switch>
+        </AnimatePresence>
     )
 }
 

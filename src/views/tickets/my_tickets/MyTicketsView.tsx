@@ -6,6 +6,8 @@ import {TicketDetails} from "../../shared/Interfaces";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 import {Col, Row} from "antd";
 import {TicketsGreeting} from "./MyTicketsHeader";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 
 function MyTicketsView() {
@@ -39,7 +41,11 @@ function MyTicketsView() {
         }
     }, [authority, id])
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
                     <TicketsGreeting username={state.userDetails.username}
@@ -51,7 +57,7 @@ function MyTicketsView() {
                     <DashBoardTicketTable tickets={tickets} ticketsLoading={false}/>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

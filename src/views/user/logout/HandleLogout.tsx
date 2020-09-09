@@ -2,6 +2,8 @@ import React, {useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {deleteAllCookies} from "../../shared/functions";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 
 function HandleLogout() {
@@ -15,7 +17,11 @@ function HandleLogout() {
         history.push("/users/login");
     }, [dispatch, history])
     return (
-        <div>HandleLogout</div>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        ></motion.div>
     )
 }
 

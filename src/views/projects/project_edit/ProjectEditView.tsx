@@ -3,6 +3,8 @@ import axios from 'axios';
 import {useHistory, useParams} from 'react-router-dom';
 import {Button, Card, Col, Form, Input, Row} from "antd";
 import {ProjectDetails} from "../../shared/Interfaces";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 const {TextArea} = Input;
 
@@ -28,7 +30,11 @@ function ProjectEditView() {
     }
 
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Card title="Edit your project" className={'mt-3'}>
@@ -77,7 +83,7 @@ function ProjectEditView() {
                     </Card>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

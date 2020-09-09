@@ -6,6 +6,8 @@ import {Authority, UserDetails} from "../../../shared/Interfaces";
 import {DisplayUserDetails} from "./DisplayUserDetails";
 import {EditUserAuthority} from "./EditUserAuthority";
 import {ChangeAccountLock} from "./ChangeAccountLock";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../../shared/gobalVariables";
 
 
 function EditUserVIew() {
@@ -59,16 +61,22 @@ function EditUserVIew() {
     }
 
     return (
-        <Row justify={'center'} className={'mt-3'}>
-            <Col xs={24} sm={23} md={23} lg={14}>
-                <Card title="You can ban/lock this users account or change its authority">
-                    <DisplayUserDetails user={user}/>
-                    <EditUserAuthority user={user} authorities={authorities} changeAuthority={changeAuthority}
-                                       formState={formState}/>
-                    <ChangeAccountLock user={user} lockAccount={lockAccount}/>
-                </Card>
-            </Col>
-        </Row>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
+            <Row justify={'center'} className={'mt-3'}>
+                <Col xs={24} sm={23} md={23} lg={14}>
+                    <Card title="You can ban/lock this users account or change its authority">
+                        <DisplayUserDetails user={user}/>
+                        <EditUserAuthority user={user} authorities={authorities} changeAuthority={changeAuthority}
+                                           formState={formState}/>
+                        <ChangeAccountLock user={user} lockAccount={lockAccount}/>
+                    </Card>
+                </Col>
+            </Row>
+        </motion.div>
     )
 }
 

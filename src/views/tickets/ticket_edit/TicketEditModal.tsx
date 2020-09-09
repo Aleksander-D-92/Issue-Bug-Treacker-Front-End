@@ -46,7 +46,7 @@ function TicketEditModal(props: Props) {
                 Edit Ticket
             </Button>
             <Modal
-                title="Edit comment"
+                title="Edit Ticket"
                 visible={visible}
                 onOk={handleCancel}
                 onCancel={handleCancel}
@@ -149,8 +149,19 @@ function TicketEditModal(props: Props) {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" block>
-                            Submit new ticket
+                        <Button type="primary"
+                                htmlType="submit"
+                                block
+                                danger={true}
+                                onClick={handleCancel}
+                                className={'mb-2'}>
+                            Edit ticket
+                        </Button>
+                        <Button type="primary"
+                                htmlType="submit"
+                                block
+                                onClick={handleCancel}>
+                            Cancel
                         </Button>
                     </Form.Item>
                 </Form>

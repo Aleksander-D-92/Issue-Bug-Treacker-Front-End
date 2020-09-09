@@ -5,6 +5,8 @@ import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Button, Card, Col, Form, Input, Row, Select} from "antd";
 import TextArea from "antd/es/input/TextArea";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 const {Option} = Select;
 
@@ -29,7 +31,11 @@ function SubmitTicketFormView() {
     }
 
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Card title="Ticket Submit form" className={'mt-3'}>
@@ -97,7 +103,7 @@ function SubmitTicketFormView() {
                     </Card>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

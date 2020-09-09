@@ -4,6 +4,8 @@ import axios from 'axios'
 import {Button, Card, Col, Form, Input, Row} from "antd";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {useHistory} from 'react-router-dom';
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 const {TextArea} = Input;
 
@@ -27,9 +29,13 @@ function NewProjectView() {
     }
 
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
-                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                <Col xs={24} sm={23} md={23} lg={14}>
                     <Card title={'Submit a new project'} className={'mt-3'}>
                         <Form layout={'vertical'}
                               name={'projectEditForm'}
@@ -79,7 +85,7 @@ function NewProjectView() {
                     </Card>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

@@ -10,6 +10,8 @@ import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {CommentSubmit} from "./CommentSubmit";
 import {TicketEditModal} from "../ticket_edit/TicketEditModal";
 import {TicketHistoryTable} from "./TicketHistoryTable";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 const {TabPane} = Tabs;
 
@@ -105,7 +107,11 @@ function TicketDetailsView() {
     }
 
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <TicketDescription ticket={ticket}/>
@@ -136,7 +142,7 @@ function TicketDetailsView() {
                 </Col>
             </Row>
 
-        </React.Fragment>
+        </motion.div>
     )
 }
 

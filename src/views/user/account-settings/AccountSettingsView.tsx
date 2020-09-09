@@ -7,6 +7,8 @@ import {UserDetails} from "../../shared/Interfaces";
 import {formatDate} from "../../shared/functions";
 import {ChangePasswordForm} from "./ChangePasswordForm";
 import {DeleteAccountForm} from "./DeleteAccountForm";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 const {Panel} = Collapse;
 
@@ -20,7 +22,11 @@ function AccountSettingsView() {
     }, [])
 
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={14}>
                     <Collapse defaultActiveKey={['1']}>
@@ -44,7 +50,7 @@ function AccountSettingsView() {
                     </Collapse>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

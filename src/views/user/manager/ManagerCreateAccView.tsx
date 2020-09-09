@@ -5,6 +5,8 @@ import {Col, Form, Row} from "antd";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {Authority} from "../../shared/Interfaces";
 import {ManagerCreateAcc} from "./ManagetCreateAcc";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 function ManagerCreateAccView() {
     const state = useSelector((state: ReduxState) => state);
@@ -42,15 +44,21 @@ function ManagerCreateAccView() {
     }
 
     return (
-        <Row justify={'center'}>
-            <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                <ManagerCreateAcc authorities={authorities}
-                                  onFinish={onFinish}
-                                  form={form}
-                                  buttonLoading={buttonLoading}
-                                  loadingAuthorities={loadingAuthorities}/>
-            </Col>
-        </Row>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
+            <Row justify={'center'}>
+                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <ManagerCreateAcc authorities={authorities}
+                                      onFinish={onFinish}
+                                      form={form}
+                                      buttonLoading={buttonLoading}
+                                      loadingAuthorities={loadingAuthorities}/>
+                </Col>
+            </Row>
+        </motion.div>
     )
 }
 

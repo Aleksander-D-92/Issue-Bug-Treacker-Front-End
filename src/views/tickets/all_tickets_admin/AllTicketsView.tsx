@@ -6,6 +6,8 @@ import {TicketDetails} from "../../shared/Interfaces";
 import {Col, Row} from "antd";
 import {TicketsGreeting} from "../my_tickets/MyTicketsHeader";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 function AllTicketsView() {
     const state = useSelector((state: ReduxState) => state);
@@ -17,7 +19,11 @@ function AllTicketsView() {
         })
     }, [])
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
                     <TicketsGreeting username={state.userDetails.username}
@@ -29,7 +35,7 @@ function AllTicketsView() {
                     <DashBoardTicketTable tickets={tickets} ticketsLoading={false}/>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

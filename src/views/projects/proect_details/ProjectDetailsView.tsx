@@ -7,6 +7,8 @@ import {ProjectInfo} from "./ProjectInfo";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 import {doTicketStatistics, TicketStatistics} from "../../shared/TicketStatistics";
 import {ProjectTicketsChart} from "./ProjectTicketsChart";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 
 function ProjectDetailsView() {
@@ -29,7 +31,11 @@ function ProjectDetailsView() {
         });
     }, [])
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Card className={'mt-3'}>
@@ -53,7 +59,7 @@ function ProjectDetailsView() {
                                           ticketsLoading={false}/>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

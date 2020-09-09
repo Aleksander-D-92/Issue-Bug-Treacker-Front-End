@@ -8,6 +8,9 @@ import {Store} from "rc-field-form/lib/interface";
 import axios from "axios";
 import {deleteAllCookies} from "../../shared/functions";
 import {demoAdminCredentials, demoDevCredentials, demoManagerCredentials, demoQaCredentials} from "./variables";
+import {motion} from 'framer-motion'
+import {routerVariant} from "../../shared/gobalVariables";
+
 
 function LoginView() {
     let history = useHistory();
@@ -83,16 +86,22 @@ function LoginView() {
     }
 
     return (
-        <Row justify={'center'} gutter={[24, 24]} className='mt-3'>
-            <Col xs={24} sm={23} md={23} lg={11}>
-                <DemoLogin handleDemoLogin={handleDemoLogin}
-                           isLoading={isLoading}/>
-            </Col>
-            <Col xs={24} sm={23} md={23} lg={11}>
-                <LoginForm onFinish={onFinish}
-                           isLoading={isLoading}/>
-            </Col>
-        </Row>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
+            <Row justify={'center'} gutter={[24, 24]} className='mt-3'>
+                <Col xs={24} sm={23} md={23} lg={11}>
+                    <DemoLogin handleDemoLogin={handleDemoLogin}
+                               isLoading={isLoading}/>
+                </Col>
+                <Col xs={24} sm={23} md={23} lg={11}>
+                    <LoginForm onFinish={onFinish}
+                               isLoading={isLoading}/>
+                </Col>
+            </Row>
+        </motion.div>
     )
 }
 

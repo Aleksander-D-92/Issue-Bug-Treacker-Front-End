@@ -9,6 +9,8 @@ import {DashBoardTicketTable} from "./DashBoardTicketTable";
 import {TicketCharts} from "./TicketCharts";
 import {Col, Row} from "antd";
 import {doTicketStatistics, TicketStatistics} from "../shared/TicketStatistics";
+import {motion} from 'framer-motion'
+import {routerVariant} from "../shared/gobalVariables";
 
 
 function DashBoardView() {
@@ -74,7 +76,11 @@ function DashBoardView() {
 
     }, []);
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <DashBoardGreeting authority={reduxState.userDetails.authority}
                                username={reduxState.userDetails.username}/>
             <TicketCharts ticketStatistics={ticketStatistics}
@@ -92,7 +98,7 @@ function DashBoardView() {
                                           ticketsLoading={ticketsLoading}/>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

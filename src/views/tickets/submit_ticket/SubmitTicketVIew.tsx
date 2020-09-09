@@ -5,6 +5,8 @@ import {ReduxState} from "../../../configuration/redux/reduxStrore";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Col, Row, Typography} from "antd";
 import {ProjectsList} from "../../projects/projects_list/ProjectsList";
+import {motion} from "framer-motion";
+import {routerVariant} from "../../shared/gobalVariables";
 
 function SubmitTicketVIew() {
     const state = useSelector((state: ReduxState) => state);
@@ -35,7 +37,11 @@ function SubmitTicketVIew() {
         }
     }, [])
     return (
-        <React.Fragment>
+        <motion.div variants={routerVariant}
+                    initial='initial'
+                    animate='animate'
+                    exit='exit'
+        >
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <Typography.Title level={2}>
@@ -48,7 +54,7 @@ function SubmitTicketVIew() {
                     <ProjectsList projects={projects} authority={state.userDetails.authority} projectsLoading={true}/>
                 </Col>
             </Row>
-        </React.Fragment>
+        </motion.div>
     )
 }
 

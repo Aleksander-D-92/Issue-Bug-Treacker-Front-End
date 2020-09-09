@@ -35,7 +35,10 @@ function ProjectDetailsView() {
                     <Card className={'mt-3'}>
                         <ProjectInfo project={project}
                                      totalQa={qa?.length}
-                                     totalTickets={tickets?.length}/>
+                                     totalTickets={tickets?.length}
+                                     projectLoading={false}
+                                     ticketsLoading={false}
+                                     assignedQaLoading={false}/>
                     </Card>
                 </Col>
             </Row>

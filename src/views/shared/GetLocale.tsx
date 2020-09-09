@@ -21,15 +21,15 @@ interface Props {
 }
 
 function LoadingNode(props: Props) {
-    return <Row justify={'center'} className={'mt-3'}>
+    return <Row justify={'center'} className={'mt-2'} style={{display: (props.loading) ? '' : 'none'}}>
         <Spin size="large"
-              tip={`Please wait, until we fetch the ${props.message} data...`}
+              tip={`${props.message}`}
               style={{fontSize: '1.1rem'}}
         />
         <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>
     </Row>
 }
 
-export {getLocale}
+export {getLocale, LoadingNode}
 
 

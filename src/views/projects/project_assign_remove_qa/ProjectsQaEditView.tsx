@@ -20,9 +20,13 @@ function ProjectsQaEditView() {
     const history = useHistory();
     const state = useSelector((state: ReduxState) => state);
     const managerId = state.userDetails.id;
+    const [btnLoading, setBtnLoading] = useState<boolean>(false);
 
-    const [qa, setQa] = useState<UserDetails[]>();
-    const [qaLoading, setQaLoading] = useState<boolean>(true);
+    const [availableQa, setAvailableQa] = useState<UserDetails[]>();
+    const [availableQaLoading, setAvailableQaLoading] = useState<boolean>(true);
+
+    const [assignedQa, setAssignedQa] = useState<UserDetails[]>();
+    const [assignedQaLoading, setAssignedQaLoading] = useState<boolean>(true);
 
     const [project, setProject] = useState<ProjectDetails>();
     const [projectLoading, setProjectLoading] = useState<boolean>(true);
@@ -31,20 +35,18 @@ function ProjectsQaEditView() {
     const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        switch (action) {
-            case 'assign':
-                axios.get(`/projects/qa?action=available&managerId=${managerId}&projectId=${projectId}`).then((e) => {
-                    setQa(e.data);
-                    setQaLoading(false);
-                });
-                break;
-            case 'remove':
-                axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
-                    setQa(e.data);
-                    setQaLoading(false);
-                })
-                break;
+        if (action !== 'assign' && action !== 'remove') {
+            history.goBack();
         }
+        axios.get(`/projects/qa?action=available&managerId=${managerId}&projectId=${projectId}`).then((e) => {
+            setAvailableQa(e.data);
+            setAvailableQaLoading(false);
+        });
+
+        axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
+            setAssignedQa(e.data);
+            setAssignedQaLoading(false);
+        });
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             setProject(e.data[0]);
             setProjectLoading(false);
@@ -57,6 +59,7 @@ function ProjectsQaEditView() {
     }, [])
 
     function onFinish(e: any) {
+        setBtnLoading(true);
         const data = {
             qaIds: e.selectedUsers
         }
@@ -90,8 +93,11 @@ function ProjectsQaEditView() {
                         }
                         className={'mt-3'}>
                         <ProjectInfo project={project}
-                                     totalQa={qa?.length}
-                                     totalTickets={tickets?.length}/>
+                                     totalQa={assignedQa?.length}
+                                     totalTickets={tickets?.length}
+                                     projectLoading={projectLoading}
+                                     ticketsLoading={ticketsLoading}
+                                     assignedQaLoading={assignedQaLoading}/>
 
                         <Form
                             name="basic"
@@ -106,15 +112,25 @@ function ProjectsQaEditView() {
                                     message: 'Must pick at least one if you want to submit, else just click Go Back'
                                 }]}>
                                 <Select allowClear={true} mode="tags" tokenSeparators={[',']}>
-                                    {qa?.map(qa => <Option value={qa.userId}>{qa.username}</Option>)}
+                                    {action === 'remove' ?
+                                        assignedQa?.map(qa => <Option value={qa.userId}>{qa.username}</Option>)
+                                        :
+                                        availableQa?.map(qa => <Option value={qa.userId}>{qa.username}</Option>)
+                                    }
+
                                 </Select>
                             </Form.Item>
                             <Form.Item>
-                                <Button type="primary" htmlType="submit" block>
-                                    Edit
+                                <Button type="primary"
+                                        htmlType="submit"
+                                        block
+                                        loading={btnLoading}>
+                                    {action === 'assign' ? 'Assign QA' : 'Remove QA'}
                                 </Button>
                             </Form.Item>
-                            <Button block onClick={goBack}>
+                            <Button block
+                                    onClick={goBack}
+                                    loading={btnLoading}>
                                 Go Back
                             </Button>
                         </Form>

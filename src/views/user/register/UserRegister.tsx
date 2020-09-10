@@ -5,7 +5,7 @@ import {Button, Card, Col, Form, Input, Popover, Row, Select} from "antd";
 import {Authority} from "../../shared/Interfaces";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {registerExplained} from "../login/variables";
-import {motion, Variants} from "framer-motion";
+import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
 
 
@@ -43,7 +43,7 @@ function UserRegister() {
         >
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={14}>
-                    <Card title="User registration form" extra={'Thank you for taking the time to register'}>
+                    <Card title={<h2>Register</h2>} extra={'Thank you for taking the time to register'}>
                         <Form
                             name="basic"
                             form={form}

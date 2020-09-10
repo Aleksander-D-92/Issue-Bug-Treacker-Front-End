@@ -1,8 +1,9 @@
 import React from "react";
-import {Col, Row} from "antd";
+import {Card, Col, Row} from "antd";
 import {capitalizeString} from "../shared/functions";
-import { Typography } from 'antd';
-const { Title } = Typography;
+import {Typography} from 'antd';
+
+const {Title} = Typography;
 
 interface Props {
     username: string,
@@ -28,8 +29,9 @@ function DashBoardGreeting(props: Props) {
     return (
         <React.Fragment>
             <Row justify={'center'}>
-                <Col xs={24} sm={24} md={24} lg={14} xl={14} className={'mt-2'}>
-                    <Title level={2}>Hello {capitalizeString(props.username)}, welcome to the {formatAuthority(props.authority)} dashboard</Title>
+                <Col xs={24} sm={24} md={24} lg={22} xl={22} className={'mt-2'}>
+                    <Title level={2}>Hello {capitalizeString(props.username)}, welcome to
+                        the {formatAuthority(props.authority)} dashboard</Title>
                 </Col>
             </Row>
         </React.Fragment>

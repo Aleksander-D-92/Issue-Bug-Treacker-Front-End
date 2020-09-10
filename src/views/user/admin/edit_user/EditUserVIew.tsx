@@ -13,15 +13,21 @@ import {routerVariant} from "../../../shared/gobalVariables";
 function EditUserVIew() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserDetails>();
-    const [authorities, setAuthorities] = useState<Authority[]>();
+    const [userLoading, setUserLoading] = useState<boolean>(true);
+
+    const [authorities, setAuthorities] = useState<Authority[]>([]);
+    const [authoritiesLoading, setAuthoritiesLoading] = useState<boolean>(true);
+
     const [formState] = Form.useForm();
 
     useEffect(() => {
         axios.get(`/users?action=single&id=${userId}`).then((e) => {
-            setUser(e.data[0])
+            setUser(e.data[0]);
+            setUserLoading(false);
         });
         axios.get('/authorities/all').then((e) => {
             setAuthorities(e.data.filter((a: Authority) => a.authorityLevel !== 4));
+            setAuthoritiesLoading(false)
         })
     }, [])
 
@@ -70,9 +76,12 @@ function EditUserVIew() {
                 <Col xs={24} sm={23} md={23} lg={14}>
                     <Card title="You can ban/lock this users account or change its authority">
                         <DisplayUserDetails user={user}/>
-                        <EditUserAuthority user={user} authorities={authorities} changeAuthority={changeAuthority}
+                        <EditUserAuthority user={user}
+                                           authorities={authorities}
+                                           changeAuthority={changeAuthority}
                                            formState={formState}/>
-                        <ChangeAccountLock user={user} lockAccount={lockAccount}/>
+                        <ChangeAccountLock user={user}
+                                           lockAccount={lockAccount}/>
                     </Card>
                 </Col>
             </Row>

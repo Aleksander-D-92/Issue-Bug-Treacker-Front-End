@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux';
 import {LoginOutlined, LogoutOutlined, UserAddOutlined, UserOutlined} from '@ant-design/icons';
 import './TopSideNavigation.css'
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {capitalizeString} from "../../shared/functions";
 
 
 function TopSideNavigation() {
@@ -22,7 +23,7 @@ function TopSideNavigation() {
                         to={`/users/account-settings/${reduxState.userDetails.username}`}>Account
                         Settings</Link></Menu.Item>
                     <Menu.Item icon={<LogoutOutlined style={{fontSize: '1.2rem'}}/>} key="4"><Link
-                        to={'/users/logout'}>Logout {username}</Link></Menu.Item>
+                        to={'/users/logout'}>Logout {capitalizeString(username)}</Link></Menu.Item>
                 </Menu>
             )
         } else {

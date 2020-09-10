@@ -2,6 +2,7 @@ import React from "react";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Descriptions, Row, Spin} from "antd";
 import {capitalizeString, formatDate} from "../../shared/functions";
+import {LoadingSpinner} from "../../shared/LoadingAnimations";
 
 interface Props {
     project?: ProjectDetails,
@@ -17,44 +18,35 @@ function ProjectInfo(props: Props) {
         <React.Fragment>
             <Descriptions bordered={true} title="Project Details">
                 <Descriptions.Item label="Id" span={2}>{props.project?.projectId}
-                    {loadingSpinner(props.projectLoading, `Project data is being fetched`)}
                 </Descriptions.Item>
                 <Descriptions.Item label="Title" span={2}>{props.project?.title}
-                    {loadingSpinner(props.projectLoading, `Project data is being fetched`)}
+                    <LoadingSpinner loading={props.projectLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
                 <Descriptions.Item label="Description" span={2}>{props.project?.description}
-                    {loadingSpinner(props.projectLoading, `Project data is being fetched`)}
+                    <LoadingSpinner loading={props.projectLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
                 <Descriptions.Item label="Creation Date" span={2}>{formatDate(props.project?.creationDate)}
-                    {loadingSpinner(props.projectLoading, `Project data is being fetched`)}
+                    <LoadingSpinner loading={props.projectLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
                 <Descriptions.Item label="Project Manager Username" span={2}>
-                    {loadingSpinner(props.projectLoading, `Project data is being fetched`)}
                     {capitalizeString(props.project?.projectManager.username)}
+                    <LoadingSpinner loading={props.projectLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
                 <Descriptions.Item label="Project Manager Rgistration Date" span={2}>
-                    {loadingSpinner(props.projectLoading, `Project data is being fetched`)}
                     {formatDate(props.project?.projectManager.registrationDate)}
+                    <LoadingSpinner loading={props.projectLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
                 <Descriptions.Item label="Total tickets" span={2}>
-                    {loadingSpinner(props.ticketsLoading, `Tickets data is being fetched`)}
                     {props.totalTickets}
+                    <LoadingSpinner loading={props.ticketsLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
                 <Descriptions.Item label="Total assigned QA" span={2}>
-                    {loadingSpinner(props.assignedQaLoading, `Qa data is being fetched`)}
                     {props.totalQa}
+                    <LoadingSpinner loading={props.assignedQaLoading} description={'Project data is being fetched'}/>
                 </Descriptions.Item>
             </Descriptions>
         </React.Fragment>
     )
 }
 
-function loadingSpinner(loading: boolean, description: string) {
-    return <Row justify={'center'}>
-        <Spin size="large"
-              tip={`${description}`}
-              style={{fontSize: '1rem', display: (loading) ? '' : 'none'}}/>
-    </Row>
-}
-
-export {ProjectInfo, loadingSpinner}
+export {ProjectInfo, LoadingSpinner}

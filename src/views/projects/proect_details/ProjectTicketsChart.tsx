@@ -2,11 +2,11 @@ import React from "react";
 import {TicketStatistics} from "../../shared/TicketStatistics";
 import {Bar} from "react-chartjs-2";
 import {transparentColors} from "../../shared/gobalVariables";
-import {loadingSpinner} from "./ProjectInfo";
+import {LoadingSpinner} from "./ProjectInfo";
 import {Collapse} from 'antd';
-import {Typography, Space} from 'antd';
+import {Typography} from 'antd';
 
-const {Text, Link} = Typography;
+const {Text} = Typography;
 const {Panel} = Collapse;
 
 interface Props {
@@ -18,7 +18,7 @@ function ProjectTicketsChart(props: Props) {
     return (
         <Collapse defaultActiveKey={['1']} className={'mt-3'}>
             <Panel header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Ticket statistics for this project</Text>} key="1">
-                {loadingSpinner(props.ticketsLoading, 'Charts data is being fetched')}
+                <LoadingSpinner loading={props.ticketsLoading} description={'Ticket statistics are being fetched'}/>
                 <Bar data={{
                     labels: ['Low', 'Medium', 'High', 'Urgent', 'Other', 'Feature Request', 'Bugs and Errors', 'Unassigned', 'In progress', 'Resolved'],
                     datasets: [{

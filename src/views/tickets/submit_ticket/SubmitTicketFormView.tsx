@@ -25,8 +25,8 @@ function SubmitTicketFormView() {
             category: e.category,
             submitterId: submitterId
         };
-        axios.post(`/tickets/${projectId}`, data, {}).then((e) => {
-            history.push(`/`);
+        axios.post(`/tickets/${projectId}`, data, {}).then(() => {
+            history.push(`/tickets/my`);
         })
     }
 

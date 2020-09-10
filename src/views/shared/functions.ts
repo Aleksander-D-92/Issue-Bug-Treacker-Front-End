@@ -11,8 +11,10 @@ function formatDate(date: Date | undefined): string {
 function compareDates(a: Date, b: Date): number {
     if (a > b) {
         return 1;
-    } else {
+    } else if (b > a) {
         return -1;
+    } else {
+        return 0
     }
 }
 

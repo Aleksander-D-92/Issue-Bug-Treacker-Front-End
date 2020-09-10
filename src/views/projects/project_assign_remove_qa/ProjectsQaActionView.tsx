@@ -6,7 +6,7 @@ import {Card, Col, Row, Typography} from "antd";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Link, useParams} from "react-router-dom";
 import {capitalizeString} from "../../shared/functions";
-import {LoadingNode} from "../../shared/GetLocale";
+import {LoadingNode} from "../../shared/LoadingAnimations";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
 

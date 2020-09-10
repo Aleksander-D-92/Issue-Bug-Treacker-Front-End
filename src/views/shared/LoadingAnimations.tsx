@@ -2,7 +2,7 @@ import React from "react";
 import {Row, Skeleton, Spin} from "antd";
 
 
-function getLocale(message: string) {
+function loadingAnimations(message: string) {
     return {
         emptyText:
             <Row justify={'center'} className={'mt-3'}>
@@ -15,12 +15,12 @@ function getLocale(message: string) {
     };
 }
 
-interface Props {
+interface NodeProps {
     message: string,
     loading: boolean,
 }
 
-function LoadingNode(props: Props) {
+function LoadingNode(props: NodeProps) {
     return <Row justify={'center'} className={'mt-2'} style={{display: (props.loading) ? '' : 'none'}}>
         <Spin size="large"
               tip={`${props.message}`}
@@ -30,6 +30,19 @@ function LoadingNode(props: Props) {
     </Row>
 }
 
-export {getLocale, LoadingNode}
+interface SpinnerProps {
+    loading: boolean,
+    description: string
+}
+
+function LoadingSpinner(props: SpinnerProps) {
+    return <Row justify={'center'}>
+        <Spin size="large"
+              tip={`${props.description}`}
+              style={{fontSize: '1rem', display: (props.loading) ? '' : 'none'}}/>
+    </Row>
+}
+
+export {loadingAnimations, LoadingNode, LoadingSpinner}
 
 

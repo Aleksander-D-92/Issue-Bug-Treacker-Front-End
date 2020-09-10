@@ -4,7 +4,7 @@ import {Table, Tag} from "antd";
 import {compareDates, formatDate} from "../shared/functions";
 import {Link} from "react-router-dom";
 import {solidColors} from "../shared/gobalVariables";
-import {getLocale} from "../shared/GetLocale";
+import {loadingAnimations} from "../shared/LoadingAnimations";
 
 interface Props {
     tickets?: TicketDetails[],
@@ -126,7 +126,7 @@ function DashBoardTicketTable(props: Props) {
         <React.Fragment>
                 // @ts-ignore
                 <Table columns={columns}
-                       locale={getLocale('tickets')}
+                       locale={loadingAnimations('tickets')}
                        dataSource={props.tickets}
                        bordered
                        pagination={{total: props.tickets?.length}} className={'mt-3'}

@@ -6,7 +6,7 @@ import axios from "axios";
 import {DashBoardGreeting} from "./DashBoardGreeting";
 import {ProjectsList} from "../projects/projects_list/ProjectsList";
 import {DashBoardTicketTable} from "./DashBoardTicketTable";
-import {TicketCharts} from "./TicketCharts";
+import {DashBoardCharts} from "./DashBoardCharts";
 import {Col, Row} from "antd";
 import {doTicketStatistics, TicketStatistics} from "../shared/TicketStatistics";
 import {motion} from 'framer-motion'
@@ -83,8 +83,8 @@ function DashBoardView() {
         >
             <DashBoardGreeting authority={reduxState.userDetails.authority}
                                username={reduxState.userDetails.username}/>
-            <TicketCharts ticketStatistics={ticketStatistics}
-                          ticketsLoading={ticketsLoading}/>
+            <DashBoardCharts ticketStatistics={ticketStatistics}
+                             ticketsLoading={ticketsLoading}/>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <ProjectsList projects={projects}

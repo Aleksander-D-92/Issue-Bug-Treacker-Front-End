@@ -4,7 +4,7 @@ import {ProjectDetails} from "../../shared/Interfaces";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
-import {loadingAnimations} from "../../shared/LoadingAnimations";
+import {loadingLocale, noDataLocale} from "../../shared/LoadingLocale";
 
 interface Props {
     projects?: ProjectDetails[],
@@ -19,7 +19,7 @@ function ProjectsList(props: Props) {
     useEffect(() => {
         switch (props.authority) {
             case 'ROLE_PROJECT_MANAGER':
-                setHeader('All your projects')
+                setHeader('This are all of your projects')
                 setCanEdit(true);
                 break;
             case 'ROLE_DEVELOPER':
@@ -34,6 +34,7 @@ function ProjectsList(props: Props) {
                 break;
         }
     }, [])
+    // loadingLocale('projects')
     return (
         <React.Fragment>
             <Card>
@@ -41,7 +42,7 @@ function ProjectsList(props: Props) {
                     itemLayout="vertical"
                     header={<h2>{header}</h2>}
                     dataSource={props.projects}
-                    locale={loadingAnimations('projects')}
+                    locale={(props.projects?.length === 0) ? noDataLocale('projects') : loadingLocale('projects')}
                     pagination={{
                         pageSize: 4, total: props.projects?.length, position: 'bottom'
                     }}

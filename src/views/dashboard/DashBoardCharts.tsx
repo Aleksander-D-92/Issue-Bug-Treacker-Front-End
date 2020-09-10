@@ -13,7 +13,7 @@ interface Props {
     ticketsLoading: boolean
 }
 
-function TicketCharts(props: Props) {
+function DashBoardCharts(props: Props) {
     return (
         <React.Fragment>
             <Row gutter={[18, 18]} justify={'center'} className={'mt-3'}>
@@ -131,4 +131,4 @@ function TicketCharts(props: Props) {
     )
 }
 
-export {TicketCharts}
+export {DashBoardCharts}

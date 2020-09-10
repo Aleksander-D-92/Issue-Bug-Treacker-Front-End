@@ -6,7 +6,7 @@ import {Card, Col, Row, Typography} from "antd";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Link, useParams} from "react-router-dom";
 import {capitalizeString} from "../../shared/functions";
-import {LoadingNode} from "../../shared/LoadingAnimations";
+import {LoadingNode} from "../../shared/LoadingLocale";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
 
@@ -34,7 +34,7 @@ function ProjectsQaActionView() {
                     exit='exit'
         >
             <Row justify={'center'}>
-                <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                <Col xs={24} sm={22} md={22} lg={14}>
                     <Card
                         title={
                             <Title

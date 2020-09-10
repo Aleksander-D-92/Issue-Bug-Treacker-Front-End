@@ -2,7 +2,7 @@ import React from "react";
 import {UserDetails} from "../../../shared/Interfaces";
 import {Descriptions} from "antd";
 import {capitalizeString, formatDate} from "../../../shared/functions";
-import {LoadingSpinner} from "../../../shared/LoadingAnimations";
+import {LoadingSpinner} from "../../../shared/LoadingLocale";
 
 
 interface Props {

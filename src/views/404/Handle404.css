@@ -15,11 +15,11 @@
 }
 
 .content {
+    background-color: #202036;
     position: relative;
-    width: 600px;
+    width: 750px;
     max-width: 100%;
     margin: 20px;
-    background: white;
     padding: 60px 40px;
     text-align: center;
     box-shadow: -10px 10px 67px -12px rgba(0, 0, 0, 0.2);

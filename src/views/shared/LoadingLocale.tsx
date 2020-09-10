@@ -2,7 +2,7 @@ import React from "react";
 import {Row, Skeleton, Spin} from "antd";
 
 
-function loadingAnimations(message: string) {
+function loadingLocale(message: string) {
     return {
         emptyText:
             <Row justify={'center'} className={'mt-3'}>
@@ -11,6 +11,18 @@ function loadingAnimations(message: string) {
                       style={{fontSize: '1.1rem'}}
                 />
                 <Skeleton loading={true} active={true} paragraph={{rows: 15}}/>
+            </Row>
+    };
+}
+
+function noDataLocale(message: string) {
+    return {
+        emptyText:
+            <Row justify={'center'} className={'mt-3'}>
+                <Spin size="large"
+                      tip={`It appears you have no ${message}`}
+                      style={{fontSize: '1.1rem'}}
+                />
             </Row>
     };
 }
@@ -43,6 +55,6 @@ function LoadingSpinner(props: SpinnerProps) {
     </Row>
 }
 
-export {loadingAnimations, LoadingNode, LoadingSpinner}
+export {loadingLocale, noDataLocale, LoadingNode, LoadingSpinner}
 
 

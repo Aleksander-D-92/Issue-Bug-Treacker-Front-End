@@ -3,7 +3,7 @@ import axios from "axios";
 import {Col, Row, Table} from "antd";
 import {usersTableColumns} from "./variables";
 import {UserDetails} from "../../../shared/Interfaces";
-import {loadingAnimations} from "../../../shared/LoadingAnimations";
+import {loadingLocale} from "../../../shared/LoadingLocale";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../../shared/gobalVariables";
 import {UsersTableHeader} from "./UsersTableHeader";
@@ -27,7 +27,7 @@ function UsersTableView() {
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={23}>
                     <UsersTableHeader/>
-                    <Table locale={loadingAnimations('users')}
+                    <Table locale={loadingLocale('users')}
                            dataSource={allUsers}
                            columns={usersTableColumns}
                            pagination={{total: allUsers.length}}

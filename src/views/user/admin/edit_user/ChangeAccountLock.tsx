@@ -6,7 +6,7 @@ import {LockOutlined, UnlockOutlined} from '@ant-design/icons';
 interface Props {
     user?: UserDetails,
     lockAccount: Function,
-    userLoading: boolean
+    lockAccountLoading: boolean
 }
 
 function ChangeAccountLock(props: Props) {
@@ -14,7 +14,7 @@ function ChangeAccountLock(props: Props) {
         <React.Fragment>
             <Divider>Set account lock</Divider>
             <Button type={'primary'}
-                    loading={props.userLoading}
+                    loading={props.lockAccountLoading}
                     danger={true}
                     icon={<LockOutlined style={{fontSize: '1.2rem'}}/>}
                     size={'large'}
@@ -25,7 +25,7 @@ function ChangeAccountLock(props: Props) {
                 Lock account
             </Button>
             <Button type={'primary'}
-                    loading={props.userLoading}
+                    loading={props.lockAccountLoading}
                     icon={<UnlockOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
                     onClick={(e) => props.lockAccount(e)}
                     block={true}

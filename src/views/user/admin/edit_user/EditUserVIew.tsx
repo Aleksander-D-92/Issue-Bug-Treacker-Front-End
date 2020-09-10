@@ -18,12 +18,14 @@ function EditUserVIew() {
     const [authorities, setAuthorities] = useState<Authority[]>([]);
     const [authoritiesLoading, setAuthoritiesLoading] = useState<boolean>(true);
 
+    const [lockAccountLoading, setLockAccountLoading] = useState<boolean>(true);
     const [formState] = Form.useForm();
 
     useEffect(() => {
         axios.get(`/users?action=single&id=${userId}`).then((e) => {
             setUser(e.data[0]);
             setUserLoading(false);
+            setLockAccountLoading(false);
         });
         axios.get('/authorities/all').then((e) => {
             setAuthorities(e.data.filter((a: Authority) => a.authorityLevel !== 4));
@@ -51,19 +53,21 @@ function EditUserVIew() {
                 updatedUser.authority.authority = 'ROLE_PROJECT_MANAGER';
                 break;
         }
-        axios.put(`/admins/user-authority?authorityId=${form.authorityId}&userId=${userId}`).then((e) => {
+        axios.put(`/admins/user-authority?authorityId=${form.authorityId}&userId=${userId}`).then(() => {
             setUser(updatedUser);
             formState.setFieldsValue({'authorityId': ''});
-            setAuthoritiesLoading(false)
+            setAuthoritiesLoading(false);
         });
     }
 
     function lockAccount(e: MouseEvent<HTMLButtonElement>) {
+        setLockAccountLoading(true);
         let name = e.currentTarget.name;
         const {...updatedUser} = user;
         updatedUser.accountNonLocked = name !== 'lock';
-        axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`).then((e) => {
+        axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`).then(() => {
             setUser(updatedUser);
+            setLockAccountLoading(false);
         });
     }
 
@@ -83,7 +87,7 @@ function EditUserVIew() {
                                            changeAuthority={changeAuthority}
                                            formState={formState}/>
                         <ChangeAccountLock user={user}
-                                           userLoading={userLoading}
+                                           lockAccountLoading={lockAccountLoading}
                                            lockAccount={lockAccount}/>
                     </Card>
                 </Col>

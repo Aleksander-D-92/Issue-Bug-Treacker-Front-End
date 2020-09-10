@@ -39,7 +39,7 @@ function TicketComments(props: Props) {
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}
                         title={comment.description}
-                        description={`Created on ${formatDate(comment.creationDate)}`}
+                        description={`Creasted on ${formatDate(comment.creationDate)}`}
                     />
                     <p>Submitter : {capitalizeString(comment.submitter.username)}</p>
                 </List.Item>

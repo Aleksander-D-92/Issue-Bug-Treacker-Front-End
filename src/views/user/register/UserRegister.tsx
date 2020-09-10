@@ -6,7 +6,7 @@ import {Authority} from "../../shared/Interfaces";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import {registerExplained} from "../login/variables";
 import {motion, Variants} from "framer-motion";
-import { routerVariant } from "../../shared/gobalVariables";
+import {routerVariant} from "../../shared/gobalVariables";
 
 
 const {Option} = Select;

@@ -153,13 +153,12 @@ function TicketEditModal(props: Props) {
                                 htmlType="submit"
                                 block
                                 danger={true}
-                                onClick={handleCancel}
-                                className={'mb-2'}>
+                                onClick={handleCancel}>
                             Edit ticket
                         </Button>
                         <Button type="primary"
-                                htmlType="submit"
                                 block
+                                className={'mt-2'}
                                 onClick={handleCancel}>
                             Cancel
                         </Button>

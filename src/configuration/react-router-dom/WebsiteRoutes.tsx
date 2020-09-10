@@ -19,6 +19,8 @@ import {TicketDetailsView} from "../../views/tickets/ticket_details/TicketDetail
 import {ProjectsQaActionView} from "../../views/projects/project_assign_remove_qa/ProjectsQaActionView";
 import {ProjectsQaEditView} from "../../views/projects/project_assign_remove_qa/ProjectsQaEditView";
 import {ManagerCreateAccView} from "../../views/user/manager/ManagerCreateAccView";
+import {LandingPage} from "../../views/landing_page/LandingPage";
+import {Handle404} from "../../views/404/Handle404";
 import {AnimatePresence} from 'framer-motion'
 
 function WebsiteRoutes() {
@@ -26,6 +28,7 @@ function WebsiteRoutes() {
     return (
         <AnimatePresence exitBeforeEnter={true}>
             <Switch location={location} key={location.key}>
+                <Route exact path={'/'}><LandingPage/></Route>
                 <Route exact path={'/users/login'}><LoginView/></Route>
                 <Route exact path={'/users/register'}><UserRegister/></Route>
                 <Route exact path={'/users/logout'}><HandleLogout/></Route>
@@ -36,8 +39,7 @@ function WebsiteRoutes() {
                 <Route exact path={'/dashboard'}><DashBoardView/></Route>
                 <Route exact path={'/tickets/my'}><MyTicketsView/></Route>
                 <Route exact path={'/tickets/all'} ><AllTicketsView/></Route>
-                <Route exact
-                       path={'/tickets/submit'}><SubmitTicketVIew/></Route> {/*brings the all projects so you can click submit ticket*/}
+                <Route exact path={'/tickets/submit'}><SubmitTicketVIew/></Route>
                 <Route exact path={'/tickets/details/:ticketId'}><TicketDetailsView/></Route>
                 <Route exact path={'/projects/my'}><MyProjectsView/></Route>
                 <Route exact path={'/projects/new'}><NewProjectView/></Route>
@@ -46,6 +48,7 @@ function WebsiteRoutes() {
                 <Route exact path={'/projects/submit-ticket/:projectId'}><SubmitTicketFormView/></Route>
                 <Route exact path={'/projects/qa/:action'}><ProjectsQaActionView/></Route>
                 <Route exact path={'/projects/qa/:action/:projectId'}><ProjectsQaEditView/></Route>
+                <Route exact path={''}><Handle404/></Route>
             </Switch>
         </AnimatePresence>
     )

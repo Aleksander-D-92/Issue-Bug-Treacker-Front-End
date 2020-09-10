@@ -2,22 +2,24 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {useSelector} from "react-redux";
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
-import {Col, Collapse, Descriptions, Row} from "antd";
+import {Col, Collapse, Row} from "antd";
 import {UserDetails} from "../../shared/Interfaces";
-import {formatDate} from "../../shared/functions";
 import {ChangePasswordForm} from "./ChangePasswordForm";
 import {DeleteAccountForm} from "./DeleteAccountForm";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
+import {DisplayUserDetails} from "../admin/edit_user/DisplayUserDetails";
 
 const {Panel} = Collapse;
 
 function AccountSettingsView() {
     const reduxState = useSelector((state: ReduxState) => state)
     const [user, setUserDetails] = useState<UserDetails>();
+    const [userLoading, setUserLoading] = useState<boolean>(true);
     useEffect(() => {
         axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`).then((e) => {
             setUserDetails(e.data[0]);
+            setUserLoading(false);
         })
     }, [])
 
@@ -31,15 +33,7 @@ function AccountSettingsView() {
                 <Col xs={24} sm={23} md={23} lg={14}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header={<h2>Account Details</h2>} key="1">
-                            <Descriptions title={`Account Details for ${user?.username}`} bordered={true}>
-                                <Descriptions.Item label="Id" span={2}>{user?.userId}</Descriptions.Item>
-                                <Descriptions.Item label="Registration date"
-                                                   span={2}>{formatDate(user?.registrationDate)}</Descriptions.Item>
-                                <Descriptions.Item label="Authority"
-                                                   span={2}>{user?.authority.authority}</Descriptions.Item>
-                                <Descriptions.Item label="Authority level"
-                                                   span={2}>{user?.authority.authorityLevel}</Descriptions.Item>
-                            </Descriptions>
+                            <DisplayUserDetails userLoading={userLoading} user={user}/>
                         </Panel>
                         <Panel header={<h2>Change Password</h2>} key="2">
                             <ChangePasswordForm userId={reduxState.userDetails.id}/>

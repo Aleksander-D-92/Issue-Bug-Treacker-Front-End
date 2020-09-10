@@ -1,7 +1,6 @@
 import React from "react";
-import {Card, Col, Row} from "antd";
+import {Col, Row, Typography} from "antd";
 import {capitalizeString} from "../shared/functions";
-import {Typography} from 'antd';
 
 const {Title} = Typography;
 

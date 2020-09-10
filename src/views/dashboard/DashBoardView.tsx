@@ -21,7 +21,6 @@ function DashBoardView() {
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [projects, setProjects] = useState<ProjectDetails[]>();
     const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
-    const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
     const [projectsLoading, setProjectsLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -30,7 +29,6 @@ function DashBoardView() {
                 axios.get(`/tickets/?action=by-project-manager&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
-                    setTicketsLoading(false);
                 });
 
                 axios.get(`/projects?action=own&id=${id}`).then((e) => {
@@ -42,7 +40,6 @@ function DashBoardView() {
                 axios.get(`/tickets/?action=by-assigned-developer&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
-                    setTicketsLoading(false);
                 });
                 axios.get(`/projects?action=include-developer&id=${id}`).then((e) => {
                     setProjects(e.data);
@@ -54,7 +51,6 @@ function DashBoardView() {
                 axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
-                    setTicketsLoading(false);
                 });
                 axios.get(`/projects?action=include-qa&id=${id}`).then((e) => {
                     setProjects(e.data);
@@ -65,8 +61,7 @@ function DashBoardView() {
                 axios.get('/tickets?action=all').then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
-                    setTicketsLoading(false);
-                });
+                    });
                 axios.get(`/projects?action=all`).then((e) => {
                     setProjects(e.data);
                     setProjectsLoading(false);
@@ -83,8 +78,7 @@ function DashBoardView() {
         >
             <DashBoardGreeting authority={reduxState.userDetails.authority}
                                username={reduxState.userDetails.username}/>
-            <DashBoardCharts ticketStatistics={ticketStatistics}
-                             ticketsLoading={ticketsLoading}/>
+            <DashBoardCharts ticketStatistics={ticketStatistics}/>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <ProjectsList projects={projects}
@@ -94,8 +88,7 @@ function DashBoardView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
-                    <DashBoardTicketTable tickets={tickets}
-                                          ticketsLoading={ticketsLoading}/>
+                    <DashBoardTicketTable tickets={tickets}/>
                 </Col>
             </Row>
         </motion.div>

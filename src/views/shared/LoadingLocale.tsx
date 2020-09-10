@@ -55,6 +55,25 @@ function LoadingSpinner(props: SpinnerProps) {
     </Row>
 }
 
-export {loadingLocale, noDataLocale, LoadingNode, LoadingSpinner}
+interface SpinnerProps2 {
+    data: any,
+    description: string
+}
+
+function LoadingSpinner2(props: SpinnerProps2) {
+    return <Row justify={'center'}>
+        <Spin size="large"
+              tip={`${props.description}`}
+              style={{fontSize: '1.1rem', display: (props.data === undefined) ? '' : 'none'}}/>
+        <Spin size="large"
+              tip={`It appears you have no data`}
+              style={{
+                  fontSize: '1.1rem',
+                  display: (Array.isArray(props.data) && props.data.length === 0) ? '' : 'none'
+              }}/>
+    </Row>
+}
+
+export {loadingLocale, noDataLocale, LoadingNode, LoadingSpinner, LoadingSpinner2}
 
 

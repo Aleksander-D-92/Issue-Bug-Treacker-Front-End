@@ -32,7 +32,7 @@ function AllTicketsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
-                    <DashBoardTicketTable tickets={tickets} ticketsLoading={false}/>
+                    <DashBoardTicketTable tickets={tickets}/>
                 </Col>
             </Row>
         </motion.div>

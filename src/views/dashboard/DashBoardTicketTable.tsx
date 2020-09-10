@@ -7,8 +7,7 @@ import {solidColors} from "../shared/gobalVariables";
 import {loadingLocale, noDataLocale} from "../shared/LoadingLocale";
 
 interface Props {
-    tickets?: TicketDetails[],
-    ticketsLoading: boolean
+    tickets?: TicketDetails[]
 }
 
 function DashBoardTicketTable(props: Props) {

@@ -6,9 +6,10 @@ import {UserDetails} from "../../../shared/Interfaces";
 import {loadingAnimations} from "../../../shared/LoadingAnimations";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../../shared/gobalVariables";
+import {UsersTableHeader} from "./UsersTableHeader";
 
 
-function AdminUsersTable() {
+function UsersTableView() {
     const [allUsers, setAllUsers] = useState<UserDetails[]>([]);
     useEffect(() => {
         axios.get('/users?action=all').then((e) => {
@@ -25,6 +26,7 @@ function AdminUsersTable() {
         >
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={23}>
+                    <UsersTableHeader/>
                     <Table locale={loadingAnimations('users')}
                            dataSource={allUsers}
                            columns={usersTableColumns}
@@ -37,4 +39,4 @@ function AdminUsersTable() {
     )
 }
 
-export {AdminUsersTable}
+export {UsersTableView}

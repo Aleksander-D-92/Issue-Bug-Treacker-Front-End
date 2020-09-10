@@ -3,6 +3,9 @@ import {motion} from "framer-motion";
 import {routerVariant} from "../shared/gobalVariables";
 import './Handle404.css'
 import {Link} from "react-router-dom";
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 function Handle404() {
     return (

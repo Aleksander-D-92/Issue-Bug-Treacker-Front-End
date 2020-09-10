@@ -2,7 +2,7 @@ import React from "react";
 import {Route, Switch, useLocation} from "react-router-dom";
 import {LoginView} from "../../views/user/login/LoginView";
 import {UserRegister} from "../../views/user/register/UserRegister";
-import {AdminUsersTable} from "../../views/user/admin/users_table/AdminUsersTable";
+import {UsersTableView} from "../../views/user/admin/users_table/UsersTableView";
 import {EditUserVIew} from "../../views/user/admin/edit_user/EditUserVIew";
 import {AccountSettingsView} from "../../views/user/account-settings/AccountSettingsView";
 import {HandleLogout} from "../../views/user/logout/HandleLogout";
@@ -34,7 +34,7 @@ function WebsiteRoutes() {
                 <Route exact path={'/users/logout'}><HandleLogout/></Route>
                 <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
                 <Route exact path={'/managers/create-accounts'}><ManagerCreateAccView/></Route>
-                <Route exact path={'/admins/all-users'}><AdminUsersTable/></Route>
+                <Route exact path={'/admins/all-users'}><UsersTableView/></Route>
                 <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>
                 <Route exact path={'/dashboard'}><DashBoardView/></Route>
                 <Route exact path={'/tickets/my'}><MyTicketsView/></Route>

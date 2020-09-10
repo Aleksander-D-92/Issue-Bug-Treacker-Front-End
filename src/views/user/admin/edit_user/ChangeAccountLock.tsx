@@ -5,14 +5,18 @@ import {LockOutlined, UnlockOutlined} from '@ant-design/icons';
 
 interface Props {
     user?: UserDetails,
-    lockAccount: Function
+    lockAccount: Function,
+    userLoading: boolean
 }
 
 function ChangeAccountLock(props: Props) {
     return (
         <React.Fragment>
             <Divider>Set account lock</Divider>
-            <Button type={'primary'} danger={true} icon={<LockOutlined style={{fontSize: '1.2rem'}}/>}
+            <Button type={'primary'}
+                    loading={props.userLoading}
+                    danger={true}
+                    icon={<LockOutlined style={{fontSize: '1.2rem'}}/>}
                     size={'large'}
                     onClick={(e) => props.lockAccount(e)}
                     block={true} className={'mt-2'}
@@ -20,9 +24,12 @@ function ChangeAccountLock(props: Props) {
                     disabled={!props.user?.accountNonLocked}>
                 Lock account
             </Button>
-            <Button type={'primary'} icon={<UnlockOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
+            <Button type={'primary'}
+                    loading={props.userLoading}
+                    icon={<UnlockOutlined style={{fontSize: '1.1rem'}}/>} size={'large'}
                     onClick={(e) => props.lockAccount(e)}
-                    block={true} className={'mt-2'}
+                    block={true}
+                    className={'mt-2'}
                     name={'unlock'}
                     disabled={!!props.user?.accountNonLocked}>
                 Unlock account

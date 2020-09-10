@@ -32,7 +32,7 @@ function EditUserVIew() {
     }, [])
 
     function changeAuthority(form: any) {
-        console.log(form);
+        setAuthoritiesLoading(true);
         const {...updatedUser} = user;
         switch (form.authorityId) {
             case 1:
@@ -53,7 +53,8 @@ function EditUserVIew() {
         }
         axios.put(`/admins/user-authority?authorityId=${form.authorityId}&userId=${userId}`).then((e) => {
             setUser(updatedUser);
-            formState.setFieldsValue({'authorityId': ''})
+            formState.setFieldsValue({'authorityId': ''});
+            setAuthoritiesLoading(false)
         });
     }
 
@@ -77,10 +78,12 @@ function EditUserVIew() {
                     <Card title="You can ban/lock this users account or change its authority">
                         <DisplayUserDetails user={user} userLoading={userLoading}/>
                         <EditUserAuthority user={user}
+                                           loading={authoritiesLoading}
                                            authorities={authorities}
                                            changeAuthority={changeAuthority}
                                            formState={formState}/>
                         <ChangeAccountLock user={user}
+                                           userLoading={userLoading}
                                            lockAccount={lockAccount}/>
                     </Card>
                 </Col>

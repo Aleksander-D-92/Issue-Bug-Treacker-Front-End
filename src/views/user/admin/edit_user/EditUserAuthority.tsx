@@ -10,7 +10,8 @@ interface Props {
     user?: UserDetails,
     authorities?: Authority[],
     changeAuthority: Function,
-    formState: FormInstance
+    formState: FormInstance,
+    loading: boolean
 }
 
 function EditUserAuthority(props: Props) {
@@ -35,7 +36,9 @@ function EditUserAuthority(props: Props) {
                         )}
                     </Select>
                 </Form.Item>
-                <Button type="primary" icon={<UserSwitchOutlined style={{fontSize: '1.2rem'}}/>} size={'large'}
+                <Button type="primary"
+                        loading={props.loading}
+                        icon={<UserSwitchOutlined style={{fontSize: '1.2rem'}}/>} size={'large'}
                         block={true} htmlType={'submit'}
                         className="login-form-button">
                     Change authority

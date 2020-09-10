@@ -2,7 +2,8 @@ import React from "react";
 import {UserDetails} from "../../../shared/Interfaces";
 import {Descriptions} from "antd";
 import {formatDate} from "../../../shared/functions";
-import {LoadingSpinner} from "../../../projects/proect_details/ProjectInfo";
+import {LoadingSpinner} from "../../../shared/LoadingAnimations";
+
 
 interface Props {
     user?: UserDetails,
@@ -11,7 +12,10 @@ interface Props {
 
 function DisplayUserDetails(props: Props) {
     return (
-        <Descriptions title={`Account Details for ${props.user?.username}`} bordered={true}>
+        <Descriptions title={`Account Details for the current user`} bordered={true}>
+            <Descriptions.Item label="Username" span={2}>{props.user?.username}
+                <LoadingSpinner description={'Wait while we fetch the users data'} loading={props.userLoading}/>
+            </Descriptions.Item>
             <Descriptions.Item label="Id" span={2}>{props.user?.userId}
                 <LoadingSpinner description={'Wait while we fetch the users data'} loading={props.userLoading}/>
             </Descriptions.Item>

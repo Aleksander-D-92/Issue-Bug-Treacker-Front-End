@@ -26,7 +26,7 @@ function App() {
                     <TopSideNavigation/>
                 </Header>
 
-                <Content style={{minHeight: '800px'}}>
+                <Content style={{minHeight: '850px'}}>
                     <WebsiteRoutes/>
                 </Content>
 

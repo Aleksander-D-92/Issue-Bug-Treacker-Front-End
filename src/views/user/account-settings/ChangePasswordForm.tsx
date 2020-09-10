@@ -1,25 +1,14 @@
 import React from "react";
-import {useHistory} from 'react-router-dom';
 import {Button, Form, Input} from "antd";
-import axios from "axios";
 import {LockOutlined} from '@ant-design/icons';
 
 
 interface Props {
-    userId: number
+    changePassword: Function
 }
 
 function ChangePasswordForm(props: Props) {
-    const history = useHistory();
 
-    function changePassword(e: any) {
-        axios.put(`/users/password/${props.userId}`, {
-            oldPassword: e.password,
-            newPassword: e.newPassword
-        }).then((e) => {
-            history.push("/users/logout")
-        })
-    }
 
     return (
         <React.Fragment>
@@ -27,7 +16,7 @@ function ChangePasswordForm(props: Props) {
                 name="changePassword"
                 className="login-form"
                 layout={'vertical'}
-                onFinish={changePassword}
+                onFinish={(e) => props.changePassword(e)}
             >
                 <Form.Item
                     label="Old password"

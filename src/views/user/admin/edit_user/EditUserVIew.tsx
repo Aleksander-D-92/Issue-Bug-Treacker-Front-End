@@ -80,7 +80,8 @@ function EditUserVIew() {
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={14}>
                     <Card title="You can ban/lock this users account or change its authority">
-                        <DisplayUserDetails user={user} userLoading={userLoading}/>
+                        <DisplayUserDetails user={user}
+                                            userLoading={userLoading}/>
                         <EditUserAuthority user={user}
                                            loading={authoritiesLoading}
                                            authorities={authorities}

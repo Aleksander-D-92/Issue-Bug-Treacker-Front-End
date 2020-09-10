@@ -1,34 +1,20 @@
 import React from "react";
 import {Button, Form, Input} from "antd";
-import axios from "axios";
-import {useHistory} from "react-router-dom";
 import {LockOutlined} from '@ant-design/icons';
 
 
 interface Props {
-    userId: number
+    deleteAccount: Function
 }
 
 function DeleteAccountForm(props: Props) {
-    let history = useHistory();
-
-    function deleteAccount(form: any) {
-        console.log(form);
-        axios.put(`/users/account-lock/${props.userId}`, {
-            password: form.password
-        }).then(e => {
-            console.log(e);
-            history.push("/users/logout");
-        })
-    }
-
     return (
         <React.Fragment>
             <Form
                 name="deleteAccount"
                 className="login-form"
                 layout={'vertical'}
-                onFinish={deleteAccount}
+                onFinish={(e) => props.deleteAccount(e)}
             >
                 <Form.Item
                     label="Password"

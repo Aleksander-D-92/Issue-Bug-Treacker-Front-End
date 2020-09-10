@@ -40,14 +40,18 @@ function AxiosGlobalInterceptors() {
 
         //Response interceptor
         axios.interceptors.response.use(function (response) {
-            toast.success(`${response.status}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            if (response.data.message !== null && response.data.message !== undefined) {
+                toast.success(`${response.status}: ${response.data.message}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            } else {
+                toast.success(`${response.status}`, {position: toast.POSITION.BOTTOM_RIGHT})
+            }
             return response;
         }, function (error) {
             if (error.response === undefined) {
                 return Promise.reject(error);
             }
             if (error.response.data !== null) {
-                toast.error(`${error.response.status} ${error.response.data.message}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                toast.error(`${error.response.status}: ${error.response.data.message}`, {position: toast.POSITION.BOTTOM_RIGHT})
             } else {
                 toast.error(`${error.response.status}`, {position: toast.POSITION.BOTTOM_RIGHT})
             }

@@ -61,14 +61,16 @@ function AccountSettingsView() {
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header={<Text style={headerStyle}>Account Details</Text>}
                                key="1">
-                            <DisplayUserDetails userLoading={userLoading} user={user}/>
+                            <DisplayUserDetails userLoading={userLoading}
+                                                user={user}/>
                         </Panel>
                         <Panel header={<Text style={headerStyle}>Change Password</Text>} key="2">
-                            <ChangePasswordForm
-                                changePassword={changePassword}/>
+                            <ChangePasswordForm changePassword={changePassword}
+                                                loading={userLoading}/>
                         </Panel>
                         <Panel header={<Text style={headerStyle}>Delete Account</Text>} key="3">
-                            <DeleteAccountForm deleteAccount={deleteAccount}/>
+                            <DeleteAccountForm deleteAccount={deleteAccount}
+                                               loading={userLoading}/>
                         </Panel>
                     </Collapse>
                 </Col>

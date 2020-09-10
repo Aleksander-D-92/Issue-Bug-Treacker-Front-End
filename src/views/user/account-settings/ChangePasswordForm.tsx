@@ -4,7 +4,8 @@ import {LockOutlined} from '@ant-design/icons';
 
 
 interface Props {
-    changePassword: Function
+    changePassword: Function,
+    loading: boolean
 }
 
 function ChangePasswordForm(props: Props) {
@@ -47,7 +48,11 @@ function ChangePasswordForm(props: Props) {
                                     prefix={<LockOutlined className="site-form-item-icon"/>}/>
                 </Form.Item>
                 <Form.Item>
-                    <Button htmlType="submit" className="login-form-button" block={true} danger={true}>
+                    <Button htmlType="submit"
+                            className="login-form-button"
+                            block={true}
+                            danger={true}
+                            loading={props.loading}>
                         Change password
                     </Button>
                 </Form.Item>

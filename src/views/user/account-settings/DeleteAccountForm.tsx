@@ -4,7 +4,8 @@ import {LockOutlined} from '@ant-design/icons';
 
 
 interface Props {
-    deleteAccount: Function
+    deleteAccount: Function,
+    loading: boolean
 }
 
 function DeleteAccountForm(props: Props) {
@@ -30,7 +31,12 @@ function DeleteAccountForm(props: Props) {
                                     prefix={<LockOutlined className="site-form-item-icon"/>}/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" className="login-form-button" block={true} danger={true}>
+                    <Button type="primary"
+                            htmlType="submit"
+                            className="login-form-button"
+                            block={true}
+                            danger={true}
+                            loading={props.loading}>
                         Delete Account
                     </Button>
                 </Form.Item>

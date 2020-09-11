@@ -76,11 +76,22 @@ function TicketDetailsView() {
             assignedDeveloperId: e.assignedDeveloperId,
             resolved: e.resolved //used for devs only
         }
-        console.log(data);
         if (e.assignedDeveloperId === null || e.assignedDeveloperId === -1) {
             data.assignedDeveloperId = null
         }
-        axios.put(`/tickets/${currentTicketId}/manager`, data).then(() => {
+        let action = '';
+        switch (authority) {
+            case 'ROLE_PROJECT_MANAGER':
+                action = 'manager'
+                break;
+            case 'ROLE_DEVELOPER':
+                action = 'developer'
+                break;
+            default:
+                action = ''
+                break;
+        }
+        axios.put(`/tickets/${currentTicketId}/${action}`, data).then(() => {
             let {...updatedTicket} = ticket;
             updatedTicket.title = data.title;
             updatedTicket.description = data.description;

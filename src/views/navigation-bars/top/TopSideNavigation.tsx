@@ -1,4 +1,4 @@
-import React, {CSSProperties, useEffect, useState} from "react";
+import React, {CSSProperties} from "react";
 import {Menu} from "antd";
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
@@ -9,46 +9,31 @@ import {ReduxState} from "../../../configuration/redux/reduxStrore";
 
 function TopSideNavigation() {
     const reduxState = useSelector((state: ReduxState) => state);
-    const [menu, adjustMenu] = useState(<React.Fragment/>);
+    const loggedIn = reduxState.userLoggedIn;
 
-    useEffect(() => {
-        if (reduxState.userLoggedIn) {
-            adjustMenu(
-                <Menu theme="dark" mode="horizontal" className={'TopSideNavigation'} selectedKeys={[]}
-                      style={{fontSize: '1.1rem'}}>
-                    <Menu.Item icon={<UserOutlined style={{fontSize: '1.2rem'}}/>} key="3">
-                        <Link to={`/users/account-settings`}>Account Settings</Link>
-                    </Menu.Item>
-                    <Menu.Item icon={<LogoutOutlined style={{fontSize: '1.2rem'}}/>} key="4">
-                        <Link to={'/users/logout'}>Logout</Link>
-                    </Menu.Item>
-                </Menu>
-            )
-        } else {
-            adjustMenu(
-                <Menu theme="dark" mode="horizontal" className={'TopSideNavigation'} selectedKeys={[]}
-                      style={{fontSize: '1.1rem'}}>
-                    <Menu.Item icon={<LoginOutlined style={{fontSize: '1.2rem'}}/>} key="1">
-                        <Link to={'/users/login'}>Login</Link>
-                    </Menu.Item>
-                    <Menu.Item icon={<UserAddOutlined style={{fontSize: '1.2rem'}}/>} key="2">
-                        <Link to={'/users/register'}>Register</Link>
-                    </Menu.Item>
-                </Menu>
-            )
-        }
-
-    }, [reduxState, reduxState.userLoggedIn])
     return (
-        <React.Fragment>
-            {menu}
-        </React.Fragment>
+        <Menu theme="dark" mode="horizontal" className={'TopSideNavigation'} selectedKeys={[]}
+              style={{fontSize: '1.1rem'}}>
+            <Menu.Item icon={(loggedIn) ? <UserOutlined style={SVGStyles}/> : <UserAddOutlined style={SVGStyles}/>}
+                       key="1">
+                {(loggedIn) ?
+                    <Link to={`/users/account-settings`}>Account Settings</Link>
+                    :
+                    <Link to={'/users/register'}>Register</Link>}
+            </Menu.Item>
+            <Menu.Item icon={(loggedIn) ? <LogoutOutlined style={SVGStyles}/> : <LoginOutlined style={SVGStyles}/>}
+                       key="2">
+                {(loggedIn) ?
+                    <Link to={'/users/logout'}>Logout</Link>
+                    :
+                    <Link to={'/users/login'}>Login</Link>}
+            </Menu.Item>
+        </Menu>
     )
 }
 
-const menuItemStyles = {
-    // paddingRight: 15,
-    // paddingLeft: 15
+const SVGStyles = {
+    fontSize: '1.2rem'
 } as CSSProperties
 
 export {TopSideNavigation}

@@ -14,7 +14,8 @@ interface Props {
     editTicketLoading: boolean,
     visible: boolean,
     showModal: Function,
-    handleCancel: Function
+    handleCancel: Function,
+    authority: string
 }
 
 function TicketEditModal(props: Props) {
@@ -117,32 +118,34 @@ function TicketEditModal(props: Props) {
                             <Option value="OTHER">Other</Option>
                         </Select>
                     </Form.Item>
+                    {(props.authority === 'ROLE_PROJECT_MANAGER') ?
+                        <>
+                            <Form.Item name="status" label="Status"
+                                       rules={[{required: false, message: 'You must select a Status'}]}>
+                                <Select
+                                    placeholder="Change the status"
+                                    allowClear
+                                    onChange={onStatusChange}
+                                >
+                                    <Option value="UNASSIGNED">Unassigned</Option>
+                                    <Option value="IN_PROGRESS">In progress</Option>
+                                    <Option value="RESOLVED">Resolved</Option>
+                                </Select>
+                            </Form.Item>
 
-                    <Form.Item name="status" label="Status"
-                               rules={[{required: false, message: 'You must select a Status'}]}>
-                        <Select
-                            placeholder="Change the status"
-                            allowClear
-                            onChange={onStatusChange}
-                        >
-                            <Option value="UNASSIGNED">Unassigned</Option>
-                            <Option value="IN_PROGRESS">In progress</Option>
-                            <Option value="RESOLVED">Resolved</Option>
-                        </Select>
-                    </Form.Item>
-
-                    <Form.Item name="assignedDeveloperId" label="Chose a developer to assign to the ticket"
-                               rules={[{required: false, message: ''}]}>
-                        <Select
-                            placeholder="Assign a developer"
-                            allowClear
-                            onChange={onDevChange}
-                        >
-                            <Option value={-1}>{null}</Option>
-                            {props.developers?.map(d => <Option
-                                value={d.userId}>{capitalizeString(d.username)}</Option>)}
-                        </Select>
-                    </Form.Item>
+                            <Form.Item name="assignedDeveloperId" label="Chose a developer to assign to the ticket"
+                                       rules={[{required: false, message: ''}]}>
+                                <Select
+                                    placeholder="Assign a developer"
+                                    allowClear
+                                    onChange={onDevChange}
+                                >
+                                    <Option value={-1}>{null}</Option>
+                                    {props.developers?.map(d => <Option
+                                        value={d.userId}>{capitalizeString(d.username)}</Option>)}
+                                </Select>
+                            </Form.Item>
+                        </> : ''}
 
                     <Form.Item>
                         <Button type="primary"
@@ -150,7 +153,7 @@ function TicketEditModal(props: Props) {
                                 block
                                 danger={true}
                                 loading={props.editTicketLoading}
-                                >
+                        >
                             Edit ticket
                         </Button>
                         <Button type="primary"

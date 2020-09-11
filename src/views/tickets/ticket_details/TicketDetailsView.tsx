@@ -23,11 +23,13 @@ function TicketDetailsView() {
     const {ticketId} = useParams();
     const [commentForm] = Form.useForm();
     const state = useSelector((state: ReduxState) => state);
+    const userId = state.userDetails.id;
+    const authority = state.userDetails.authority;
+
     const [developers, setDevelopers] = useState<UserDetails[]>();
 
-    const userId = state.userDetails.id;
-    const [ticket, setTicketDetails] = useState<TicketDetails>();
 
+    const [ticket, setTicketDetails] = useState<TicketDetails>();
     const [editTicketLoading, setEditTicketLoading] = useState<boolean>(false);
     const [editTicketVisible, setEditTicketVisible] = useState<boolean>(false);
 
@@ -156,6 +158,7 @@ function TicketDetailsView() {
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <TicketDescription ticket={ticket}/>
                     <TicketEditModal onFinish={editTicket}
+                                     authority={authority}
                                      editTicketLoading={editTicketLoading}
                                      ticket={ticket}
                                      developers={developers}

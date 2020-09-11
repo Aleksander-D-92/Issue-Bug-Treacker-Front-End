@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Form, Input, Modal, Select} from "antd";
+import {Button, Checkbox, Form, Input, Modal, Select} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {capitalizeString} from "../../shared/functions";
@@ -60,7 +60,8 @@ function TicketEditModal(props: Props) {
                         'priority': props.ticket?.priority,
                         'category': props.ticket?.category,
                         'status': props.ticket?.status,
-                        'assignedDeveloperId': (props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.userId : null
+                        'assignedDeveloperId': (props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.userId : null,
+                        'resolved': false
                     }}
                     onFinish={(e: any) => props.onFinish(e)}>
                     {/*dummy item for ticket id*/}
@@ -118,7 +119,7 @@ function TicketEditModal(props: Props) {
                             <Option value="OTHER">Other</Option>
                         </Select>
                     </Form.Item>
-                    {(props.authority === 'ROLE_PROJECT_MANAGER') ?
+                    {(props.authority === 'ROLE_PROJECT_MANAGER' || props.authority === 'ADMIN') ?
                         <>
                             <Form.Item name="status" label="Status"
                                        rules={[{required: false, message: 'You must select a Status'}]}>
@@ -146,7 +147,13 @@ function TicketEditModal(props: Props) {
                                 </Select>
                             </Form.Item>
                         </> : ''}
-
+                    {(props.authority === 'ROLE_DEVELOPER') ?
+                        <Form.Item name="resolved"
+                                   valuePropName="checked"
+                                   noStyle>
+                            <Checkbox>Resolved?</Checkbox>
+                        </Form.Item>
+                        : ''}
                     <Form.Item>
                         <Button type="primary"
                                 htmlType="submit"

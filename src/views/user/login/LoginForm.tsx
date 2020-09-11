@@ -44,12 +44,9 @@ function LoginForm(props: Props) {
                                         placeholder={'Enter your password'}
                                         prefix={<LockOutlined className="site-form-item-icon"/>}/>
                     </Form.Item>
-                    <Form.Item>
-                        <Form.Item name="rememberMe" valuePropName="checked" noStyle>
-                            <Checkbox>Remember me</Checkbox>
-                        </Form.Item>
+                    <Form.Item name="rememberMe" valuePropName="checked" noStyle>
+                        <Checkbox>Remember me</Checkbox>
                     </Form.Item>
-
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className="login-form-button" loading={props.isLoading}
                                 block={true}>

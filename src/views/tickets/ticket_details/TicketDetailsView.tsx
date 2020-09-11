@@ -65,7 +65,7 @@ function TicketDetailsView() {
     }
 
     function editTicket(e: any) {
-        setEditTicketLoading(true)
+        setEditTicketLoading(true);
         const currentTicketId = e.ticketId;
         const data = {
             title: e.title,
@@ -73,9 +73,11 @@ function TicketDetailsView() {
             priority: e.priority,
             category: e.category,
             status: e.status,
-            assignedDeveloperId: e.assignedDeveloperId
+            assignedDeveloperId: e.assignedDeveloperId,
+            resolved: e.resolved //used for devs only
         }
-        if (e.assignedDeveloperId === -1) {
+        console.log(data);
+        if (e.assignedDeveloperId === null || e.assignedDeveloperId === -1) {
             data.assignedDeveloperId = null
         }
         axios.put(`/tickets/${currentTicketId}/manager`, data).then(() => {
@@ -85,13 +87,20 @@ function TicketDetailsView() {
             updatedTicket.priority = data.priority;
             updatedTicket.category = data.category;
             updatedTicket.status = data.status;
-            if (updatedTicket.assignedDeveloper !== null) {
-                updatedTicket.assignedDeveloper.userId = data.assignedDeveloperId;
+
+            //init an "empty" assignedDeveloper Object so that we can assign values to it
+            if (updatedTicket.assignedDeveloper === null) {
+                updatedTicket.assignedDeveloper = {
+                    userId: -1,
+                    username: '',
+                    accountNonLocked: true,
+                    registrationDate: new Date()
+                }
             }
+
+            updatedTicket.assignedDeveloper.userId = data.assignedDeveloperId;
             const username = developers?.find(dev => dev.userId === data.assignedDeveloperId)?.username;
-            if (updatedTicket.assignedDeveloper !== null) {
-                updatedTicket.assignedDeveloper.username = username || '';
-            }
+            updatedTicket.assignedDeveloper.username = username || '';
             setTicketDetails(updatedTicket);
             setEditTicketLoading(false);
             handleCancel();

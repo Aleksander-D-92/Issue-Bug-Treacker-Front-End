@@ -8,7 +8,7 @@ import {Link, useParams} from "react-router-dom";
 import {capitalizeString} from "../../shared/functions";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
-import {LoadingSpinner} from "../../shared/LoadingLocale";
+import {LoadingSpinner} from "../../shared/LoadingAnimations";
 
 const {Title} = Typography;
 

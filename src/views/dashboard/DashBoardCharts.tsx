@@ -3,7 +3,7 @@ import {Doughnut, Pie, Polar} from "react-chartjs-2";
 import {Col, Collapse, Row, Typography} from "antd";
 import {transparentColors} from "../shared/gobalVariables";
 import {TicketStatistics} from "../shared/TicketStatistics";
-import {LoadingSpinner} from "../shared/LoadingLocale";
+import {LoadingSpinner} from "../shared/LoadingAnimations";
 
 const {Text} = Typography;
 const {Panel} = Collapse;

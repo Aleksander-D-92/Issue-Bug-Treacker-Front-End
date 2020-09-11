@@ -1,8 +1,10 @@
 import React from "react";
 import {TicketDetails} from "../../shared/Interfaces";
-import {Card, Descriptions} from "antd";
+import {Card, Descriptions, Typography} from "antd";
 import {formatDate} from "../../shared/functions";
 import {LoadingSpinner} from "../../shared/LoadingAnimations";
+
+const {Text} = Typography;
 
 interface Props {
     ticket?: TicketDetails
@@ -11,7 +13,7 @@ interface Props {
 function TicketDescription(props: Props) {
     const description = 'Please wait while we fetcsh the ticket data';
     return (
-        <Card title="Ticket Details" className={'mt-3'}>
+        <Card title={<Text style={{fontWeight: 'bold', fontSize: '1.1rem'}}>Submit a new comment</Text>} className={'mt-3'}>
             <Descriptions bordered>
                 <Descriptions.Item label="Title" span={2}>
                     {props.ticket?.title}

@@ -1,7 +1,7 @@
 import React, {MouseEvent, useEffect, useState} from "react";
 import axios from 'axios'
 import {useParams} from 'react-router-dom';
-import {Card, Col, Row, Tabs} from "antd";
+import {Col, Collapse, Form, Row, Tabs, Typography} from "antd";
 import {CommentDetails, HistoryDetails, TicketDetails, UserDetails} from "../../shared/Interfaces";
 import {TicketDescription} from "./TicketDescription";
 import {TicketComments} from "./TicketComments";
@@ -13,19 +13,29 @@ import {TicketHistoryTable} from "./TicketHistoryTable";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
 
+const {Panel} = Collapse;
+
+const {Text} = Typography;
+
 const {TabPane} = Tabs;
 
 function TicketDetailsView() {
+    const {ticketId} = useParams();
     const state = useSelector((state: ReduxState) => state);
+    const [commentForm] = Form.useForm();
+    const [developers, setDevelopers] = useState<UserDetails[]>();
+
     const userId = state.userDetails.id;
     const [ticket, setTicketDetails] = useState<TicketDetails>();
+
     const [editTicketLoading, setEditTicketLoading] = useState<boolean>(false);
-    const [visible, setVisible] = useState<boolean>(false);
-    const [submitCommentLoading, setSubmitCommentLoading] = useState<boolean>(false);
-    const [history, setHistory] = useState<HistoryDetails[]>([]);
+    const [editTicketVisible, setEditTicketVisible] = useState<boolean>(false);
+
     const [comments, setComments] = useState<CommentDetails[]>([]);
-    const [developers, setDevelopers] = useState<UserDetails[]>();
-    const {ticketId} = useParams();
+    const [submitCommentLoading, setSubmitCommentLoading] = useState<boolean>(false);
+
+    const [history, setHistory] = useState<HistoryDetails[]>([]);
+
     useEffect(() => {
         axios.get(`/tickets?action=single&id=${ticketId}`).then((e) => {
             setTicketDetails(e.data[0]);
@@ -44,11 +54,11 @@ function TicketDetailsView() {
     }, [])
 
     function showModal() {
-        setVisible(true);
+        setEditTicketVisible(true);
     }
 
     function handleCancel() {
-        setVisible(false);
+        setEditTicketVisible(false);
     }
 
     function editTicket(e: any) {
@@ -91,6 +101,7 @@ function TicketDetailsView() {
 
     function submitComment(e: any) {
         setSubmitCommentLoading(true);
+        commentForm.setFieldsValue({'description': ''})
         const data = {
             userId: userId,
             description: e.description
@@ -139,31 +150,35 @@ function TicketDetailsView() {
                                      editTicketLoading={editTicketLoading}
                                      ticket={ticket}
                                      developers={developers}
-                                     visible={visible}
+                                     visible={editTicketVisible}
                                      showModal={showModal}
                                      handleCancel={handleCancel}/>
                 </Col>
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <CommentSubmit submitComment={submitComment}
+                    <CommentSubmit form={commentForm}
+                                   submitComment={submitComment}
                                    btnLoading={submitCommentLoading}/>
                 </Col>
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <Card title="Comments and history" className={'mt-3'}>
-                        <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
-                            <TabPane tab="Comments" key="1">
-                                <TicketComments comments={comments} loggedUserId={userId}
-                                                deleteComment={deleteComment} editComment={editComment}/>
-                            </TabPane>
-                            <TabPane tab="Ticket History" key="2">
-                                Content of card tab 2
-                                <TicketHistoryTable history={history}/>
-                            </TabPane>
-                        </Tabs>
-                    </Card>
+                    <Collapse defaultActiveKey={['1']} className={'mt-3'}>
+                        <Panel
+                            header={<Text style={{fontWeight: 'bold', fontSize: '1.1rem'}}>Comments and history</Text>}
+                            key="1">
+                            <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
+                                <TabPane tab="Comments" key="1">
+                                    <TicketComments comments={comments} loggedUserId={userId}
+                                                    deleteComment={deleteComment} editComment={editComment}/>
+                                </TabPane>
+                                <TabPane tab="Ticket History" key="2">
+                                    <TicketHistoryTable history={history}/>
+                                </TabPane>
+                            </Tabs>
+                        </Panel>
+                    </Collapse>
                 </Col>
             </Row>
 

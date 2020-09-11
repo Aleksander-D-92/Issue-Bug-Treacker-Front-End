@@ -1,6 +1,5 @@
 import React from "react";
-import {Row, Skeleton, Spin} from "antd";
-import {Result, Button} from 'antd';
+import {Result, Row, Skeleton, Spin} from "antd";
 
 function loadingLocale(message: string) {
     return {
@@ -55,31 +54,7 @@ function LoadingSpinner(props: SpinnerProps) {
     </Row>
 }
 
-interface SpinnerProps2 {
-    data: any,
-    description: string,
-    noData: string
-}
 
-function LoadingSpinner2(props: SpinnerProps2) {
-    return <Row justify={'center'}>
-        <Spin size="large"
-              tip={`${props.description}`}
-              style={{fontSize: '1.1rem', display: (props.data === undefined) ? '' : 'none'}}/>
-        <Spin size="large"
-              spinning={true}
-              tip={props.noData}
-              style={{
-                  fontSize: '1.1rem',
-                  display: (Array.isArray(props.data) && props.data.length === 0) ? '' : 'none'
-              }}/>
-        <Result
-            title={props.noData}
-            extra={''}
-        />
-    </Row>
-}
-
-export {loadingLocale, noDataLocale, LoadingNode, LoadingSpinner, LoadingSpinner2}
+export {loadingLocale, noDataLocale, LoadingNode, LoadingSpinner}
 
 

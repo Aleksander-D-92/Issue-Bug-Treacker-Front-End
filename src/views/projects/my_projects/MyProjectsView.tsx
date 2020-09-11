@@ -28,7 +28,7 @@ function MyProjectsView() {
                 <Col xs={24} sm={23} md={23} lg={14}>
                     <Title level={2} className={'mt-2'}>You can edit them, submit
                         tickets for any projects or view their details</Title>
-                    <ProjectsList authority={state.userDetails.authority} projects={projects} projectsLoading={true}/>
+                    <ProjectsList authority={state.userDetails.authority} projects={projects}/>
                 </Col>
             </Row>
         </motion.div>

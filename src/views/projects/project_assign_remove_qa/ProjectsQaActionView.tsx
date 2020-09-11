@@ -8,7 +8,7 @@ import {Link, useParams} from "react-router-dom";
 import {capitalizeString} from "../../shared/functions";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
-import {LoadingSpinner2} from "../../shared/LoadingLocale";
+import {LoadingSpinner} from "../../shared/LoadingLocale";
 
 const {Title} = Typography;
 
@@ -47,9 +47,8 @@ function ProjectsQaActionView() {
                                 </Link>
                             )
                         })};
-                        <LoadingSpinner2 data={projects}
-                                         description={'Please wait, until we fetch your projects...'}
-                                         noData={'It appears you have no projects'}/>
+                        <LoadingSpinner loading={projects === undefined}
+                                        description={'Please wait, until we fetch your projects...'}/>
                     </Card>
                 </Col>
             </Row>

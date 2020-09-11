@@ -3,7 +3,7 @@ import {Doughnut, Pie, Polar} from "react-chartjs-2";
 import {Col, Collapse, Row, Typography} from "antd";
 import {transparentColors} from "../shared/gobalVariables";
 import {TicketStatistics} from "../shared/TicketStatistics";
-import {LoadingSpinner2} from "../shared/LoadingLocale";
+import {LoadingSpinner} from "../shared/LoadingLocale";
 
 const {Text} = Typography;
 const {Panel} = Collapse;
@@ -22,9 +22,8 @@ function DashBoardCharts(props: Props) {
                         <Panel
                             header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Tickets by priority</Text>}
                             key="1">
-                            <LoadingSpinner2 data={props.ticketStatistics}
-                                             description={'Please wait, while we fetch the tickets data...'}
-                                             noData={''}/>
+                            <LoadingSpinner loading={props.ticketStatistics === undefined}
+                                            description={'Please wait, while we fetch the tickets data...'}/>
                             <Pie data={{
                                 labels: ['Low', 'Medium', 'High', 'Urgent'],
                                 datasets: [{
@@ -59,9 +58,8 @@ function DashBoardCharts(props: Props) {
                         <Panel
                             header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Tickets by category</Text>}
                             key="1">
-                            <LoadingSpinner2 data={props.ticketStatistics}
-                                             description={'Please wait, while we fetch the tickets data...'}
-                                             noData={''}/>
+                            <LoadingSpinner loading={props.ticketStatistics === undefined}
+                                            description={'Please wait, while we fetch the tickets data...'}/>
                             <Doughnut data={{
                                 labels: ['Other', 'Feature Request', 'Bugs and Errors'],
                                 datasets: [{
@@ -94,9 +92,8 @@ function DashBoardCharts(props: Props) {
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Tickets by status</Text>}
                                key="1">
-                            <LoadingSpinner2 data={props.ticketStatistics}
-                                             description={'Please wait, while we fetch the tickets data...'}
-                                             noData={''}/>
+                            <LoadingSpinner loading={props.ticketStatistics === undefined}
+                                            description={'Please wait, while we fetch the tickets data...'}/>
                             <Polar data={{
                                 labels: ['Unassigned', 'In progress', 'Resolved'],
                                 datasets: [{

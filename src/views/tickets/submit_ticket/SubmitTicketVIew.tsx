@@ -51,7 +51,7 @@ function SubmitTicketVIew() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <ProjectsList projects={projects} authority={state.userDetails.authority} projectsLoading={true}/>
+                    <ProjectsList projects={projects} authority={state.userDetails.authority}/>
                 </Col>
             </Row>
         </motion.div>

@@ -9,7 +9,6 @@ import {loadingLocale, noDataLocale} from "../../shared/LoadingLocale";
 interface Props {
     projects?: ProjectDetails[],
     authority: string,
-    projectsLoading: boolean
 }
 
 function ProjectsList(props: Props) {
@@ -34,7 +33,7 @@ function ProjectsList(props: Props) {
                 break;
         }
     }, [])
-    // loadingLocale('projects')
+
     return (
         <React.Fragment>
             <Card>

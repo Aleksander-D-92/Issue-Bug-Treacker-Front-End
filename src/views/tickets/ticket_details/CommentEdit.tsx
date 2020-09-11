@@ -7,6 +7,7 @@ interface Props {
     commentId: number
     commentValue: string,
     editComment: Function,
+    commentFunctionsLoading: boolean
 
 }
 
@@ -56,7 +57,11 @@ function CommentEdit(props: Props) {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" block={true} onClick={handleCancel}>
+                        <Button type="primary"
+                                htmlType="submit"
+                                block={true}
+                                onClick={handleCancel}
+                                loading={props.commentFunctionsLoading}>
                             Submit
                         </Button>
                     </Form.Item>

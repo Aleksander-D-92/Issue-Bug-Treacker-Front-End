@@ -128,9 +128,10 @@ function TicketDetailsView() {
     }
 
     function editComment(e: any) {
+        setCommentFunctionsLoading(true);
         const commentId = e.commentId;
         const description = e.comment;
-        axios.put(`/comments/${commentId}`, {description: description}).then((e) => {
+        axios.put(`/comments/${commentId}`, {description: description}).then(() => {
             setComments((comments) => {
                 return comments.map(comment => {
                     if (comment.commentId === commentId) {
@@ -139,6 +140,9 @@ function TicketDetailsView() {
                     return comment;
                 });
             })
+            setCommentFunctionsLoading(false);
+        }).catch(() => {
+            setCommentFunctionsLoading(false);
         });
     }
 

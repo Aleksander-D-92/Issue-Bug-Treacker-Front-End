@@ -37,7 +37,8 @@ function TicketComments(props: Props) {
                         (comment.submitter.userId === props.loggedUserId) ?
                             <CommentEdit commentValue={comment.description}
                                          commentId={comment.commentId}
-                                         editComment={props.editComment}/> : ''
+                                         editComment={props.editComment}
+                                         commentFunctionsLoading={props.commentFunctionsLoading}/> : ''
                     ]}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}

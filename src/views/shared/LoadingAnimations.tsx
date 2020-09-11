@@ -2,7 +2,7 @@ import React from "react";
 import {Result, Row, Skeleton, Spin} from "antd";
 
 //for table and list
-function loadingAnimations(message: string) {
+function loadingLocale(message: string) {
     return {
         emptyText:
             <Row justify={'center'} className={'mt-3'}>
@@ -42,6 +42,6 @@ function LoadingSpinner(props: SpinnerProps) {
 }
 
 
-export {loadingAnimations, noDataLocale, LoadingSpinner}
+export {loadingLocale, noDataLocale, LoadingSpinner}
 
 

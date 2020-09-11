@@ -4,7 +4,7 @@ import {ProjectDetails} from "../../shared/Interfaces";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
-import {loadingAnimations, noDataLocale} from "../../shared/LoadingAnimations";
+import {loadingLocale, noDataLocale} from "../../shared/LoadingAnimations";
 
 interface Props {
     projects?: ProjectDetails[],
@@ -41,7 +41,7 @@ function ProjectsList(props: Props) {
                     itemLayout="vertical"
                     header={<h2>{header}</h2>}
                     dataSource={props.projects}
-                    locale={(props.projects?.length === 0) ? noDataLocale() : loadingAnimations('projects')}
+                    locale={(props.projects?.length === 0) ? noDataLocale() : loadingLocale('projects')}
                     pagination={{
                         pageSize: 4, total: props.projects?.length, position: 'bottom'
                     }}

@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Switch, useLocation} from "react-router-dom";
 import {LoginView} from "../../views/user/login/LoginView";
-import {UserRegister} from "../../views/user/register/UserRegister";
+import {UserRegisterView} from "../../views/user/register/UserRegisterView";
 import {UsersTableView} from "../../views/user/admin/users_table/UsersTableView";
 import {EditUserVIew} from "../../views/user/admin/edit_user/EditUserVIew";
 import {AccountSettingsView} from "../../views/user/account-settings/AccountSettingsView";
@@ -30,7 +30,7 @@ function WebsiteRoutes() {
             <Switch location={location} key={location.key}>
                 <Route exact path={'/'}><LandingPage/></Route>
                 <Route exact path={'/users/login'}><LoginView/></Route>
-                <Route exact path={'/users/register'}><UserRegister/></Route>
+                <Route exact path={'/users/register'}><UserRegisterView/></Route>
                 <Route exact path={'/users/logout'}><HandleLogout/></Route>
                 <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
                 <Route exact path={'/managers/create-accounts'}><ManagerCreateAccView/></Route>

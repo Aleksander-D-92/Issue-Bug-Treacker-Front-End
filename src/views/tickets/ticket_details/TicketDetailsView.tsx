@@ -21,8 +21,8 @@ const {TabPane} = Tabs;
 
 function TicketDetailsView() {
     const {ticketId} = useParams();
-    const state = useSelector((state: ReduxState) => state);
     const [commentForm] = Form.useForm();
+    const state = useSelector((state: ReduxState) => state);
     const [developers, setDevelopers] = useState<UserDetails[]>();
 
     const userId = state.userDetails.id;
@@ -33,6 +33,7 @@ function TicketDetailsView() {
 
     const [comments, setComments] = useState<CommentDetails[]>([]);
     const [submitCommentLoading, setSubmitCommentLoading] = useState<boolean>(false);
+    const [commentFunctionsLoading, setCommentFunctionsLoading] = useState<boolean>(false);
 
     const [history, setHistory] = useState<HistoryDetails[]>([]);
 
@@ -115,10 +116,14 @@ function TicketDetailsView() {
     }
 
     function deleteComment(e: MouseEvent<HTMLButtonElement>) {
+        setCommentFunctionsLoading(true);
         e.preventDefault();
         let id = e.currentTarget.id;
         axios.delete(`/comments/${id}`).then((e) => {
             setComments(arr => arr.filter(e => e.commentId !== parseInt(id)));
+            setCommentFunctionsLoading(false);
+        }).catch(() => {
+            setCommentFunctionsLoading(false);
         })
     }
 
@@ -170,8 +175,11 @@ function TicketDetailsView() {
                             key="1">
                             <Tabs defaultActiveKey="1" type="card" size={'large'} className={'mt-3'}>
                                 <TabPane tab="Comments" key="1">
-                                    <TicketComments comments={comments} loggedUserId={userId}
-                                                    deleteComment={deleteComment} editComment={editComment}/>
+                                    <TicketComments commentFunctionsLoading={commentFunctionsLoading}
+                                                    comments={comments}
+                                                    loggedUserId={userId}
+                                                    deleteComment={deleteComment}
+                                                    editComment={editComment}/>
                                 </TabPane>
                                 <TabPane tab="Ticket History" key="2">
                                     <TicketHistoryTable history={history}/>

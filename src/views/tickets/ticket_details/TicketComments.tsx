@@ -10,6 +10,7 @@ interface Props {
     comments?: CommentDetails[],
     loggedUserId: number,
     deleteComment: Function,
+    commentFunctionsLoading: boolean,
     editComment: Function
 }
 
@@ -31,15 +32,17 @@ function TicketComments(props: Props) {
                             <Button onClick={(e: MouseEvent<HTMLButtonElement>) => props.deleteComment(e)}
                                     id={comment.commentId.toString()}
                                     type="primary"
+                                    loading={props.commentFunctionsLoading}
                                     danger={true}>Delete comment</Button> : '',
                         (comment.submitter.userId === props.loggedUserId) ?
-                            <CommentEdit commentValue={comment.description} commentId={comment.commentId}
+                            <CommentEdit commentValue={comment.description}
+                                         commentId={comment.commentId}
                                          editComment={props.editComment}/> : ''
                     ]}>
                     <List.Item.Meta
                         avatar={<Avatar style={{backgroundColor: solidColors.purple}}>C</Avatar>}
                         title={comment.description}
-                        description={`Creasted on ${formatDate(comment.creationDate)}`}
+                        description={`Created on ${formatDate(comment.creationDate)}`}
                     />
                     <p>Submitter : {capitalizeString(comment.submitter.username)}</p>
                 </List.Item>

@@ -19,7 +19,8 @@ function TicketDetailsView() {
     const state = useSelector((state: ReduxState) => state);
     const userId = state.userDetails.id;
     const [ticket, setTicketDetails] = useState<TicketDetails>();
-    const [editTicketLoading, setEditTicketLoading] =useState<boolean>(false)
+    const [editTicketLoading, setEditTicketLoading] = useState<boolean>(false);
+    const [visible, setVisible] = useState(false);
     const [history, setHistory] = useState<HistoryDetails[]>([]);
     const [comments, setComments] = useState<CommentDetails[]>([]);
     const [developers, setDevelopers] = useState<UserDetails[]>();
@@ -40,6 +41,14 @@ function TicketDetailsView() {
             });
         }
     }, [])
+
+    function showModal() {
+        setVisible(true);
+    }
+
+    function handleCancel() {
+        setVisible(false);
+    }
 
     function submitComment(e: any) {
         const data = {
@@ -65,7 +74,7 @@ function TicketDetailsView() {
         if (e.assignedDeveloperId === -1) {
             data.assignedDeveloperId = null
         }
-        axios.put(`/tickets/${currentTicketId}/manager`, data).then((e) => {
+        axios.put(`/tickets/${currentTicketId}/manager`, data).then(() => {
             let {...updatedTicket} = ticket;
             updatedTicket.title = data.title;
             updatedTicket.description = data.description;
@@ -81,8 +90,11 @@ function TicketDetailsView() {
             }
             setTicketDetails(updatedTicket);
             setEditTicketLoading(false);
+            handleCancel();
             // @ts-ignore
             setHistory((history) => [updatedTicket, ...history])
+        }).catch(() => {
+            handleCancel();
         })
     }
 
@@ -121,7 +133,10 @@ function TicketDetailsView() {
                     <TicketEditModal onFinish={editTicket}
                                      editTicketLoading={editTicketLoading}
                                      ticket={ticket}
-                                     developers={developers}/>
+                                     developers={developers}
+                                     visible={visible}
+                                     showModal={showModal}
+                                     handleCancel={handleCancel}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

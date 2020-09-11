@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button, Form, Input, Modal, Select} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import {TicketDetails, UserDetails} from "../../shared/Interfaces";
@@ -11,11 +11,13 @@ interface Props {
     onFinish: Function,
     ticket?: TicketDetails,
     developers?: UserDetails[],
-    editTicketLoading: boolean
+    editTicketLoading: boolean,
+    visible: boolean,
+    showModal: Function,
+    handleCancel: Function
 }
 
 function TicketEditModal(props: Props) {
-    const [visible, setVisible] = useState(false);
     const [form] = Form.useForm();
 
     function onStatusChange(e: any) {
@@ -32,25 +34,18 @@ function TicketEditModal(props: Props) {
         }
     }
 
-    function showModal() {
-        setVisible(true);
-    }
-
-    function handleCancel() {
-        setVisible(false);
-    }
 
     return (
         <React.Fragment>
 
-            <Button type="primary" onClick={showModal} block={true} loading={props.ticket === undefined}>
+            <Button type="primary" onClick={() => props.showModal()} block={true} loading={props.ticket === undefined}>
                 Edit Ticket
             </Button>
             <Modal
                 title="Edit Ticket"
-                visible={visible}
-                onOk={handleCancel}
-                onCancel={handleCancel}
+                visible={props.visible}
+                onOk={() => props.handleCancel()}
+                onCancel={() => props.handleCancel()}
                 footer={[]}
             >
                 <Form
@@ -155,13 +150,13 @@ function TicketEditModal(props: Props) {
                                 block
                                 danger={true}
                                 loading={props.editTicketLoading}
-                                onClick={handleCancel}>
+                                >
                             Edit ticket
                         </Button>
                         <Button type="primary"
                                 block
                                 className={'mt-2'}
-                                onClick={handleCancel}>
+                                onClick={() => props.handleCancel()}>
                             Cancel
                         </Button>
                     </Form.Item>

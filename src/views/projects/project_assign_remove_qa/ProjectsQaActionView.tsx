@@ -6,9 +6,9 @@ import {Card, Col, Row, Typography} from "antd";
 import {ProjectDetails} from "../../shared/Interfaces";
 import {Link, useParams} from "react-router-dom";
 import {capitalizeString} from "../../shared/functions";
-import {LoadingNode} from "../../shared/LoadingLocale";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
+import {LoadingSpinner2} from "../../shared/LoadingLocale";
 
 const {Title} = Typography;
 
@@ -20,11 +20,9 @@ function ProjectsQaActionView() {
     const managerId = state.userDetails.id;
     const {action} = useParams();
     const [projects, setProjects] = useState<ProjectDetails[]>();
-    const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
         axios.get(`/projects?action=own&id=${managerId}`).then((e) => {
             setProjects(e.data);
-            setLoading(false);
         });
     }, [])
     return (
@@ -49,7 +47,9 @@ function ProjectsQaActionView() {
                                 </Link>
                             )
                         })};
-                        <LoadingNode message={`Please wait, until we fetch your projects...`} loading={loading}/>
+                        <LoadingSpinner2 data={projects}
+                                         description={'Please wait, until we fetch your projects...'}
+                                         noData={'It appears you have no projects'}/>
                     </Card>
                 </Col>
             </Row>

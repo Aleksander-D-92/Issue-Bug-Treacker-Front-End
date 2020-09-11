@@ -1,6 +1,6 @@
 import React from "react";
 import {Row, Skeleton, Spin} from "antd";
-
+import {Result, Button} from 'antd';
 
 function loadingLocale(message: string) {
     return {
@@ -19,9 +19,9 @@ function noDataLocale(message: string) {
     return {
         emptyText:
             <Row justify={'center'} className={'mt-3'}>
-                <Spin size="large"
-                      tip={`It appears you have no ${message}`}
-                      style={{fontSize: '1.1rem'}}
+                <Result
+                    title={'no data is available'}
+                    extra={''}
                 />
             </Row>
     };
@@ -57,7 +57,8 @@ function LoadingSpinner(props: SpinnerProps) {
 
 interface SpinnerProps2 {
     data: any,
-    description: string
+    description: string,
+    noData: string
 }
 
 function LoadingSpinner2(props: SpinnerProps2) {
@@ -66,11 +67,16 @@ function LoadingSpinner2(props: SpinnerProps2) {
               tip={`${props.description}`}
               style={{fontSize: '1.1rem', display: (props.data === undefined) ? '' : 'none'}}/>
         <Spin size="large"
-              tip={`It appears you have no data`}
+              spinning={true}
+              tip={props.noData}
               style={{
                   fontSize: '1.1rem',
                   display: (Array.isArray(props.data) && props.data.length === 0) ? '' : 'none'
               }}/>
+        <Result
+            title={props.noData}
+            extra={''}
+        />
     </Row>
 }
 

@@ -10,7 +10,8 @@ const {Option} = Select;
 interface Props {
     onFinish: Function,
     ticket?: TicketDetails,
-    developers?: UserDetails[]
+    developers?: UserDetails[],
+    editTicketLoading: boolean
 }
 
 function TicketEditModal(props: Props) {
@@ -42,7 +43,7 @@ function TicketEditModal(props: Props) {
     return (
         <React.Fragment>
 
-            <Button type="primary" onClick={showModal} block={true}>
+            <Button type="primary" onClick={showModal} block={true} loading={props.ticket === undefined}>
                 Edit Ticket
             </Button>
             <Modal
@@ -153,6 +154,7 @@ function TicketEditModal(props: Props) {
                                 htmlType="submit"
                                 block
                                 danger={true}
+                                loading={props.editTicketLoading}
                                 onClick={handleCancel}>
                             Edit ticket
                         </Button>

@@ -19,6 +19,7 @@ function TicketDetailsView() {
     const state = useSelector((state: ReduxState) => state);
     const userId = state.userDetails.id;
     const [ticket, setTicketDetails] = useState<TicketDetails>();
+    const [editTicketLoading, setEditTicketLoading] =useState<boolean>(false)
     const [history, setHistory] = useState<HistoryDetails[]>([]);
     const [comments, setComments] = useState<CommentDetails[]>([]);
     const [developers, setDevelopers] = useState<UserDetails[]>();
@@ -51,6 +52,7 @@ function TicketDetailsView() {
     }
 
     function editTicket(e: any) {
+        setEditTicketLoading(true)
         const currentTicketId = e.ticketId;
         const data = {
             title: e.title,
@@ -78,6 +80,7 @@ function TicketDetailsView() {
                 updatedTicket.assignedDeveloper.username = username || '';
             }
             setTicketDetails(updatedTicket);
+            setEditTicketLoading(false);
             // @ts-ignore
             setHistory((history) => [updatedTicket, ...history])
         })
@@ -116,6 +119,7 @@ function TicketDetailsView() {
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     <TicketDescription ticket={ticket}/>
                     <TicketEditModal onFinish={editTicket}
+                                     editTicketLoading={editTicketLoading}
                                      ticket={ticket}
                                      developers={developers}/>
                 </Col>

@@ -5,6 +5,7 @@ import {LeftNavMenu} from "./views/navigation-bars/left/LeftNavMenu";
 import {WebsiteRoutes} from "./configuration/react-router-dom/WebsiteRoutes";
 import {CheckIfLoggedIn} from "./views/user/check-if-logged-in/CheckIfLoggedIn";
 import {AxiosGlobalInterceptors} from "./configuration/axios/AxiosGlobalInterceptors";
+import './App.css'
 
 const {Header, Footer, Sider, Content} = Layout;
 

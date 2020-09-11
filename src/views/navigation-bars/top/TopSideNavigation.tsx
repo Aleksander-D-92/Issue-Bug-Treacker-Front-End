@@ -17,7 +17,7 @@ function TopSideNavigation() {
                 <Menu theme="dark" mode="horizontal" className={'TopSideNavigation'} selectedKeys={[]}
                       style={{fontSize: '1.1rem'}}>
                     <Menu.Item icon={<UserOutlined style={{fontSize: '1.2rem'}}/>} key="3">
-                        <Link to={`/users/account-settings/${reduxState.userDetails.username}`}>Account Settings</Link>
+                        <Link to={`/users/account-settings`}>Account Settings</Link>
                     </Menu.Item>
                     <Menu.Item icon={<LogoutOutlined style={{fontSize: '1.2rem'}}/>} key="4">
                         <Link to={'/users/logout'}>Logout</Link>

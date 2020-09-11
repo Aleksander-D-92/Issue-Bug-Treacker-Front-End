@@ -32,7 +32,7 @@ function WebsiteRoutes() {
                 <Route exact path={'/users/login'}><LoginView/></Route>
                 <Route exact path={'/users/register'}><UserRegisterView/></Route>
                 <Route exact path={'/users/logout'}><HandleLogout/></Route>
-                <Route exact path={'/users/account-settings/:username'}><AccountSettingsView/></Route>
+                <Route exact path={'/users/account-settings'}><AccountSettingsView/></Route>
                 <Route exact path={'/managers/create-accounts'}><ManagerCreateAccView/></Route>
                 <Route exact path={'/admins/all-users'}><UsersTableView/></Route>
                 <Route exact path={'/admins/edit-user/:userId'}><EditUserVIew/></Route>

@@ -4,6 +4,7 @@ import TextArea from "antd/es/input/TextArea";
 
 interface Props {
     submitComment: Function,
+    btnLoading:boolean
 }
 
 function CommentSubmit(props: Props) {
@@ -25,7 +26,7 @@ function CommentSubmit(props: Props) {
                 >
                     <TextArea rows={4} placeholder={'Title must be between 10 and 255 symbols'}/>
                 </Form.Item>
-                <Button htmlType="submit" block type={'primary'}>
+                <Button htmlType="submit" block type={'primary'} loading={props.btnLoading}>
                     Submit new comment
                 </Button>
             </Form>

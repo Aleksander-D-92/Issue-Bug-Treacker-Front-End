@@ -20,7 +20,8 @@ function TicketDetailsView() {
     const userId = state.userDetails.id;
     const [ticket, setTicketDetails] = useState<TicketDetails>();
     const [editTicketLoading, setEditTicketLoading] = useState<boolean>(false);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState<boolean>(false);
+    const [submitCommentLoading, setSubmitCommentLoading] = useState<boolean>(false);
     const [history, setHistory] = useState<HistoryDetails[]>([]);
     const [comments, setComments] = useState<CommentDetails[]>([]);
     const [developers, setDevelopers] = useState<UserDetails[]>();
@@ -48,16 +49,6 @@ function TicketDetailsView() {
 
     function handleCancel() {
         setVisible(false);
-    }
-
-    function submitComment(e: any) {
-        const data = {
-            userId: userId,
-            description: e.description
-        }
-        axios.post(`/comments/${ticketId}`, data).then((e) => {
-            setComments(arr => [e.data[0], ...arr]);
-        });
     }
 
     function editTicket(e: any) {
@@ -96,6 +87,20 @@ function TicketDetailsView() {
         }).catch(() => {
             handleCancel();
         })
+    }
+
+    function submitComment(e: any) {
+        setSubmitCommentLoading(true);
+        const data = {
+            userId: userId,
+            description: e.description
+        }
+        axios.post(`/comments/${ticketId}`, data).then((e) => {
+            setSubmitCommentLoading(false);
+            setComments(arr => [e.data[0], ...arr]);
+        }).catch(() => {
+            setSubmitCommentLoading(false);
+        });
     }
 
     function deleteComment(e: MouseEvent<HTMLButtonElement>) {
@@ -141,7 +146,8 @@ function TicketDetailsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <CommentSubmit submitComment={submitComment}/>
+                    <CommentSubmit submitComment={submitComment}
+                                   btnLoading={submitCommentLoading}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

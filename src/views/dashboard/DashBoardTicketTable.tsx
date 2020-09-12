@@ -123,15 +123,15 @@ function DashBoardTicketTable(props: Props) {
     ]
 
     return (
-        <React.Fragment>
-            // @ts-ignore
-            <Table columns={columns}
-                   locale={(props.tickets?.length === 0) ? noDataLocale() : loadingLocale('tickets')}
-                   dataSource={props.tickets}
-                   bordered
-                   pagination={{total: props.tickets?.length}} className={'mt-3'}
-                   scroll={{x: 1000}}/>}
-        </React.Fragment>
+
+        // @ts-ignore
+        <Table columns={columns}
+               locale={(props.tickets?.length === 0) ? noDataLocale() : loadingLocale('tickets')}
+               dataSource={props.tickets}
+               bordered
+               pagination={{total: props.tickets?.length}} className={'mt-3'}
+               scroll={{x: 1000}}/>
+
     )
 }
 

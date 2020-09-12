@@ -101,12 +101,19 @@ function TicketDetailsView() {
             updatedTicket.description = data.description;
             updatedTicket.priority = data.priority;
             updatedTicket.category = data.category;
-            //check status
+            //check status for project manager edit
             if (data.status === undefined) {
                 // @ts-ignore
                 updatedTicket.status = ticket?.status;
             } else {
                 updatedTicket.status = data.status;
+            }
+            //check status if developer eddited it
+            if (data.resolved === true && authority === 'ROLE_DEVELOPER') {
+                updatedTicket.status = 'RESOLVED';
+            }
+            if (data.resolved === false && authority === 'ROLE_DEVELOPER') {
+                updatedTicket.status = 'UNASSIGNED';
             }
             //init an "empty" assignedDeveloper Object so that we can assign values to it
             if (updatedTicket.assignedDeveloper === null) {

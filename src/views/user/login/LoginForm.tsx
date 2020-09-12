@@ -48,7 +48,10 @@ function LoginForm(props: Props) {
                         <Checkbox>Remember me</Checkbox>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button" loading={props.isLoading}
+                        <Button type="primary"
+                                htmlType="submit"
+                                className={'mt-2'}
+                                loading={props.isLoading}
                                 block={true}>
                             Log in
                         </Button>

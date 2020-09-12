@@ -12,6 +12,7 @@ import {
 import {Link} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
+import {SVGStyles} from "../top/TopSideNavigation";
 
 const {SubMenu} = Menu;
 
@@ -40,7 +41,7 @@ function LeftNavMenu() {
                         </Menu.Item>
                         <SubMenu
                             key="tickets"
-                            title={<span><FileTextOutlined style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
+                            title={<span><FileTextOutlined style={SVGStyles}/><span>Tickets</span></span>}>
                             <Menu.Item key="14"><Link to={'/tickets/my'}>My Tickets</Link></Menu.Item>
                             <Menu.Item key="15"><Link to={'/tickets/submit'}>Submit Ticket</Link></Menu.Item>
                         </SubMenu>
@@ -58,12 +59,12 @@ function LeftNavMenu() {
                         <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
                             <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
                         </Menu.Item>
-                        <Menu.Item key="1" icon={<IdcardOutlined style={{fontSize: '1.2rem'}}/>}>
+                        <Menu.Item key="1" icon={<IdcardOutlined style={SVGStyles}/>}>
                             <Link to={'/dashboard'}>Dashboard</Link>
                         </Menu.Item>
                         <SubMenu
                             key="tickets"
-                            title={<span><FileTextOutlined style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
+                            title={<span><FileTextOutlined style={SVGStyles}/><span>Tickets</span></span>}>
                             <Menu.Item key="14"><Link to={'/tickets/my'}>My Tickets</Link></Menu.Item>
                         </SubMenu>
                     </Menu>
@@ -81,16 +82,16 @@ function LeftNavMenu() {
                             <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
                                 <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
                             </Menu.Item>
-                            <Menu.Item key="1" icon={<IdcardOutlined style={{fontSize: '1.2rem'}}/>}>
+                            <Menu.Item key="1" icon={<IdcardOutlined style={SVGStyles}/>}>
                                 <Link to={'/dashboard'}>Dashboard</Link>
                             </Menu.Item>
-                            <Menu.Item key="3" icon={<UserAddOutlined style={{fontSize: '1.2rem'}}/>}>
+                            <Menu.Item key="3" icon={<UserAddOutlined style={SVGStyles}/>}>
                                 <Link to={'/managers/create-accounts'}>Create accounts</Link>
                             </Menu.Item>
                             <SubMenu
                                 key="projects"
                                 title={<span><PieChartOutlined
-                                    style={{fontSize: '1.2rem'}}/><span>Projects</span></span>}>
+                                    style={SVGStyles}/><span>Projects</span></span>}>
                                 <Menu.Item key="9"><Link to={'/projects/my'}>My Projects</Link></Menu.Item>
                                 <Menu.Item key="10"><Link to={'/projects/new'}>New Project</Link></Menu.Item>
                                 <Menu.Item key="11"><Link to={'/projects/qa/assign'}>Assign Qa</Link></Menu.Item>
@@ -99,7 +100,7 @@ function LeftNavMenu() {
                             <SubMenu
                                 key="tickets"
                                 title={<span><FileTextOutlined
-                                    style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
+                                    style={SVGStyles}/><span>Tickets</span></span>}>
                                 <Menu.Item key="14"><Link to={'/tickets/my'}>My Tickets</Link></Menu.Item>
                                 <Menu.Item key="15"><Link to={'/tickets/submit'}>Submit Ticket</Link></Menu.Item>
                             </SubMenu>
@@ -119,20 +120,20 @@ function LeftNavMenu() {
                             <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
                                 <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
                             </Menu.Item>
-                            <Menu.Item key="2" icon={<UsergroupAddOutlined style={{fontSize: '1.2rem'}}/>}
+                            <Menu.Item key="2" icon={<UsergroupAddOutlined style={SVGStyles}/>}
                                        danger={true}>
                                 <Link to={'/admins/all-users'}>Mange Users</Link>
                             </Menu.Item>
-                            <Menu.Item key="1" icon={<IdcardOutlined style={{fontSize: '1.2rem'}}/>}>
+                            <Menu.Item key="1" icon={<IdcardOutlined style={SVGStyles}/>}>
                                 <Link to={'/dashboard'}>Dashboard</Link>
                             </Menu.Item>
-                            <Menu.Item key="3" icon={<UserAddOutlined style={{fontSize: '1.2rem'}}/>}>
+                            <Menu.Item key="3" icon={<UserAddOutlined style={SVGStyles}/>}>
                                 <Link to={'/managers/create-accounts'}>Create accounts</Link>
                             </Menu.Item>
                             <SubMenu
                                 key="projects"
                                 title={<span><PieChartOutlined
-                                    style={{fontSize: '1.2rem'}}/><span>Projects</span></span>}>
+                                    style={SVGStyles}/><span>Projects</span></span>}>
                                 <Menu.Item key="9"><Link to={'/projects/my'}>My Projects</Link></Menu.Item>
                                 <Menu.Item key="10"><Link to={'/projects/new'}>New Project</Link></Menu.Item>
                                 <Menu.Item key="11"><Link to={'/projects/qa/assign'}>Assign Qa</Link></Menu.Item>
@@ -141,7 +142,7 @@ function LeftNavMenu() {
                             <SubMenu
                                 key="tickets"
                                 title={<span><FileTextOutlined
-                                    style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
+                                    style={SVGStyles}/><span>Tickets</span></span>}>
                                 <Menu.Item key="13"><Link to={'/tickets/all'}>All Tickets</Link></Menu.Item>
                                 <Menu.Item key="14"><Link to={'/tickets/my'}>My Tickets</Link></Menu.Item>
                                 <Menu.Item key="15"><Link to={'/tickets/submit'}>Submit Ticket</Link></Menu.Item>
@@ -162,9 +163,9 @@ function LeftNavMenu() {
                             <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
                         </Menu.Item>
                         <Menu.Item key="1"
-                                   icon={<ExclamationCircleOutlined style={{fontSize: '1.2rem'}}/>}
+                                   icon={<ExclamationCircleOutlined style={SVGStyles}/>}
                                    className={''}>
-                            <Link to={'/users/login'} style={{fontSize: '1.2rem'}}>Login to unlock more</Link>
+                            <Link to={'/users/login'} style={SVGStyles}>Login to unlock more</Link>
                         </Menu.Item>
                     </Menu>
                 </>)

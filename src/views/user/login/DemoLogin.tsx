@@ -55,7 +55,7 @@ function DemoLogin(props: Props) {
                         name='admin'
                         loading={props.isLoading}
                         onClick={(e) => props.handleDemoLogin(e)}>
-                    Demo admin
+                    Demo Admin
                 </Button>
             </Popover>
         </Card>

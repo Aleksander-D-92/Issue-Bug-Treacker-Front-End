@@ -39,11 +39,6 @@ function LeftNavMenu() {
                             <Link to={'/dashboard'}>Dashboard</Link>
                         </Menu.Item>
                         <SubMenu
-                            key="projects"
-                            title={<span><PieChartOutlined style={{fontSize: '1.2rem'}}/><span>Projects</span></span>}>
-                            <Menu.Item key="9"><Link to={'/projects/my'}>My Projects</Link></Menu.Item>
-                        </SubMenu>
-                        <SubMenu
                             key="tickets"
                             title={<span><FileTextOutlined style={{fontSize: '1.2rem'}}/><span>Tickets</span></span>}>
                             <Menu.Item key="14"><Link to={'/tickets/my'}>My Tickets</Link></Menu.Item>
@@ -124,11 +119,12 @@ function LeftNavMenu() {
                             <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
                                 <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
                             </Menu.Item>
+                            <Menu.Item key="2" icon={<UsergroupAddOutlined style={{fontSize: '1.2rem'}}/>}
+                                       danger={true}>
+                                <Link to={'/admins/all-users'}>Mange Users</Link>
+                            </Menu.Item>
                             <Menu.Item key="1" icon={<IdcardOutlined style={{fontSize: '1.2rem'}}/>}>
                                 <Link to={'/dashboard'}>Dashboard</Link>
-                            </Menu.Item>
-                            <Menu.Item key="2" icon={<UsergroupAddOutlined style={{fontSize: '1.2rem'}}/>}>
-                                <Link to={'/admins/all-users'}>Mange Users</Link>
                             </Menu.Item>
                             <Menu.Item key="3" icon={<UserAddOutlined style={{fontSize: '1.2rem'}}/>}>
                                 <Link to={'/managers/create-accounts'}>Create accounts</Link>

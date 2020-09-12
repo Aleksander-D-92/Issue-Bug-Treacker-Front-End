@@ -11,6 +11,7 @@ import {UsersTableHeader} from "./UsersTableHeader";
 
 function UsersTableView() {
     const [allUsers, setAllUsers] = useState<UserDetails[]>([]);
+    const demoAccounts = ["demo_manager", "demo_developer", "demo_qa", "admin"]
     useEffect(() => {
         axios.get('/users?action=all').then((e) => {
             setAllUsers(e.data);
@@ -28,7 +29,7 @@ function UsersTableView() {
                 <Col xs={24} sm={23} md={23} lg={23}>
                     <UsersTableHeader/>
                     <Table locale={loadingLocale('users')}
-                           dataSource={allUsers}
+                           dataSource={allUsers.filter(user => !demoAccounts.includes(user.username))}
                            columns={usersTableColumns}
                            pagination={{total: allUsers.length}}
                            scroll={{x: 1000}}

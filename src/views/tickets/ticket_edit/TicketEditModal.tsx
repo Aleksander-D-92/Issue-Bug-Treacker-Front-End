@@ -151,13 +151,15 @@ function TicketEditModal(props: Props) {
                         <Form.Item name="resolved"
                                    valuePropName="checked"
                                    noStyle>
-                            <Checkbox>Resolved?</Checkbox>
+                            <Checkbox style={{transform: 'scale(1.5)'}}
+                                      className={'ml-4'}>Resolved?</Checkbox>
                         </Form.Item>
                         : ''}
                     <Form.Item>
                         <Button type="primary"
                                 htmlType="submit"
                                 block
+                                className={'mt-2'}
                                 danger={true}
                                 loading={props.editTicketLoading}
                         >

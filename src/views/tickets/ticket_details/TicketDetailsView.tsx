@@ -79,6 +79,7 @@ function TicketDetailsView() {
         if (e.assignedDeveloperId === null || e.assignedDeveloperId === -1) {
             data.assignedDeveloperId = null
         }
+
         let action = '';
         switch (authority) {
             case 'ROLE_PROJECT_MANAGER':
@@ -86,6 +87,9 @@ function TicketDetailsView() {
                 break;
             case 'ROLE_DEVELOPER':
                 action = 'developer'
+                break;
+            case 'ROLE_QA':
+                action = 'qa';
                 break;
             default:
                 action = ''
@@ -97,8 +101,13 @@ function TicketDetailsView() {
             updatedTicket.description = data.description;
             updatedTicket.priority = data.priority;
             updatedTicket.category = data.category;
-            updatedTicket.status = data.status;
-
+            //check status
+            if (data.status === undefined) {
+                // @ts-ignore
+                updatedTicket.status = ticket?.status;
+            } else {
+                updatedTicket.status = data.status;
+            }
             //init an "empty" assignedDeveloper Object so that we can assign values to it
             if (updatedTicket.assignedDeveloper === null) {
                 updatedTicket.assignedDeveloper = {

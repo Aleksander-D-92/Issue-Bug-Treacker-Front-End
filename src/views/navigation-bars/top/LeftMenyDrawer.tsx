@@ -19,9 +19,12 @@ function LeftMenuDrawer(props: Props) {
     }, [props.authority])
     return (
         <>
-            <MenuOutlined onClick={() => props.showDrawer()}
-                          style={SVGStyles}
-                          className={'d-sm-inline-block d-md-none'}/>
+            <div style={burgerStyles}
+                 onClick={() => props.showDrawer()}>
+                <MenuOutlined
+                              style={SVGStyles}
+                              className={'d-sm-inline-block d-md-none'}/>
+            </div>
             <Drawer
                 title="Basic Drawer"
                 placement="left"
@@ -37,5 +40,9 @@ function LeftMenuDrawer(props: Props) {
         </>
     )
 }
+const burgerStyles = {
+    paddingLeft: 12,
+    paddingRight: 3
+} as CSSProperties
 
 export {LeftMenuDrawer}

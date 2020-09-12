@@ -41,7 +41,7 @@ function TopSideNavigation() {
                     :
                     <Link to={'/users/login'}>Login</Link>}
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item key="3" style={drawerStyles}>
                 <LeftMenuDrawer authority={authority}
                                 visible={visible}
                                 showDrawer={showDrawer}
@@ -57,6 +57,11 @@ const SVGStyles = {
 
 const menuItemStyles = {
     float: 'right'
+} as CSSProperties
+
+const drawerStyles = {
+    paddingLeft: 0,
+    paddingRight: 0
 } as CSSProperties
 
 export {TopSideNavigation, SVGStyles}

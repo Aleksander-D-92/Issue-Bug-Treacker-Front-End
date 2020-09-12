@@ -10,11 +10,11 @@ interface Props {
 function DemoLogin(props: Props) {
     return <React.Fragment>
         <Card title={<h2>Demo Login</h2>} extra={
-            <Popover placement="left" title={genericDescription}>
+            <Popover placement="top" title={genericDescription}>
                 <h2 style={{color: "#659edd", cursor: 'pointer'}}>What is this ?</h2>
             </Popover>
         }>
-            <Popover placement="left" title={managerDescription}>
+            <Popover placement="top" title={managerDescription}>
                 <Button type="primary"
                         htmlType="submit"
                         className="login-form-button mb-2"
@@ -25,7 +25,7 @@ function DemoLogin(props: Props) {
                     Demo Project Manager
                 </Button>
             </Popover>
-            <Popover placement="left" title={qaDescription}>
+            <Popover placement="top" title={qaDescription}>
                 <Button type="primary"
                         htmlType="submit"
                         className="login-form-button"
@@ -36,7 +36,7 @@ function DemoLogin(props: Props) {
                     Demo QA Engineer
                 </Button>
             </Popover>
-            <Popover placement="left" title={devDescription}>
+            <Popover placement="top" title={devDescription}>
                 <Button type="primary"
                         htmlType="submit"
                         className="login-form-button mt-2"
@@ -47,7 +47,7 @@ function DemoLogin(props: Props) {
                     Demo Developer
                 </Button>
             </Popover>
-            <Popover placement="left" title={adminDescription}>
+            <Popover placement="top" title={adminDescription}>
                 <Button type="primary"
                         htmlType="submit"
                         className="login-form-button mt-2"

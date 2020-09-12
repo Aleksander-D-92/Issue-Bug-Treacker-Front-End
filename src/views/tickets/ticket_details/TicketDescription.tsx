@@ -11,9 +11,9 @@ interface Props {
 }
 
 function TicketDescription(props: Props) {
-    const description = 'Please wait while we fetcsh the ticket data';
+    const description = 'Please wait while we fetch the ticket data';
     return (
-        <Card title={<Text style={{fontWeight: 'bold', fontSize: '1.1rem'}}>Submit a new comment</Text>} className={'mt-3'}>
+        <Card title={<Text style={{fontWeight: 'bold', fontSize: '1.1rem'}}>Ticket Details</Text>} className={'mt-3'}>
             <Descriptions bordered>
                 <Descriptions.Item label="Title" span={2}>
                     {props.ticket?.title}

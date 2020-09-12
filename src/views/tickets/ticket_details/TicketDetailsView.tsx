@@ -15,7 +15,7 @@ import {routerVariant} from "../../shared/gobalVariables";
 
 const {Panel} = Collapse;
 
-const {Text} = Typography;
+const {Text, Title} = Typography;
 
 const {TabPane} = Tabs;
 
@@ -192,6 +192,7 @@ function TicketDetailsView() {
         >
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
+                    <Title level={2}>Details for the current ticket, its comments and its history</Title>
                     <TicketDescription ticket={ticket}/>
                     <TicketEditModal onFinish={editTicket}
                                      authority={authority}

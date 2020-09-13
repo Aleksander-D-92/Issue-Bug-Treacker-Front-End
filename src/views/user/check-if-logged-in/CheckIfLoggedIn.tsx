@@ -19,7 +19,7 @@ function CheckIfLoggedIn() {
             })
             dispatch({type: 'userLoggedIn'})
         }
-    }, [dispatch])
+    }, [])
 
     return <></>;
 }

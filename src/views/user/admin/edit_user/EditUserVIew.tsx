@@ -13,7 +13,6 @@ import {routerVariant} from "../../../shared/gobalVariables";
 function EditUserVIew() {
     const {userId} = useParams();
     const [user, setUser] = useState<UserDetails>();
-    const [userLoading, setUserLoading] = useState<boolean>(true);
 
     const [authorities, setAuthorities] = useState<Authority[]>([]);
     const [authoritiesLoading, setAuthoritiesLoading] = useState<boolean>(true);
@@ -24,7 +23,6 @@ function EditUserVIew() {
     useEffect(() => {
         axios.get(`/users?action=single&id=${userId}`).then((e) => {
             setUser(e.data[0]);
-            setUserLoading(false);
             setLockAccountLoading(false);
         });
         axios.get('/authorities/all').then((e) => {
@@ -80,8 +78,7 @@ function EditUserVIew() {
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={14}>
                     <Card title="You can ban/lock this users account or change its authority">
-                        <DisplayUserDetails user={user}
-                                            userLoading={userLoading}/>
+                        <DisplayUserDetails user={user}/>
                         <EditUserAuthority user={user}
                                            loading={authoritiesLoading}
                                            authorities={authorities}

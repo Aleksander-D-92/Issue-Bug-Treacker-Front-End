@@ -29,7 +29,7 @@ function ProjectDetailsView() {
             setTickets(e.data);
             setTicketStatistics(doTicketStatistics(e.data));
         });
-    }, [])
+    }, [projectId])
     return (
         <motion.div variants={routerVariant}
                     initial='initial'

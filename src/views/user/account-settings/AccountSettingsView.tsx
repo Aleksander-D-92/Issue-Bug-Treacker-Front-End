@@ -27,7 +27,7 @@ function AccountSettingsView() {
             setUserDetails(e.data[0]);
             setUserLoading(false);
         })
-    }, [])
+    }, [reduxState.userDetails.id])
 
     function changePassword(e: any) {
         axios.put(`/users/password/${userId}`, {
@@ -61,8 +61,7 @@ function AccountSettingsView() {
                     <Collapse defaultActiveKey={['1']}>
                         <Panel header={<Text style={headerStyle}>Account Details</Text>}
                                key="1">
-                            <DisplayUserDetails userLoading={userLoading}
-                                                user={user}/>
+                            <DisplayUserDetails user={user}/>
                         </Panel>
                         <Panel header={<Text style={headerStyle}>Change Password</Text>} key="2">
                             <ChangePasswordForm changePassword={changePassword}

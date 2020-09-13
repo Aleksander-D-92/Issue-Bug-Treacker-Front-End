@@ -1,7 +1,7 @@
 import React from "react";
 import {Doughnut, Pie, Polar} from "react-chartjs-2";
 import {Col, Collapse, Row, Typography} from "antd";
-import {transparentColors} from "../shared/gobalVariables";
+import {defaultTitleStyles, transparentColors} from "../shared/gobalVariables";
 import {TicketStatistics} from "../shared/TicketStatistics";
 import {LoadingSpinner} from "../shared/LoadingAnimations";
 
@@ -20,7 +20,7 @@ function DashBoardCharts(props: Props) {
                 <Col xs={24} sm={22} md={22} lg={7}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel
-                            header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Tickets by priority</Text>}
+                            header={<Text style={defaultTitleStyles}>Tickets by priority</Text>}
                             key="1">
                             <LoadingSpinner loading={props.ticketStatistics === undefined}
                                             description={'Please wait while we fetch the tickets data...'}/>
@@ -56,7 +56,7 @@ function DashBoardCharts(props: Props) {
                 <Col xs={24} sm={22} md={22} lg={8}>
                     <Collapse defaultActiveKey={['1']}>
                         <Panel
-                            header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Tickets by category</Text>}
+                            header={<Text style={defaultTitleStyles}>Tickets by category</Text>}
                             key="1">
                             <LoadingSpinner loading={props.ticketStatistics === undefined}
                                             description={'Please wait while we fetch the tickets data...'}/>
@@ -90,7 +90,7 @@ function DashBoardCharts(props: Props) {
                 </Col>
                 <Col xs={24} sm={22} md={22} lg={7}>
                     <Collapse defaultActiveKey={['1']}>
-                        <Panel header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Tickets by status</Text>}
+                        <Panel header={<Text style={defaultTitleStyles}>Tickets by status</Text>}
                                key="1">
                             <LoadingSpinner loading={props.ticketStatistics === undefined}
                                             description={'Please wait while we fetch the tickets data...'}/>

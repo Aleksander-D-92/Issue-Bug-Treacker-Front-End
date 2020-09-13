@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Avatar, Card, List} from 'antd';
+import {Avatar, Card, List, Typography} from 'antd';
 import {ProjectDetails} from "../../shared/Interfaces";
 import {capitalizeString, formatDate} from "../../shared/functions";
 import {EditOutlined, EyeOutlined, FileAddOutlined} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import {loadingLocale, noDataLocale} from "../../shared/LoadingAnimations";
+import {defaultTitleStyles} from "../../shared/gobalVariables";
+
+const {Text} = Typography;
 
 interface Props {
     projects?: ProjectDetails[],
@@ -28,7 +31,7 @@ function ProjectsList(props: Props) {
                 setHeader('All project you can submit tickets for')
                 break;
             case 'ROLE_ADMIN':
-                setHeader('All projects in the system')
+                setHeader('All the projects currently in the DB')
                 setCanEdit(true);
                 break;
         }
@@ -39,7 +42,7 @@ function ProjectsList(props: Props) {
             <Card>
                 <List
                     itemLayout="vertical"
-                    header={<h2>{header}</h2>}
+                    header={<Text style={defaultTitleStyles}>{header}</Text>}
                     dataSource={props.projects}
                     locale={(props.projects?.length === 0) ? noDataLocale() : loadingLocale('projects')}
                     pagination={{

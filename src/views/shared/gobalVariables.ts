@@ -1,4 +1,5 @@
 import {Variants} from "framer-motion";
+import {CSSProperties} from "react";
 
 const transparentColors = {
     red: 'rgba(255,99,132,0.6)',
@@ -35,4 +36,9 @@ const routerVariant = {
         }
     },
 } as Variants
-export {transparentColors, solidColors, routerVariant}
+
+const defaultTitleStyles = {
+    fontSize: '1.1rem',
+    fontWeight: 'bold'
+} as CSSProperties
+export {transparentColors, solidColors, routerVariant, defaultTitleStyles}

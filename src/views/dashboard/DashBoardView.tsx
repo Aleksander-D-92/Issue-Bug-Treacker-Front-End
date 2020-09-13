@@ -77,7 +77,8 @@ function DashBoardView() {
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
                     {(userRole !== 'ROLE_DEVELOPER') ?
-                        <ProjectsList projects={projects} authority={reduxState.userDetails.authority}/>
+                        <ProjectsList projects={projects}
+                                      authority={reduxState.userDetails.authority}/>
                         :
                         ''
                     }

@@ -8,6 +8,9 @@ import {EditUserAuthority} from "./EditUserAuthority";
 import {ChangeAccountLock} from "./ChangeAccountLock";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../../shared/gobalVariables";
+import {Typography} from 'antd';
+
+const {Text} = Typography;
 
 
 function EditUserVIew() {
@@ -29,7 +32,7 @@ function EditUserVIew() {
             setAuthorities(e.data.filter((a: Authority) => a.authorityLevel !== 4));
             setAuthoritiesLoading(false)
         })
-    }, [])
+    }, [userId])
 
     function changeAuthority(form: any) {
         setAuthoritiesLoading(true);
@@ -55,6 +58,8 @@ function EditUserVIew() {
             setUser(updatedUser);
             formState.setFieldsValue({'authorityId': ''});
             setAuthoritiesLoading(false);
+        }).catch(() => {
+            setAuthoritiesLoading(false);
         });
     }
 
@@ -65,6 +70,8 @@ function EditUserVIew() {
         updatedUser.accountNonLocked = name !== 'lock';
         axios.put(`/admins/user-account-lock?action=${name}&userId=${userId}`).then(() => {
             setUser(updatedUser);
+            setLockAccountLoading(false);
+        }).catch(() => {
             setLockAccountLoading(false);
         });
     }
@@ -77,7 +84,8 @@ function EditUserVIew() {
         >
             <Row justify={'center'} className={'mt-3'}>
                 <Col xs={24} sm={23} md={23} lg={14}>
-                    <Card title="You can ban/lock this users account or change its authority">
+                    <Card title={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>
+                        You can ban/lock this users account or change its authority</Text>}>
                         <DisplayUserDetails user={user}/>
                         <EditUserAuthority user={user}
                                            loading={authoritiesLoading}

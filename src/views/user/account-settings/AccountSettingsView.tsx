@@ -20,33 +20,37 @@ function AccountSettingsView() {
     const reduxState = useSelector((state: ReduxState) => state)
     const userId = reduxState.userDetails.id;
     const [user, setUserDetails] = useState<UserDetails>();
-    const [userLoading, setUserLoading] = useState<boolean>(true);
+    const [btnLoading, setBtnLoading] = useState<boolean>(true);
 
     useEffect(() => {
         axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`).then((e) => {
             setUserDetails(e.data[0]);
-            setUserLoading(false);
+            setBtnLoading(false);
         })
     }, [reduxState.userDetails.id])
 
     function changePassword(e: any) {
+        setBtnLoading(true)
         axios.put(`/users/password/${userId}`, {
             oldPassword: e.password,
             newPassword: e.newPassword
         }).then(() => {
+            setBtnLoading(false)
             history.push("/users/logout")
         }).catch(() => {
-
+            setBtnLoading(false)
         })
     }
 
     function deleteAccount(form: any) {
-        console.log(form);
+        setBtnLoading(true)
         axios.put(`/users/account-lock/${userId}`, {
             password: form.password
-        }).then(e => {
-            console.log(e);
+        }).then(() => {
+            setBtnLoading(false)
             history.push("/users/logout");
+        }).catch(() => {
+            setBtnLoading(false)
         })
     }
 
@@ -65,11 +69,11 @@ function AccountSettingsView() {
                         </Panel>
                         <Panel header={<Text style={headerStyle}>Change Password</Text>} key="2">
                             <ChangePasswordForm changePassword={changePassword}
-                                                loading={userLoading}/>
+                                                loading={btnLoading}/>
                         </Panel>
                         <Panel header={<Text style={headerStyle}>Delete Account</Text>} key="3">
                             <DeleteAccountForm deleteAccount={deleteAccount}
-                                               loading={userLoading}/>
+                                               loading={btnLoading}/>
                         </Panel>
                     </Collapse>
                 </Col>

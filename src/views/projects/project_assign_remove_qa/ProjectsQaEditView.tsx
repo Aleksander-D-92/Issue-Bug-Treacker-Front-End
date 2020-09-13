@@ -25,7 +25,6 @@ function ProjectsQaEditView() {
     const [btnLoading, setBtnLoading] = useState<boolean>(false);
 
     const [availableQa, setAvailableQa] = useState<UserDetails[]>();
-    const [availableQaLoading, setAvailableQaLoading] = useState<boolean>(true);
 
     const [assignedQa, setAssignedQa] = useState<UserDetails[]>();
 
@@ -39,7 +38,6 @@ function ProjectsQaEditView() {
         }
         axios.get(`/projects/qa?action=available&managerId=${managerId}&projectId=${projectId}`).then((e) => {
             setAvailableQa(e.data);
-            setAvailableQaLoading(false);
         });
 
         axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
@@ -51,7 +49,6 @@ function ProjectsQaEditView() {
         axios.get(`/tickets?action=by-project&id=${projectId}`).then((e) => {
             setTickets(e.data);
         });
-
     }, [action, history, managerId, projectId])
 
     function onFinish(e: any) {
@@ -62,11 +59,13 @@ function ProjectsQaEditView() {
         switch (action) {
             case 'assign':
                 axios.put(`/projects/qa?action=add&projectId=${projectId}`, data).then(() => {
+                    setBtnLoading(false);
                     history.goBack();
                 })
                 break;
             case 'remove':
                 axios.put(`/projects/qa?action=remove&projectId=${projectId}`, data).then(() => {
+                    setBtnLoading(false);
                     history.goBack();
                 })
                 break;
@@ -122,13 +121,12 @@ function ProjectsQaEditView() {
                                     type="primary"
                                     htmlType="submit"
                                     block
-                                    loading={btnLoading && availableQaLoading}>
+                                    loading={btnLoading || assignedQa === undefined || availableQa === undefined}>
                                     {action === 'assign' ? 'Assign QA' : 'Remove QA'}
                                 </Button>
                             </Form.Item>
                             <Button block
-                                    onClick={goBack}
-                                    loading={btnLoading}>
+                                    onClick={goBack}>
                                 Go Back
                             </Button>
                         </Form>

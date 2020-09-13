@@ -11,14 +11,13 @@ const {Panel} = Collapse;
 
 interface Props {
     statistics?: TicketStatistics,
-    ticketsLoading: boolean
 }
 
 function ProjectTicketsChart(props: Props) {
     return (
         <Collapse defaultActiveKey={['1']} className={'mt-3'}>
             <Panel header={<Text style={{fontSize: '1.1rem', fontWeight: 'bold'}}>Ticket statistics for this project</Text>} key="1">
-                <LoadingSpinner loading={props.ticketsLoading} description={'Ticket statistics are being fetched'}/>
+                <LoadingSpinner loading={props.statistics === undefined} description={'Ticket statistics are being fetched'}/>
                 <Bar data={{
                     labels: ['Low', 'Medium', 'High', 'Urgent', 'Other', 'Feature Request', 'Bugs and Errors', 'Unassigned', 'In progress', 'Resolved'],
                     datasets: [{

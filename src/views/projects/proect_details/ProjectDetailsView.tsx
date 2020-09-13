@@ -12,14 +12,11 @@ import {routerVariant} from "../../shared/gobalVariables";
 
 
 function ProjectDetailsView() {
-    const [project, setProject] = useState<ProjectDetails>();
-
-    const [tickets, setTickets] = useState<TicketDetails[]>();
-    const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
-    const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
-
-    const [qa, setQa] = useState<UserDetails[]>();
     const {projectId} = useParams();
+    const [project, setProject] = useState<ProjectDetails>();
+    const [tickets, setTickets] = useState<TicketDetails[]>();
+    const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
+    const [qa, setQa] = useState<UserDetails[]>();
 
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
@@ -31,7 +28,6 @@ function ProjectDetailsView() {
         axios.get(`/tickets?action=by-project&id=${projectId}`).then((e) => {
             setTickets(e.data);
             setTicketStatistics(doTicketStatistics(e.data));
-            setTicketsLoading(false);
         });
     }, [])
     return (
@@ -51,7 +47,7 @@ function ProjectDetailsView() {
             </Row>
             <Row justify={'center'}>
                 <Col xs={24} sm={22} md={22} lg={22} xl={22}>
-                    <ProjectTicketsChart ticketsLoading={ticketsLoading} statistics={ticketStatistics}/>
+                    <ProjectTicketsChart statistics={ticketStatistics}/>
                 </Col>
             </Row>
             <Row justify={'center'}>

@@ -1,0 +1,7 @@
+.landingPageImage:hover {
+    cursor: pointer;
+}
+
+.landingPageImage {
+    border: 0;
+}

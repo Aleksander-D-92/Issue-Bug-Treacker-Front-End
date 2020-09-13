@@ -19,7 +19,7 @@ import {TicketDetailsView} from "../../views/tickets/ticket_details/TicketDetail
 import {ProjectsQaActionView} from "../../views/projects/project_assign_remove_qa/ProjectsQaActionView";
 import {ProjectsQaEditView} from "../../views/projects/project_assign_remove_qa/ProjectsQaEditView";
 import {ManagerCreateAccView} from "../../views/user/manager/ManagerCreateAccView";
-import {LandingPage} from "../../views/landing_page/LandingPage";
+import {LandingPageView} from "../../views/landing_page/LandingPageView";
 import {Handle404} from "../../views/404/Handle404";
 import {AnimatePresence} from 'framer-motion'
 
@@ -28,7 +28,7 @@ function WebsiteRoutes() {
     return (
         <AnimatePresence exitBeforeEnter={true}>
             <Switch location={location} key={location.key}>
-                <Route exact path={'/'}><LandingPage/></Route>
+                <Route exact path={'/'}><LandingPageView/></Route>
                 <Route exact path={'/users/login'}><LoginView/></Route>
                 <Route exact path={'/users/register'}><UserRegisterView/></Route>
                 <Route exact path={'/users/logout'}><HandleLogout/></Route>

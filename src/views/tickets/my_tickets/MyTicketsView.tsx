@@ -34,7 +34,7 @@ function MyTicketsView() {
                 });
                 break;
             case 'ROLE_ADMIN':
-                axios.get('/tickets?action=all').then((e) => {
+                axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
                     setTickets(e.data);
                 });
                 break;

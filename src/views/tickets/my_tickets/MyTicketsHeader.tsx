@@ -23,14 +23,12 @@ function TicketsGreeting(props: Props) {
                 setHeader('This are all the tickets you have submitted so far')
                 break;
             case 'ROLE_ADMIN':
-                setHeader('This are all of the tickets currently in the system')
+                setHeader('This are all of the tickets you have submitted')
                 break;
         }
-    },[props.authority])
+    }, [props.authority])
     return (
-        <React.Fragment>
-            <Title level={2}>{header}</Title>
-        </React.Fragment>
+        <Title level={2}>{header}</Title>
     )
 }
 

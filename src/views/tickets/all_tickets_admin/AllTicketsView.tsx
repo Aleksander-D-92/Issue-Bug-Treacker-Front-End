@@ -8,6 +8,9 @@ import {TicketsGreeting} from "../my_tickets/MyTicketsHeader";
 import {DashBoardTicketTable} from "../../dashboard/DashBoardTicketTable";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
+import {Typography} from 'antd';
+
+const {Title} = Typography;
 
 function AllTicketsView() {
     const state = useSelector((state: ReduxState) => state);
@@ -26,8 +29,7 @@ function AllTicketsView() {
         >
             <Row justify={'center'}>
                 <Col xs={24} sm={22}>
-                    <TicketsGreeting username={state.userDetails.username}
-                                     authority={authority}/>
+                    <Title level={2}>{'All fo the tickets currently in the DB'}</Title>
                 </Col>
             </Row>
             <Row justify={'center'}>

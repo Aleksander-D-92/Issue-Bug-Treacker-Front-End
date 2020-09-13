@@ -1,0 +1,30 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.scroll {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    display: block;
+    text-align: center;
+    line-height: 80px;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.scroll.bottom {
+    top: calc(10% - 0px);
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 40px;
+    margin-right: 80px;
+}
+
+.scroll.bottom:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+}

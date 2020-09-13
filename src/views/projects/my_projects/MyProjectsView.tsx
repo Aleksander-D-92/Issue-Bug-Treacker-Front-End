@@ -17,7 +17,7 @@ function MyProjectsView() {
         axios.get(`/projects?action=own&id=${state.userDetails.id}`).then((e) => {
             setProjects(e.data);
         })
-    }, [])
+    }, [state.userDetails.id])
     return (
         <motion.div variants={routerVariant}
                     initial='initial'

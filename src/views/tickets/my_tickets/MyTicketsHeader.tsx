@@ -26,7 +26,7 @@ function TicketsGreeting(props: Props) {
                 setHeader('This are all of the tickets currently in the system')
                 break;
         }
-    })
+    },[props.authority])
     return (
         <React.Fragment>
             <Title level={2}>{header}</Title>

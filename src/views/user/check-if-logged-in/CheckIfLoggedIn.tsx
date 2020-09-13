@@ -19,9 +19,9 @@ function CheckIfLoggedIn() {
             })
             dispatch({type: 'userLoggedIn'})
         }
-    }, [])
+    }, [dispatch])
 
-    return null;
+    return <></>;
 }
 
 export {CheckIfLoggedIn}

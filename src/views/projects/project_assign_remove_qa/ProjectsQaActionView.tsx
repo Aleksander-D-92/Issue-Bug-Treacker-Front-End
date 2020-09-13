@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {CSSProperties, useEffect, useState} from "react";
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {ReduxState} from "../../../configuration/redux/reduxStrore";
@@ -12,8 +12,8 @@ import {LoadingSpinner} from "../../shared/LoadingAnimations";
 
 const {Title} = Typography;
 
-const cardGridStyle = {width: '50%', textAlign: 'center'} as React.CSSProperties
-const linkStyle = {fontSize: '1.1rem'} as React.CSSProperties
+const cardGridStyle = {width: '50%', textAlign: 'center'} as CSSProperties
+const linkStyle = {fontSize: '1.1rem'} as CSSProperties
 
 function ProjectsQaActionView() {
     const state = useSelector((state: ReduxState) => state);
@@ -24,7 +24,7 @@ function ProjectsQaActionView() {
         axios.get(`/projects?action=own&id=${managerId}`).then((e) => {
             setProjects(e.data);
         });
-    }, [])
+    }, [managerId])
     return (
         <motion.div variants={routerVariant}
                     initial='initial'

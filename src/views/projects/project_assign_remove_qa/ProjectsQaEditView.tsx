@@ -28,13 +28,10 @@ function ProjectsQaEditView() {
     const [availableQaLoading, setAvailableQaLoading] = useState<boolean>(true);
 
     const [assignedQa, setAssignedQa] = useState<UserDetails[]>();
-    const [assignedQaLoading, setAssignedQaLoading] = useState<boolean>(true);
 
     const [project, setProject] = useState<ProjectDetails>();
-    const [projectLoading, setProjectLoading] = useState<boolean>(true);
 
     const [tickets, setTickets] = useState<TicketDetails[]>();
-    const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         if (action !== 'assign' && action !== 'remove') {
@@ -47,18 +44,15 @@ function ProjectsQaEditView() {
 
         axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
             setAssignedQa(e.data);
-            setAssignedQaLoading(false);
         });
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             setProject(e.data[0]);
-            setProjectLoading(false);
         });
         axios.get(`/tickets?action=by-project&id=${projectId}`).then((e) => {
             setTickets(e.data);
-            setTicketsLoading(false);
         });
 
-    }, [])
+    }, [action, history, managerId, projectId])
 
     function onFinish(e: any) {
         setBtnLoading(true);
@@ -100,10 +94,7 @@ function ProjectsQaEditView() {
                         className={'mt-3'}>
                         <ProjectInfo project={project}
                                      totalQa={assignedQa?.length}
-                                     totalTickets={tickets?.length}
-                                     projectLoading={projectLoading}
-                                     ticketsLoading={ticketsLoading}
-                                     assignedQaLoading={assignedQaLoading}/>
+                                     totalTickets={tickets?.length}/>
 
                         <Form
                             name="basic"
@@ -127,10 +118,11 @@ function ProjectsQaEditView() {
                                 </Select>
                             </Form.Item>
                             <Form.Item>
-                                <Button type="primary"
-                                        htmlType="submit"
-                                        block
-                                        loading={btnLoading}>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    block
+                                    loading={btnLoading && availableQaLoading}>
                                     {action === 'assign' ? 'Assign QA' : 'Remove QA'}
                                 </Button>
                             </Form.Item>

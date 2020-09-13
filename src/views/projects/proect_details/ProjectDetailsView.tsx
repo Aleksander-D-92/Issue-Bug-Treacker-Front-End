@@ -13,24 +13,20 @@ import {routerVariant} from "../../shared/gobalVariables";
 
 function ProjectDetailsView() {
     const [project, setProject] = useState<ProjectDetails>();
-    const [projectLoading, setProjectLoading] = useState<boolean>(true);
 
     const [tickets, setTickets] = useState<TicketDetails[]>();
     const [ticketsLoading, setTicketsLoading] = useState<boolean>(true);
     const [ticketStatistics, setTicketStatistics] = useState<TicketStatistics>();
 
     const [qa, setQa] = useState<UserDetails[]>();
-    const [qaLoading, setQaLoading] = useState<boolean>(true);
     const {projectId} = useParams();
 
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             setProject(e.data[0]);
-            setProjectLoading(false);
         });
         axios.get(`/projects/qa?action=assigned&projectId=${projectId}`).then((e) => {
             setQa(e.data);
-            setQaLoading(false);
         });
         axios.get(`/tickets?action=by-project&id=${projectId}`).then((e) => {
             setTickets(e.data);
@@ -49,10 +45,7 @@ function ProjectDetailsView() {
                     <Card className={'mt-3'}>
                         <ProjectInfo project={project}
                                      totalQa={qa?.length}
-                                     totalTickets={tickets?.length}
-                                     projectLoading={projectLoading}
-                                     ticketsLoading={ticketsLoading}
-                                     assignedQaLoading={qaLoading}/>
+                                     totalTickets={tickets?.length}/>
                     </Card>
                 </Col>
             </Row>

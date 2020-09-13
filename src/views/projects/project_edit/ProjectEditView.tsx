@@ -17,10 +17,12 @@ function ProjectEditView() {
     useEffect(() => {
         axios.get(`/projects?action=single&id=${projectId}`).then((e) => {
             setProject(e.data[0]);
-            form.setFieldsValue({'title': e.data[0].title, 'description': e.data[0].description})
-
         })
-    }, [])
+    }, [projectId])
+
+    useEffect(() => {
+        form.setFieldsValue({'title': project?.title, 'description': project?.description})
+    }, [form, project])
 
     function editProject(e: any) {
         const data = {title: e.title, description: e.description}

@@ -20,7 +20,7 @@ function UserRegisterView() {
             form.setFieldsValue({'authorityId': 3})
             setButtonLoading(false);
         })
-    }, [])
+    }, [form])
 
     function onFinish(registerForm: any) {
         setButtonLoading(true);

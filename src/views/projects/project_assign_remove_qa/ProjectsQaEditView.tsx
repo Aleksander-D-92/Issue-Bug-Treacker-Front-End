@@ -121,6 +121,7 @@ function ProjectsQaEditView() {
                                     type="primary"
                                     htmlType="submit"
                                     block
+                                    danger={action !== 'assign'}
                                     loading={btnLoading || assignedQa === undefined || availableQa === undefined}>
                                     {action === 'assign' ? 'Assign QA' : 'Remove QA'}
                                 </Button>

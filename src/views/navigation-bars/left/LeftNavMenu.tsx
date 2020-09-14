@@ -34,7 +34,7 @@ function LeftNavMenu() {
                           theme="dark"
                           style={{fontSize: '1.1rem'}}>
                         <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
-                            <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
+                            <Link to={'/'} style={{fontSize: '1.4rem'}}>Destroy Bugs</Link>
                         </Menu.Item>
                         <Menu.Item key="1" icon={<IdcardOutlined style={{fontSize: '1.2rem'}}/>}>
                             <Link to={'/dashboard'}>Dashboard</Link>
@@ -57,7 +57,7 @@ function LeftNavMenu() {
                           theme="dark"
                           style={{fontSize: '1.1rem'}}>
                         <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
-                            <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
+                            <Link to={'/'} style={{fontSize: '1.4rem'}}>Destroy Bugs</Link>
                         </Menu.Item>
                         <Menu.Item key="1" icon={<IdcardOutlined style={SVGStyles}/>}>
                             <Link to={'/dashboard'}>Dashboard</Link>
@@ -80,7 +80,7 @@ function LeftNavMenu() {
                               theme="dark"
                               style={{fontSize: '1.1rem'}}>
                             <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
-                                <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
+                                <Link to={'/'} style={{fontSize: '1.4rem'}}>Destroy Bugs</Link>
                             </Menu.Item>
                             <Menu.Item key="1" icon={<IdcardOutlined style={SVGStyles}/>}>
                                 <Link to={'/dashboard'}>Dashboard</Link>
@@ -118,7 +118,7 @@ function LeftNavMenu() {
                               theme="dark"
                               style={{fontSize: '1.1rem'}}>
                             <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
-                                <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
+                                <Link to={'/'} style={{fontSize: '1.4rem'}}>Destroy Bugs</Link>
                             </Menu.Item>
                             <Menu.Item key="2" icon={<UsergroupAddOutlined style={SVGStyles}/>}
                                        danger={true}>
@@ -160,7 +160,7 @@ function LeftNavMenu() {
                           theme="dark"
                           style={{fontSize: '1.1rem'}}>
                         <Menu.Item key="0" icon={<BugOutlined style={{fontSize: '1.4rem'}}/>} className={'mb-5'}>
-                            <Link to={'/'} style={{fontSize: '1.4rem'}}>Bug Tracker</Link>
+                            <Link to={'/'} style={{fontSize: '1.4rem'}}>Destroy Bugs</Link>
                         </Menu.Item>
                         <Menu.Item key="1"
                                    icon={<ExclamationCircleOutlined style={SVGStyles}/>}

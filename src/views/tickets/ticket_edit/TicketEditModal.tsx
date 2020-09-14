@@ -61,7 +61,7 @@ function TicketEditModal(props: Props) {
                         'category': props.ticket?.category,
                         'status': props.ticket?.status,
                         'assignedDeveloperId': (props.ticket?.assignedDeveloper !== null) ? props.ticket?.assignedDeveloper.userId : null,
-                        'resolved': false
+                        'resolved': (props.ticket?.status !== 'IN_PROGRESS')
                     }}
                     onFinish={(e: any) => props.onFinish(e)}>
                     {/*dummy item for ticket id*/}

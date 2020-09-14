@@ -83,7 +83,7 @@ function DashBoardTicketTable(props: Props) {
         },
         {
             key: 'ticketId',
-            title: 'Created nn',
+            title: 'Created on',
             dataIndex: 'creationDate',
             render: (date: Date) => formatDate(date),
             sorter: {

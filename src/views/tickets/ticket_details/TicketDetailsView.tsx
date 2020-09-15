@@ -91,6 +91,9 @@ function TicketDetailsView() {
             case 'ROLE_QA':
                 action = 'qa';
                 break;
+            case 'ROLE_ADMIN':
+                action = 'manager';
+                break;
             default:
                 action = ''
                 break;

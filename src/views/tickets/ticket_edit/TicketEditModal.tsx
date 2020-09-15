@@ -119,7 +119,7 @@ function TicketEditModal(props: Props) {
                             <Option value="OTHER">Other</Option>
                         </Select>
                     </Form.Item>
-                    {(props.authority === 'ROLE_PROJECT_MANAGER' || props.authority === 'ADMIN') ?
+                    {(props.authority === 'ROLE_PROJECT_MANAGER' || props.authority === 'ROLE_ADMIN') ?
                         <>
                             <Form.Item name="status" label="Status"
                                        rules={[{required: false, message: 'You must select a Status'}]}>

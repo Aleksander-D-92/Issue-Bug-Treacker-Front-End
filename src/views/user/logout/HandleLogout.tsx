@@ -15,13 +15,14 @@ function HandleLogout() {
         dispatch({type: 'userDetails', payload: {}})
         deleteAllCookies();
         history.push("/users/login");
-    }, [dispatch, history])
+    })
     return (
         <motion.div variants={routerVariant}
                     initial='initial'
                     animate='animate'
                     exit='exit'
-        ></motion.div>
+        >
+        </motion.div>
     )
 }
 

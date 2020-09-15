@@ -22,16 +22,16 @@ function AxiosGlobalInterceptors() {
             }
             switch (method) {
                 case "get":
-                    toast.info(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.info(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
                 case "post":
-                    toast.success(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.success(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
                 case "put":
-                    toast.warning(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.warning(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
                 case "delete":
-                    toast.error(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.error(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
             }
             return config;

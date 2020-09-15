@@ -25,15 +25,4 @@ function capitalizeString(str: string | undefined): string {
     return str.charAt(0).toUpperCase() + str.slice(1).toLocaleLowerCase()
 }
 
-function readCookieByKeyName(name: string) {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
-export {formatDate, compareDates, readCookieByKeyName, capitalizeString}
+export {formatDate, compareDates, capitalizeString}

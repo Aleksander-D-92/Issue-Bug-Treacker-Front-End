@@ -2,7 +2,7 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React, {useEffect} from "react";
-import {readCookieByKeyName} from "../../views/shared/functions";
+import {readCookieByKeyName} from "../../views/shared/cookieUtils";
 
 toast.configure();
 

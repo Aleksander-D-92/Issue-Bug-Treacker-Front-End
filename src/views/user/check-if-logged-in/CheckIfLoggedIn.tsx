@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch} from 'react-redux'
-import {readCookieByKeyName} from "../../shared/functions";
+import {readCookieByKeyName} from "../../shared/cookieUtils";
 
 function CheckIfLoggedIn() {
     const dispatch = useDispatch();

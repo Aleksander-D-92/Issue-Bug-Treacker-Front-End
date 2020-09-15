@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {deleteAllCookies} from "../../shared/functions";
 import {motion} from "framer-motion";
 import {routerVariant} from "../../shared/gobalVariables";
+import {removeAllCookies} from "../../shared/cookieUtils";
 
 
 function HandleLogout() {
@@ -13,7 +13,7 @@ function HandleLogout() {
     useEffect(() => {
         dispatch({type: 'userLoggedOut'});
         dispatch({type: 'userDetails', payload: {}})
-        deleteAllCookies();
+        removeAllCookies();
         history.push("/users/login");
     })
     return (

@@ -6,10 +6,10 @@ import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {Store} from "rc-field-form/lib/interface";
 import axios from "axios";
-import {deleteAllCookies} from "../../shared/functions";
 import {demoAdminCredentials, demoDevCredentials, demoManagerCredentials, demoQaCredentials} from "./variables";
 import {motion} from 'framer-motion'
 import {routerVariant} from "../../shared/gobalVariables";
+import {removeAllCookies} from "../../shared/cookieUtils";
 
 
 function LoginView() {
@@ -30,7 +30,7 @@ function LoginView() {
     }
 
     function updateCookiesAndStore(token: string) {
-        deleteAllCookies(); //delete all cookies
+        removeAllCookies(); //delete all cookies
         document.cookie = `jwt=${token}`; //make a new cookie form the the new token
 
         let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object
@@ -65,7 +65,7 @@ function LoginView() {
                 break;
         }
         axios.post('/users/authenticate', credentials).then((e) => {
-            deleteAllCookies();
+            removeAllCookies();
             const token = e.data.id_token;
             document.cookie = `jwt=${token}`;
             let jwtPayload = JSON.parse(atob(token.split('.')[1])); //parse the JWT payload to JSON object

@@ -23,7 +23,7 @@ function AccountSettingsView() {
     const [btnLoading, setBtnLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        axios.get(`/users/?action=single&id=${reduxState.userDetails.id}`).then((e) => {
+        axios.get(`/users?action=single&id=${reduxState.userDetails.id}`).then((e) => {
             setUserDetails(e.data[0]);
             setBtnLoading(false);
         })

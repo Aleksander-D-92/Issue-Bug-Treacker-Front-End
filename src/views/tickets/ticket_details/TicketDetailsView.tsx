@@ -113,7 +113,7 @@ function TicketDetailsView() {
                 updatedTicket.status = 'RESOLVED';
             }
             if (data.resolved === false && authority === 'ROLE_DEVELOPER') {
-                updatedTicket.status = 'UNASSIGNED';
+                updatedTicket.status = 'IN_PROGRESS';
             }
             //init an "empty" assignedDeveloper Object so that we can assign values to it
             if (updatedTicket.assignedDeveloper === null) {

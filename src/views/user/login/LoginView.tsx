@@ -64,7 +64,7 @@ function LoginView() {
                 credentials = demoAdminCredentials;
                 break;
         }
-        axios.post('/users/authenticate/', credentials).then((e) => {
+        axios.post('/users/authenticate', credentials).then((e) => {
             deleteAllCookies();
             const token = e.data.id_token;
             document.cookie = `jwt=${token}`;

@@ -30,7 +30,7 @@ function ManagerCreateAccView() {
             confirmPassword: e.confirmPassword,
             authorityId: e.authorityId
         };
-        axios.post(`/users/register?managerId=${managerId}`, data).then((e) => {
+        axios.post(`/users/manager/register?managerId=${managerId}`, data).then((e) => {
             form.setFieldsValue({
                 'username': '',
                 'password': '',

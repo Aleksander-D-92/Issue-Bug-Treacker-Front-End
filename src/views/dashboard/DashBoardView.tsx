@@ -25,7 +25,7 @@ function DashBoardView() {
     useEffect(() => {
         switch (userRole) {
             case 'ROLE_PROJECT_MANAGER':
-                axios.get(`/tickets/?action=by-project-manager&id=${id}`).then((e) => {
+                axios.get(`/tickets?action=by-project-manager&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
                 });
@@ -35,7 +35,7 @@ function DashBoardView() {
                 })
                 break;
             case 'ROLE_DEVELOPER':
-                axios.get(`/tickets/?action=by-assigned-developer&id=${id}`).then((e) => {
+                axios.get(`/tickets?action=by-assigned-developer&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
                 });
@@ -45,7 +45,7 @@ function DashBoardView() {
                 });
                 break
             case 'ROLE_QA':
-                axios.get(`/tickets/?action=by-submitter&id=${id}`).then((e) => {
+                axios.get(`/tickets?action=by-submitter&id=${id}`).then((e) => {
                     setTicketStatistics(doTicketStatistics(e.data));
                     setTickets(e.data);
                 });

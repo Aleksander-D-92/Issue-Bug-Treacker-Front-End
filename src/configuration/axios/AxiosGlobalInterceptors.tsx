@@ -11,9 +11,10 @@ function AxiosGlobalInterceptors() {
     useEffect(() => {
         axios.interceptors.request.use((config) => {
             const method = config.method;
-            const baseUrl = 'http://localhost:8080';
+            const herokuUrl='https://destroy-bugs.herokuapp.com';
+            const localHostUrl = 'http://localhost:8080';
             const toastUrl = config.url;
-            config.url = baseUrl + config.url;
+            config.url = herokuUrl + config.url;
 
             const jwt = readCookieByKeyName('jwt');
             if (jwt !== undefined && jwt !== null) {
@@ -21,16 +22,16 @@ function AxiosGlobalInterceptors() {
             }
             switch (method) {
                 case "get":
-                    toast.info(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.info(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
                 case "post":
-                    toast.success(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.success(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
                 case "put":
-                    toast.warning(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.warning(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
                 case "delete":
-                    toast.error(`${config.method?.toUpperCase()} ${toastUrl}`, {position: toast.POSITION.BOTTOM_RIGHT})
+                    toast.error(`${config.method?.toUpperCase()} ${config.url}`, {position: toast.POSITION.BOTTOM_RIGHT})
                     break;
             }
             return config;

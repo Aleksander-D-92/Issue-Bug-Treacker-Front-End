@@ -15,7 +15,7 @@ function FooterText() {
         <Row justify={'center'}>
             <Text style={footerTextStyle}>2020 @Destroy Bugs An
                 <Text style={footerTextStyle}>
-                    <a href="https://app.netlify.com/sites/destroy-bugs/deploys"
+                    <a href="https://app.netlify.com/sites/destroy-bugs/deploys" target={'_blank'}
                        style={{color: '#d93a3d'}}> Alexander D.</a>
                 </Text>
                 <Text style={footerTextStyle}> Production.</Text>
